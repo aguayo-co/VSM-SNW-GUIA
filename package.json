@@ -1,0 +1,21 @@
+{
+  "name": "vsm-snw",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0 --debug",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "alpinejs": "^3.10.2",
+    "htmx": "^0.0.2",
+    "swiper": "^8.2.5"
+  },
+  "devDependencies": {
+    "vite": "^2.9.13"
+  }
+}

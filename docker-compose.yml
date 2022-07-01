@@ -1,0 +1,70 @@
+version: '3'
+
+services:
+
+  django:
+      container_name: vsm-snw_django
+      build:
+        context: .
+        dockerfile: ./docker/django/Dockerfile
+      image: nav-wjr_django:devel
+      depends_on:
+        - postgres
+      volumes:
+        - .:/app:z
+      env_file:
+        - ./.env
+      ports:
+        - "8000:8000"
+      stdin_open: true
+      tty: true
+
+  postgres:
+      container_name: vsm-snw_postgres
+      image: postgres:13-bullseye
+      volumes:
+        - local_postgres_data:/var/lib/postgresql/data:Z
+      env_file:
+        - ./docker/postgres/.env
+      ports:
+        - "5432:5432/tcp"
+
+  caddy:
+      container_name: vsm-snw_caddy
+      build: docker/caddy
+      image: nav-wjr_caddy:devel
+      env_file:
+        - ./docker/caddy/.env
+      volumes:
+        - ./docker/caddy/conf:/srv/caddy:delegated
+        - ./docker/.dev/.caddy:/root/.caddy:delegated
+        - ./docker/.dev/certs:/srv/certs:delegated
+      ports:
+        - "80:80/tcp"
+        - "443:443/tcp"
+
+  maildev:
+      container_name: vsm-snw_maildev
+      image: djfarrelly/maildev
+      ports:
+        - "1080:1080/tcp"
+        - "1025:1025/tcp"
+      command: [ "bin/maildev", "--web", "1080", "--smtp", "1025" ]
+
+  vite:
+    container_name: vsm-snw_vite
+    build:
+      context: .
+      dockerfile: ./docker/node/Dockerfile
+    image: nav-wjr_vite:devel
+    volumes:
+      - ./:/usr/app
+      - /usr/app/node_modules
+    ports:
+      - "3000:3000"
+      - "9000:9000"
+    stdin_open: true
+    tty: true
+
+volumes:
+  local_postgres_data: {}
