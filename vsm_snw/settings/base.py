@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     "commons",
     "search",
     "wagtail.contrib.forms",
+    "wagtail.contrib.modeladmin",
     "wagtail.contrib.redirects",
     "wagtail.embeds",
     "wagtail.sites",
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     "wagtail",
     "modelcluster",
     "taggit",
+    "wagtailmenus",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -169,4 +171,8 @@ WAGTAILSEARCH_BACKENDS = {
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 WAGTAILADMIN_BASE_URL = "http://example.com"
 
-CSRF_TRUSTED_ORIGINS = ['https://localhost',]
+# Allowed hosts
+# https://docs.djangoproject.com/en/dev/topics/security/#host-headers-virtual-hosting
+if os.environ.get("ALLOWED_HOSTS"):
+    ALLOWED_HOSTS = os.environ["ALLOWED_HOSTS"].split(" ")
+    CSRF_TRUSTED_ORIGINS = [f"https://{host}" for host in os.environ["ALLOWED_HOSTS"].split(" ")]

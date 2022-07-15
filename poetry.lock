@@ -314,6 +314,26 @@ docs = ["olefile", "sphinx (>=2.4)", "sphinx-copybutton", "sphinx-issues (>=3.0.
 tests = ["check-manifest", "coverage", "defusedxml", "markdown2", "olefile", "packaging", "pyroma", "pytest", "pytest-cov", "pytest-timeout"]
 
 [[package]]
+name = "psycopg"
+version = "3.0.15"
+description = "PostgreSQL database adapter for Python"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+"backports.zoneinfo" = {version = ">=0.2.0", markers = "python_version < \"3.9\""}
+tzdata = {version = "*", markers = "sys_platform == \"win32\""}
+
+[package.extras]
+binary = ["psycopg-binary (==3.0.15)"]
+c = ["psycopg-c (==3.0.15)"]
+dev = ["black (>=22.3.0)", "dnspython (>=2.1)", "flake8 (>=4.0)", "mypy (>=0.920,!=0.930,!=0.931)", "types-setuptools (>=57.4)", "wheel (>=0.37)"]
+docs = ["Sphinx (>=4.2)", "furo (==2021.11.23)", "sphinx-autobuild (>=2021.3.14)", "sphinx-autodoc-typehints (>=1.12)", "dnspython (>=2.1)", "shapely (>=1.7)"]
+pool = ["psycopg-pool"]
+test = ["mypy (>=0.920,!=0.930,!=0.931)", "pproxy (>=2.7)", "pytest (>=6.2.5)", "pytest-asyncio (>=0.16,<0.17)", "pytest-cov (>=3.0)", "pytest-randomly (>=3.10)"]
+
+[[package]]
 name = "psycopg2-binary"
 version = "2.9.3"
 description = "psycopg2 - Python-PostgreSQL Database Adapter"
@@ -479,20 +499,26 @@ docs = ["mkdocs (>=1.0,<1.1)", "mkdocs-material (>=4.6,<4.7)"]
 
 [[package]]
 name = "wagtailmenus"
-version = "3.0.2"
+version = "3.1.2"
 description = "An app to help you manage menus in your Wagtail projects more consistently."
 category = "main"
 optional = false
-python-versions = ">=3.4"
+python-versions = ">=3.7"
+develop = false
 
 [package.dependencies]
 django-cogwheels = "0.3"
 
 [package.extras]
-deployment = ["transifex-client"]
-development = ["wagtail (>=2.4,<=2.9)", "django-debug-toolbar", "django-extensions", "ipdb", "werkzeug", "beautifulsoup4 (>=4.5.1,<4.6.1)", "coverage (>=4.5)", "django-webtest (>=1.9,<1.10)"]
+development = ["wagtail (>=2.15)", "django-debug-toolbar", "django-extensions", "ipdb", "werkzeug", "beautifulsoup4 (>=4.8,<4.10)", "coverage (>=4.5)", "django-webtest (>=1.9,<1.10)"]
 docs = ["pyenchant (>=2.0)", "Sphinx (>=1.7.4)", "sphinxcontrib-spelling (>=1.4)", "sphinx-rtd-theme (>=0.3)"]
-testing = ["beautifulsoup4 (>=4.5.1,<4.6.1)", "coverage (>=4.5)", "django-webtest (>=1.9,<1.10)"]
+testing = ["beautifulsoup4 (>=4.8,<4.10)", "coverage (>=4.5)", "django-webtest (>=1.9,<1.10)"]
+
+[package.source]
+type = "git"
+url = "https://github.com/jazzband/wagtailmenus.git"
+reference = "v3.1.2"
+resolved_reference = "100d90c27e0b2bcd828a4667e86deae49c4842d0"
 
 [[package]]
 name = "webencodings"
@@ -545,7 +571,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "823e75a12f447eb3addc028081e4bd8a7c6bca65a8967b6a7933e2593ec79041"
+content-hash = "a4b4a216573cbd85a3039a2ca98c1e7c9c793ced4c59df7ce5cd44c099fadd0a"
 
 [metadata.files]
 anyascii = [
@@ -702,6 +728,10 @@ pillow = [
     {file = "Pillow-9.1.1-pp38-pypy38_pp73-win_amd64.whl", hash = "sha256:baf3be0b9446a4083cc0c5bb9f9c964034be5374b5bc09757be89f5d2fa247b8"},
     {file = "Pillow-9.1.1.tar.gz", hash = "sha256:7502539939b53d7565f3d11d87c78e7ec900d3c72945d4ee0e2f250d598309a0"},
 ]
+psycopg = [
+    {file = "psycopg-3.0.15-py3-none-any.whl", hash = "sha256:9e9beaf38ace6bdf5a5ad969130339d69d61e6ad41114d166779e591bfe40076"},
+    {file = "psycopg-3.0.15.tar.gz", hash = "sha256:1c5637f47e9a4d9b742a0b101f39189bebae0f625bfdfb0cf8a54dd5fe677610"},
+]
 psycopg2-binary = [
     {file = "psycopg2-binary-2.9.3.tar.gz", hash = "sha256:761df5313dc15da1502b21453642d7599d26be88bff659382f8f9747c7ebea4e"},
     {file = "psycopg2_binary-2.9.3-cp310-cp310-macosx_10_14_x86_64.macosx_10_9_intel.macosx_10_9_x86_64.macosx_10_10_intel.macosx_10_10_x86_64.whl", hash = "sha256:539b28661b71da7c0e428692438efbcd048ca21ea81af618d845e06ebfd29478"},
@@ -809,10 +839,7 @@ wagtail-transfer = [
     {file = "wagtail-transfer-0.8.4.tar.gz", hash = "sha256:71d63c20b9cc7386756b6cf25736324ac5282bbd3b25cd0d32b84a9abfb1eb4d"},
     {file = "wagtail_transfer-0.8.4-py3-none-any.whl", hash = "sha256:c2be2f14549ef92afc0b72286375ca25fa0bd18b374a08a057ad35f1210c5b35"},
 ]
-wagtailmenus = [
-    {file = "wagtailmenus-3.0.2-py3-none-any.whl", hash = "sha256:518b8e74fddcae91115313085673b72fdfc17aa4f711f0ea00dbdffa20abce33"},
-    {file = "wagtailmenus-3.0.2.tar.gz", hash = "sha256:77c2e098decc8882f8fbf4fbab6c04911a0daf744aabbfb7e4952f03e3533386"},
-]
+wagtailmenus = []
 webencodings = [
     {file = "webencodings-0.5.1-py2.py3-none-any.whl", hash = "sha256:a0af1213f3c2226497a97e2b3aa01a7e4bee4f403f95be16fc9acd2947514a78"},
     {file = "webencodings-0.5.1.tar.gz", hash = "sha256:b36a1c245f2d304965eb4e0a82848379241dc04b865afcc4aab16748587e1923"},
