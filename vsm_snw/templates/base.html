@@ -1,4 +1,4 @@
-{% load static wagtailcore_tags wagtailuserbar %}
+{% load static wagtailcore_tags wagtailuserbar menu_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,13 +27,17 @@
     <body class="{% block body_class %}{% endblock %}">
         {% wagtailuserbar %}
 
+        {% include "includes/layout/header.html" %}
+
         {% block content %}{% endblock %}
 
-        {# Global javascript #}
-        <script type="text/javascript" src="{% static 'js/vsm_snw.js' %}"></script>
-
-        {% block extra_js %}
-        {# Override this in templates to add extra javascript #}
-        {% endblock %}
+        {% flat_menu 'footer_menu' add_sub_menus_inline=True %}
     </body>
+
+    {# Global javascript #}
+    <script type="text/javascript" src="{% static 'js/vsm_snw.js' %}"></script>
+
+    {% block extra_js %}
+    {# Override this in templates to add extra javascript #}
+    {% endblock %}
 </html>

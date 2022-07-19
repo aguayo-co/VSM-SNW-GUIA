@@ -19,6 +19,7 @@ wagtail-instance-selector = "^2.1.2"
 psycopg2-binary = "^2.9.3"
 psycopg = "^3.0.15"
 wagtailmenus = {git = "https://github.com/jazzband/wagtailmenus.git", rev = "v3.1.2"}
+Pillow = "9.1.1"
 
 
 [tool.poetry.dev-dependencies]
