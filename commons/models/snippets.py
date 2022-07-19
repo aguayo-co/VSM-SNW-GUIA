@@ -25,3 +25,41 @@ class FooterMenuCategories(models.Model):
     class Meta:
         verbose_name = _("Categoría del menú footer")
         verbose_name_plural = _("Categorías del menú footer")
+
+
+@register_snippet
+class Degree(models.Model):
+    """Degree tag for books (products)."""
+
+    name = models.CharField(max_length=255, verbose_name=_("Nombre"))
+
+    panels = [
+        FieldPanel("name"),
+    ]
+
+    def __str__(self):
+        """A readable representation."""
+        return self.name
+
+    class Meta:
+        verbose_name = _("Grado")
+        verbose_name_plural = _("Grados")
+
+
+@register_snippet
+class Subject(models.Model):
+    """Subject tag for books (products)."""
+
+    name = models.CharField(max_length=255, verbose_name=_("Nombre"))
+
+    panels = [
+        FieldPanel("name"),
+    ]
+
+    def __str__(self):
+        """A readable representation."""
+        return self.name
+
+    class Meta:
+        verbose_name = _("Asunto")
+        verbose_name_plural = _("Asuntos")
