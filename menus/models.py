@@ -19,15 +19,3 @@ class AGFlatMenuItem(AbstractFlatMenuItem):
         related_name="custom_flat_menu_items",
     )
 
-    footer_menu_category = models.ForeignKey(
-        "commons.FooterMenuCategories",
-        null=False,
-        blank=False,
-        on_delete=models.CASCADE,
-        related_name="+",
-        help_text=_("Categoría asignada, valido únicamente en el Footer Menú"),
-    )
-
-    panels = AbstractFlatMenuItem.panels + [
-        SnippetChooserPanel("footer_menu_category"),
-    ]

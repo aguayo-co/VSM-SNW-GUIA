@@ -1,6 +1,4 @@
 {% load i18n static wagtailcore_tags wagtailimages_tags %}
-{% load footer_categories %}
-{% get_footer_menu_categories %}
 
 
 {# Content in social networks and send a question #}
@@ -11,24 +9,16 @@
   <footer class="">
     <div class="">
       <div class="">
-        {# Column categorys #}
-        {% for category in categories %}
-          <dl class="">
-            <dt class="">{{ category.name }} </dt>
-            {% for item in menu_items %}
-              {% if item.footer_menu_category == category %}
-                <dd class="">
-                  <a
-                    class=""
-                    href="{{ item.href}}"
-                    title="{{ item.text }}"
-                  >
-                    {% trans item.text %}
-                  </a>
-                </dd>
-              {% endif %}
-            {% endfor %}
-          </dl>
+        {% for item in menu_items %}
+          <dd class="">
+            <a
+              class=""
+              href="{{ item.href}}"
+              title="{{ item.text }}"
+            >
+              {% trans item.text %}
+            </a>
+          </dd>
         {% endfor %}
       </div>
     </div>
