@@ -25,6 +25,7 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 INSTALLED_APPS = [
     "commons",
+    "menus",
     "search",
     "wagtail.contrib.forms",
     "wagtail.contrib.modeladmin",
@@ -38,9 +39,9 @@ INSTALLED_APPS = [
     "wagtail.search",
     "wagtail.admin",
     "wagtail",
+    "wagtailmenus",
     "modelcluster",
     "taggit",
-    "wagtailmenus",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -176,3 +177,10 @@ WAGTAILADMIN_BASE_URL = "http://example.com"
 if os.environ.get("ALLOWED_HOSTS"):
     ALLOWED_HOSTS = os.environ["ALLOWED_HOSTS"].split(" ")
     CSRF_TRUSTED_ORIGINS = [f"https://{host}" for host in os.environ["ALLOWED_HOSTS"].split(" ")]
+
+WAGTAILMENUS_FLAT_MENUS_HANDLE_CHOICES = (
+    ("footer_menu", "Footer Menú"),
+)
+
+WAGTAILMENUS_FLAT_MENU_ITEMS_RELATED_NAME = "custom_flat_menu_items"
+WAGTAILMENUS_SECTION_ROOT_DEPTH = 1

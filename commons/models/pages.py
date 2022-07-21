@@ -3,6 +3,7 @@ from django.db import models
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 from wagtail.fields import StreamField
+from wagtail.core.templatetags.wagtailcore_tags import pageurl
 from wagtail.admin.edit_handlers import (
     FieldPanel,
     MultiFieldPanel,
@@ -186,7 +187,7 @@ class ContentPage(BasePage):
 
 
 class ThematicHomePage(BasePage):
-    """Model for the thematic home page."""
+    """Model for the thematic commons page."""
 
     CONTENT_FIELD = "_content_thematic_homepage"
 
@@ -204,7 +205,7 @@ class ThematicHomePage(BasePage):
 
 
 class CategoryHomePage(BasePage):
-    """Model for the category home page."""
+    """Model for the category commons page."""
 
     CONTENT_FIELD = "_content_category_homepage"
 

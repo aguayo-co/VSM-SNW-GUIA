@@ -1,0 +1,27 @@
+{% load i18n static wagtailcore_tags wagtailimages_tags %}
+
+
+{# Content in social networks and send a question #}
+{# include "layouts/includes/footer/pre_footer.html" #}
+
+{% spaceless %}
+
+  <footer class="">
+    <div class="">
+      <div class="">
+        {% for item in menu_items %}
+          <dd class="">
+            <a
+              class=""
+              href="{{ item.href}}"
+              title="{{ item.text }}"
+            >
+              {% trans item.text %}
+            </a>
+          </dd>
+        {% endfor %}
+      </div>
+    </div>
+  </footer>
+
+{% endspaceless %}

@@ -1,0 +1,28 @@
+{% load i18n wagtailcore_tags %}
+{% load menu_tags %}
+
+
+<ul class="">
+  {% if menu_items %}
+    {% for menu_item in menu_items %}
+      <li class="">
+        <a class="" href="{{ menu_item.href }}">
+          {{ menu_item.text }}
+        </a>
+        {% if menu_item.has_children_in_menu %}
+          <ul class="">
+            {% for sub_item in menu_item.sub_menu.items %}
+              <li class="">
+                <a
+                  class=""
+                  href="{{ sub_item.href }}">
+                  {{ sub_item.text }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </li>
+    {% endfor %}
+  {% endif %}
+</ul>
