@@ -20,6 +20,7 @@ psycopg2-binary = "^2.9.3"
 psycopg = "^3.0.15"
 wagtailmenus = {git = "https://github.com/jazzband/wagtailmenus.git", rev = "v3.1.2"}
 Pillow = "9.1.1"
+dj-database-url = "^0.5.0"
 
 
 [tool.poetry.dev-dependencies]
