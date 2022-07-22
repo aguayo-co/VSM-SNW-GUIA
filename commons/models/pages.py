@@ -1,8 +1,12 @@
 from django.core.paginator import Paginator
 from django.db import models
+from django.db.models import ForeignKey, TextField, CharField, URLField
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
-from wagtail.fields import StreamField
+from wagtail.admin.panels import TabbedInterface, ObjectList
+from wagtail.documents import get_document_model_string
+from wagtail.documents.edit_handlers import DocumentChooserPanel
+from wagtail.fields import StreamField, RichTextField
 from wagtail.core.templatetags.wagtailcore_tags import pageurl
 from wagtail.admin.edit_handlers import (
     FieldPanel,
@@ -12,6 +16,9 @@ from wagtail.core.models import Page
 
 
 # Create your models here.
+from wagtail.snippets.edit_handlers import SnippetChooserPanel
+
+
 class BasePage(Page):
     """The basic model that all Pages inherit from."""
 
@@ -229,7 +236,108 @@ class DetailProductPage(BasePage):
 
     _content_detail_product = StreamField([], verbose_name=("Contenido"), null=True, blank=True)
 
+    grade = models.ForeignKey(
+        "commons.Degree",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+        verbose_name=_("Grado"),
+    )
+    subject = models.ForeignKey(
+        "commons.Subject",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+        verbose_name=_("Asignatura"),
+    )
+    short_description = TextField(
+        verbose_name=_("Descripción Corta"),
+    )
+    teacher_book = ForeignKey(
+        get_document_model_string(),
+        verbose_name=_("Libro del docente"),
+        on_delete=models.SET_NULL,
+        related_name="+",
+        null=True,
+        blank=True,
+    )
+    student_book = ForeignKey(
+        get_document_model_string(),
+        verbose_name=_("Libro del Estudiante"),
+        on_delete=models.SET_NULL,
+        related_name="+",
+        null=True,
+        blank=True,
+    )
+    cod_conaliteg = CharField(
+        verbose_name=_("Codigo CONALITEG"),
+        max_length=255,
+    )
+    office_sep = ForeignKey(
+        get_document_model_string(),
+        verbose_name=_("Oficio SEP"),
+        on_delete=models.SET_NULL,
+        related_name="+",
+        null=True,
+        blank=True,
+    )
+    serie = CharField(
+        verbose_name=_("Serie"),
+        max_length=255,
+        null=True,
+        blank=True,
+    )
+    video = URLField(
+        verbose_name=_("Video"),
+        null=True,
+        blank=True,
+    )
+    teaching_dosage = ForeignKey(
+        get_document_model_string(),
+        verbose_name=_("Dosificación Docente"),
+        on_delete=models.SET_NULL,
+        related_name="+",
+        null=True,
+        blank=True,
+    )
+    parent_programming = ForeignKey(
+        get_document_model_string(),
+        verbose_name=_("Programación para Padres"),
+        on_delete=models.SET_NULL,
+        related_name="+",
+        null=True,
+        blank=True,
+    )
+
     content_panels = BasePage.replace_content_field(CONTENT_FIELD)
+    promote_panels = BasePage.promote_panels
+    settings_panels = BasePage.settings_panels
+    product_property = MultiFieldPanel(
+        [
+            SnippetChooserPanel("grade"),
+            SnippetChooserPanel("subject"),
+            FieldPanel("short_description"),
+            DocumentChooserPanel("teacher_book"),
+            DocumentChooserPanel("student_book"),
+            FieldPanel("cod_conaliteg"),
+            DocumentChooserPanel("office_sep"),
+            FieldPanel("serie"),
+            FieldPanel("video"),
+            DocumentChooserPanel("teaching_dosage"),
+            DocumentChooserPanel("parent_programming"),
+        ],
+    ),
+
+    edit_handler = TabbedInterface(
+        [
+            ObjectList(content_panels, heading=_("Contenido")),
+            ObjectList(promote_panels, heading=_("Promocionar")),
+            ObjectList(settings_panels, heading=_("Propiedades"), classname="settings"),
+            ObjectList(product_property, heading=_("Propiedad del producto")),
+        ]
+    )
 
     subpage_types = []
 
