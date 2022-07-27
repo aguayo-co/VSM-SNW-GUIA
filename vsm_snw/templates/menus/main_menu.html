@@ -1,5 +1,7 @@
 {% load i18n wagtailcore_tags %}
-{% load menu_tags %}
+{% load menu_tags inspector %}
+{% load catalog_special_case %}
+{% get_grade_and_subject %}
 
 
 <ul class="">
@@ -9,7 +11,7 @@
         <a class="" href="{{ menu_item.href }}">
           {{ menu_item.text }}
         </a>
-        {% if menu_item.has_children_in_menu %}
+        {% if menu_item.has_children_in_menu and menu_item.link_page.CONTENT_FIELD != "_content_catalog" %}
           <ul class="">
             {% for sub_item in menu_item.sub_menu.items %}
               <li class="">
@@ -21,6 +23,33 @@
               </li>
             {% endfor %}
           </ul>
+        {% endif %}
+        {% if menu_item.link_page.CONTENT_FIELD == "_content_catalog" %}
+          <br>
+          <a
+            class=""
+            href="{{ menu_item.href }}">
+            Ir al {{ menu_item.text }}
+          </a>
+          <br>
+          {% for degree, subjects in catalog_items.items %}
+            <a
+              class=""
+              href="{{ menu_item.href }}?degree={{ degree }}">
+              {{ degree }}
+            </a>
+            <ul class="">
+              {% for subject in subjects %}
+                <li class="">
+                  <a
+                    class=""
+                    href="{{ menu_item.href }}?degree={{ degree }}&subject={{ subject }}">
+                    {{ subject }}
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endfor %}
         {% endif %}
       </li>
     {% endfor %}

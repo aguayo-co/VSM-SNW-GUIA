@@ -1,4 +1,4 @@
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db import models
 from django.db.models import ForeignKey, TextField, CharField, URLField
 from django.utils.text import slugify
@@ -13,11 +13,10 @@ from wagtail.admin.edit_handlers import (
     MultiFieldPanel,
 )
 from wagtail.core.models import Page
-
-
-# Create your models here.
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 
+
+items_per_page = 10
 
 class BasePage(Page):
     """The basic model that all Pages inherit from."""
@@ -135,13 +134,33 @@ class BlogPage(BasePage):
     content_panels = BasePage.replace_content_field(CONTENT_FIELD)
 
     subpage_types = [
-        "commons.ThematicHomePage",
         "commons.CategoryHomePage",
     ]
 
     class Meta:
         verbose_name = _("Blog")
         verbose_name_plural = _("Blog")
+
+    def get_context(self, request, *args, **kwargs):
+        """Adding custom stuff to our context."""
+        context = super().get_context(request, *args, **kwargs)
+        page = request.GET.get("page", None)
+        order_by = request.GET.get("order_by", None)
+
+        queryset = CatalogPage.objects.all()
+
+        paginator = Paginator(queryset, items_per_page)
+
+        try:
+            frequent_questions = paginator.page(page)
+        except PageNotAnInteger:
+            frequent_questions = paginator.page(1)
+        except EmptyPage:
+            frequent_questions = paginator.page(paginator.num_pages)
+
+        context["sub_pages"] = frequent_questions
+
+        return context
 
 
 class CatalogPage(BasePage):
@@ -159,6 +178,27 @@ class CatalogPage(BasePage):
     class Meta:
         verbose_name = _("Catálogo")
         verbose_name_plural = _("Catálogo")
+
+    def get_context(self, request, *args, **kwargs):
+        """Adding custom stuff to our context."""
+        context = super().get_context(request, *args, **kwargs)
+        page = request.GET.get("page", None)
+        order_by = request.GET.get("order_by", None)
+
+        queryset = DetailProductPage.objects.all()
+
+        paginator = Paginator(queryset, items_per_page)
+
+        try:
+            frequent_questions = paginator.page(page)
+        except PageNotAnInteger:
+            frequent_questions = paginator.page(1)
+        except EmptyPage:
+            frequent_questions = paginator.page(paginator.num_pages)
+
+        context["sub_pages"] = frequent_questions
+
+        return context
 
 
 class FormPage(BasePage):
@@ -191,24 +231,6 @@ class ContentPage(BasePage):
     class Meta:
         verbose_name = _("Content")
         verbose_name_plural = _("Content")
-
-
-class ThematicHomePage(BasePage):
-    """Model for the thematic commons page."""
-
-    CONTENT_FIELD = "_content_thematic_homepage"
-
-    _content_thematic_homepage = StreamField([], verbose_name=("Contenido"), null=True, blank=True)
-
-    content_panels = BasePage.replace_content_field(CONTENT_FIELD)
-
-    subpage_types = [
-        "commons.DetailArticlePage",
-    ]
-
-    class Meta:
-        verbose_name = _("Thematic Home")
-        verbose_name_plural = _("Thematic Home")
 
 
 class CategoryHomePage(BasePage):
