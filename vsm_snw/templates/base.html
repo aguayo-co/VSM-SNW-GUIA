@@ -1,4 +1,5 @@
 {% load static wagtailcore_tags wagtailuserbar menu_tags %}
+{% load snw_sass %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,6 +19,7 @@
 
         {# Global stylesheets #}
         <link rel="stylesheet" type="text/css" href="{% static 'css/vsm_snw.css' %}">
+        <link href="{% sass_src 'sass/ejemplo.scss' %}" rel="stylesheet" type="text/css" />
 
         {% block extra_css %}
         {# Override this in templates to add extra stylesheets #}

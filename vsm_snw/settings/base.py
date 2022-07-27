@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "sass_processor",
 ]
 
 MIDDLEWARE = [
@@ -148,11 +149,15 @@ USE_TZ = True
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    "sass_processor.finders.CssFinder",
 ]
 
 STATICFILES_DIRS = [
     os.path.join(PROJECT_DIR, "static"),
+    os.path.join(BASE_DIR, "ui"),
+    os.path.join(BASE_DIR, "node_modules"),
 ]
+
 
 # ManifestStaticFilesStorage is recommended in production, to prevent outdated
 # JavaScript / CSS assets being served from cache (e.g. after a Wagtail upgrade).
@@ -194,3 +199,19 @@ WAGTAILMENUS_FLAT_MENUS_HANDLE_CHOICES = (
 
 WAGTAILMENUS_FLAT_MENU_ITEMS_RELATED_NAME = "custom_flat_menu_items"
 WAGTAILMENUS_SECTION_ROOT_DEPTH = 1
+
+# Sass Processor
+# https://github.com/jrief/django-sass-processor
+SASS_PROCESSOR_ENABLED = True
+
+SASS_PROCESSOR_ROOT = "ui"
+SASS_PROCESSOR_INCLUDE_DIRS = [
+    os.path.join(PROJECT_DIR, "ui/"),
+    os.path.join(PROJECT_DIR, "ui/sass/"),
+    os.path.join(PROJECT_DIR, "node_modules"),
+]
+SASS_PROCESSOR_INCLUDE_FILE_PATTERN = r"^.+\.scss$"
+SASS_PRECISION = 8
+
+NODE_NPX_PATH =  os.environ.get("NODE_NPX_PATH", None)
+NODE_MODULES_PATH = os.path.join(PROJECT_DIR, "node_modules")
