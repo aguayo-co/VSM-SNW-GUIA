@@ -130,3 +130,7 @@ dmypy.json
 
 # Ignorar docker local
 docker/.dev
+
+# Ignorar css de sass
+ui/*/ *.css
+ui/*/ *.css.map
