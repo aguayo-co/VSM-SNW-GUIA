@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "wagtailmenus",
     "modelcluster",
     "taggit",
+    "debug_toolbar",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -54,6 +55,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -91,11 +93,8 @@ WSGI_APPLICATION = "vsm_snw.wsgi.application"
 
 DATABASES = {"default": None}
 
-if os.environ["DATABASE_URL"]:
-    print("using database url")
-    DATABASES["default"] = dj_database_url.config(
-        default=os.environ["DATABASE_URL"]
-    )
+if os.environ.get("DATABASE_URL", None) is not None:
+    DATABASES["default"] = dj_database_url.config(default=os.environ["DATABASE_URL"])
     DATABASES["default"]["ENGINE"] = "django.db.backends.postgresql"
 else:
     DATABASES = {
@@ -191,14 +190,22 @@ WAGTAILADMIN_BASE_URL = "http://example.com"
 # https://docs.djangoproject.com/en/dev/topics/security/#host-headers-virtual-hosting
 if os.environ.get("ALLOWED_HOSTS"):
     ALLOWED_HOSTS = os.environ["ALLOWED_HOSTS"].split(" ")
-    CSRF_TRUSTED_ORIGINS = [f"https://{host}" for host in os.environ["ALLOWED_HOSTS"].split(" ")]
+    CSRF_TRUSTED_ORIGINS = [
+        f"https://{host}" for host in os.environ["ALLOWED_HOSTS"].split(" ")
+    ]
 
-WAGTAILMENUS_FLAT_MENUS_HANDLE_CHOICES = (
-    ("footer_menu", "Footer Menú"),
-)
+# Internal Ips
+import socket  # only if you haven't already imported this
+hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+INTERNAL_IPS = [
+    ipaddress.ip_network(address)
+    for address in os.environ.get("INTERNAL_ADDRESSES", "127.0.0.1").split(" ")
+] + [ip[: ip.rfind(".")] + ".1" for ip in ips]
+
+print(INTERNAL_IPS)
+WAGTAILMENUS_FLAT_MENUS_HANDLE_CHOICES = (("footer_menu", "Footer Menú"),)
 
 WAGTAILMENUS_FLAT_MENU_ITEMS_RELATED_NAME = "custom_flat_menu_items"
-WAGTAILMENUS_SECTION_ROOT_DEPTH = 1
 
 # Sass Processor
 # https://github.com/jrief/django-sass-processor
@@ -213,5 +220,5 @@ SASS_PROCESSOR_INCLUDE_DIRS = [
 SASS_PROCESSOR_INCLUDE_FILE_PATTERN = r"^.+\.scss$"
 SASS_PRECISION = 8
 
-NODE_NPX_PATH =  os.environ.get("NODE_NPX_PATH", None)
+NODE_NPX_PATH = os.environ.get("NODE_NPX_PATH", None)
 NODE_MODULES_PATH = os.path.join(PROJECT_DIR, "node_modules")
