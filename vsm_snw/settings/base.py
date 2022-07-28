@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "wagtail.images",
     "wagtail.search",
     "wagtail.admin",
+    "wagtail.contrib.settings",
     "wagtail",
     "wagtailmenus",
     "modelcluster",
@@ -90,23 +91,23 @@ WSGI_APPLICATION = "vsm_snw.wsgi.application"
 
 DATABASES = {"default": None}
 
-if os.environ["DATABASE_URL"]:
-    print("using database url")
-    DATABASES["default"] = dj_database_url.config(
-        default=os.environ["DATABASE_URL"]
-    )
-    DATABASES["default"]["ENGINE"] = "django.db.backends.postgresql"
-else:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": os.environ["DATABASE_NAME"],
-            "USER": os.environ["DATABASE_USER"],
-            "PASSWORD": os.environ["DATABASE_PASSWORD"],
-            "HOST": os.environ["DATABASE_HOST"],
-            "PORT": os.environ["DATABASE_PORT"],
-        }
+#if os.environ["DATABASE_URL"]:
+#    print("using database url")
+#    DATABASES["default"] = dj_database_url.config(
+#        default=os.environ["DATABASE_URL"]
+#    )
+#    DATABASES["default"]["ENGINE"] = "django.db.backends.postgresql"
+#else:
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.environ["DATABASE_NAME"],
+        "USER": os.environ["DATABASE_USER"],
+        "PASSWORD": os.environ["DATABASE_PASSWORD"],
+        "HOST": os.environ["DATABASE_HOST"],
+        "PORT": os.environ["DATABASE_PORT"],
     }
+}
 
 
 # Password validation
@@ -194,3 +195,24 @@ WAGTAILMENUS_FLAT_MENUS_HANDLE_CHOICES = (
 
 WAGTAILMENUS_FLAT_MENU_ITEMS_RELATED_NAME = "custom_flat_menu_items"
 WAGTAILMENUS_SECTION_ROOT_DEPTH = 1
+
+# Editors
+WAGTAILADMIN_RICH_TEXT_EDITORS = {
+    "inline": {
+        "WIDGET": "wagtail.admin.rich_text.DraftailRichTextArea",
+        "OPTIONS": {
+            "features": [
+                "bold",
+                "italic",
+                "underline",
+                "mark",
+                "superscript",
+                "subscript",
+                "small",
+                "link",
+                "document-link",
+                "strikethrough",
+            ]
+        },
+    },
+}
