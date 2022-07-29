@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 import dj_database_url
+import ipaddress
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     "wagtail.images",
     "wagtail.search",
     "wagtail.admin",
+    "wagtail.contrib.settings",
     "wagtail",
     "wagtailmenus",
     "modelcluster",
@@ -107,6 +109,7 @@ else:
             "PORT": os.environ["DATABASE_PORT"],
         }
     }
+}
 
 
 # Password validation
@@ -202,10 +205,30 @@ INTERNAL_IPS = [
     for address in os.environ.get("INTERNAL_ADDRESSES", "127.0.0.1").split(" ")
 ] + [ip[: ip.rfind(".")] + ".1" for ip in ips]
 
-print(INTERNAL_IPS)
 WAGTAILMENUS_FLAT_MENUS_HANDLE_CHOICES = (("footer_menu", "Footer Menú"),)
-
 WAGTAILMENUS_FLAT_MENU_ITEMS_RELATED_NAME = "custom_flat_menu_items"
+WAGTAILMENUS_SECTION_ROOT_DEPTH = 1
+
+# Editors
+WAGTAILADMIN_RICH_TEXT_EDITORS = {
+    "inline": {
+        "WIDGET": "wagtail.admin.rich_text.DraftailRichTextArea",
+        "OPTIONS": {
+            "features": [
+                "bold",
+                "italic",
+                "underline",
+                "mark",
+                "superscript",
+                "subscript",
+                "small",
+                "link",
+                "document-link",
+                "strikethrough",
+            ]
+        },
+    },
+}
 
 # Sass Processor
 # https://github.com/jrief/django-sass-processor
