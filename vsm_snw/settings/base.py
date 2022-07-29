@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "sass_processor",
+    "django_vite",
 ]
 
 MIDDLEWARE = [
@@ -251,3 +252,12 @@ if DEBUG:
         return True
 
     DEBUG_TOOLBAR_CONFIG = {"SHOW_TOOLBAR_CALLBACK": show_toolbar}
+
+
+# Vite
+DJANGO_VITE_ASSETS_PATH = os.environ.get(
+    "DJANGO_VITE_ASSETS_PATH", os.path.join(PROJECT_DIR, "static/")
+)
+DJANGO_VITE_DEV_MODE = (
+    os.environ.get("DJANGO_VITE_DEV_MODE", "False") == "True"
+)

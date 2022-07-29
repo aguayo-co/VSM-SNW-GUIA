@@ -1,5 +1,8 @@
 {% load static wagtailcore_tags wagtailuserbar menu_tags %}
 {% load snw_sass %}
+{# JS Bundle #}
+{% load fixed_django_vite %}
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,6 +30,8 @@
 </head>
 
 <body class="{% block body_class %}{% endblock %}">
+{# Main JS #}
+{% vite_asset 'js/main.js' %}
 {% wagtailuserbar %}
 
 {% include "includes/layout/header.html" %}

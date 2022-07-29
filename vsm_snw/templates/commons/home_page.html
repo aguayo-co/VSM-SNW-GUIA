@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load fixed_django_vite %}
 {% load static %}
 {% load inspector %}
 
@@ -12,3 +13,5 @@
   <div class="wireframe">{{ self|inspect }}</div>
 
 {% endblock content %}
+
+{% vite_asset 'js/ejemplo.js' %}
