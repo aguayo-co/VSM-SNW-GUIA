@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 import dj_database_url
+import ipaddress
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
@@ -44,16 +45,19 @@ INSTALLED_APPS = [
     "wagtailmenus",
     "modelcluster",
     "taggit",
+    "debug_toolbar",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "sass_processor",
 ]
 
 MIDDLEWARE = [
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -91,21 +95,19 @@ WSGI_APPLICATION = "vsm_snw.wsgi.application"
 
 DATABASES = {"default": None}
 
-#if os.environ["DATABASE_URL"]:
-#    print("using database url")
-#    DATABASES["default"] = dj_database_url.config(
-#        default=os.environ["DATABASE_URL"]
-#    )
-#    DATABASES["default"]["ENGINE"] = "django.db.backends.postgresql"
-#else:
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.environ["DATABASE_NAME"],
-        "USER": os.environ["DATABASE_USER"],
-        "PASSWORD": os.environ["DATABASE_PASSWORD"],
-        "HOST": os.environ["DATABASE_HOST"],
-        "PORT": os.environ["DATABASE_PORT"],
+if os.environ.get("DATABASE_URL", None) is not None:
+    DATABASES["default"] = dj_database_url.config(default=os.environ["DATABASE_URL"])
+    DATABASES["default"]["ENGINE"] = "django.db.backends.postgresql"
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": os.environ["DATABASE_NAME"],
+            "USER": os.environ["DATABASE_USER"],
+            "PASSWORD": os.environ["DATABASE_PASSWORD"],
+            "HOST": os.environ["DATABASE_HOST"],
+            "PORT": os.environ["DATABASE_PORT"],
+        }
     }
 }
 
@@ -149,11 +151,15 @@ USE_TZ = True
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    "sass_processor.finders.CssFinder",
 ]
 
 STATICFILES_DIRS = [
     os.path.join(PROJECT_DIR, "static"),
+    os.path.join(BASE_DIR, "ui"),
+    os.path.join(BASE_DIR, "node_modules"),
 ]
+
 
 # ManifestStaticFilesStorage is recommended in production, to prevent outdated
 # JavaScript / CSS assets being served from cache (e.g. after a Wagtail upgrade).
@@ -187,12 +193,19 @@ WAGTAILADMIN_BASE_URL = "http://example.com"
 # https://docs.djangoproject.com/en/dev/topics/security/#host-headers-virtual-hosting
 if os.environ.get("ALLOWED_HOSTS"):
     ALLOWED_HOSTS = os.environ["ALLOWED_HOSTS"].split(" ")
-    CSRF_TRUSTED_ORIGINS = [f"https://{host}" for host in os.environ["ALLOWED_HOSTS"].split(" ")]
+    CSRF_TRUSTED_ORIGINS = [
+        f"https://{host}" for host in os.environ["ALLOWED_HOSTS"].split(" ")
+    ]
 
-WAGTAILMENUS_FLAT_MENUS_HANDLE_CHOICES = (
-    ("footer_menu", "Footer Menú"),
-)
+# Internal Ips
+import socket  # only if you haven't already imported this
+hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+INTERNAL_IPS = [
+    ipaddress.ip_network(address)
+    for address in os.environ.get("INTERNAL_ADDRESSES", "127.0.0.1").split(" ")
+] + [ip[: ip.rfind(".")] + ".1" for ip in ips]
 
+WAGTAILMENUS_FLAT_MENUS_HANDLE_CHOICES = (("footer_menu", "Footer Menú"),)
 WAGTAILMENUS_FLAT_MENU_ITEMS_RELATED_NAME = "custom_flat_menu_items"
 WAGTAILMENUS_SECTION_ROOT_DEPTH = 1
 
@@ -216,3 +229,19 @@ WAGTAILADMIN_RICH_TEXT_EDITORS = {
         },
     },
 }
+
+# Sass Processor
+# https://github.com/jrief/django-sass-processor
+SASS_PROCESSOR_ENABLED = True
+
+SASS_PROCESSOR_ROOT = "ui"
+SASS_PROCESSOR_INCLUDE_DIRS = [
+    os.path.join(PROJECT_DIR, "ui/"),
+    os.path.join(PROJECT_DIR, "ui/sass/"),
+    os.path.join(PROJECT_DIR, "node_modules"),
+]
+SASS_PROCESSOR_INCLUDE_FILE_PATTERN = r"^.+\.scss$"
+SASS_PRECISION = 8
+
+NODE_NPX_PATH = os.environ.get("NODE_NPX_PATH", None)
+NODE_MODULES_PATH = os.path.join(PROJECT_DIR, "node_modules")
