@@ -10,21 +10,20 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+import ipaddress
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+
 import dj_database_url
-import ipaddress
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
-
+DEBUG = os.environ.get("DEBUG", "True") == "True"
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # Application definition
-
 INSTALLED_APPS = [
     "commons",
     "menus",
@@ -109,7 +108,6 @@ else:
             "PORT": os.environ["DATABASE_PORT"],
         }
     }
-}
 
 
 # Password validation
@@ -199,6 +197,7 @@ if os.environ.get("ALLOWED_HOSTS"):
 
 # Internal Ips
 import socket  # only if you haven't already imported this
+
 hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
 INTERNAL_IPS = [
     ipaddress.ip_network(address)
@@ -245,3 +244,10 @@ SASS_PRECISION = 8
 
 NODE_NPX_PATH = os.environ.get("NODE_NPX_PATH", None)
 NODE_MODULES_PATH = os.path.join(PROJECT_DIR, "node_modules")
+
+# Debug Toolbar
+if DEBUG:
+    def show_toolbar(request):
+        return True
+
+    DEBUG_TOOLBAR_CONFIG = {"SHOW_TOOLBAR_CALLBACK": show_toolbar}

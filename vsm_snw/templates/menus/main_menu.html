@@ -4,7 +4,8 @@
 {% get_grade_and_subject %}
 
 
-<ul class="">
+<ul>
+{{ menu_items|inspect }}
   {% if menu_items %}
     {% for menu_item in menu_items %}
       <li class="">
