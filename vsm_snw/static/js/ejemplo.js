@@ -1,3 +1,3 @@
 window.onload = function () {
-    alert("hola5");
+    console.log("Ejemplo Vite");
 }
