@@ -1,0 +1,59 @@
+// -*------------------------------------*
+// -   .u- clases de Utilities BEMIT.
+// -   Tiene una función muy específica a menudo proporciona una sola declaración
+// -   y no debe vincularse ni modificarse.
+// -   Reutilizable y no está vinculada a un componente UI específicamente.
+// -   Único lugar donde se permite usar !important
+// -   Ej: .u-none, .u-block, .u-hidden
+// -*------------------------------------*
+
+
+/**
+ * Class: u-hidden, display none
+ * @atom Ocultar elemento
+ * @section Utils
+ * @markup
+ *  <a href="#" class="i-twitter">
+ *    <span class="u-hidden">Twitter</span>
+ *  </a>
+ */
+
+.u-hidden {
+  position: absolute;
+  top: 1000px;
+  opacity: 0;
+  visibility: hidden;
+}
+
+/**
+ * Class: u-hidden-mb, display none
+ * @atom Ocultar elemento en Mobile
+ * @section Utils
+ * @markup
+ *  <a href="#" class="i-twitter">
+ *    <span class="u-hidden-mb">Twitter</span>
+ *  </a>
+ */
+
+@media only screen and(max-width: 768px) {
+  .u-hidden-mb {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+
+/**
+ * Class: u-inherit-color, Color de texto heredado del color especificado para el texto del bloque padre.
+ * @atom Color heredado
+ * @section Utils
+ * @markup
+ *  <a href="#" class="u-inherit-color">
+ *    Color de texto heredado
+ *  </a>
+ */
+
+.u-inherit-color {
+  color: inherit;
+}

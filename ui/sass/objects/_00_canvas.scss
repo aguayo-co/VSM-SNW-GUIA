@@ -1,0 +1,13 @@
+//-*------------------------------------*
+//-   .o- class Objects Canvas.
+//-   Contenedor general que enmarca y alinea las “cajas" con respecto al ancho.
+//-   El canvas es el espacio disponible para el contenido.
+//-*------------------------------------*
+
+
+.o-canvas {
+  width: $canvas-with; //95%
+  @include px-to-rem(max-width, $canvas-max-with); //1380px
+  margin-left: auto;
+  margin-right: auto;
+}

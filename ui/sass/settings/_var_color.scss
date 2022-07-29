@@ -1,0 +1,104 @@
+// -*------------------------------------*
+// -    Variables Color Template
+// -    Referente del sistema de color:
+// -    https://material.io/design/color/the-color-system.html
+// -*------------------------------------*
+
+// -*------------------------------------*
+// -    Neutro
+// -*------------------------------------*
+
+/**
+  * $c-neutro
+  * @color
+  * @section Neutro
+*/
+
+$c-neutro: #fff;
+
+
+// -*------------------------------------*
+// -    Primary
+// -*------------------------------------*
+
+/**
+  * $c-primary-10
+  * @color
+  * @section Primary
+*/
+
+$c-primary-10: #EEF2FC;
+
+/**
+  * $c-primary-20
+  * @color
+  * @section Primary
+*/
+
+$c-primary-20: #D2F3FF;
+
+/**
+  * $c-primary-50
+  * @color
+  * @section Primary
+*/
+
+$c-primary-50: #1D45AE;
+
+
+// -*------------------------------------*\
+// -    Secondary & tertiary
+// -*------------------------------------*/
+
+/**
+  * $c-secondary-50
+  * @color
+  * @section Secondary
+*/
+
+$c-secondary-50: #FF5D00;
+
+
+//-*------------------------------------*
+//-    On
+//-    Color de textos, encima de las superficies:
+//-    Tipografía y colores de iconografía.
+//-*------------------------------------*
+
+/**
+  * $c-on-primary
+  * @color
+  * @section On
+*/
+
+$c-on-primary: #404040;
+
+
+//-*------------------------------------*
+//-    Background - Surface
+//-    Aparece detrás del contenido. 
+//-    Fondos, bordes
+//-    ej: $c-bg-surface: #fff;
+//-*------------------------------------*
+
+/**
+ * $c-surface-grey-10
+ * @color
+ * @section Surface
+ */
+
+ $c-surface-grey-10: #C3C7CE;
+
+
+// -*------------------------------------*
+// -    Default & Brand
+// -    se muestra con mayor frecuencia en las pantallas y componentes
+// -*------------------------------------*
+
+$c-default-text: $c-on-primary;
+
+$c-default-title: $c-on-primary;
+
+$c-brand-primary: $c-primary-50;
+
+$c-brand-secondary: $c-secondary-50;

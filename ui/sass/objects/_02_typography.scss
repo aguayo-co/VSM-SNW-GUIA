@@ -1,0 +1,105 @@
+//-*----------------------------------*
+//-  Objects: Styles for text
+//-*----------------------------------*
+
+/**
+ * Class: theme | <html>
+ * @description  font-size base para el HTML
+ *  ♣ Propiedades: 16px/100%
+ * @atom Base: HTML
+ * @section 03. Estilos textos
+ * @markup
+ *  <html class="theme">
+ *     <p>@{lipsum:quantity:type}</p>
+ *  </html>
+ */
+html,
+.theme {
+  color: $c-default-text;
+  font-size: 100%;
+}
+
+
+/**
+ * Class: o-text | <body>
+ * @description  estilos de texto generales para el body
+ *  ♣ Propiedades:  16px | 1.8 | Montserrat | Medium
+ * @atom Body copy
+ * @section 03. Estilos textos
+ * @markup
+ *  <p class="o-text">@{lipsum:1:paragraphs}</p>
+ */
+
+body,
+.o-text {
+  line-height: 1.8;
+  color: $c-default-text;
+  font-family: $f-default;
+  font-weight: $f-medium;
+  @include px-to-rem(font-size, $font-size-base);
+}
+
+
+/**
+ * Class: .o-italic | <em> | <i>
+ * @description  define estilo italica para el texto.
+ *  ♣ Propiedades: italic
+ * @atom Texto cursiva
+ * @section 03. Estilos textos
+ * @markup
+ *  <p class="o-text">
+ *	  Ad ea velit nisi aliquip <span class="o-italic">nostrud laboris laborum</span> aliquip laborum.
+ *  </p>
+ *  <p class="o-text">
+ *	  Ad ea velit <em>nisi aliquip nostrud laboris</em> laborum aliquip laborum.
+ *  </p>
+ */
+
+i,
+em,
+.o-italic {
+  font-style: $f-italic;
+  font-family: $f-default;
+}
+
+/**
+ * Class: Tag HTML | <u>
+ * @description  Representa texto que no está articulado y tiene un estilo diferente al texto normal, como palabras mal escritas o nombres propios.
+ *  ♣ Propiedades: underline-position under
+ * @atom Texto subrayado
+ * @section 03. Estilos textos
+ * @markup
+ *  <p class="o-text">
+ *	  Ad ea velit nisi aliquip <u>nostrud laboris laborum</u> aliquip laborum.
+ *  </p>
+ */
+
+u,
+.o-underline {
+  text-underline-position: under;
+}
+
+/**
+ * Class: .o-bold | <strong>, <b>
+ * @description  define estilo negrilla para el texto.
+ *  ♣ Propiedades: 700
+ * @atom Texto negrilla
+ * @section 03. Estilos textos
+ * @markup
+ *  <p class="o-text">
+ *	  Ad ea velit nisi <span class="o-bold">aliquip nostrud laboris</span> laborum aliquip laborum.
+ *  </p>
+ *  <p class="o-text">
+ *	  <strong>Ad ea velit nisi aliquip nostrud laboris laborum aliquip laborum</strong>
+ *  </p>
+ */
+
+b,
+strong,
+.o-bold {
+  font-weight: $f-bold;
+}
+
+.o-medium {
+  font-weight: $f-semi-bold;
+}

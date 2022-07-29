@@ -1,0 +1,21 @@
+//-*------------------------------------*
+//-   Variables Canvas
+//-*------------------------------------*
+
+
+/**
+* $canvas-with: Ancho del canvas en porcentajes
+* @nuclide Variables
+* @section Settings > Canvas
+*/
+$canvas-with: 95%;
+
+/**
+* $canvas-max-with: Máximo Ancho del canvas en pixeles, 
+* Grid 4 columnas: 240px, 
+* Grid 3 columnas: 320px, 
+* Grid 2 columnas: 480px 
+* @nuclide Variables
+* @section Settings > Canvas
+*/
+$canvas-max-with : 1100px;

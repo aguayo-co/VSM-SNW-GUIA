@@ -1,0 +1,86 @@
+//-*-----------------------------------------------------------*
+//-   Vertically and horizontally center an object in context
+//-*-----------------------------------------------------------*
+
+/**
+ * Center-translate: Centra horizontalmente o verticalmente un elemento en su contexto. Translación en un solo eje.
+ *
+ * @mixin
+ * @section Helpers
+ * @param $axis 
+ *  Valor eje translate
+ *	♣ Default: translateX
+ *	♣ Values: translateX | translateY 
+ * @example
+ *  .foo {
+ *    @include center-translate(translateY)
+ *  }
+ *  || El @include se traducirá en:
+ *     .foo {
+ *         display: block;
+ *         position: relative;
+ *         top: 50%;
+ *         -ms-transform 	  : translateY(-50%);
+ *         -moz-transform   : translateY(-50%);
+ *         -o-transform  	  : translateY(-50%);
+ *         -webkit-transform: translateY(-50%);
+ *         transform        : translateY(-50%);
+ *     }
+ */
+
+@mixin center-translate($axis: translateX) {
+	display: block;
+	position: relative;
+	top: 50%;
+	-ms-transform 	 : $axis(-50%);
+	-moz-transform   : $axis(-50%);
+	-o-transform  	 : $axis(-50%);
+	-webkit-transform: $axis(-50%);
+	transform        : $axis(-50%);
+}
+
+/**
+ * Centra horizontalmente o verticalmente un elemento en su contexto. Translación en un solo eje.
+ *
+ * @mixin
+ * @section Helpers
+ * @param $justify
+ *	Default: center ♣
+ *	Values: center | flex-start | flex-end | space-between | space-around
+ * @param $align
+ *	Default: center ♣
+ *	Values: center | flex-start | flex-end | baseline | stretch
+ * @example
+ *  .foo {
+ *    @include center-flexbox;
+ *  }
+ *  || El @include se traducirá en:
+ *     .foo {
+ *         display: flex;
+ *         justify-content: center;
+ *         align-items    : center;
+ *     }
+ *  .foo {
+ *    @include center-flexbox(space-between)
+ *  }
+ *  || El @include se traducirá en:
+ *     .foo {
+ *         display: flex;
+ *         justify-content: space-between;
+ *         align-items    : center;
+ *     }
+ *  .foo {
+ *    @include center-flexbox(center, flex-start)
+ *  }
+ *  || El @include se traducirá en:
+ *     .foo {
+ *         display: flex;
+ *         justify-content: center;
+ *         align-items    : flex-start;
+ *     }
+ */
+@mixin center-flexbox($justify:center, $align: center) {
+	@include flexbox;
+	@include justify-content($justify);
+	@include align-items($align);
+}

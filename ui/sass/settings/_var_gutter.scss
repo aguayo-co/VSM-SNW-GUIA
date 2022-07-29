@@ -1,0 +1,15 @@
+
+//-*------------------------------------*
+//-   Variables gutter (margin - padding)
+//-   https://designhandbook.mendesaltaren.com/design-systems#3-3-regla-del-8
+//-*------------------------------------*
+
+
+/**
+* Unidad mínima la retícula digital es 8, 
+* el sistema de reticula se basa en incrementos verticales y horizontales de 8 píxeles.
+* Uso: multiplicar la variable por el número del incremento deseado. Ejemplo: $gutter * 2
+* @nuclide Variables
+* @section Settings > Gutter 
+*/
+$gutter: 8px;
