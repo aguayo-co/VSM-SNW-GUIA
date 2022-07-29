@@ -132,5 +132,7 @@ dmypy.json
 docker/.dev
 
 # Ignorar css de sass
-ui/*/ *.css
-ui/*/ *.css.map
+ui/*.css
+ui/*.css.map
+ui/*/*.css
+ui/*/*.css.map
