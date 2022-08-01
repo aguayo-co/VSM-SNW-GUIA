@@ -60,7 +60,7 @@ button {
   color: $c-neutro;
   @include px-to-rem(font-size, $font-size-base);
   font-family: $f-default;
-  font-weight: $f-semi-bold;
+  font-weight: $f-medium;
   background-color: $c-brand-primary;
   transition: all 0.4s;
 
@@ -69,6 +69,5 @@ button {
   &:active {
     color: $c-brand-primary;
     border-color: $c-brand-primary;
-    // background-color: $c-grey-10;
   }
 }

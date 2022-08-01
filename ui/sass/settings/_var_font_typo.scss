@@ -10,12 +10,21 @@
 */
 $font-size-base: 16px;
 
+
 /**
 * Font family: 'Montserrat'
 * @nuclide Variables
 * @section Settings > Font family
 */
-$f-default: 'Montserrat', sans-serif;
+$f-default: 'Outfit', sans-serif;
+
+
+/**
+* font-weight: Thin | Font family: Outfit
+* @nuclide Variables
+* @section Settings > Font weight
+*/
+$f-thin: 100;
 
 /**
 * font-weight: Light | Font family: Montserrat
@@ -25,18 +34,18 @@ $f-default: 'Montserrat', sans-serif;
 $f-light: 300;
 
 /**
+* font-weight: Regular | Font family: Montserrat
+* @nuclide Variables
+* @section Settings > Font weight
+*/
+$f-regular: 400;
+
+/**
 * font-weight: Medium | Font family: Montserrat
 * @nuclide Variables
 * @section Settings > Font weight
 */
-$f-medium: 400;
-
-/**
-* font-weight: Semi-bold | Font family: Montserrat
-* @nuclide Variables
-* @section Settings > Font weight
-*/
-$f-semi-bold: 500;
+$f-medium: 500;
 
 /**
 * font-weight: Bold | Font family: Montserrat

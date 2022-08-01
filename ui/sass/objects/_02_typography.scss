@@ -35,7 +35,7 @@ body,
   line-height: 1.8;
   color: $c-default-text;
   font-family: $f-default;
-  font-weight: $f-medium;
+  font-weight: $f-regular;
   @include px-to-rem(font-size, $font-size-base);
 }
 
@@ -82,7 +82,7 @@ u,
 /**
  * Class: .o-bold | <strong>, <b>
  * @description  define estilo negrilla para el texto.
- *  ♣ Propiedades: 700
+ *  ♣ Propiedades: 600
  * @atom Texto negrilla
  * @section 03. Estilos textos
  * @markup
@@ -100,6 +100,21 @@ strong,
   font-weight: $f-bold;
 }
 
+/**
+ * Class: .o-medium | <strong>, <b>
+ * @description  define estilo semi negrilla para el texto.
+ *  ♣ Propiedades: 500
+ * @atom Texto negrilla
+ * @section 03. Estilos textos
+ * @markup
+ *  <p class="o-text">
+ *	  Ad ea velit nisi <span class="o-bold">aliquip nostrud laboris</span> laborum aliquip laborum.
+ *  </p>
+ *  <p class="o-text">
+ *	  <strong>Ad ea velit nisi aliquip nostrud laboris laborum aliquip laborum</strong>
+ *  </p>
+ */
+
 .o-medium {
-  font-weight: $f-semi-bold;
+  font-weight: $f-medium;
 }
