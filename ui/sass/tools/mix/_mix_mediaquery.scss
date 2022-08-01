@@ -1,0 +1,152 @@
+//-*------------------------------------------------------*
+//-   MediaQueries first mobile with defined breakpoints
+//-*------------------------------------------------------*
+
+/**
+ * Full query: Mediaquerys predefinidos, para el proyecto.
+ * Disponibles para 10 screen sizes diferentes.
+ * Para modificarlos, editar las variables definidas en los breakpoints.
+ *
+ * @mixin
+ * @section Utils
+ * @param $breakpoint-value
+ *    ♣ Breakpoint min-width  
+ *      small: 375px | small-m: 480px | medium: 768px | wide: 1024px | big: 1280px | huge: 1440px | large: 1180px 
+ *    ♣ Breakpoint max-width  
+ *      medium-max: 0 - 767px  |  wide-max  : 0 - 1023px  |  large-max : 0 - 1179px
+ *
+ * @example
+ *  || small: breakpoint min-width: 375px --> $bp-small
+ *     @include media-query(small) {
+ *       PROPERTIES...
+ *     }
+ *  || small-m: breakpoint min-width 540px --> $bp-small-m
+ *     @include media-query(small-m) {
+ *        PROPERTIES...
+ *     }
+ *  || medium: breakpoint min-width 768px --> $bp-medium
+ *     @include media-query(medium) {
+ *        PROPERTIES...
+ *     }
+ *  || medium-max: breakpoint max-width 0 - 767px
+ *     @include media-query(medium-max) {
+ *        PROPERTIES...
+ *     }
+ *  || wide: breakpoint min-width 1024px --> $bp-wide
+ *     @include media-query(wide) {
+ *        PROPERTIES...
+ *     }
+ *  || wide-max: breakpoint max-width 0 - 1023px
+ *     @include media-query(wide-max) {
+ *        PROPERTIES...
+ *     }
+ *  || large: breakpoint min-width 1180px --> $bp-large
+ *     @include media-query(large) {
+ *        PROPERTIES...
+ *     }
+ *  || huge: breakpoint min-width 1440px --> $bp-huge
+ *     @include media-query(huge) {
+ *        PROPERTIES...
+ *     } 
+ *  || large-max: breakpoint max-width 0 - 1179px
+ *     @include media-query(large-max) {
+ *        PROPERTIES...
+ *     }
+ *  || big: breakpoint min-width 1280px --> $bp-big
+ *     @include media-query(big) {
+ *        PROPERTIES...
+ *     }
+ */
+
+@mixin media-query($breakpoint-value) {
+  @if $breakpoint-value == small {
+    @media only screen and (min-width: $bp-small) {
+      @content;
+    }
+  }
+  @if $breakpoint-value == small-m {
+    @media only screen and (max-width: $bp-small-m) {
+      @content;
+    }
+  }
+  @if $breakpoint-value==medium {
+    @media only screen and (min-width: $bp-medium) {
+      @content;
+    }
+  }
+   //max 767
+  @if $breakpoint-value == medium-max {
+    @media only screen and (max-width: $bp-medium - 1) {
+      @content;
+    }
+  }
+
+  @if $breakpoint-value == wide {
+    @media only screen and (min-width: $bp-wide) {
+      @content;
+    }
+  }
+  //max 1023
+  @if $breakpoint-value == wide-max {
+    @media only screen and (max-width: $bp-wide - 1) {
+      @content;
+    }
+  }
+
+  @if $breakpoint-value == large {
+    @media only screen and (min-width: $bp-large) {
+      @content;
+    }
+  }
+  @if $breakpoint-value == large-max {
+    @media only screen and (max-width: $bp-large - 1) {
+      @content;
+    }
+  }
+  @if $breakpoint-value==big {
+    @media only screen and (min-width: $bp-big) {
+      @content;
+    }
+  }
+
+  @if $breakpoint-value == huge {
+    @media only screen and (min-width: $bp-huge) {
+      @content;
+    }
+  }
+
+}
+
+/**
+ * Helper para insertar fácilmente mediaquery a un selector específico.
+ *
+ * @mixin
+ * @section Helpers
+ * @param $breakpoint-value
+ *    ♣ Breakpoint min-width  
+ *    【 small: 375px | small-m: 480px | medium: 768px | wide: 1024px | big: 1280px | huge: 1440px | large: 1180px 】 
+ *    ♣ Breakpoint max-width
+ *    【 medium-max: 0 - 767px  |  wide-max  : 0 - 1023px  |  large-max : 0 - 1179px 】
+ * @example
+ *  .foo {
+ *    PROPERTIES...
+ *    @include media-query-help(small) {
+ *      PROPERTIES...
+ *    }
+ *  }
+ *  || Variables
+ *  ♣ small     : breakpoint min-width 375px
+ *  ♣ medium    : breakpoint min-width 768px
+ *  ♣ medium-max: breakpoint max-width 0 - 767px
+ *  ♣ wide      : breakpoint min-width 1024px
+ *  ♣ wide-max  : breakpoint max-width 0 - 1023px
+ *  ♣ large     : breakpoint min-width 1180px
+ *  ♣ huge      : breakpoint min-width 1440px
+ *  ♣ large-max : breakpoint max-width 0 - 1179px
+ *  ♣ big       : breakpoint min-width 1280px
+ */
+@mixin media-query-help($breakpoint-value) {
+  @include media-query($breakpoint-value) {
+    @content
+  };
+}

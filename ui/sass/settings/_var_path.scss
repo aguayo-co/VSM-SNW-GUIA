@@ -1,0 +1,18 @@
+//-*------------------------------------*
+//-   Variables Path rutas a los assets
+//-*------------------------------------*
+
+
+/**
+ * Variable ruta imágenes incluidas en los CSS  | use: url(# {$path-img}/card-shadow.svg)
+ * @nuclide Variables
+ * @section Settings > Path
+ */
+$path-img: "../images" !default;
+
+/**
+ * Variable ruta a la carpeta de fuentes | use: url('# {$path-font}/# {$font-family-ico}.woff?')
+ * @nuclide Variables
+ * @section Settings > Path
+ */
+$path-font: "../fonts" !default;

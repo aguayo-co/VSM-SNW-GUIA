@@ -1,0 +1,25 @@
+//-*------------------------------------*
+//-   .o- class Objects Section, Background.
+//-   o-section: elementos de seccionamiento, contiene una parte de un documento temáticamente definida.
+//-   o-bg: define los estilos de las superficies de las secciones
+//-*------------------------------------*
+
+
+.o-section {
+  margin-top: $gutter * 12;
+  margin-bottom: $gutter * 12;
+}
+
+
+/*------------------------------------*\
+  Media querys
+\*------------------------------------*/
+
+@include media-query(medium) {
+
+  .o-section {
+    margin-top: $gutter * 10;
+    margin-bottom: $gutter * 10;
+  }
+
+}

@@ -1,0 +1,73 @@
+//-*------------------------------------*
+//-   .o- class Objects Botones y enlaces.
+//-*------------------------------------*
+
+*:focus {
+  outline: 0;
+}
+
+button {
+  padding: 0;
+  line-height: inherit;
+  font-family: $f-default;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  outline: none;
+  outline-width: 0;
+  border: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  transition: all 0.6s;
+
+  &:focus {
+    outline-width: 0;
+  }
+
+  &:disabled {
+    cursor: default;
+  }
+}
+
+/**
+ * Class: o-btn
+ * @modifiers
+ *  .o-btn_primary Botón para acciones primarias
+ *  .o-btn_secondary Botón para acciones secundarias 
+ * @description  Botón acciones primarias y secundarias
+ * ♣ Estados: hover, focus
+ * @atom Botón
+ * @section 05. Botones
+ * @markup
+ *   <div class="sg-modifires">
+ *      <button class="o-btn" type="button">
+ *        Texto botón
+ *      </button>
+ *   </div>
+ */
+
+.o-btn {
+  @include inline-flex;
+  @include justify-content(center);
+  @include align-items(center);
+  @include px-to-rem(min-width, 200px);
+  border: 1px solid $c-brand-primary;
+  border-radius: 50px;
+  @include px-to-rem(padding, 12px $gutter * 3);
+  line-height: 1;
+  color: $c-neutro;
+  @include px-to-rem(font-size, $font-size-base);
+  font-family: $f-default;
+  font-weight: $f-medium;
+  background-color: $c-brand-primary;
+  transition: all 0.4s;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $c-brand-primary;
+    border-color: $c-brand-primary;
+  }
+}

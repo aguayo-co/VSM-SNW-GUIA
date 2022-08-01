@@ -1,0 +1,106 @@
+//-*----------------------------------------------------*
+//-   Overflow ellipsis multiples lineas de texto
+//-*----------------------------------------------------*
+
+
+//- calcula el valor de la fuente de px a rem
+@function calculate_px_to_rem($size) {
+  $remSize: $size /  $font-size-base;
+  @return #{$remSize}rem;
+}
+
+
+//- calcula el valor del alto del contenedor
+@function calculate_height_box($value_font-size, $value_line-height, $value_number-lines) {
+  $height_box: ($value_font-size * $value_line-height * $value_number-lines) / $font-size-base;
+  @return #{$height_box}rem;
+}
+
+/**
+ * Aplica overflow ellipsis multiples lineas de texto.
+ * Adición de CSS a un elemento que limitará la visibilidad del texto después de cierto punto. 
+ * La altura máxima en rem se calcula multiplicando:  
+ * (font-size) * (line-heigth) * (número de líneas que se quiera mostrar)
+ *
+ * @mixin
+ * @section Helpers
+ * @param $font-size Valor tamaño de fuente en px.
+ * @param $line-height Valor Alto de linea.
+ * @param $lines Número de lineas a mostrar.
+ * @example
+ *  .foo {
+ *    @include truncatechars(16px, 1.4, 3)
+ *  }
+ *  || El @include se traducirá en:
+ *     .foo {
+ *        display: block;
+ *        display: -webkit-box;
+ *        max-height: 67.2px;
+ *        max-height: 4.2rem;
+ *        overflow: hidden;
+ *        line-height: 1.4;
+ *        -webkit-line-clamp: 3;
+ *        -webkit-box-orient: vertical;
+ *        text-overflow: ellipsis;
+ *        font-size: 16px;
+ *        font-size: 1rem;
+ *     }
+ */
+
+@mixin truncatechars($font-size, $line-height, $lines) {
+  display: block;
+  display: -webkit-box;
+  max-height: $font-size * $line-height * $lines;
+  max-height: calculate_height_box($font-size, $line-height, $lines);
+  overflow: hidden;
+  line-height: $line-height;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  font-size: $font-size;
+  font-size: calculate_px_to_rem($font-size);
+}
+
+@mixin truncatechars-height($font-size, $line-height, $lines) {
+  display: block;
+  display: -webkit-box;
+  height: $font-size * $line-height * $lines;
+  height: calculate_height_box($font-size, $line-height, $lines);
+  overflow: hidden;
+  line-height: $line-height;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  font-size: $font-size;
+  font-size: calculate_px_to_rem($font-size);
+}
+
+
+/**
+ * Aplica overflow ellipsis multiples lineas de texto.
+ * Adición de CSS a un elemento que limitará la visibilidad del texto después de cierto punto. 
+ * La altura máxima en rem se calcula multiplicando:  
+ * (font-size) * (line-heigth) * (número de líneas que se quiera mostrar)
+ *
+ * @mixin
+ * @section Helpers
+ * @param $font-size Valor tamaño de fuente en px.
+ * @param $line-height Valor Alto de linea.
+ * @param $lines Número de lineas a mostrar.
+ * @example
+ *  .foo {
+ *    @include truncatechars-change(16px, 1.4, 3)
+ *  }
+ *  || Debe agregar font-size y line-height. El @include se traducirá en:
+ *     .foo {
+ *        max-height: 67.2px;
+ *        max-height: 4.2rem;
+ *     }
+ */
+
+@mixin truncatechars-change($font-size, $line-height, $lines) {
+  max-height: $font-size * $line-height * $lines;
+  max-height: calculate_height_box($font-size, $line-height, $lines);
+}
+
+

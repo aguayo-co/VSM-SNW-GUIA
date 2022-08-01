@@ -1,0 +1,36 @@
+//-*------------------------------------*
+//-   .o- class Objects Enlaces.
+//-*------------------------------------*
+
+a {
+  text-decoration: none;
+  color: inherit;
+  outline-width: 0;
+  cursor: pointer;
+  transition: all .6s;
+}
+
+/**
+ * Class: o-link
+ * @atom Link
+ * @section 06.Enlaces
+ * @markup
+ *   <p>
+ *     <a class="o-link" href="#"> Enlaces textuales</a>
+ *   </p>
+ */
+
+.o-link {
+  display: block;
+  position: relative;
+  padding: 0;
+  color: $c-brand-secondary;
+  text-decoration: underline;
+  text-underline-position: under;
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none;
+  }
+}

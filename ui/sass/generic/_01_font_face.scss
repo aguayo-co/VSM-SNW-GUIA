@@ -1,0 +1,228 @@
+/*---------------------------------------------*\
+  #font-face
+  $font-family-ico: "ico-snw" !default;
+  URL custom fonts: https://fonts.google.com/share?selection.family=Outfit:wght@100;300;400;500
+\*---------------------------------------------*/
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;300;400;500;600&display=swap');
+
+
+// - Icommon Font Ico
+@font-face {
+  font-family: '#{$font-family-ico}';
+  src: url('#{$path-font}/#{$font-family-ico}.eot?qqnr5');
+  src: url('#{$path-font}/#{$font-family-ico}.eot?#iefix') format('embedded-opentype'), url('#{$path-font}/#{$font-family-ico}.ttf?qqnr5') format('truetype'), url('#{$path-font}/#{$font-family-ico}.woff?qqnr5') format('woff'), url('#{$path-font}/#{$font-family-ico}.svg?qqnr5##{$font-family-ico}') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+.i-,
+[class^="i-"],
+[class*=" i-"],
+.o-ico {
+  &::before {
+    @include font-family-ico($font-family-ico);
+  }
+}
+
+.i-after-,
+[class^="i-after-"],
+[class*="i-after-"] {
+  &:after {
+    @include font-family-ico($font-family-ico);
+  }
+}
+
+// - V 1.0
+
+// B
+
+/**
+* @icon .i-bars
+* @markup
+*   <span class="i-bars"></span>
+*/
+.i-bars {
+  &::before {
+    content: $i-bars;
+  }
+}
+
+
+// C
+
+/**
+* @icon .i-chevron-up
+* @markup
+*   <span class="i-chevron-up"></span>
+*/
+.i-chevron-up {
+  &::before {
+    content: $i-chevron-up;
+  }
+}
+
+/**
+* @icon .i-chevron-right
+* @markup
+*   <span class="i-chevron-right"></span>
+*/
+.i-chevron-right {
+  &::before {
+    content: $i-chevron-right;
+  }
+}
+
+/**
+* @icon .i-chevron-down
+* @markup
+*   <span class="i-chevron-down"></span>
+*/
+.i-chevron-down {
+  &::before {
+    content: $i-chevron-down;
+  }
+}
+
+/**
+* @icon .i-chevron-left
+* @markup
+*   <span class="i-chevron-left"></span>
+*/
+.i-chevron-left {
+  &::before {
+    content: $i-chevron-left;
+  }
+}
+
+/**
+* @icon .i-close
+* @markup
+*   <span class="i-close"></span>
+*/
+.i-close {
+  &::before {
+    content: $i-close;
+  }
+}
+
+
+// F
+
+/**
+* @icon .i-facebook
+* @markup
+*   <span class="i-facebook"></span>
+*/
+.i-facebook {
+  &::before {
+    content: $i-facebook;
+  }
+}
+
+
+// H
+
+/**
+* @icon .i-headset
+* @markup
+*   <span class="i-headset"></span>
+*/
+.i-headset {
+  &::before {
+    content: $i-headset;
+  }
+}
+
+
+// I
+
+/**
+* @icon .i-instagram
+* @markup
+*   <span class="i-instagram"></span>
+*/
+.i-instagram {
+  &::before {
+    content: $i-instagram;
+  }
+}
+
+
+// M
+
+/**
+* @icon .i-mail
+* @markup
+*   <span class="i-mail"></span>
+*/
+.i-mail {
+  &::before {
+    content: $i-mail;
+  }
+}
+
+
+// S
+
+/**
+* @icon .i-search
+* @markup
+*   <span class="i-search"></span>
+*/
+.i-search {
+  &::before {
+    content: $i-search;
+  }
+}
+
+
+// T
+
+/**
+* @icon .i-telephone
+* @markup
+*   <span class="i-telephone"></span>
+*/
+.i-telephone {
+  &::before {
+    content: $i-telephone;
+  }
+}
+
+/**
+* @icon .i-tiktok
+* @markup
+*   <span class="i-tiktok"></span>
+*/
+.i-tiktok {
+  &::before {
+    content: $i-tiktok;
+  }
+}
+
+/**
+* @icon .i-twitter
+* @markup
+*   <span class="i-twitter"></span>
+*/
+.i-twitter {
+  &::before {
+    content: $i-twitter;
+  }
+}
+
+
+// Y
+
+/**
+* @icon .i-youtube
+* @markup
+*   <span class="i-youtube"></span>
+*/
+.i-youtube {
+  &::before {
+    content: $i-youtube;
+  }
+}

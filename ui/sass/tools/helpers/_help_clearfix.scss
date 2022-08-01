@@ -1,0 +1,26 @@
+//-*----------------------------------------------------------*
+//-   Eliminates behavior of the parent of floating elements
+//-*----------------------------------------------------------*
+/**
+ * Borra la flotación de los elementos.
+ *
+ * @mixin
+ * @section Helpers
+ * @example
+ *  .foo {
+ *    @include clearfix;
+ *  }
+ *  || El @include se traducirá en:
+ *     .foo:after {
+ *        content: '';
+ *        display: table;
+ *        clear: both;
+ *     }
+ */
+@mixin clearfix {
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}

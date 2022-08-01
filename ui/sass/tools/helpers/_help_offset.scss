@@ -1,0 +1,44 @@
+//-*-----------------------------------------------------------*
+//-    Offset: compensa el ancho de su contenedor para ir al 100%
+//-    By to: Andrea Acosta B.
+//-*-----------------------------------------------------------*
+
+@function offMargin($canvasWidth) {
+	$offmargin: ($canvasWidth - 100) / 2;
+	@return #{$offmargin};
+}
+
+/**
+ * Offset: compensa el ancho de su contenedor para que el elemento ocupe el 100% del ancho del viewport
+ * ♣ Resta al 100% el ancho del canvas,
+ * ♣ el padding se puede ajustar a la necesidad del diseño
+ * ♣ Se recomienda usar las variables:  _var-canvas
+ *
+ * @mixin
+ * @section Helpers
+ * @param $canvasWidth Valor ancho del canvas.
+ * @param $elementPadding Valor del padding left y right
+ * @example
+ *  || Si usa variables prestablecidad para el ancho del canvas.
+ *  || para este ejemplo $canvas-with equivale a 90%.
+ *  .foo {
+ *    @include offset-full('$canvas-with', 4%);
+ *  }
+ *  || Si usa un valor en prcentajes no registrado: debe ser igual al valor del ancho de su contenedor
+ *  .foo {
+ *    @include offset-full(90%, 4%);
+ *  }
+ *  || El @include se traducirá en:
+ *     .foo {
+ *        margin-left: -5%;
+ *        margin-right: -5%;
+ *        padding-left: 4%;
+ *        padding-right: 4%;
+ *     }
+ */
+@mixin offset-full($canvasWidth, $elementPadding : null) {
+	margin-left: offMargin($canvasWidth);
+	margin-right: offMargin($canvasWidth);
+	padding-left: $elementPadding;
+	padding-right: $elementPadding;
+}
