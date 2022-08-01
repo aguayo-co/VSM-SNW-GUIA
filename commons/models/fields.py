@@ -31,9 +31,9 @@ class SocialNetworksField(JSONField):
     SOCIAL_NETWORKS = [
         SocialNetwork("facebook", "Facebook", "facebook.com"),
         SocialNetwork("instagram", "Instagram", "instagram.com"),
-        SocialNetwork("tiktok", "tiktok", "tiktok.com"),
-        SocialNetwork("youtube", "youtube", "youtube.com"),
-        SocialNetwork("twitter", "twitter", "twitter.com"),
+        SocialNetwork("tiktok", "Tiktok", "tiktok.com"),
+        SocialNetwork("youtube", "Youtube", "youtube.com"),
+        SocialNetwork("twitter", "Twitter", "twitter.com"),
     ]
 
     def formfield(self, **kwargs):

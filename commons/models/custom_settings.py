@@ -4,6 +4,7 @@ from django.db.models import (
     SET_NULL,
     ForeignKey,
     TextField,
+    EmailField,
 )
 from django.utils.translation import gettext_lazy as _
 from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel
@@ -21,15 +22,13 @@ class SantillanaSettings(BaseSetting):
         verbose_name=_("Logo del sitio"),
         on_delete=PROTECT,
         related_name="+",
-        blank=True,
-        null=True,
+        null=True
     )
     logo_url = ForeignKey(
         "wagtailcore.Page",
         verbose_name=_("URL Logo"),
         on_delete=PROTECT,
         related_name="+",
-        blank=True,
         null=True,
     )
 
@@ -42,7 +41,6 @@ class SantillanaSettings(BaseSetting):
         verbose_name=_("Logo del footer"),
         on_delete=SET_NULL,
         null=True,
-        blank=True,
         related_name="+",
         help_text=_(
             "Logo alternativo que se utiliza en lugares de contraste oscuro, como el footer."
@@ -51,13 +49,14 @@ class SantillanaSettings(BaseSetting):
     copyright = RichTextField(verbose_name=_("Copyright - Footer "), editor="inline")
 
     # Contact
-    phone = RichTextField(verbose_name=_("Teléfono"), editor="inline")
-    email = RichTextField(verbose_name=_("Email"))
+    phone = TextField(verbose_name=_("Teléfono"))
+    email = EmailField(verbose_name=_("Email"))
 
     # Cookies
     cookies_text = RichTextField(
         verbose_name=_("Texto Cookies"),
         editor="inline",
+        blank=True
     )
 
     # Scripts
@@ -66,6 +65,7 @@ class SantillanaSettings(BaseSetting):
     google_tag_manager_no_script = TextField(
         verbose_name=_("Google Tag Manager (noscript)")
     )
+    chatbot = TextField(verbose_name=_("Chatbot"), blank=True)
 
     # Panels
     panels = [
@@ -101,8 +101,15 @@ class SantillanaSettings(BaseSetting):
                 FieldPanel("google_site_tag_script"),
                 FieldPanel("google_tag_manager_script"),
                 FieldPanel("google_tag_manager_no_script"),
+                FieldPanel("chatbot"),
             ],
             heading=_("Scripts de terceros"),
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("cookies_text"),
+            ],
+            heading=_("Mensaje de Cookies"),
         ),
     ]
 
