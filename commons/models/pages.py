@@ -147,7 +147,7 @@ class BlogPage(BasePage):
         page = request.GET.get("page", None)
         order_by = request.GET.get("order_by", None)
 
-        queryset = CatalogPage.objects.all()
+        queryset = CategoryHomePage.objects.all()
 
         paginator = Paginator(queryset, items_per_page)
 
@@ -249,6 +249,27 @@ class CategoryHomePage(BasePage):
     class Meta:
         verbose_name = _("Category Home")
         verbose_name_plural = _("Category Home")
+
+    def get_context(self, request, *args, **kwargs):
+        """Adding custom stuff to our context."""
+        context = super().get_context(request, *args, **kwargs)
+        page = request.GET.get("page", None)
+        order_by = request.GET.get("order_by", None)
+
+        queryset = DetailArticlePage.objects.all()
+
+        paginator = Paginator(queryset, items_per_page)
+
+        try:
+            frequent_questions = paginator.page(page)
+        except PageNotAnInteger:
+            frequent_questions = paginator.page(1)
+        except EmptyPage:
+            frequent_questions = paginator.page(paginator.num_pages)
+
+        context["sub_pages"] = frequent_questions
+
+        return context
 
 
 class DetailProductPage(BasePage):
