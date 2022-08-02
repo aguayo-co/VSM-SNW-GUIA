@@ -9,6 +9,7 @@ class Degree(models.Model):
     """Degree tag for books (products)."""
 
     name = models.CharField(max_length=255, verbose_name=_("Nombre"))
+    number = models.IntegerField(verbose_name=_("Número"))
 
     panels = [
         FieldPanel("name"),
@@ -40,3 +41,31 @@ class Subject(models.Model):
     class Meta:
         verbose_name = _("Materia")
         verbose_name_plural = _("Materias")
+
+
+@register_snippet
+class Serie(models.Model):
+    """Serie tag."""
+
+    name = models.CharField(max_length=255, verbose_name=_("Nombre"), null=True, blank=True)
+    image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+        verbose_name=_("Imagen"),
+    )
+
+    panels = [
+        FieldPanel("name"),
+        FieldPanel("image"),
+    ]
+
+    def __str__(self):
+        """A readable representation."""
+        return self.name
+
+    class Meta:
+        verbose_name = _("Serie")
+        verbose_name_plural = _("Series")
