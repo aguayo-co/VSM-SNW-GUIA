@@ -6,12 +6,17 @@
 {% block body_class %}template-homepage{% endblock %}
 
 {% block extra_css %}
-
 {% endblock extra_css %}
 
 {% block content %}
-  <div class="wireframe">{{ self|inspect }}</div>
 
+  <div class="wireframe">
+    {# Test Funcionalidad JS, por favor eliminar #}
+    <h1 x-data="{ message: 'I ❤️ Santillana' }" x-text="message"></h1>
+    {{ self|inspect }}
+  </div>
 {% endblock content %}
 
-{% vite_asset 'js/ejemplo.js' %}
+{% block extra_js %}
+
+{% endblock %}

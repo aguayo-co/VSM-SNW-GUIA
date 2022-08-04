@@ -1,3 +1,3 @@
-window.onload = function () {
-    console.log("Ejemplo Vite");
+export default function testModule() {
+    console.log("Prueba de modulo dos");
 }

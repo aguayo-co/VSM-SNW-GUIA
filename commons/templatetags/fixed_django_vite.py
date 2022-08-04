@@ -68,3 +68,6 @@ def vite_asset(
     assert path is not None
 
     return FixedDjangoViteAssetLoader.instance().generate_vite_asset(path, **kwargs)
+
+# Make Loader instance at startup to prevent threading problems
+FixedDjangoViteAssetLoader.instance()
