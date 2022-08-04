@@ -1,13 +1,13 @@
-//-*------------------------------------*
-//-   .o- class Objects Enlaces.
-//-*------------------------------------*
+// -*------------------------------------*
+// -   .o- class Objects Enlaces.
+// -*------------------------------------*
 
 a {
   text-decoration: none;
   color: inherit;
   outline-width: 0;
   cursor: pointer;
-  transition: all .6s;
+  transition: all 0.6s;
 }
 
 /**
@@ -24,7 +24,7 @@ a {
   display: block;
   position: relative;
   padding: 0;
-  color: $c-brand-secondary;
+  color: $c-default-text;
   text-decoration: underline;
   text-underline-position: under;
 
@@ -32,5 +32,10 @@ a {
   &:focus,
   &:active {
     text-decoration: none;
+  }
+
+  &::before {
+    display: inline-block;
+    margin-right: $gutter;
   }
 }

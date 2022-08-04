@@ -1,0 +1,221 @@
+/*------------------------------------*\
+  Layout l02-footer
+  Description: Pie de página con enlaces a páginas internas y externas, texto estático (legal), redes sociales e imágenes de certificación.
+  Type: Layout
+\*------------------------------------*/
+
+.c-footer {
+  color: $c-neutro;
+  background-color: $c-surface-grey-50;
+}
+
+.c-footer__scrollup {
+  position: relative;
+  border: 1px solid $c-neutro;
+  color: $c-brand-primary;
+  background-color: $c-primary-10;
+  transition: $transition-ease-in-out-2s;
+
+  &::before {
+    transition: $transition-ease-in-out-2s;
+  }
+
+  &:hover {
+    transform: scale(0.95);
+  }
+
+  &:active {
+    &::before {
+      transform: translateY(-4px);
+    }
+  }
+}
+
+.c-footer__info,
+.c-footer__copyright {
+  border-top: 1px solid $c-neutro;
+}
+
+.c-footer__info {
+  border-bottom: 1px solid $c-neutro;
+}
+
+.c-footer__navigation {
+  font-weight: $f-light;
+}
+
+.c-footer__link {
+  @include px-to-rem(padding, 6px $gutter * 2);
+  @include px-to-rem(border-radius, $gutter);
+  line-height: 1.5;
+  background-color: transparent;
+  transition: $transition-ease-in-out-2s;
+
+  &:hover {
+    color: $c-default-text;
+    background-color: $c-primary-10;
+
+    &:not(.c-footer__ico) {
+      text-decoration: underline;
+    }
+  }
+}
+
+.c-footer__ico {
+  @include px-to-rem(font-size, 18px);
+  line-height: 1;
+}
+
+/**
+* TODO @Andres Eliminar estos estilos cuando el texto enriquecido este definido
+*/
+.c-footer__copyright {
+  p {
+    font-weight: $f-light;
+    @include px-to-rem(font-size, 14px);
+    text-align: center;
+  }
+}
+
+
+/*------------------------------------*\
+  Media Querys
+\*------------------------------------*/
+
+/**
+* Mobile | VP: max-width 768px
+*/
+@include media-query(medium-max) {
+  .c-footer__scrollup {
+    width: 100%;
+    display: block;
+    @include px-to-rem(padding, $gutter);
+    text-align: center;
+
+    &::before {
+      display: block;
+      line-height: 1;
+    }
+  }
+
+  .c-footer__brand {
+    @include px-to-rem(padding, $gutter * 3 0);
+    text-align: center;
+  }
+
+  .c-footer__navigation {
+    @include px-to-rem(padding, $gutter * 3 $gutter * 2);
+  }
+
+  .c-footer__link {
+    @include px-to-rem(padding-right, $gutter);
+    @include px-to-rem(padding-left, $gutter);
+
+    &:not(.c-footer__ico) {
+      &:not( &:last-of-type) {
+        @include px-to-rem(margin-bottom, $gutter * 2);
+      }
+    }
+  }
+
+  .c-footer__social {
+    @include flexbox;
+    @include align-items(center);
+    @include justify-content(center);
+    border-top: 1px solid;
+    @include px-to-rem(padding-top, $gutter);
+    @include px-to-rem(padding-bottom, $gutter);
+
+    &::before {
+      content: attr(data-text-followus);
+      @include px-to-rem(margin-right, $gutter * 3);
+      font-weight: $f-light;
+    }
+  }
+
+  .c-footer__ico {
+    @include px-to-rem(padding, $gutter);
+  }
+
+  .c-footer__copyright {
+    @include px-to-rem(padding, $gutter 0);
+  }
+}
+
+
+/**
+ * Desktop | VP: min-width 768px
+ */
+@include media-query(medium) {
+  .c-footer__canvas {
+    width: $canvas-with;
+    @include px-to-rem(max-width, $canvas-max-with);
+    margin: 0 auto;
+    @include px-to-rem(padding, $gutter * 8 0 $gutter * 3);
+  }
+
+  .c-footer__brand {
+    @include px-to-rem(max-width, 154px);
+  }
+
+  .c-footer__top,
+  .c-footer__scrollup,
+  .c-footer__info,
+  .c-footer__navigation {
+    @include flexbox;
+    @include align-items(center);
+  }
+
+  .c-footer__top,
+  .c-footer__scrollup {
+    @include flex-direction(row-reverse);
+  }
+
+  .c-footer__top {
+    @include justify-content(space-between);
+    @include px-to-rem(padding-bottom, $gutter * 2);
+  }
+
+  .c-footer__scrollup {
+    @include px-to-rem(padding, $gutter * 2 $gutter * 3);
+    @include px-to-rem(border-radius, 100px);
+    line-height: 1;
+
+    &::before {
+      @include px-to-rem(margin-left, $gutter);
+      @include px-to-rem(font-size, 12px);
+    }
+  }
+
+  .c-footer__info,
+  .c-footer__copyright {
+    border-top-color: rgba($color: $c-neutro, $alpha: 0.2);
+  }
+
+  .c-footer__info,
+  .c-footer__menu {
+    @include px-to-rem(padding, $gutter * 2 0);
+  }
+
+  .c-footer__menu {
+    @include justify-content(space-evenly);
+    @include px-to-rem(max-width, 600px);
+    margin: 0 auto;
+    @include px-to-rem(row-gap, 10px);
+  }
+
+  .c-footer__info {
+    @include justify-content(center);
+    @include px-to-rem(column-gap, $gutter * 10);
+    border-bottom-color: rgba($color: $c-neutro, $alpha: 0.2);
+  }
+
+  .c-footer__navigation {
+    @include flex-wrap(wrap);
+    @include px-to-rem(column-gap, $gutter);
+  }
+
+  .c-footer__copyright {
+    @include px-to-rem(padding-top, $gutter * 3);
+  }
+}
