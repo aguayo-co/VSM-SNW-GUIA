@@ -13,6 +13,7 @@ class Degree(models.Model):
 
     panels = [
         FieldPanel("name"),
+        FieldPanel("number"),
     ]
 
     def __str__(self):
