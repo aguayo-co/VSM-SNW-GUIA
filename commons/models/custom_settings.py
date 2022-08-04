@@ -113,11 +113,6 @@ class SantillanaSettings(BaseSetting):
         ),
     ]
 
-    @property
-    def allies(self):
-        """Returns a list of allies."""
-        return Ally.objects.all()
-
     class Meta:
         """Meta attributes for Settings."""
 

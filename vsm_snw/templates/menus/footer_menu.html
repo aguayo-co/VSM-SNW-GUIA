@@ -1,27 +1,96 @@
+{#  From Settings  #}
+{% load wagtailsettings_tags %}
+{% get_settings use_default_site=True %}
+
 {% load i18n static wagtailcore_tags wagtailimages_tags %}
 
 
-{# Content in social networks and send a question #}
-{# include "layouts/includes/footer/pre_footer.html" #}
-
 {% spaceless %}
+  {% with settings.commons.SantillanaSettings as settings_site  %}
 
-  <footer class="">
-    <div class="">
-      <div class="">
-        {% for item in menu_items %}
-          <dd class="">
+    <footer class="c-footer">
+      <div class="c-footer__canvas">
+
+        {# Logo and Scrollup button #}
+        <div class="c-footer__top">
+
+          <a href="#" class="c-footer__scrollup i-chevron-up">
+            {% trans "Volver" %}
+          </a>
+
+          <a href="#">
+            <figure class="c-footer__brand">
+              {% image settings_site.logo_footer fill-205x48 %}
+            </figure>
+          </a>
+
+        </div>
+
+        {# Chanels contact and social networks #}
+        <div class="c-footer__info">
+
+          {# Chanels contact #}
+          <nav class="c-footer__navigation">
+            {# TODO @Andres Ajustar la redirección de este enlace cuando se defina #}
+            <a href="#" class="c-footer__link o-link u-inherit-color i-headset">{% trans "Contáctenos" %}</a>
             <a
-              class=""
-              href="{{ item.href}}"
-              title="{{ item.text }}"
+              href="tel:{{ settings_site.phone }}"
+              title="{% trans 'Llamar al ' %} {{ settings_site.phone }}"
+              class="c-footer__link o-link u-inherit-color i-telephone"
             >
-              {% trans item.text %}
+              {{ settings_site.phone }}
             </a>
-          </dd>
-        {% endfor %}
-      </div>
-    </div>
-  </footer>
+            <a
+              href="mailto:{{ settings_site.email }}"
+              title="{% trans 'Enviar mensaje por correo a ' %} {{ settings_site.email }}"
+              class="c-footer__link o-link u-inherit-color i-mail"
+            >
+              {{ settings_site.email }}
+            </a>
+          </nav>
 
+          {# Social networks #}
+          <nav class="c-footer__social" data-text-followus="{% trans 'Síguenos en' %}">
+            {% for label, url in settings_site.social_networks.items %}
+              {% if url %}
+                <a
+                  href="{{ url }}"
+                  title="{% trans 'Siguenos en ' %} {{ label }}"
+                  target="_blank"
+                  class="c-footer__link c-footer__ico u-inherit-color i-{{ label }}"
+                >
+                  <span class="u-hidden">{{ label }}</span>
+                </a>
+              {% endif %}
+            {% endfor %}
+          </nav>
+
+        </div>
+
+        {# Navigation menu #}
+        <nav class="c-footer__menu c-footer__navigation">
+          {% for item in menu_items %}
+            {% if item.href %}
+              <a
+                href="{{ item.href}}"
+                title="{% trans 'Ir a ' %} {{ item.text }}"
+                {% if not item.link_page %}target="_blank"{% endif %}
+                class="c-footer__link o-link u-inherit-color"
+              >
+                {{ item.text }}
+              </a>
+            {% endif %}
+          {% endfor %}
+        </nav>
+
+        {# Copyright text #}
+        <div class="c-footer__copyright">
+          {# TODO @Andres poner estilos del texto enriquecido cuando este definido #}
+          {{ settings_site.copyright|richtext }}
+        </div>
+
+      </div>
+    </footer>
+
+  {% endwith %}
 {% endspaceless %}
