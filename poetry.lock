@@ -427,6 +427,17 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "selenium"
+version = "3.141.0"
+description = "Python bindings for Selenium"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+urllib3 = "*"
+
+[[package]]
 name = "six"
 version = "1.16.0"
 description = "Python 2 and 3 compatibility utilities"
@@ -546,6 +557,22 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "wagtail-tag-manager"
+version = "1.4.0"
+description = "A Wagtail add-on for managing tags."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+selenium = ">=3.141.0,<3.142.0"
+wagtail = ">=2.11,<3.1"
+
+[package.extras]
+test = ["wagtail-factories", "pytest", "pytest-sugar", "pytest-randomly", "pytest-pythonpath", "pytest-django", "pytest-cov", "pycodestyle", "freezegun", "flake8", "flake8-imports", "flake8-debugger", "flake8-blind-except", "faker", "factory-boy"]
+docs = ["sphinx (>=2.4.0)"]
+
+[[package]]
 name = "wagtail-transfer"
 version = "0.8.5"
 description = "Content transfer for Wagtail"
@@ -630,7 +657,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "f133a20c056a2e816ba81a7c4e136acc32f6e3ed952b436f1cbb5950d454a617"
+content-hash = "6cd7ab20926d3dbff318c77c4762272911e8acc8797bd6c53206be170778c89e"
 
 [metadata.files]
 anyascii = [
@@ -925,6 +952,10 @@ rjsmin = [
     {file = "rjsmin-1.2.0-cp39-cp39-manylinux2014_x86_64.whl", hash = "sha256:8944a8a55ac825b8e5ec29f341ecb7574697691ef416506885898d2f780fb4ca"},
     {file = "rjsmin-1.2.0.tar.gz", hash = "sha256:6c529feb6c400984452494c52dd9fdf59185afeacca2afc5174a28ab37751a1b"},
 ]
+selenium = [
+    {file = "selenium-3.141.0-py2.py3-none-any.whl", hash = "sha256:2d7131d7bc5a5b99a2d9b04aaf2612c411b03b8ca1b1ee8d3de5845a9be2cb3c"},
+    {file = "selenium-3.141.0.tar.gz", hash = "sha256:deaf32b60ad91a4611b98d8002757f29e6f2c2d5fcaf202e1c9ad06d6772300d"},
+]
 six = [
     {file = "six-1.16.0-py2.py3-none-any.whl", hash = "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"},
     {file = "six-1.16.0.tar.gz", hash = "sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926"},
@@ -961,6 +992,10 @@ wagtail-instance-selector = [
     {file = "wagtail-instance-selector-2.1.2.tar.gz", hash = "sha256:4713bdcc39ed3d73d03196a2194b8d40b76fc83a8a80eaef5fdfa8bf43b46663"},
     {file = "wagtail_instance_selector-2.1.2-py2.py3-none-any.whl", hash = "sha256:6f90a1d5209dae9b93f18b7f3f36a0a14e1672e7c0e8279919e206a45690484d"},
     {file = "wagtail_instance_selector-2.1.2-py3-none-any.whl", hash = "sha256:af438d0d08adcaebfb6ae9133f9fb16c9b68af23ec22478cc1425d55b621c729"},
+]
+wagtail-tag-manager = [
+    {file = "wagtail-tag-manager-1.4.0.tar.gz", hash = "sha256:6fd52cd1af3d3606b694dfde2236c9b931011a2bd76200d7c2ff0732be7b5928"},
+    {file = "wagtail_tag_manager-1.4.0-py2.py3-none-any.whl", hash = "sha256:29dbd2b6551bf95c1028da0af5a2191bcca31dab19ba91474c0d76b71111573b"},
 ]
 wagtail-transfer = [
     {file = "wagtail-transfer-0.8.5.tar.gz", hash = "sha256:8e32806cfc175c5a9ac2573f0ad09b7a6c273002aaf1efb44c01519e385ac827"},
