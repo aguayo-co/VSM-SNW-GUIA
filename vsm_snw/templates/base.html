@@ -1,6 +1,7 @@
 {% load static wagtailcore_tags wagtailuserbar menu_tags %}
 {% load snw_sass %}
 {% load fixed_django_vite %}
+{% load wtm_tags %}
 
 
 <!DOCTYPE html>
@@ -39,6 +40,9 @@
     {% include "includes/layout/header.html" %}
 
     {% block content %}{% endblock %}
+
+    {# TODO @andres.tafur evaluemos si esto es buena idea.#}
+    {% wtm_cookie_bar %}
 
     {% flat_menu 'footer_menu' add_sub_menus_inline=True %}
 

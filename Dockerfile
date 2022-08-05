@@ -1,42 +1,23 @@
-ARG NODE_VERSION=16.13-slim
-
-# define an alias for the specfic node version used in this file.
-FROM node:${NODE_VERSION} as node
+FROM node:16.16.0-bullseye-slim as node-build
 # Set Workdir
-WORKDIR /app
-
-# Copy package files
+WORKDIR /srv/app
+# Copy app files
 COPY . .
 
 # Install the project requirements.
 RUN npm install
 RUN npm run build
 
-FROM python:3.8
-
-ARG DATABASE_URL=${DATABASE_URL}
-ENV DATABASE_URL=${DATABASE_URL}
+FROM python:3.8.13-slim-bullseye as python-build
 
 # Set working directory to function root directory
 WORKDIR /srv/app
+# Copy app files
+COPY --from=node /srv/app /srv/app/
 
-RUN apt-get update && apt-get install --no-install-recommends -y \
-    # dependencies for building Python packages \
-    build-essential \
-    # psycopg2 dependencies \
-    libpq-dev \
-    curl \
-    # wagtail and django dependencies \
-    postgresql-client \
-    libjpeg62-turbo-dev \
-    zlib1g-dev \
-    libwebp-dev \
-    libmagickwand-dev \
+RUN apt-get update && apt-get install --no-install-recommends -y git curl postgresql-client \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Dependencies
-COPY requirements.txt .
 RUN pip install -r requirements.txt
-COPY --from=node /app /srv/app/
-
 CMD sh /srv/app/run-dev.sh

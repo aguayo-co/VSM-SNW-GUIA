@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "sass_processor",
     "django_vite",
+    "wagtail_tag_manager",
 ]
 
 MIDDLEWARE = [
@@ -65,6 +66,8 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
+    "wagtail_tag_manager.middleware.CookieConsentMiddleware",
+    "wagtail_tag_manager.middleware.TagManagerMiddleware",
 ]
 
 ROOT_URLCONF = "vsm_snw.urls"
@@ -82,6 +85,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "wagtail_tag_manager.context_processors.consent_state",
             ],
         },
     },
