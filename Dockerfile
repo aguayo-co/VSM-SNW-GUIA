@@ -18,7 +18,7 @@ WORKDIR /srv/app
 # Copy app files
 COPY --from=node-build /srv/app/ /srv/app/
 
-RUN apt-get update && apt-get install --no-install-recommends -y postgresql-client \
+RUN apt-get update && apt-get install --no-install-recommends -y git curl postgresql-client \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Dependencies
