@@ -13,7 +13,7 @@ FROM python:3.8.13-slim-bullseye as python-build
 # Set working directory to function root directory
 WORKDIR /srv/app
 # Copy app files
-COPY --from=node /srv/app /srv/app/
+COPY --from=node-build /srv/app /srv/app/
 
 RUN apt-get update && apt-get install --no-install-recommends -y git curl postgresql-client \
     && rm -rf /var/lib/apt/lists/*
