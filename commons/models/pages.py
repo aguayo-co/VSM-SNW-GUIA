@@ -15,6 +15,13 @@ from wagtail.admin.edit_handlers import (
 from wagtail.core.models import Page
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 
+from commons.models.fields import (
+    FullStreamField,
+    HeroStreamField,
+    HomeStreamField,
+    HeroStreamField,
+)
+
 
 items_per_page = 10
 
@@ -23,7 +30,7 @@ class BasePage(Page):
 
     CONTENT_FIELD = "_content_base"
 
-    _content_base = StreamField([], verbose_name=("Contenido"), null=True, blank=True)
+    _content_base = FullStreamField(verbose_name=("Contenido"), null=True, blank=True)
 
     search_image = models.ForeignKey(
         "wagtailimages.Image",
@@ -108,9 +115,13 @@ class HomePage(BasePage):
 
     CONTENT_FIELD = "_content_home"
 
-    _content_home = StreamField([], verbose_name=("Contenido"), null=True, blank=True)
+    _content_home = HomeStreamField(verbose_name=_("Contenido"), null=True, blank=True)
 
-    content_panels = BasePage.replace_content_field(CONTENT_FIELD)
+    hero = HeroStreamField()
+
+    content_panels = BasePage.replace_content_field(CONTENT_FIELD) + [
+        FieldPanel("hero"),
+    ]
     subpage_types = [
         "commons.BlogPage",
         "commons.CatalogPage",
@@ -129,7 +140,7 @@ class BlogPage(BasePage):
 
     CONTENT_FIELD = "_content_blog"
 
-    _content_blog = StreamField([], verbose_name=("Contenido"), null=True, blank=True)
+    _content_blog = StreamField([], verbose_name=_("Contenido"), null=True, blank=True)
 
     content_panels = BasePage.replace_content_field(CONTENT_FIELD)
 

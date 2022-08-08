@@ -6,6 +6,17 @@ from django.utils.translation import gettext_lazy as _
 
 from commons.widgets import MultiURLWidget
 from commons.validators import URLDomainValidator
+from commons.models.components import (
+    SocialProofComponent,
+    CatalogIndexComponent,
+    FeaturedContentComponent,
+    TestimonialsComponent,
+    PagesLinksListComponent,
+    SlideImageComponent,
+    SlideImageBackgroundComponent,
+    SlideVideoComponent,
+)
+from wagtail.fields import StreamField
 
 
 @dataclass
@@ -75,3 +86,42 @@ class SocialNetworksField(JSONField):
 
         if not has_urls and not self.blank:
             raise ValidationError(_("Al menos una url es requerida."))
+
+
+class FullStreamField(StreamField):
+    """Define un campo StreamField con elementos completos."""
+
+    block_types = [
+        ("social_proof_component", SocialProofComponent()),
+        ("catalog_index_component", CatalogIndexComponent()),
+        ("featured_content_component", FeaturedContentComponent()),
+        ("testimonials_component", TestimonialsComponent()),
+        ("pages_links_list_component", PagesLinksListComponent()),
+    ]
+
+    def __init__(self, **kwargs):
+        """Define los campos y bloques a usar e inicializa."""
+        super().__init__(block_types=self.block_types, **kwargs)
+
+    def deconstruct(self):
+        """Remove positional arguments from deconstruct."""
+        name, path, _args, kwargs = super().deconstruct()
+        return name, path, [], kwargs
+
+
+class HomeStreamField(FullStreamField):
+    block_types = [
+        ("social_proof_component", SocialProofComponent()),
+        ("catalog_index_component", CatalogIndexComponent()),
+        ("featured_content_component", FeaturedContentComponent()),
+        ("testimonials_component", TestimonialsComponent()),
+        ("pages_links_list_component", PagesLinksListComponent()),
+    ]
+
+
+class HeroStreamField(FullStreamField):
+    block_types = [
+        ("slider_image_component", SlideImageComponent()),
+        ("slider_image_background_component", SlideImageBackgroundComponent()),
+        ("slicer_video_component", SlideVideoComponent()),
+    ]
