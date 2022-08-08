@@ -2,13 +2,12 @@
 // A Slider is not a global requirement
 import 'vite/modulepreload-polyfill';
 import Alpine from 'alpinejs';
-import testModule from "./ejemplo";
+import headerMenuNavigation from "./headerMenu";
 // AlpineJS
 window.Alpine = Alpine;
 
 window.onload = function () {
-    console.log("Prueba de Main");
-    testModule();
+    new headerMenuNavigation();
 }
 
 // Start AlpineJs

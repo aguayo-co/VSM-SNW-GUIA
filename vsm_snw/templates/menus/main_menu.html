@@ -1,58 +1,134 @@
-{% load i18n wagtailcore_tags %}
-{% load menu_tags inspector %}
 {% load catalog_special_case %}
 {% get_grade_and_subject %}
 
+{% load i18n wagtailcore_tags menu_tags %}
 
-<ul>
-{{ menu_items|inspect }}
-  {% if menu_items %}
-    {% for menu_item in menu_items %}
-      <li class="">
-        <a class="" href="{{ menu_item.href }}">
-          {{ menu_item.text }}
-        </a>
-        {% if menu_item.has_children_in_menu and menu_item.link_page.CONTENT_FIELD != "_content_catalog" %}
-          <ul class="">
-            {% for sub_item in menu_item.sub_menu.items %}
-              <li class="">
-                <a
-                  class=""
-                  href="{{ sub_item.href }}">
-                  {{ sub_item.text }}
-                </a>
-              </li>
-            {% endfor %}
-          </ul>
-        {% endif %}
-        {% if menu_item.link_page.CONTENT_FIELD == "_content_catalog" %}
-          <br>
-          <a
-            class=""
-            href="{{ menu_item.href }}">
-            Ir al {{ menu_item.text }}
-          </a>
-          <br>
-          {% for degree, subjects in catalog_items.items %}
+
+{% spaceless %}
+
+  <ul class="c-header__menu-inner c-header__menu o-list">
+
+    {% if menu_items %}
+      {% for menu_item in menu_items %}
+
+        <li class="js-header-target-submenu">
+
+          {# Pinta el elemento como button si tiene elementos #}
+          {% if menu_item.has_children_in_menu or menu_item.link_page.CONTENT_FIELD == "_content_catalog" %}
+            <button
+              type="button"
+              class="c-header__link c-header__link_menu c-header__link_icon js-header-submenu-btn"
+            >
+              {{ menu_item.text }}
+            </button>
+          {% else %}
             <a
-              class=""
-              href="{{ menu_item.href }}?degree={{ degree }}">
-              {{ degree }}
+              href="{{ menu_item.href }}"
+              title="{% trans 'Ir a ' %}{{ menu_item.text }}"
+              class="
+                c-header__link
+                c-header__link_menu
+              "
+            >
+              {{ menu_item.text }}
             </a>
-            <ul class="">
-              {% for subject in subjects %}
-                <li class="">
-                  <a
-                    class=""
-                    href="{{ menu_item.href }}?degree={{ degree }}&subject={{ subject }}">
-                    {{ subject }}
-                  </a>
-                </li>
-              {% endfor %}
-            </ul>
-          {% endfor %}
-        {% endif %}
-      </li>
-    {% endfor %}
-  {% endif %}
-</ul>
+          {% endif %}
+
+          {# Pinta el submenu si hay elementos #}
+          {% if menu_item.has_children_in_menu or menu_item.link_page.CONTENT_FIELD == "_content_catalog" %}
+
+            <div class="c-header__menu-inner c-header__submenu">
+
+              {# CTA para volver al menu e ir al catalogo #}
+              <div class="c-header__menu-top {% if menu_item.has_children_in_menu %} is-hide-dk{% endif %}">
+
+                <div class="c-header__menu-top-content c-header__inner">
+
+                  <button class="c-header__back-btn o-light i-chevron-left js-header-back-btn">{% trans "Volver" %}</button>
+
+                  {% if menu_item.link_page.CONTENT_FIELD == "_content_catalog" %}
+                    <a
+                      class="c-header__link c-header__link_primary c-header__link_underline"
+                      href="{{ menu_item.href }}"
+                      title="{% trans 'Ir al ' %}{{ menu_item.text }}" 
+                    >
+                      {% trans "Ir al " %} {{ menu_item.text }}
+                    </a>
+                  {% endif %}
+
+                </div>
+
+              </div>
+
+              <div class="c-header__wrap">
+
+                {# Submenu para elemenos diferentes al catalogo #}
+                {% if menu_item.has_children_in_menu and menu_item.link_page.CONTENT_FIELD != "_content_catalog" %}
+
+                  <div class="c-header-indent c-header-unindent">
+                    <ul class="c-header__submenu-list o-list">
+                      {% for sub_item in menu_item.sub_menu.items %}
+                        <li class="c-header__submenu-item">
+                          <a
+                            class="c-header__link c-header__link_primary c-header__submenu-link"
+                            href="{{ sub_item.href }}"
+                            title="{% trans 'Ir a ' %}{{ sub_item.text }}"
+                          >
+                            {{ sub_item.text }}
+                          </a>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+
+                {% endif %}
+
+                {# Submenu para el catalogo #}
+                {% if menu_item.link_page.CONTENT_FIELD == "_content_catalog" %}
+
+                  {% for degree, subjects in catalog_items.items %}
+
+                    <div class="c-header-indent">
+
+                      <a
+                        class="c-header__link c-header__link_primary"
+                        href="{{ menu_item.href }}?degree={{ degree }}"
+                        title="{% trans 'Ir a ' %}{{ degree }}"
+                      >
+                        {{ degree }}
+                      </a>
+
+                      <ul class="c-header-indent o-list">
+                        {% for subject in subjects %}
+                          <li>
+                            <a
+                              class="c-header__link c-header__submenu-link"
+                              href="{{ menu_item.href }}?degree={{ degree }}&subject={{ subject }}"
+                              title="{% trans 'Ir a ' %}{{ subject }}"
+                            >
+                              {{ subject }}
+                            </a>
+                          </li>
+                        {% endfor %}
+                      </ul>
+                      
+                    </div>
+
+                  {% endfor %}
+
+                {% endif %}
+
+              </div>
+
+            <div>
+
+          {% endif %}
+
+        </li>
+
+      {% endfor %}
+    {% endif %}
+
+  </ul>
+
+{% endspaceless %}

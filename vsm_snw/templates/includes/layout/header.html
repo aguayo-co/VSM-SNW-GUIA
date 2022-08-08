@@ -1,10 +1,58 @@
-{% load i18n menu_tags %}
-{% load static wagtailuserbar %}
-{% load wagtailcore_tags %}
+{#  From Settings  #}
+{% load wagtailsettings_tags %}
+{% get_settings use_default_site=True %}
+
+{% load wagtailcore_tags wagtailimages_tags i18n menu_tags static wagtailuserbar %}
 
 {% block menu %}
-  <div class="wireframe">
-    {% main_menu add_sub_menus_inline=True %}
-  </div>
+  
+  <header class="c-header js-header-target">
+
+    <div class="c-header__inner">
+      
+      {# Logo #}
+      {% with settings.commons.SantillanaSettings as settings_site  %}
+        <a
+          class="c-header__brand"
+          href="{% pageurl settings_site.logo_url %}"
+          title="Santillana"
+        >
+          <figure>
+            {% image settings_site.logo fill-134x32 class="o-img" %}
+          </figure>
+        </a>
+      {% endwith %}
+
+      {# Buscador y Menu hamburguesa #}
+      <div class="c-header__cta">
+        
+        <div class="o-search">
+          {#<form></form>#}
+          <button class="o-btn-round o-btn-round_primary i-search">
+            <span class="u-hidden">{% trans "Buscar" %}</span>
+          </button>
+        </div>
+
+        <button
+          class="
+            c-header__btn-close
+            o-btn-round
+            o-btn-round_light
+            u-hidden-dk
+            i-bars
+            js-header-toggle-menu
+          "
+        >
+          <span class="u-hidden">{% trans "Menu mobile" %}</span>
+        </button>
+        
+      </div>
+      
+      {% main_menu add_sub_menus_inline=True %}
+
+    </div>
+
+  </header>
+
 {% endblock %}
 

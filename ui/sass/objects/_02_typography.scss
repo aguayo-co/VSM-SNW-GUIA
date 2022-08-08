@@ -101,6 +101,25 @@ strong,
 }
 
 /**
+ * Class: .o-light | <strong>, <b>
+ * @description  define estilo suave para el texto.
+ *  ♣ Propiedades: 300
+ * @atom Texto light
+ * @section 03. Estilos textos
+ * @markup
+ *  <p class="o-text">
+ *	  Ad ea velit nisi <span class="o-light">aliquip nostrud laboris</span> laborum aliquip laborum.
+ *  </p>
+ *  <p class="o-text">
+ *	  <strong>Ad ea velit nisi aliquip nostrud laboris laborum aliquip laborum</strong>
+ *  </p>
+ */
+
+.o-light {
+  font-weight: $f-light;
+}
+
+/**
  * Class: .o-medium | <strong>, <b>
  * @description  define estilo semi negrilla para el texto.
  *  ♣ Propiedades: 500

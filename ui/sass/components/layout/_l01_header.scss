@@ -1,0 +1,409 @@
+/*------------------------------------*\
+  Layout l01-header
+  Description: Pie de página con enlaces a páginas internas y externas, texto estático (legal), redes sociales e imágenes de certificación.
+  Type: Layout
+\*------------------------------------*/
+
+
+.c-header__inner {
+  @include flexbox;
+}
+
+.c-header__link {
+  font-weight: $f-light;
+  color: $c-default-text;
+}
+
+.c-header__link_icon {
+  &::after {
+    font-family: '#{$font-family-ico}';
+    @include px-to-rem(font-size, 10px);
+  }
+}
+
+.c-header__link_primary {
+  color: $c-brand-primary;
+
+  &:hover,
+  &:focus,
+  &.is-active {
+    text-decoration: underline;
+  }
+}
+
+.c-header__submenu-link {
+  border-left: 2px solid $c-primary-20;
+}
+
+
+/*------------------------------------*\
+  Media Querys
+\*------------------------------------*/
+
+/**
+* Mobile | VP: max-width 768px
+*/
+@media(max-width: 989px) {
+  .c-header,
+  .c-header__inner {
+    width: 100%;
+  }
+
+  .c-header__inner {
+    @include flex-wrap(wrap);
+  }
+
+  .c-header {
+    background: $c-neutro;
+
+    &.is-open {
+      position: fixed;
+      top: 0;
+      z-index: 2;
+    }
+  }
+
+  .c-header__btn-close {
+    .is-open & {
+      &::before {
+        content: $i-close;
+      }
+    }
+  }
+
+  .c-header__brand {
+    @include px-to-rem(padding, $gutter * 2 0 $gutter * 2 $gutter * 2);
+  }
+
+  .c-header__cta,
+  .c-header__link {
+    @include flexbox;
+    @include align-items(center);
+  }
+
+  .c-header__cta {
+    @include justify-content(flex-end);
+    flex: 1 0 auto;
+    @include px-to-rem(column-gap, $gutter);
+    @include px-to-rem(padding-right, $gutter * 2);
+  }
+
+  .c-header__menu-inner {
+    position: fixed;
+    bottom: 0;
+    flex: 1 1 100%;
+    height: calc(100vh - 64px);
+    width: 100%;
+    @include px-to-rem(padding, $gutter * 3);
+    background: $c-neutro;
+    z-index: 2;
+    transform: translateX(100%);
+    transition: all 0.6s cubic-bezier(0.4,0,0.2,1);
+    overflow: hidden auto;
+  }
+
+  .c-header__menu {
+    @include px-to-rem(top, $gutter * 8);
+    border-top: 1px solid $c-surface-grey-20;
+    font-weight: $f-light;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0), inset 0 0 0 0 rgba(0, 0, 0, 0), inset -14px 26px 22px -25px rgba(22, 34, 51, 0.1);
+
+    .is-open & {
+      transform: translateX(0);
+    }
+  }
+
+  .c-header__submenu {
+    top: 0;
+
+    .is-open-submenu & {
+      left: 0;
+      transform: translateX(0);
+    }
+  }
+
+  .c-header__back-btn {
+    @include px-to-rem(margin-bottom, $gutter * 2);
+    color: $c-default-text;
+    transition: $transition-ease-in-out-2s;
+
+    &::before {
+      display: inline-block;
+      @include px-to-rem(margin-right, $gutter);
+      @include px-to-rem(font-size, 12px);
+      transition: $transition-ease-in-out-2s;
+    }
+
+    &:hover {
+      color: $c-brand-primary;
+
+      &::before {
+        transform: translateX(-4px);
+      }
+    }
+  }
+
+  .c-header__wrap {
+    height: 100%;
+  }
+
+  .c-header__link,
+  .c-header-indent {
+    @include px-to-rem(margin-bottom, $gutter);
+  }
+
+  .c-header__link {
+    @include justify-content(space-between);
+    width: 100%;
+    @include px-to-rem(padding, $gutter 0 $gutter $gutter * 3);
+
+    &:not(.c-header__submenu-link) {
+      border-left: 2px solid transparent;
+    }
+
+    &:hover,
+    &:focus,
+    &.is-active {
+      border-left-color: $c-brand-primary;
+      color: $c-brand-primary;
+    }
+
+  }
+  .c-header__link_icon {
+    &::after {
+      content: $i-chevron-right;
+    }
+  }
+
+  .c-header__submenu-item {
+    @include px-to-rem(margin-bottom, $gutter);
+  }
+
+  .c-header__submenu-link {
+    margin-bottom: 0;
+  }
+
+  .c-header-indent {
+    @include px-to-rem(margin-left, $gutter * 3);
+  }
+  .c-header-unindent {
+    margin-left: 0;
+  }
+
+}
+
+/**
+* Desktop | VP: min-width 768px
+*/
+@media(min-width: 990px) {
+  .c-header {
+    position: relative;
+    box-shadow: 0 8px 16px -4px rgba(22, 34, 51, 0.09);
+    z-index: 10;
+  }
+
+  .c-header__inner,
+  .c-header__menu {
+    @include align-items(center);
+  }
+
+  .c-header__inner {
+    width: $canvas-with;
+    @include px-to-rem(max-width, $canvas-max-with);
+    margin: 0 auto;
+    background-color: $c-neutro;
+  }
+
+  .c-header__wrap,
+  .c-header__cta,
+  .c-header__menu,
+  .c-header__link_menu,
+  .c-header__submenu-list {
+    @include flexbox;
+  }
+
+  .c-header__wrap,
+  .c-header__menu-top-content {
+    @include justify-content(space-between);
+  }
+
+  .c-header__wrap,
+  .c-header__submenu-list {
+    @include flex-wrap(wrap);
+  }
+
+  .c-header__wrap {
+    max-width: $canvas-max-with;
+    width: $canvas-with;
+    margin: 0 auto;
+    @include align-items(baseline);
+    @include px-to-rem(row-gap, $gutter * 2);
+    @include px-to-rem(padding, $gutter * 5 0);
+  }
+
+  .c-header__brand,
+  .c-header__cta {
+    flex: 1 1 15%;
+  }
+
+  .c-header__brand {
+    @include px-to-rem(min-width, 140px);
+    @include px-to-rem(max-width, 140px);
+    @include px-to-rem(margin-right, $gutter * 5);
+  }
+
+  .c-header__cta,
+  .c-header__menu {
+    @include justify-content(flex-end);
+  }
+
+  .c-header__cta {
+    order: 3;
+  }
+
+  .c-header__menu {
+    flex: 1 1 70%;
+    @include px-to-rem(column-gap, $gutter * 3);
+    @include px-to-rem(font-size, 14px);
+  }
+
+  .c-header__submenu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    width: 100%;
+    border-top: 2px solid $c-surface-grey-10;
+    font-weight: $f-light;
+    @include px-to-rem(font-size, 18px);
+    opacity: 0;
+    visibility: hidden;
+    z-index: -1;
+    background: $c-neutro;
+    box-shadow: 0 4px 8px -4px rgba(22, 34, 51, 0.08), 0 16px 24px rgba(22, 34, 51, 0.08);
+    transform: translateY(-100%);
+    transition: all 0.6s cubic-bezier(0.4,0,0.2,1);
+
+    .is-open-submenu & {
+      top: 100%;
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+  }
+
+  .c-header__submenu-list {
+    @include px-to-rem(row-gap, $gutter * 2);
+  }
+
+  .c-header__menu-top {
+    @include px-to-rem(padding, $gutter * 2 0);
+    border-bottom: 2px solid $c-surface-grey-10;
+
+    &.is-hide-dk {
+      display: none;
+    }
+  }
+  .c-header__menu-top-content {
+    @include flex-direction(row-reverse);
+  }
+
+  .c-header__back-btn {
+    font-size: 0;
+
+    &::before {
+      content: $i-close;
+      @include px-to-rem(margin-right, $gutter * 5);
+      @include px-to-rem(font-size, 18px);
+      transition: $transition-ease-in-out-2s;
+    }
+
+    &:hover {
+      &::before {
+        color: $c-surface-grey-20;
+        transform: scale(0.9);
+      }
+    }
+  }
+
+  .c-header-indent,
+  .c-header__submenu-item {
+    flex: 1 1 30%;
+  }
+
+  .c-header__link_menu {
+    @include align-items(center);
+    border-bottom: 2px solid transparent;
+    @include px-to-rem(padding, $gutter * 3 $gutter);
+    font-weight: $f-regular;
+    line-height: 1.2;
+
+    .is-open-submenu &,
+    &:hover {
+      border-bottom-color: $c-brand-primary;
+      color: $c-brand-primary;
+    }
+  }
+  .c-header__link_icon {
+    &::after {
+      content: $i-chevron-down;
+      @include px-to-rem(margin-left, $gutter);
+      transition: $transition-ease-in-out-2s;
+    }
+
+    .is-open-submenu & {
+      &::after {
+        transform: rotate(180deg);
+      }
+    }
+  }
+  .c-header__link_underline {
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  .c-header__link_primary {
+    &:not( &.c-header__link_underline) {
+      position: relative;
+      display: inline-block;
+      @include px-to-rem(margin-bottom, $gutter);
+
+      &::before {
+        content: "";
+        position: absolute;
+        width: 2px;
+        height: 120%;
+        top: -4px;
+        left: -24px;
+        background-color: transparent;
+        transition: $transition-ease-in-out-2s;
+      }
+
+      &:hover {
+        &::before {
+          background-color: $c-brand-primary;
+        }
+      }
+    }
+
+  }
+
+  .c-header__submenu-link {
+    display: block;
+    @include px-to-rem(padding, $gutter $gutter * 3);
+
+    &:hover,
+    &:focus,
+    &.is-active {
+      border-left-color: $c-brand-primary;
+      color: $c-brand-primary;
+      text-decoration: underline;
+    }
+
+    &::before {
+      display: none;
+    }
+  }
+}

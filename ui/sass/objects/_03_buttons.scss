@@ -1,6 +1,6 @@
-//-*------------------------------------*
-//-   .o- class Objects Botones y enlaces.
-//-*------------------------------------*
+// -*------------------------------------*
+// -   .o- class Objects Botones y enlaces.
+// -*------------------------------------*
 
 *:focus {
   outline: 0;
@@ -69,5 +69,55 @@ button {
   &:active {
     color: $c-brand-primary;
     border-color: $c-brand-primary;
+  }
+}
+
+
+/**
+ * Class: o-btn-round
+ * @modifiers
+ *  .o-btn-round_primary Botón para acciones primarias
+ *  .o-btn-round_light Botón para acciones secundarias 
+ * @description  Botón acciones primarias y secundarias circulares
+ * ♣ Estados: hover, focus
+ * @atom Botón
+ * @section 05. Botones
+ * @markup
+ *   <div class="sg-modifires">
+ *      <button class="o-btn" type="button">
+ *        Texto botón
+ *      </button>
+ *   </div>
+ */
+
+.o-btn-round {
+  @include flexbox;
+  @include justify-content(center);
+  @include align-items(center);
+  width: $gutter * 5;
+  height: $gutter * 5;
+  border: 1px solid;
+  border-radius: 50%;
+  transition: $transition-ease-in-out-2s;
+}
+.o-btn-round_primary {
+  color: $c-neutro;
+  background: $c-brand-primary;
+
+  &:hover {
+    border-color: $c-primary-10;
+    color: $c-brand-primary;
+    background-color: $c-primary-10;
+    transform: scale(0.9);
+  }
+}
+.o-btn-round_light {
+  border-color: $c-primary-10;
+  color: $c-brand-primary;
+  background-color: $c-primary-10;
+
+  &:hover {
+    color: $c-primary-10;
+    background-color: $c-brand-primary;
   }
 }
