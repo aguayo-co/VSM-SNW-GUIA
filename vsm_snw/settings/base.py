@@ -11,17 +11,17 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 import ipaddress
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import socket
 
 import dj_database_url
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
-
-
 DEBUG = os.environ.get("DEBUG", "True") == "True"
 SECRET_KEY = os.environ.get("SECRET_KEY")
+ROOT_URLCONF = "vsm_snw.urls"
+WSGI_APPLICATION = "vsm_snw.wsgi.application"
 
 # Application definition
 INSTALLED_APPS = [
@@ -70,8 +70,6 @@ MIDDLEWARE = [
     "wagtail_tag_manager.middleware.TagManagerMiddleware",
 ]
 
-ROOT_URLCONF = "vsm_snw.urls"
-
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -91,12 +89,9 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "vsm_snw.wsgi.application"
-
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
 DATABASES = {"default": None}
 
 if os.environ.get("DATABASE_URL", None) is not None:
@@ -117,7 +112,6 @@ else:
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
@@ -138,19 +132,14 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
 LANGUAGE_CODE = "en-us"
-
 TIME_ZONE = "UTC"
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
-
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
@@ -168,16 +157,20 @@ STATICFILES_DIRS = [
 # JavaScript / CSS assets being served from cache (e.g. after a Wagtail upgrade).
 # See https://docs.djangoproject.com/en/4.0/ref/contrib/staticfiles/#manifeststaticfilesstorage
 STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
-
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = "/static/"
-
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
 
+# vite
+# https://github.com/MrBin99/django-vite
+DJANGO_VITE_ASSETS_PATH = os.environ.get(
+    "DJANGO_VITE_ASSETS_PATH", os.path.join(PROJECT_DIR, "static/")
+)
+DJANGO_VITE_DEV_MODE = os.environ.get("DJANGO_VITE_DEV_MODE", "False") == "True"
+
 
 # Wagtail settings
-
 WAGTAIL_SITE_NAME = "vsm_snw"
 
 # Search
@@ -192,6 +185,7 @@ WAGTAILSEARCH_BACKENDS = {
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 WAGTAILADMIN_BASE_URL = "http://example.com"
 
+
 # Allowed hosts
 # https://docs.djangoproject.com/en/dev/topics/security/#host-headers-virtual-hosting
 if os.environ.get("ALLOWED_HOSTS"):
@@ -199,9 +193,6 @@ if os.environ.get("ALLOWED_HOSTS"):
     CSRF_TRUSTED_ORIGINS = [
         f"https://{host}" for host in os.environ["ALLOWED_HOSTS"].split(" ")
     ]
-
-# Internal Ips
-import socket  # only if you haven't already imported this
 
 hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
 INTERNAL_IPS = [
@@ -212,6 +203,7 @@ INTERNAL_IPS = [
 WAGTAILMENUS_FLAT_MENUS_HANDLE_CHOICES = (("footer_menu", "Footer Menú"),)
 WAGTAILMENUS_FLAT_MENU_ITEMS_RELATED_NAME = "custom_flat_menu_items"
 WAGTAILMENUS_SECTION_ROOT_DEPTH = 1
+
 
 # Editors
 WAGTAILADMIN_RICH_TEXT_EDITORS = {
@@ -257,7 +249,6 @@ WAGTAILADMIN_RICH_TEXT_EDITORS = {
 # Sass Processor
 # https://github.com/jrief/django-sass-processor
 SASS_PROCESSOR_ENABLED = True
-
 SASS_PROCESSOR_ROOT = "ui"
 SASS_PROCESSOR_INCLUDE_DIRS = [
     os.path.join(PROJECT_DIR, "ui/"),
@@ -266,22 +257,14 @@ SASS_PROCESSOR_INCLUDE_DIRS = [
 ]
 SASS_PROCESSOR_INCLUDE_FILE_PATTERN = r"^.+\.scss$"
 SASS_PRECISION = 8
-
 NODE_NPX_PATH = os.environ.get("NODE_NPX_PATH", None)
 NODE_MODULES_PATH = os.path.join(PROJECT_DIR, "node_modules")
 
+
 # Debug Toolbar
 if DEBUG:
+
     def show_toolbar(request):
         return True
 
     DEBUG_TOOLBAR_CONFIG = {"SHOW_TOOLBAR_CALLBACK": show_toolbar}
-
-
-# Vite
-DJANGO_VITE_ASSETS_PATH = os.environ.get(
-    "DJANGO_VITE_ASSETS_PATH", os.path.join(PROJECT_DIR, "static/")
-)
-DJANGO_VITE_DEV_MODE = (
-    os.environ.get("DJANGO_VITE_DEV_MODE", "False") == "True"
-)
