@@ -14,8 +14,16 @@
     {# Test Funcionalidad JS, por favor eliminar #}
     <h1 x-data="{ message: 'I ❤️ Santillana' }" x-text="message"></h1>
 
+    Content
     <div class="wireframe">
       {% for block in self.content %}
+        {% include_block block %}
+      {% endfor %}
+    </div>
+
+    Banner Hero
+    <div class="wireframe">
+      {% for block in self.hero %}
         {% include_block block %}
       {% endfor %}
     </div>
