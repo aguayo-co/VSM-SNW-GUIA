@@ -232,6 +232,26 @@ WAGTAILADMIN_RICH_TEXT_EDITORS = {
             ]
         },
     },
+    "list": {
+        "WIDGET": "wagtail.admin.rich_text.DraftailRichTextArea",
+        "OPTIONS": {
+            "features": [
+                "bold",
+                "italic",
+                "underline",
+                "striketrough",
+                "mark",
+                "sup",
+                "sub",
+                "small",
+                "link",
+                "document-link",
+                "ordered-list",
+                "unordered-list",
+                "h4",
+            ]
+        },
+    },
 }
 
 # Sass Processor
