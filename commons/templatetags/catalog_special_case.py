@@ -8,7 +8,7 @@ register = template.Library()
 @register.simple_tag(takes_context=True)
 def get_grade_and_subject(context):
     catalog_items = {}
-    list = DetailProductPage.objects.values_list("grade__name", "subject__name").distinct()
+    list = set(DetailProductPage.objects.values_list("grade__name", "subject__name"))
     for (key, value) in list:
         if key in catalog_items:
             catalog_items[key].append(value)
