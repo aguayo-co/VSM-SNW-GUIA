@@ -11,9 +11,8 @@
 
 .c-footer__scrollup {
   position: relative;
-  border: 1px solid $c-neutro;
-  color: $c-brand-primary;
-  background-color: $c-primary-10;
+  color: $c-default-text;
+  background-color: $c-primary-20;
   transition: $transition-ease-in-out-2s;
 
   &::before {
@@ -21,6 +20,8 @@
   }
 
   &:hover {
+    color: $c-brand-primary;
+    background-color: $c-primary-10;
     transform: scale(0.95);
   }
 

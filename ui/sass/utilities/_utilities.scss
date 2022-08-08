@@ -44,6 +44,24 @@
   }
 }
 
+/**
+ * Class: u-hidden-dk, display none
+ * @atom Ocultar elemento en Desktop
+ * @section Utils
+ * @markup
+ *  <a href="#" class="i-twitter">
+ *    <span class="u-hidden-mb">Twitter</span>
+ *  </a>
+ */
+
+@media only screen and(min-width: 768px) {
+  .u-hidden-dk {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
 
 /**
  * Class: u-inherit-color, Color de texto heredado del color especificado para el texto del bloque padre.

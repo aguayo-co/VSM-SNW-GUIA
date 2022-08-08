@@ -1,0 +1,22 @@
+// -*------------------------------------*
+// -   .o- class Objects Listas
+// -*------------------------------------*
+
+
+/**
+ * Class: o-list
+ * @modifiers
+ * @description  Agrupan un conjunto de elementos relacionados.
+ * @atom Lista
+ * @section 05. Listas
+ * @markup
+ *   <div class="sg-modifires">
+ *      <ul class="o-list" type="button">
+ *        <li>Texto lista</li>
+ *      </ul>
+ *   </div>
+ */
+
+.o-list {
+  list-style: none;
+}
