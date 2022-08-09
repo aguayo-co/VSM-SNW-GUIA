@@ -287,6 +287,11 @@ class CategoryHomePage(BasePage):
 class DetailProductPage(BasePage):
     """Model for the detail product page."""
 
+    IDIOM_CHOICES = [
+        ("en", _("Inglés")),
+        ("es", _("Español")),
+    ]
+
     CONTENT_FIELD = "_content_detail_product"
     CONTENT_FIELD_THEMATIC = "_thematic_content"
 
@@ -299,29 +304,94 @@ class DetailProductPage(BasePage):
         null=True,
         blank=True,
     )
-
-    grade = models.ForeignKey(
-        "commons.Degree",
+    short_description = TextField(
+        verbose_name=_("Descripción Corta"),
         null=True,
         blank=True,
+    )
+    image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+        verbose_name=_("Imagen del Libro"),
+    )
+    grade = models.ForeignKey(
+        "commons.Degree",
         on_delete=models.SET_NULL,
         related_name="+",
         verbose_name=_("Grado"),
+        null=True,
+        blank=True,
     )
     subject = models.ForeignKey(
         "commons.Subject",
-        null=True,
-        blank=True,
         on_delete=models.SET_NULL,
         related_name="+",
         verbose_name=_("Asignatura"),
+        null=True,
+        blank=True,
     )
-    short_description = TextField(
-        verbose_name=_("Descripción Corta"),
+    serie = models.ForeignKey(
+        "commons.Serie",
+        on_delete=models.SET_NULL,
+        related_name="+",
+        verbose_name=_("Serie o Editorial"),
+        null=True,
+        blank=True,
+    )
+    cod_conaliteg = CharField(
+        verbose_name=_("Codigo CONALITEG"),
+        max_length=255,
+    )
+    idiom = models.CharField(
+        verbose_name=_("Idioma"),
+        choices=IDIOM_CHOICES,
+        max_length=10,
+        default=_("es"),
+    )
+    isbn = CharField(
+        verbose_name=_("ISBN"),
+        max_length=255,
+        null=True,
+        blank=True,
+    )
+    author = CharField(
+        verbose_name=_("Autor"),
+        max_length=255,
+        null=True,
+        blank=True,
+    )
+    editorial_team = CharField(
+        verbose_name=_("Equipo Editorial"),
+        max_length=255,
+        null=True,
+        blank=True,
+    )
+    first_edition = CharField(
+        verbose_name=_("Primera Edición"),
+        max_length=255,
+        null=True,
+        blank=True,
+    )
+    second_reprint = CharField(
+        verbose_name=_("Segunda Reimpresión"),
+        max_length=255,
+        null=True,
+        blank=True,
     )
     teacher_book = ForeignKey(
         get_document_model_string(),
-        verbose_name=_("Libro del docente"),
+        verbose_name=_("Libro del docente (Español)"),
+        on_delete=models.SET_NULL,
+        related_name="+",
+        null=True,
+        blank=True,
+    )
+    teacher_book_english = ForeignKey(
+        get_document_model_string(),
+        verbose_name=_("Libro del docente (Inglés)"),
         on_delete=models.SET_NULL,
         related_name="+",
         null=True,
@@ -335,10 +405,7 @@ class DetailProductPage(BasePage):
         null=True,
         blank=True,
     )
-    cod_conaliteg = CharField(
-        verbose_name=_("Codigo CONALITEG"),
-        max_length=255,
-    )
+
     office_sep = ForeignKey(
         get_document_model_string(),
         verbose_name=_("Oficio SEP"),
@@ -347,24 +414,10 @@ class DetailProductPage(BasePage):
         null=True,
         blank=True,
     )
-    serie = CharField(
-        verbose_name=_("Serie"),
-        max_length=255,
-        null=True,
-        blank=True,
-    )
     video = URLField(
         verbose_name=_("Video"),
         null=True,
         blank=True,
-    )
-    image = models.ForeignKey(
-        "wagtailimages.Image",
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name="+",
-        verbose_name=_("Imagen"),
     )
     teaching_dosage = ForeignKey(
         get_document_model_string(),
@@ -382,26 +435,69 @@ class DetailProductPage(BasePage):
         null=True,
         blank=True,
     )
+    reader = ForeignKey(
+        get_document_model_string(),
+        verbose_name=_("Reader"),
+        on_delete=models.SET_NULL,
+        related_name="+",
+        null=True,
+        blank=True,
+    )
+    audio = ForeignKey(
+        get_document_model_string(),
+        verbose_name=_("Audios"),
+        on_delete=models.SET_NULL,
+        related_name="+",
+        null=True,
+        blank=True,
+    )
+    posters = ForeignKey(
+        get_document_model_string(),
+        verbose_name=_("Posters"),
+        on_delete=models.SET_NULL,
+        related_name="+",
+        null=True,
+        blank=True,
+    )
+
 
     content_panels = BasePage.replace_content_field(CONTENT_FIELD)
     promote_panels = BasePage.promote_panels
     settings_panels = BasePage.settings_panels
-    product_property = MultiFieldPanel(
-        [
-            SnippetChooserPanel("grade"),
-            SnippetChooserPanel("subject"),
-            FieldPanel("short_description"),
-            DocumentChooserPanel("teacher_book"),
-            DocumentChooserPanel("student_book"),
-            FieldPanel("cod_conaliteg"),
-            DocumentChooserPanel("office_sep"),
-            FieldPanel("serie"),
-            FieldPanel("video"),
-            FieldPanel("image"),
-            DocumentChooserPanel("teaching_dosage"),
-            DocumentChooserPanel("parent_programming"),
-        ],
-    ),
+    product_property = [
+        MultiFieldPanel(
+            [
+                FieldPanel("short_description"),
+                FieldPanel("image"),
+                SnippetChooserPanel("grade"),
+                SnippetChooserPanel("subject"),
+                SnippetChooserPanel("serie"),
+                FieldPanel("cod_conaliteg"),
+                FieldPanel("idiom"),
+                FieldPanel("isbn"),
+                FieldPanel("author"),
+                FieldPanel("editorial_team"),
+                FieldPanel("first_edition"),
+                FieldPanel("second_reprint"),
+            ],
+            heading=_("Detalles del Libro"),
+        ),
+        MultiFieldPanel(
+            [
+                DocumentChooserPanel("teacher_book"),
+                DocumentChooserPanel("teacher_book_english"),
+                DocumentChooserPanel("student_book"),
+                DocumentChooserPanel("office_sep"),
+                FieldPanel("video"),
+                DocumentChooserPanel("teaching_dosage"),
+                DocumentChooserPanel("parent_programming"),
+                DocumentChooserPanel("reader"),
+                DocumentChooserPanel("audio"),
+                DocumentChooserPanel("posters"),
+            ],
+            heading=_("Materiales"),
+        ),
+    ]
     thematic_content = [StreamFieldPanel(CONTENT_FIELD_THEMATIC)]
 
     edit_handler = TabbedInterface(
