@@ -295,7 +295,7 @@ class DetailProductPage(BasePage):
         block_types=[
             ("thematic_content", ThematicContentComponent()),
         ],
-        verbose_name=_("Contenido"),
+        verbose_name=_("Contenidos Temáticos"),
         null=True,
         blank=True,
     )
