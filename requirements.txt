@@ -2,6 +2,8 @@ anyascii==0.3.1; python_version >= "3.7"
 asgiref==3.5.2; python_version >= "3.8"
 backports.zoneinfo==0.2.1; python_version < "3.9" and python_version >= "3.8"
 beautifulsoup4==4.9.3; python_version >= "3.7"
+boto3==1.24.47; python_version >= "3.7"
+botocore==1.27.47; python_version >= "3.7"
 certifi==2022.6.15; python_version >= "3.7" and python_version < "4"
 charset-normalizer==2.1.0; python_version >= "3.7" and python_version < "4" and python_full_version >= "3.6.0"
 dj-database-url==0.5.0
@@ -14,7 +16,7 @@ django-modelcluster==6.0; python_version >= "3.7"
 django-permissionedforms==0.1; python_version >= "3.7"
 django-sass-processor==1.2.1
 django-simple-robots==1.1.0
-django-storages==1.12.3; python_version >= "3.5"
+django-storages==1.13.1; python_version >= "3.7"
 django-taggit==2.1.0; python_version >= "3.7"
 django-treebeard==4.5.1; python_version >= "3.7"
 django-vite==2.0.2
@@ -24,16 +26,19 @@ draftjs-exporter==2.1.7; python_version >= "3.7"
 et-xmlfile==1.1.0; python_version >= "3.7"
 html5lib==1.1; python_version >= "3.7" and python_full_version < "3.0.0" or python_full_version >= "3.5.0" and python_version >= "3.7"
 idna==3.3; python_version >= "3.7" and python_version < "4"
+jmespath==1.0.1; python_version >= "3.7"
 l18n==2021.3; python_version >= "3.7"
 libsass==0.21.0
 openpyxl==3.0.10; python_version >= "3.7"
 pillow==9.1.1; python_version >= "3.7"
 psycopg2-binary==2.9.3; python_version >= "3.6"
 psycopg==3.0.15; python_version >= "3.6"
+python-dateutil==2.8.2; python_version >= "3.7" and python_full_version < "3.0.0" or python_version >= "3.7" and python_full_version >= "3.3.0"
 pytz==2022.1; python_version >= "3.7"
 rcssmin==1.1.0
 requests==2.28.1; python_version >= "3.7" and python_version < "4"
 rjsmin==1.2.0
+s3transfer==0.6.0; python_version >= "3.7"
 selenium==3.141.0
 six==1.16.0; python_version >= "3.7" and python_full_version < "3.0.0" or python_full_version >= "3.5.0" and python_version >= "3.7"
 soupsieve==2.3.2.post1; python_version >= "3.7"

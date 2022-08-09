@@ -268,3 +268,30 @@ if DEBUG:
         return True
 
     DEBUG_TOOLBAR_CONFIG = {"SHOW_TOOLBAR_CALLBACK": show_toolbar}
+
+
+# Storage
+# https://django-storages.readthedocs.io/en/latest/index.html
+# https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html
+DEFAULT_FILE_STORAGE = os.environ.get("DEFAULT_FILE_STORAGE")
+if DEFAULT_FILE_STORAGE == "storages.backends.s3boto3.S3Boto3Storage":
+    AWS_DEFAULT_ACL = None
+    AWS_S3_FILE_OVERWRITE = False
+    AWS_QUERYSTRING_EXPIRE = 60 * 60 * 24 * 7  # 1 week
+    AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+    if os.environ.get("AWS_STORAGE_BUCKET_NAME"):
+        AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
+    AWS_S3_REGION_NAME = os.environ.get("AWS_S3_REGION_NAME", None)
+    AWS_S3_CUSTOM_DOMAIN = os.environ.get("AWS_S3_CUSTOM_DOMAIN")
+    AWS_S3_OBJECT_PARAMETERS = {
+        "CacheControl": f"max-age={60 * 60 * 24 * 7 * 4}"  # 4 weeks
+    }
+    if os.environ.get("AWS_QUERYSTRING_AUTH"):
+        AWS_QUERYSTRING_AUTH = (
+            os.environ.get("AWS_QUERYSTRING_AUTH") == "True"
+        )
+    if os.environ.get("AWS_LOCATION"):
+        AWS_LOCATION = os.environ.get("AWS_LOCATION").strip("/") + "/"
+    STATICFILES_STORAGE = "storages.backends.s3boto3.S3StaticStorage"
+    SASS_PROCESSOR_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
