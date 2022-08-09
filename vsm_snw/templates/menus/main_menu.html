@@ -100,15 +100,17 @@
 
                       <ul class="c-header-indent o-list">
                         {% for subject in subjects %}
-                          <li>
-                            <a
-                              class="c-header__link c-header__submenu-link"
-                              href="{{ menu_item.href }}?degree={{ degree }}&subject={{ subject }}"
-                              title="{% trans 'Ir a ' %}{{ subject }}"
-                            >
-                              {{ subject }}
-                            </a>
-                          </li>
+                          {% if subject %}
+                            <li>
+                              <a
+                                class="c-header__link c-header__submenu-link"
+                                href="{{ menu_item.href }}?degree={{ degree }}&subject={{ subject }}"
+                                title="{% trans 'Ir a ' %}{{ subject }}"
+                              >
+                                {{ subject }}
+                              </a>
+                            </li>
+                          {% endif %}
                         {% endfor %}
                       </ul>
                       

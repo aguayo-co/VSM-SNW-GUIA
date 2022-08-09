@@ -207,6 +207,10 @@
     @include align-items(center);
   }
 
+  .c-header__menu {
+    @include justify-content(center);
+  }
+
   .c-header__inner {
     width: $canvas-with;
     @include px-to-rem(max-width, $canvas-max-with);
@@ -252,8 +256,7 @@
     @include px-to-rem(margin-right, $gutter * 5);
   }
 
-  .c-header__cta,
-  .c-header__menu {
+  .c-header__cta {
     @include justify-content(flex-end);
   }
 
