@@ -13,6 +13,7 @@ from wagtail.core.blocks import (
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.images.models import Image
+from wagtail.core import blocks
 
 
 class SocialProofComponent(StructBlock):
@@ -220,3 +221,29 @@ class SlideVideoComponent(StructBlock):
         icon = "image"
         label = _("Slide Video")
         template = "commons/components/slide_video.html"
+
+
+class ThematicContentItem(StructBlock):
+    """sub bloque for add items of thematic content"""
+
+    title = CharBlock(label=_("Título"), required=True)
+    description = CharBlock(label=_("Descripción"), required=True)
+
+    class Meta:
+        """Propiedades del componente"""
+        label = _("Items Contenidos Tematicos")
+        icon = "list-ul"
+        template = "components/thematic_content_item.html"
+
+
+class ThematicContentComponent(StructBlock):
+    """Component for add items of thematic content"""
+
+    title = CharBlock(label=_("Título"), required=True)
+    items = blocks.ListBlock(ThematicContentItem, label=_("Items"))
+
+    class Meta:
+        """Propiedades del componente"""
+        label = _("Contenidos Tematicos")
+        icon = "list-ul"
+        template = "components/thematic_content.html"

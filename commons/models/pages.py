@@ -3,7 +3,7 @@ from django.db import models
 from django.db.models import ForeignKey, TextField, CharField, URLField
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
-from wagtail.admin.panels import TabbedInterface, ObjectList
+from wagtail.admin.panels import TabbedInterface, ObjectList, StreamFieldPanel
 from wagtail.documents import get_document_model_string
 from wagtail.documents.edit_handlers import DocumentChooserPanel
 from wagtail.fields import StreamField, RichTextField
@@ -15,6 +15,7 @@ from wagtail.admin.edit_handlers import (
 from wagtail.core.models import Page
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 
+from commons.models.components import ThematicContentComponent
 from commons.models.fields import (
     FullStreamField,
     HeroStreamField,
@@ -287,8 +288,17 @@ class DetailProductPage(BasePage):
     """Model for the detail product page."""
 
     CONTENT_FIELD = "_content_detail_product"
+    CONTENT_FIELD_THEMATIC = "_thematic_content"
 
     _content_detail_product = StreamField([], verbose_name=("Contenido"), null=True, blank=True)
+    _thematic_content = StreamField(
+        block_types=[
+            ("thematic_content", ThematicContentComponent()),
+        ],
+        verbose_name=_("Contenido"),
+        null=True,
+        blank=True,
+    )
 
     grade = models.ForeignKey(
         "commons.Degree",
@@ -348,6 +358,14 @@ class DetailProductPage(BasePage):
         null=True,
         blank=True,
     )
+    image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+        verbose_name=_("Imagen"),
+    )
     teaching_dosage = ForeignKey(
         get_document_model_string(),
         verbose_name=_("Dosificación Docente"),
@@ -379,10 +397,12 @@ class DetailProductPage(BasePage):
             DocumentChooserPanel("office_sep"),
             FieldPanel("serie"),
             FieldPanel("video"),
+            FieldPanel("image"),
             DocumentChooserPanel("teaching_dosage"),
             DocumentChooserPanel("parent_programming"),
         ],
     ),
+    thematic_content = [StreamFieldPanel(CONTENT_FIELD_THEMATIC)]
 
     edit_handler = TabbedInterface(
         [
@@ -390,6 +410,7 @@ class DetailProductPage(BasePage):
             ObjectList(promote_panels, heading=_("Promocionar")),
             ObjectList(settings_panels, heading=_("Propiedades"), classname="settings"),
             ObjectList(product_property, heading=_("Propiedad del producto")),
+            ObjectList(thematic_content, heading=_("Contenidos Tematicos")),
         ]
     )
 
