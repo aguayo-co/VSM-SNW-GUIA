@@ -14,7 +14,7 @@ wagtail-transfer = "^0.8.4"
 django-debug-toolbar = "^3.5.0"
 django-sass-processor = "^1.2"
 django-simple-robots = "^1.1.0"
-django-storages = "^1.12.3"
+django-storages = {extras = ["boto3"], version = "^1.13.1"}
 wagtail-instance-selector = "^2.1.2"
 psycopg2-binary = "^2.9.3"
 psycopg = "^3.0.15"
