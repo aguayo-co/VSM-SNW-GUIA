@@ -12,3 +12,67 @@ h6 {
 	font-weight: $f-medium;
 	line-height: 1.2;
 }
+
+/**
+ * Class: .o-headline 
+ * @description  titular de sección
+ * 	♣ Propiedades: 32px / 48px | Outfit | Regular
+ * @atom Head
+ * @modifiers
+ *  .o-headline_big titulo de sección grande
+ * @section 02. Títulos
+ * @markup
+ *	<h2 class="o-headline">
+ *		Titular de sección
+ *	</h2>
+ *	<h2 class="o-headline o-headline_big">
+ *		Titular de sección
+ *	</h2>
+ */
+
+.o-headline {
+	@include px-to-rem(font-size, 32px);
+	font-weight: $f-regular;
+}
+.o-headline_big {
+	@include px-to-rem(font-size, 40px);
+}
+
+/**
+ * Class: .o-subheadline 
+ * @description  sub título de sección azul
+ * 	♣ Propiedades: 18px / 24px | Outfit | Medium
+ * @atom Head
+ * @modifiers
+ *  .o-subheadline_line titulo con línea en frente
+ * @section 02. Títulos
+ * @markup
+ *	<h2 class="o-subheadline">
+ *		sub título de sección azul
+ *	</h2>
+ *	<h2 class="o-subheadline o-subheadline_line">
+ *		sub título de sección azul
+ *	</h2>
+ */
+
+.o-subheadline {
+	@include px-to-rem(font-size, 18px);
+	font-weight: $f-medium;
+	color: $c-primary-50;
+}
+
+
+/**** Desktop ***/
+
+// 540
+@media only screen and (min-width:540px) {
+	.o-headline {
+		@include px-to-rem(font-size, 48px);
+	}
+	.o-headline_big {
+		@include px-to-rem(font-size, 56px);
+	}
+	.o-subheadline {
+		@include px-to-rem(font-size, 24px);
+	}
+}

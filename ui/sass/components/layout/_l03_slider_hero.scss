@@ -1,0 +1,118 @@
+.l-slide__header {
+    display: grid;
+    grid-template-areas: "item";
+}
+
+.l-slide__container {
+    grid-area: item;
+}
+
+.l-slide__box {
+    @include flexbox;
+    flex-direction: column-reverse;
+}
+
+.l-slide__bg {
+    grid-area: item;
+    z-index: -1;
+    margin-left: auto;
+    margin-top: auto;
+    
+    svg {
+        display: block;
+    }
+}
+
+.l-slide__content {
+
+}
+
+.l-slide__cta {
+
+}
+
+.l-slide__media {
+
+}
+
+.l-slide__figure_img {
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-rows: 1fr 1fr 3fr;
+    //@include px-to-rem(max-height, 455px);
+}
+
+.l-slide__img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    aspect-ratio: .77/1;
+    //@include px-to-rem(max-height, 455px);
+    grid-column: 1/4;
+    grid-row: 1/4;
+}
+.l-slide__first-svg {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+}
+.l-slide__second-svg {
+    grid-column: 3/4;
+    grid-row: 2/3;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.l-slide__footer {
+
+}
+
+
+/* DESKTOP */
+
+@include media-query(medium) {
+
+    .l-slide__box {
+        flex-direction: row;
+    }
+
+    .l-slide__content,
+    .l-slide__media {
+        flex: 1 1 50%;
+    }
+
+    .l-slide__figure_img {
+        //@include px-to-rem(max-width, 350px);
+        grid-template-columns: 1fr 4fr 1fr;
+        grid-template-rows: auto;
+    }
+    .l-slide__img {
+        // @include px-to-rem(min-width, 340px);
+        @include px-to-rem(max-width, 350px);
+        grid-column-start: 2;
+        grid-row: 2/6;
+    }
+    .l-slide__first-svg {
+        grid-column-start: 1;
+        grid-row-start: 1;
+        max-height: 70px;
+        grid-row-end: 3;
+    }
+    .l-slide__second-svg {
+        display: block;
+        @include px-to-rem(height, 204px);
+        grid-column: 1/2;
+        grid-row: 4/5;
+    }
+}
+
+/* MOBILE */
+@include media-query(medium-max) {
+    .l-slide__media {
+        margin-left: -31px;
+        margin-right: -31px;
+    }
+}
+
+@media only screen and (min-width: 410px) and (max-width: 767px) {
+   
+}

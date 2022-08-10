@@ -163,6 +163,19 @@
   }
 }
 
+// R
+
+/**
+* @icon .i-row
+* @markup
+*   <span class="i-row"></span>
+*/
+.i-row {
+  &:before {
+    content: $i-row; 
+  }
+}
+
 
 // S
 
