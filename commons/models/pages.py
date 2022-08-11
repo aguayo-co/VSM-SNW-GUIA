@@ -18,9 +18,9 @@ from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from commons.models.components import ThematicContentComponent
 from commons.models.fields import (
     FullStreamField,
-    HeroStreamField,
     HomeStreamField,
     HeroStreamField,
+    DetailProductStreamField,
 )
 
 
@@ -118,11 +118,11 @@ class HomePage(BasePage):
 
     _content_home = HomeStreamField(verbose_name=_("Contenido"), null=True, blank=True)
 
+    content = BasePage.replace_content_field(CONTENT_FIELD)
+
     hero = HeroStreamField()
 
-    content_panels = BasePage.replace_content_field(CONTENT_FIELD) + [
-        FieldPanel("hero"),
-    ]
+    content_panels = [content[0], FieldPanel("hero")] + content[1:]
     subpage_types = [
         "commons.BlogPage",
         "commons.CatalogPage",
@@ -295,7 +295,7 @@ class DetailProductPage(BasePage):
     CONTENT_FIELD = "_content_detail_product"
     CONTENT_FIELD_THEMATIC = "_thematic_content"
 
-    _content_detail_product = StreamField([], verbose_name=("Contenido"), null=True, blank=True)
+    _content_detail_product = DetailProductStreamField(verbose_name=_("Contenido"), null=True, blank=True)
     _thematic_content = StreamField(
         block_types=[
             ("thematic_content", ThematicContentComponent()),

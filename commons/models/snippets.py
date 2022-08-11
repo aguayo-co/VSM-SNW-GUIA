@@ -57,10 +57,22 @@ class Serie(models.Model):
         related_name="+",
         verbose_name=_("Imagen"),
     )
+    class Choices(models.TextChoices):
+        """Choices for the serie."""
+
+        serie = 'serie', _('Serie')
+        editorial = 'editorial', _('Editorial')
+
+    select_serie_editorial = models.CharField(
+        max_length=255,
+        choices=Choices.choices,
+        verbose_name=_("serie o editorial"),
+    )
 
     panels = [
         FieldPanel("name"),
         FieldPanel("image"),
+        FieldPanel("select_serie_editorial"),
     ]
 
     def __str__(self):
@@ -68,5 +80,5 @@ class Serie(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = _("Serie")
-        verbose_name_plural = _("Series")
+        verbose_name = _("Serie o sello editorial")
+        verbose_name_plural = _("Series o sellos editoriales")
