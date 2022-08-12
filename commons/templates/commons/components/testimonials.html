@@ -1,3 +1,70 @@
-{% load inspector %}
+{% load wagtailcore_tags wagtailimages_tags i18n wagtailuserbar %}
 
-{{ self|inspect }}
+
+{% spaceless %}
+  
+  {# Si hay testimonios se pinta el componente #}
+  {% if self.add_testimonials|length > 0 %}
+
+    <section class="o-surface o-surface_navy-blue">
+
+      {% if self.title %}
+        <header class="o-subheadline o-subheadline_center">
+          <h3 class="o-subheadline__title">{{ self.title }}</h3>
+        </header>
+      {% endif %}
+
+      <div class="swiper js-slider-testimonial">
+
+        <ul class="o-list swiper-wrapper">
+          
+          {% for testimonial in self.add_testimonials %}
+
+            {# Card testimonio #}
+            <li class="c-testimonial swiper-slide">
+
+              {% if testimonial.value.avatar %}
+                <figure class="c-testimonial__figure">
+                  {% image testimonial.value.avatar fill-100x100 class="o-img" %}
+                </figure>
+              {% endif %}
+
+              <div>
+                <h4 class="c-testimonial__title"> {{ testimonial.value.name_lastname }} </h4>
+
+                {% if testimonial.value.profession %}
+                  <p
+                    class="c-testimonial__text c-testimonial__text_bold"
+                  >
+                    {{ testimonial.value.profession }}
+                  </p>
+                {% endif %}
+
+                <p class="c-testimonial__text">"{{ testimonial.value.review }}"</p>
+              </div>
+
+            </li>
+
+          {% endfor %}
+
+        </ul>
+
+        <div class="c-testimonial-slider__actions">
+
+          <!-- If we need navigation buttons -->
+          <span class="c-testimonial-slider__btn swiper-button-prev"></span>
+
+          <!-- If we need pagination -->
+          <div class="c-testimonial-slider__pagination swiper-pagination"></div>
+
+          <span class="c-testimonial-slider__btn swiper-button-next"></span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  {% endif %}
+
+{% endspaceless %}

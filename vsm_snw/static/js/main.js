@@ -2,12 +2,16 @@
 // A Slider is not a global requirement
 import 'vite/modulepreload-polyfill';
 import Alpine from 'alpinejs';
-import headerMenuNavigation from "./headerMenu";
+
+import headerMenuNavigation from "./components/headerMenu";
+import renderSliders from "./components/swiperSlider";
+
 // AlpineJS
 window.Alpine = Alpine;
 
 window.onload = function () {
     new headerMenuNavigation();
+    renderSliders()
 }
 
 // Start AlpineJs

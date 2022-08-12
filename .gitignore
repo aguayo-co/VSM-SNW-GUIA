@@ -137,3 +137,6 @@ ui/*.css
 ui/*.css.map
 ui/*/*.css
 ui/*/*.css.map
+
+# Dependency directories
+node_modules/

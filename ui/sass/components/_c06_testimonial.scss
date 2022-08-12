@@ -1,0 +1,190 @@
+/*------------------------------------*\
+  Component c06-testimonial
+  Description: Representa una breve reseña de quienes han interactuado con el sitio
+  Type: Component
+\*------------------------------------*/
+
+.c-testimonial {
+  @include px-to-rem(border-radius, $gutter * 3);
+  text-align: center;
+  background: $c-neutro;
+  transition: $transition-ease-in-out-2s;
+  height: max-content;
+
+  &.is-testimonial-active {
+    box-shadow: 0 4px 8px -4px rgba(22, 34, 51, 0.08), 0 16px 24px rgba(22, 34, 51, 0.08);
+  }
+}
+
+.c-testimonial__figure {
+  display: inline-block;
+  @include px-to-rem(width, 100px);
+  @include px-to-rem(height, 100px);
+  border-radius: 50%;
+  @include px-to-rem(margin-bottom, $gutter * 2);
+  overflow: hidden;
+}
+
+.c-testimonial__title {
+  @include px-to-rem(margin-bottom, $gutter);
+}
+
+.c-testimonial__text {
+  @include px-to-rem(margin-bottom, $gutter);
+  font-weight: $f-light;
+  line-height: 1.3;
+  color: rgba($color: $c-on-primary, $alpha: 0.8);
+}
+.c-testimonial__text_bold {
+  font-weight: $f-medium;
+}
+
+.c-testimonial-slider__actions,
+.c-testimonial-slider__btn {
+  @include flexbox;
+  @include justify-content(center);
+  @include align-items(center);
+}
+
+.c-testimonial-slider__actions {
+  position: relative;
+  width: 90%;
+  @include px-to-rem(max-width, 500px);
+  @include px-to-rem(min-height, 50px);
+  margin: 32px auto 0;
+  @include px-to-rem(column-gap, $gutter * 4);
+}
+
+.c-testimonial-slider__btn,
+.c-testimonial-slider__pagination {
+  position: static;
+}
+
+.c-testimonial-slider__pagination {
+  @include flexbox;
+  @include align-items(center);
+  @include px-to-rem(column-gap, $gutter * 2);
+
+  .swiper-pagination-bullet {
+    opacity: 1;
+    transition: $transition-ease-in-out-2s;
+    background: $c-neutro;
+
+    &:hover,
+    &-active {
+      background: $c-brand-primary;
+    }
+  }
+
+  &.swiper-pagination-lock {
+    display: none;
+  }
+}
+
+.c-testimonial-slider__btn {
+  border: 1px solid $c-brand-primary;
+  border-radius: 50%;
+  transition: $transition-ease-in-out-2s;
+
+  &.swiper-button-prev,
+  &.swiper-button-next {
+    &::after {
+      font-family: $font-family-ico;
+      font-size: 18px;
+      color: $c-brand-primary;
+      transition: $transition-ease-in-out-2s;
+    }
+  }
+
+  &.swiper-button-lock {
+    display: none;
+  }
+
+  &:hover {
+    background-color: rgba($color: $c-brand-primary, $alpha: 0.3);
+  }
+
+  &:active {
+    transform: scale(0.9);
+    background-color: transparent;
+  };
+
+  &.swiper-button-prev {
+    &::after {
+      content: $i-chevron-left;
+    }
+  }
+
+  &.swiper-button-next {
+    &::after {
+      content: $i-chevron-right;
+    }
+  }
+
+}
+
+
+/*------------------------------------*\
+  Media Querys
+\*------------------------------------*/
+
+/**
+* Mobile | VP: max-width 768px
+*/
+@include media-query(medium-max) {
+  .c-testimonial {
+    @include px-to-rem(max-width, 290px);
+    @include px-to-rem(padding, $gutter * 3 $gutter * 2);
+  }
+
+  .c-testimonial__title {
+    @include px-to-rem(font-size, 18px);
+  }
+
+  .c-testimonial__text {
+    @include px-to-rem(font-size, $gutter * 2);
+  }
+
+  .c-testimonial-slider__btn {
+    @include px-to-rem(width, $gutter * 4);
+    @include px-to-rem(height, $gutter * 4);
+
+    &.swiper-button-prev,
+    &.swiper-button-next {
+      &::after {
+        @include px-to-rem(font-size, 12px);
+      }
+    }
+  }
+}
+
+/**
+* Desktop | VP: min-width 768px
+*/
+@include media-query(medium) {
+  .c-testimonial {
+    @include px-to-rem(max-width, 555px);
+    @include px-to-rem(padding, $gutter * 4 $gutter * 7);
+  }
+
+  .c-testimonial__title {
+    @include px-to-rem(font-size, $gutter * 3);
+  }
+
+  .c-testimonial__text {
+    @include px-to-rem(font-size, 18px);
+  }
+
+  .c-testimonial-slider__btn {
+    @include px-to-rem(width, $gutter * 6);
+    @include px-to-rem(height, $gutter * 6);
+
+    &.swiper-button-prev,
+    &.swiper-button-next {
+      &::after {
+        @include px-to-rem(font-size, 18px);
+      }
+    }
+  }
+
+}
