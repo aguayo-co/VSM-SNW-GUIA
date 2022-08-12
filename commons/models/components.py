@@ -37,7 +37,7 @@ class SocialProofComponent(StructBlock):
         min_num = 1,
         max_num = 3,
     )
-    caption = RichTextBlock(required=False, label=_("Leyenda")),
+    caption = RichTextBlock(required=False, label=_("Leyenda"), editor="basic"),
     primary_action_text = CharBlock(required=False, label=_("Texto acción primaria")),
     primary_action_url = PageChooserBlock(required=False, label=_("URL acción primaria")),
 
@@ -85,7 +85,7 @@ class FeaturedContentComponent(StructBlock):
 
     title = CharBlock(required=True, label=_("Título"))
     subtitle = CharBlock(required=False, label=_("Subtítulo"))
-    description = RichTextBlock(required=True, label=_("Descripción"))
+    description = RichTextBlock(required=True, label=_("Descripción"), editor="basic")
     add_featured_content = StreamBlock(
         [
             ("featured_content", StructBlock([
@@ -136,7 +136,7 @@ class PagesLinksListComponent(StructBlock):
     A block that displays a list of pages links.
     """
     title = CharBlock(required=True, label=_("Título"))
-    subtitle = CharBlock(required=False, label=_("Subtítulo"))
+    subtitle = CharBlock(required=True, label=_("Subtítulo"), editor="inline")
     featured_link_list = ListBlock(
         PageChooserBlock(required=False, label=_("Enlace destacado")),
         required=False,
@@ -146,10 +146,9 @@ class PagesLinksListComponent(StructBlock):
     link_list = ListBlock(
         StructBlock([
             ("title", CharBlock(required=False, label=_("Título"))),
-            ("subtitle", RichTextBlock(required=False, label=_("Subtítulo"))),
+            ("subtitle", RichTextBlock(required=False, label=_("Subtítulo"), editor="inline")),
             ("primary_action_text", CharBlock(required=False, label=_("Texto acción primaria"))),
             ("primary_action_url", PageChooserBlock(required=False, label=_("URL acción primaria"))),
-            ("page_link", PageChooserBlock(required=False, label=_("Enlace a página"))),
         ]),
         required=False,
         label=_("Lista de enlaces"),

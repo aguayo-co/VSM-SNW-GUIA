@@ -22,6 +22,11 @@
 
 
 @import
+  'vendor/vendor';
+
+
+@import
   'components/layout/l01_header',
   'components/layout/l02_footer',
-  'components/layout/l03_slider_hero';
+  'components/layout/l03_slider_hero',
+  'components/c06_testimonial';
