@@ -12,3 +12,16 @@ h6 {
 	font-weight: $f-medium;
 	line-height: 1.2;
 }
+
+.o-subheadline {
+  @include px-to-rem(padding-bottom, $gutter * 4);
+}
+.o-subheadline_center {
+	text-align: center;
+}
+.o-subheadline__title {
+  @include px-to-rem(font-size, $gutter * 4);
+}
+.o-subheadline__lead {
+  @include px-to-rem(font-size, 18px);
+}
