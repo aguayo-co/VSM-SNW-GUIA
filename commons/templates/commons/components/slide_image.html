@@ -107,8 +107,12 @@
     </div>
     <div class="o-canvas">
         <div class="l-slide__footer">
-            <button class="i-row">Descarga gratis material para los docentes</button>
-            <button class="i-row">Conoce nuestro webinar académico: Igualdad de género</button>
+          {% if prev is not None %}
+            <button class="i-row">{{ prev.value.text_navigation }}</button>
+          {% endif %}
+          {% if next is not None %}
+            <button class="i-row">{{ next.value.text_navigation }}</button>
+          {% endif %}
         </div>
     </div>
 </div>

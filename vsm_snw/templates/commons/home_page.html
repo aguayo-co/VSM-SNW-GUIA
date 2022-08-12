@@ -2,6 +2,7 @@
 {% load fixed_django_vite wagtailcore_tags  %}
 {% load static %}
 {% load inspector %}
+{% load utils %}
 
 {% block body_class %}template-homepage{% endblock %}
 
@@ -11,8 +12,17 @@
 {% block content %}
 
   <div class="wireframe">
-    {# Test Funcionalidad JS, por favor eliminar #}
-    <h1 x-data="{ message: 'I ❤️ Santillana' }" x-text="message"></h1>
+
+      Banner Hero
+    <div class="wireframe">
+      {% for block in self.hero %}
+        {% with prev=self.hero|prev:forloop.counter0 %}
+          {% with next=self.hero|next:forloop.counter0 %}
+            {% include_block block with prev=prev next=next  %}
+          {% endwith %}
+        {% endwith %}
+      {% endfor %}
+    </div>
 
     Content
     <div class="wireframe">
@@ -21,12 +31,7 @@
       {% endfor %}
     </div>
 
-    Banner Hero
-    <div class="wireframe">
-      {% for block in self.hero %}
-        {% include_block block %}
-      {% endfor %}
-    </div>
+
 
   </div>
 {% endblock content %}
