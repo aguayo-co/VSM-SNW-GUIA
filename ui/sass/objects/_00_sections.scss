@@ -1,13 +1,21 @@
-//-*------------------------------------*
-//-   .o- class Objects Section, Background.
-//-   o-section: elementos de seccionamiento, contiene una parte de un documento temáticamente definida.
-//-   o-bg: define los estilos de las superficies de las secciones
-//-*------------------------------------*
+// -*------------------------------------*
+// -   .o- class Objects Section, Background.
+// -   o-section: elementos de seccionamiento, contiene una parte de un documento temáticamente definida.
+// -   o-bg: define los estilos de las superficies de las secciones
+// -*------------------------------------*
 
 
 .o-section {
-  margin-top: $gutter * 12;
-  margin-bottom: $gutter * 12;
+  @include px-to-rem(margin-top, $gutter * 9);
+  @include px-to-rem(margin-bottom, $gutter * 9);
+}
+
+.o-surface {
+  @include px-to-rem(padding-top, $gutter * 9);
+  @include px-to-rem(padding-bottom, $gutter * 9);
+}
+.o-surface_navy-blue {
+  background-color:  $c-surface-navy-blue-10;
 }
 
 
@@ -18,8 +26,13 @@
 @include media-query(medium) {
 
   .o-section {
-    margin-top: $gutter * 10;
-    margin-bottom: $gutter * 10;
+    @include px-to-rem(margin-top, $gutter * 7);
+    @include px-to-rem(margin-bottom, $gutter * 7);
+  }
+
+  .o-surface {
+    @include px-to-rem(padding-top, $gutter * 7);
+    @include px-to-rem(padding-bottom, $gutter * 7);
   }
 
 }

@@ -22,5 +22,10 @@
 
 
 @import
+  'vendor/vendor';
+
+
+@import
   'components/layout/l01_header',
-  'components/layout/l02_footer';
+  'components/layout/l02_footer',
+  'components/c06_testimonial';
