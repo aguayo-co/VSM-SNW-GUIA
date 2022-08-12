@@ -48,7 +48,9 @@ class Subject(models.Model):
 class Serie(models.Model):
     """Serie tag."""
 
-    name = models.CharField(max_length=255, verbose_name=_("Nombre"), null=True, blank=True)
+    name = models.CharField(
+        max_length=255, verbose_name=_("Nombre"), null=True, blank=True
+    )
     image = models.ForeignKey(
         "wagtailimages.Image",
         null=True,
@@ -57,22 +59,17 @@ class Serie(models.Model):
         related_name="+",
         verbose_name=_("Imagen"),
     )
-    class Choices(models.TextChoices):
-        """Choices for the serie."""
-
-        serie = 'serie', _('Serie')
-        editorial = 'editorial', _('Editorial')
-
-    select_serie_editorial = models.CharField(
+    type = models.CharField(
         max_length=255,
-        choices=Choices.choices,
-        verbose_name=_("serie o editorial"),
+        choices=(("serie", _("Serie")), ("editorial", _("Editorial"))),
+        verbose_name=_("Tipo"),
+        default="serie"
     )
 
     panels = [
         FieldPanel("name"),
         FieldPanel("image"),
-        FieldPanel("select_serie_editorial"),
+        FieldPanel("type"),
     ]
 
     def __str__(self):
