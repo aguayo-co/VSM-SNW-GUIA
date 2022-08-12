@@ -14,7 +14,7 @@
       {% with settings.commons.SantillanaSettings as settings_site  %}
         <a
           class="c-header__brand"
-          href="{% pageurl settings_site.logo_url %}"
+          {% comment %} href="{% pageurl settings_site.logo_url %}" {% endcomment %}
           title="Santillana"
         >
           <figure>
