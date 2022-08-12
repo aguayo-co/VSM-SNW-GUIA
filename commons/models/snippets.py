@@ -48,7 +48,9 @@ class Subject(models.Model):
 class Serie(models.Model):
     """Serie tag."""
 
-    name = models.CharField(max_length=255, verbose_name=_("Nombre"), null=True, blank=True)
+    name = models.CharField(
+        max_length=255, verbose_name=_("Nombre"), null=True, blank=True
+    )
     image = models.ForeignKey(
         "wagtailimages.Image",
         null=True,
@@ -57,10 +59,17 @@ class Serie(models.Model):
         related_name="+",
         verbose_name=_("Imagen"),
     )
+    type = models.CharField(
+        max_length=255,
+        choices=(("serie", _("Serie")), ("editorial", _("Editorial"))),
+        verbose_name=_("Tipo"),
+        default="serie"
+    )
 
     panels = [
         FieldPanel("name"),
         FieldPanel("image"),
+        FieldPanel("type"),
     ]
 
     def __str__(self):
@@ -68,5 +77,5 @@ class Serie(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = _("Serie")
-        verbose_name_plural = _("Series")
+        verbose_name = _("Serie o sello editorial")
+        verbose_name_plural = _("Series o sellos editoriales")

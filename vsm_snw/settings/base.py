@@ -244,6 +244,25 @@ WAGTAILADMIN_RICH_TEXT_EDITORS = {
             ]
         },
     },
+    "basic": {
+        "WIDGET": "wagtail.admin.rich_text.DraftailRichTextArea",
+        "OPTIONS": {
+            "plugins": [
+                "bold",
+                "italic",
+                "underline",
+                "strikethrough",
+                "mark",
+                "superscript",
+                "subscript",
+                "small",
+                "ol",
+                "ul",
+                "link",
+                "document-link",
+            ]
+        },
+    },
 }
 
 # Sass Processor
