@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 from django import template
 
 register = template.Library()
@@ -21,3 +23,20 @@ def prev(a_list, current_position):
         return a_list[int(current_position) - 1]
     except IndexError:
         return None
+
+
+@register.simple_tag(takes_context=True)
+def get_hero_control_text(context):
+    print(context["self"].hero)
+    elements = defaultdict(lambda: {"prev": None, "next": None})
+    for index, block in enumerate(context["self"].hero):
+        # Prev Element
+        if index != 0:
+            elements[index+1]["prev"] = context["self"].hero[index-1].value["text_navigation"]
+
+        # Next Element
+        try:
+            elements[index+1]["next"] = context["self"].hero[index+1].value["text_navigation"]
+        except IndexError:
+            pass
+    return elements

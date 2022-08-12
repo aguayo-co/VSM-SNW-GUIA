@@ -21,13 +21,21 @@ function sliderHero(element) {
       spaceBetween: 2,
       speed: 900,
       autoHeight: true,
-      loop: true,
-  
-      
+      loop: false,
       navigation: {
         nextEl: nextEl,
         prevEl: prevEl,
+        disabledClass: 'swiper-button-disabled'
       },
+      pagination: {
+        el: ".l-slide__footer",
+        type: "custom",
+        renderCustom: function (swiper, current, total) {
+          const hero_pagination_texts = JSON.parse(document.getElementById("hero_pagination_texts").textContent)
+          prevEl.children[1].textContent = hero_pagination_texts[current].prev
+          nextEl.children[0].textContent = hero_pagination_texts[current].next
+        }
+      }
     });
   }
 }
