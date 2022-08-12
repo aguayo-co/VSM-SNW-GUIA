@@ -1,0 +1,40 @@
+{% load wagtailcore_tags  %}
+{% load inspector %}
+{% load utils %}
+{% comment %} {{ self.hero|inspect }} {% endcomment %}
+
+<div class="l-slide js-slide-wrapper">
+    <div class="l-slide__items-slider">
+        <div class="swiper js-slider-hero">
+
+            {# bloque slides #}
+            <div class="swiper-wrapper">
+                {% for block in self.hero %}
+                    {% with prev=self.hero|prev:forloop.counter0 %}
+                        {% with next=self.hero|next:forloop.counter0 %}
+                            {% include_block block with prev=prev next=next  %}
+                        {% endwith %}
+                    {% endwith %}
+                {% endfor %}
+            </div>
+
+            {# buttons slider #}         
+            <div class="o-canvas">
+                <div class="l-slide__footer">
+                    <button class="l-slide__btn o-link o-link_secondary o-link_icon swiper-button-prev">
+                        <span class="l-slide__btn-ico i-row"></span>
+                        Descarga gratis material para los docentes
+                    </button>
+                    <button class="l-slide__btn o-link o-link_secondary o-link_icon swiper-button-next">
+                        Conoce nuestro webinar académico: Igualdad de género
+                        <span class="l-slide__btn-ico i-after-row"></span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        
+
+    </div>
+</div>

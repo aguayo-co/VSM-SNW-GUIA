@@ -1,3 +1,43 @@
 {% load inspector %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
 
-{{ self|inspect }}
+{% comment %} {{ self.specific|inspect }} {% endcomment %}
+
+    <div class="swiper-slide">
+        <div class="l-slide__header l-slide__header_height">
+            <div class="l-slide__container l-slide__container_flex o-canvas">
+                <div class="l-slide__box">
+
+                    {# lead #}
+                    <header class="l-slide__content">
+                        <div class="l-slide__content-wrap l-slide__content-wrap_white">
+                            <h1 class="o-title">{{ self.title }}</h1>
+                            <h2 class="o-subtitle">{{ self.subtitle }}</h2>
+
+                            <div class="l-slide__lead">{{ self.description }}</div>
+                            <div class="l-slide__cta">
+                                <a
+                                    class="o-btn"
+                                    href="{% pageurl self.primary_action_url %}">
+                                    {{ self.primary_action_text }}
+                                </a>
+                                {% comment %} <a
+                                    class="o-btn o-btn_secondary"
+                                    href="{% pageurl self.secondary_action_url %}">
+                                    {{ self.secondary_action_text }}
+                                </a> {% endcomment %}
+                            </div>
+                        </div>
+                    </header>
+
+                </div>
+            </div>
+            <div class="l-slide__media_bg">
+                <figure class="l-slide__figure_img-bg">
+                    {% image self.background_image original class="l-slide__img-bg"  %}
+                </figure>
+            </div>
+        </div>
+    </div>
+    

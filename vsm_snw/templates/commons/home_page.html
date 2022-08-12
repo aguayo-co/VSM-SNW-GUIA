@@ -2,7 +2,6 @@
 {% load fixed_django_vite wagtailcore_tags  %}
 {% load static %}
 {% load inspector %}
-{% load utils %}
 
 {% block body_class %}template-homepage{% endblock %}
 
@@ -13,16 +12,8 @@
 
   <div class="wireframe">
 
-      Banner Hero
-    <div class="wireframe">
-      {% for block in self.hero %}
-        {% with prev=self.hero|prev:forloop.counter0 %}
-          {% with next=self.hero|next:forloop.counter0 %}
-            {% include_block block with prev=prev next=next  %}
-          {% endwith %}
-        {% endwith %}
-      {% endfor %}
-    </div>
+    {# Slider Hero #}
+    {% include "includes/hero/slider_hero.html" %}
 
     Content
     <div class="wireframe">
@@ -37,5 +28,5 @@
 {% endblock content %}
 
 {% block extra_js %}
-
+  <script type="module" src="{% static 'js/components/slider_hero.js' %}"></script>
 {% endblock %}

@@ -48,6 +48,10 @@
  *     @include media-query(huge) {
  *        PROPERTIES...
  *     } 
+*  || huge-max: breakpoint max-width 0 - 1440px --> $bp-huge
+ *     @include media-query(huge-max) {
+ *        PROPERTIES...
+ *     } 
  *  || large-max: breakpoint max-width 0 - 1179px
  *     @include media-query(large-max) {
  *        PROPERTIES...
@@ -111,6 +115,12 @@
 
   @if $breakpoint-value == huge {
     @media only screen and (min-width: $bp-huge) {
+      @content;
+    }
+  }
+
+  @if $breakpoint-value == huge-max {
+    @media only screen and (max-width: $bp-huge) {
       @content;
     }
   }

@@ -176,6 +176,12 @@
   }
 }
 
+.i-after-row {
+  &:after {
+    content: $i-row; 
+  }
+}
+
 
 // S
 
