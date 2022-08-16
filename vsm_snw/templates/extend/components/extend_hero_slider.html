@@ -1,0 +1,80 @@
+{% load inspector %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+{% spaceless %}
+
+  <div class="swiper-slide {% block modifires-swiper-slide %}{% endblock modifires-swiper-slide %}">
+    <div class="l-slide__header {% block modifires-header %}{% endblock modifires-header %}">
+        
+      <div class="l-slide__container o-canvas {% block modifires-container %}{% endblock modifires-container %}">
+        <div class="l-slide__box">
+
+          {# lead #}
+          <header class="l-slide__content">
+            <div class="l-slide__content-wrap {% block modifires-content-wrap %}{% endblock modifires-content-wrap %}">
+
+              {# title #}
+              {% if first %}
+                  <h1 class="o-title">{{ self.title }}</h1>
+              {% else %}
+                  <h2 class="o-title">{{ self.title }}</h2>
+              {% endif %}
+
+
+              {# subtitle #}
+              {% if self.subtitle  %}
+                  {% if first %}
+                      <h2 class="o-subtitle">{{ self.subtitle }}</h2>
+                  {% else %}
+                      <h3 class="o-subtitle">{{ self.subtitle }}</h3>
+                  {% endif %}
+              {% endif %}
+
+
+              {# description richtext #}
+              <div class="l-slide__lead s-richtext_list">
+                  {{ self.description }}
+              </div>
+
+
+              {# buttons #}
+              {% if  self.primary_action_url or self.secondary_action_url %}
+                  
+                      <div class="l-slide__cta">
+                          {% if self.primary_action_url %}
+                              <a
+                                  class="o-btn l-slide__button"
+                                  href="{% pageurl self.primary_action_url %}">
+                                  {{ self.primary_action_text }}
+                              </a>
+                          {% endif %}
+                          {% if self.secondary_action_url %}
+                              <a
+                                  class="o-btn o-btn_secondary l-slide__button"
+                                  href="self.secondary_action_url">
+                                  {{ self.secondary_action_text }}
+                              </a>
+                          {% endif %}
+                      </div>
+
+              {% endif %}
+
+            </div>
+          </header>
+
+            {# media image or video #}
+            {% block media %}{% endblock media %}
+              
+
+          </div>
+      </div>
+
+
+      {% block background-slide %}{% endblock background-slide %}
+        
+
+    </div>
+  </div>
+
+{% endspaceless %}

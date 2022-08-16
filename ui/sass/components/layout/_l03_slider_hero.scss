@@ -1,4 +1,8 @@
 /* lead */
+.l-slide__swiper-wrap {
+    @include px-to-rem(margin-bottom, $gutter * 4);
+}
+
 .l-slide__header {
     display: grid;
     grid-template-areas: "item";
@@ -122,7 +126,8 @@
 .l-slide__first-svg,
 .l-slide__first-svg_video,
 .l-slide__second-svg,
-.l-slide__second-svg_video  {
+.l-slide__second-svg_video,
+.l-slide__button  {
     -webkit-filter: blur(12px);
             filter: blur(12px);
     transform: scale(.2);
@@ -132,6 +137,10 @@
         -webkit-filter: blur(0);
                 filter: blur(0);
     }
+}
+
+.l-slide__button {
+    transition: all 1.17s linear;
 }
 
 /* media video */
@@ -178,20 +187,18 @@
 }
 
 
-/* buttons slide */
 .l-slide__footer {
     display: flex;
     position: relative;
     z-index: 1;
+    bottom: 0;
     margin-left: auto;
     margin-right: auto;
     @include px-to-rem(row-gap, $gutter * 3);
     @include px-to-rem(padding-top, $gutter * 3);
     border-top: 1px solid $c-primary-20;
     background-color: $c-neutro;
-}
-.l-slide__footer_white {
-    background-color: $c-neutro;
+    
 }
 .l-slide__btn {
     @include px-to-rem(max-width, 282px);
@@ -211,15 +218,37 @@
             &::before,
             &::after {
                 display: inline-block;
-                @include px-to-rem(font-size, 18px);
+                @include px-to-rem(font-size, 16px);
             }
         }
+    }
+    &::after{
+        content: "";
+    }
+    &.swiper-button-prev,
+    &.swiper-button-next {
+        position: static;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        @include px-to-rem(column-gap, $gutter * 3 );
+        width: auto;
+        height: auto;
+        margin-top: 0;
+        line-height: 1.7;
+        color: $c-primary-50;
     }
 }
 
 .l-slide__btn-ico {
+    opacity: 1;
+    transition: all .2s ease-in;
     &::after {
         transform: rotate(180deg);
+    }
+    .swiper-button-disabled & {
+        opacity: 0;
+        display: none;
     }
 }
 
@@ -227,12 +256,14 @@
 /**** DESKTOP *****/
 
 @include media-query(medium) {
-    .l-slide__header {
-        // @include px-to-rem(margin-bottom, $gutter * 6);
+    .l-slide__swiper-wrap {
+        @include px-to-rem(margin-bottom, $gutter * 8);
+    }
+    .l-slide_margin {
+        @include px-to-rem(margin-top, $gutter * 6);
     }
     .l-slide__header_height {
         @include px-to-rem(max-height, 680px);
-        @include px-to-rem(min-height, 680px);
     }
 
     /* lead */

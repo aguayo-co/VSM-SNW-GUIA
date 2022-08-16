@@ -1,73 +1,33 @@
+{% extends "extend/components/extend_hero_slider.html" %}
 {% load inspector %}
 {% load wagtailimages_tags %}
 {% load wagtailcore_tags %}
 
-<div class="swiper-slide">
-    <div class="l-slide__header">
+{% block modifires-swiper-slide %} l-slide_margin{% endblock modifires-swiper-slide %}
+{% block modifires-container %} o-canvas-slide{% endblock modifires-container %}
 
-        <div class="l-slide__container o-canvas o-canvas-slide">
-            <div class="l-slide__box">
-
-                {# lead #}
-                <header class="l-slide__content">
-                    <div class="l-slide__content-wrap">
-                        <h1 class="o-title">{{ self.title }}</h1>
-                        <h2 class="o-subtitle">{{ self.subtitle }}</h2>
-
-                        <div class="l-slide__lead">{{ self.description }}</div>
-                        <div class="l-slide__cta">
-                            <a
-                                class="o-btn"
-                                href="{% pageurl self.primary_action_url %}">
-                                {{ self.primary_action_text }}
-                            </a>
-                            <a
-                                class="o-btn o-btn_secondary"
-                                href="{% pageurl self.secondary_action_url %}">
-                                {{ self.secondary_action_text }}
-                            </a>
-                        </div>
-                    </div>
-                </header>
-
-                {# media #}
-                <div class="l-slide__media">
-                    <figure class="l-slide__figure_img">
-                        {% image self.image original class="l-slide__img"  %}
-                        <div class="l-slide__first-svg">
-                            <svg width="95" height="70" viewBox="0 0 95 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M3.47959 69.6586C3.35846 69.6586 3.24061 69.6522 3.1162 69.6393C1.20752 69.446 -0.180594 67.7641 0.0191127 65.8856L3.80043 29.9118C3.91501 28.8131 4.56326 27.8368 5.53561 27.2923C6.51122 26.7478 7.69308 26.6962 8.71126 27.1602L39.9442 41.35L53.6945 2.52145C54.0186 1.60962 54.7192 0.871767 55.6228 0.498013C56.5264 0.121037 57.5511 0.140377 58.4416 0.546351L92.991 16.3761C94.7294 17.172 95.4857 19.2083 94.6737 20.9192C93.8651 22.6301 91.7993 23.3743 90.0576 22.5753L58.9916 8.34364L45.2479 47.1593C44.9238 48.0711 44.2264 48.8057 43.3261 49.1827C42.4225 49.5597 41.401 49.5436 40.5105 49.1408L10.214 35.3764L6.93356 66.5945C6.75022 68.3537 5.24095 69.6619 3.48287 69.6619L3.47959 69.6586Z" fill="#87D2EE"/>
-                            </svg>
-                        </div>
-                        <div class="l-slide__second-svg">
-                            <svg width="61" height="59" viewBox="0 0 61 59" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M27.6799 0.926514L25.1189 21.3203L0 23.808L21.5297 28.2831L2.56373 58.625L31.7818 38.2313L61 57.1352L38.9575 31.2684L61 21.3203L36.3966 21.8178L27.6799 0.926514Z" fill="#FFCC00"/>
-                            </svg>
-                        </div>
-                    </figure>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="l-slide__bg">
-            {% if self.background_illustration %}
-                {% image self.background_illustration fill-310x394-c100 class="l-slide__bg-illustration l-slide__bg-illustration_fit"  %}
-            {% else %}
-                {% include "includes/hero/svg/boy.html" %}
-            {% endif %}
-        </div>
-    </div>
-
-    {% comment %} <div class="o-canvas">
-        <div class="l-slide__footer">
-          {% if prev is not None %}
-            <button class="l-slide__btn o-link o-link_secondary o-link_icon swiper-button-prev">{{ prev.value.text_navigation }}</button>
-          {% endif %}
-          {% if next is not None %}
-            <button class="l-slide__btn o-link o-link_secondary o-link_icon swiper-button-next ">{{ next.value.text_navigation }}</button>
-          {% endif %}
-        </div>
-    </div> {% endcomment %}
-
-</div>
+{# media #}
+{% block media %}
+  <div class="l-slide__media">
+    <figure class="l-slide__figure_img">
+      {% image self.image original class="l-slide__img"  %}
+      <div class="l-slide__first-svg">
+        {% include "includes/hero/svg/curves.html" %}
+      </div>
+      <div class="l-slide__second-svg">
+        {% include "includes/hero/svg/star.html" %}
+      </div>
+    </figure>
+  </div>
+{% endblock media %}
+ 
+{# media background slide #}
+{% block background-slide %}
+  <div class="l-slide__bg">
+    {% if self.background_illustration %}
+      {% image self.background_illustration fill-310x394-c100 class="l-slide__bg-illustration l-slide__bg-illustration_fit"  %}
+    {% else %}
+      {% include "includes/hero/svg/boy.html" %}
+    {% endif %}
+  </div>
+{% endblock background-slide %}

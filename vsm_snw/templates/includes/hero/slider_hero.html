@@ -4,38 +4,38 @@
 {% comment %} {{ self.hero|inspect }} {% endcomment %}
 
 <div class="l-slide js-slide-wrapper">
-  <div class="l-slide__items-slider">
-    <div class="swiper js-slider-hero">
+  <div class="swiper js-slider-hero">
 
-      {# bloque slides #}
-      <div class="swiper-wrapper">
-        {% for block in self.hero %}
-          {% with prev=self.hero|prev:forloop.counter0 %}
-            {% with next=self.hero|next:forloop.counter0 %}
-              {% include_block block with prev=prev next=next  %}
-            {% endwith %}
+    {# bloque slides #}
+    <div class="swiper-wrapper l-slide__swiper-wrap">
+      {% for block in self.hero %}
+        {% with prev=self.hero|prev:forloop.counter0 %}
+          {% with next=self.hero|next:forloop.counter0 %}
+              {% with first=forloop.first %}
+                  {% include_block block with prev=prev next=next  %}
+              {% endwith %}
           {% endwith %}
-        {% endfor %}
-      </div>
-
-      {# buttons slider #}
-      {% get_hero_control_text as hero_pagination_texts %}
-      {{ hero_pagination_texts|json_script:"hero_pagination_texts" }}
-      <div class="o-canvas">
-        <div class="l-slide__footer">
-          <button class="l-slide__btn o-link o-link_secondary o-link_icon swiper-button-prev">
-            <span class="l-slide__btn-ico i-row"></span>
-            <span>Rami</span>
-          </button>
-          <button class="l-slide__btn o-link o-link_secondary o-link_icon swiper-button-next">
-            <span>Rami</span>
-            <span class="l-slide__btn-ico i-after-row"></span>
-          </button>
-        </div>
-      </div>
-
+        {% endwith %}
+      {% endfor %}
     </div>
 
+    {# buttons slider #}
+    
+    {% get_hero_control_text as hero_pagination_texts %}
+    {{ hero_pagination_texts|json_script:"hero_pagination_texts" }}
+
+      <div class="o-canvas l-slide__wrap-footer">
+        <nav class="l-slide__footer">
+          <button class="l-slide__btn o-link swiper-button-prev">
+            <span class="l-slide__btn-ico i-row"></span>
+            <span class="l-slide__btn-ico">Texto navegación</span>
+          </button>
+          <button class="l-slide__btn swiper-button-next">
+            <span class="l-slide__btn-ico">Texto navegación</span>
+            <span class="l-slide__btn-ico i-after-row"></span>
+          </button>
+        </nav>
+      </div>
 
 
   </div>
