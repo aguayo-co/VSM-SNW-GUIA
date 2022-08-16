@@ -118,11 +118,9 @@ class HomePage(BasePage):
 
     _content_home = HomeStreamField(verbose_name=_("Contenido"), null=True, blank=True)
 
-    content = BasePage.replace_content_field(CONTENT_FIELD)
-
     hero = HeroStreamField()
 
-    content_panels = [content[0], FieldPanel("hero")] + content[1:]
+    content_panels = [FieldPanel("title"), FieldPanel(CONTENT_FIELD), FieldPanel("hero")]
     subpage_types = [
         "commons.BlogPage",
         "commons.CatalogPage",
@@ -498,7 +496,7 @@ class DetailProductPage(BasePage):
             heading=_("Materiales"),
         ),
     ]
-    thematic_content = [StreamFieldPanel(CONTENT_FIELD_THEMATIC)]
+    thematic_content = [FieldPanel(CONTENT_FIELD_THEMATIC)]
 
     edit_handler = TabbedInterface(
         [
