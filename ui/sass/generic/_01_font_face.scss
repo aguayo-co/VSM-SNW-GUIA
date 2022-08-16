@@ -36,6 +36,35 @@
 
 // - V 1.0
 
+// A
+
+/**
+* @icon .i-arrow-right
+* @markup
+*   <span class="i-arrow-right"></span>
+*/
+.i-arrow-right {
+  &:before {
+    content: $i-arrow-right; 
+  }
+}
+
+/**
+* @icon .i-arrow-left
+* @markup
+*   <span class="i-arrow-left"></span>
+*/
+.i-arrow-left {
+  &:before {
+    content: $i-arrow-left; 
+  }
+}
+.i-after-arrow-left {
+  &:before {
+    content: $i-arrow-left; 
+  }
+}
+
 // B
 
 /**
@@ -162,26 +191,6 @@
     content: $i-mail;
   }
 }
-
-// R
-
-/**
-* @icon .i-row
-* @markup
-*   <span class="i-row"></span>
-*/
-.i-row {
-  &:before {
-    content: $i-row; 
-  }
-}
-
-.i-after-row {
-  &:after {
-    content: $i-row; 
-  }
-}
-
 
 // S
 
