@@ -164,7 +164,7 @@ class SlideImageComponent(StructBlock):
     """
     A block that displays a slide image.
     """
-    text_navigation = RichTextBlock(required=True, label=_("Texto de navegación"), editor="inline")
+    text_navigation = CharBlock(required=True, label=_("Texto de navegación"))
     title = CharBlock(required=True, label=_("Título"))
     subtitle = CharBlock(required=False, label=_("Subtítulo"))
     description = RichTextBlock(required=True, label=_("Descripción"), editor="list")
@@ -185,7 +185,7 @@ class SlideImageBackgroundComponent(StructBlock):
     """
     A block that displays a slide image with a background.
     """
-    text_navigation = RichTextBlock(required=True, label=_("Texto de navegación"), editor="inline")
+    text_navigation = CharBlock(required=True, label=_("Texto de navegación"))
     title = CharBlock(required=True, label=_("Título"))
     subtitle = CharBlock(required=False, label=_("Subtítulo"))
     description = RichTextBlock(required=True, label=_("Descripción"), editor="list")
@@ -205,7 +205,7 @@ class SlideVideoComponent(StructBlock):
     """
     A block that displays a slide video.
     """
-    text_navigation = RichTextBlock(required=True, label=_("Texto de navegación"), editor="inline")
+    text_navigation = CharBlock(required=True, label=_("Texto de navegación"))
     title = CharBlock(required=True, label=_("Título"))
     subtitle = CharBlock(required=False, label=_("Subtítulo"))
     description = RichTextBlock(required=True, label=_("Descripción"), editor="list")

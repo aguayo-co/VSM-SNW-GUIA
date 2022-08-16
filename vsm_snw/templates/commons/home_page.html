@@ -11,8 +11,9 @@
 {% block content %}
 
   <div class="wireframe">
-    {# Test Funcionalidad JS, por favor eliminar #}
-    <h1 x-data="{ message: 'I ❤️ Santillana' }" x-text="message"></h1>
+
+    {# Slider Hero #}
+    {% include "includes/hero/slider_hero.html" %}
 
     Content
     <div class="wireframe">
@@ -21,16 +22,11 @@
       {% endfor %}
     </div>
 
-    Banner Hero
-    <div class="wireframe">
-      {% for block in self.hero %}
-        {% include_block block %}
-      {% endfor %}
-    </div>
+
 
   </div>
 {% endblock content %}
 
 {% block extra_js %}
-
+  <script type="module" src="{% static 'js/components/slider_hero.js' %}"></script>
 {% endblock %}

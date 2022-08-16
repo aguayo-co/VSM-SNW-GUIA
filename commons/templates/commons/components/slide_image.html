@@ -1,3 +1,33 @@
+{% extends "extend/components/extend_hero_slider.html" %}
 {% load inspector %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
 
-{{ self|inspect }}
+{% block modifires-swiper-slide %} l-slide_margin{% endblock modifires-swiper-slide %}
+{% block modifires-container %} o-canvas-slide{% endblock modifires-container %}
+
+{# media #}
+{% block media %}
+  <div class="l-slide__media">
+    <figure class="l-slide__figure_img">
+      {% image self.image original class="l-slide__img"  %}
+      <div class="l-slide__first-svg">
+        {% include "includes/hero/svg/curves.html" %}
+      </div>
+      <div class="l-slide__second-svg">
+        {% include "includes/hero/svg/star.html" %}
+      </div>
+    </figure>
+  </div>
+{% endblock media %}
+ 
+{# media background slide #}
+{% block background-slide %}
+  <div class="l-slide__bg">
+    {% if self.background_illustration %}
+      {% image self.background_illustration fill-310x394-c100 class="l-slide__bg-illustration l-slide__bg-illustration_fit"  %}
+    {% else %}
+      {% include "includes/hero/svg/boy.html" %}
+    {% endif %}
+  </div>
+{% endblock background-slide %}

@@ -13,15 +13,78 @@ h6 {
 	line-height: 1.2;
 }
 
+/**
+ * Class: .o-title 
+ * @description  titular grande
+ * 	♣ Propiedades: 40px / 56px | Outfit | Regular
+ * @atom Head
+ * @modifiers
+ *  
+ * @section 02. Títulos
+ * @markup
+ *	<h2 class="o-title">
+ *		Titular de sección
+ *	</h2>
+ */
+
+.o-title {
+	@include px-to-rem(font-size, 40px);
+	font-weight: $f-regular;
+	.swiper-slide-active & {
+		-webkit-animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+	    animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+	}
+}
+
+/**
+ * Class: .o-subtitle 
+ * @description  subtítulo azul
+ * 	♣ Propiedades: 18px / 24px | Outfit | Medium
+ * @atom Head
+ * @modifiers
+ *  .o-subtitle_line subtitulo con línea en frente
+ * @section 02. Títulos
+ * @markup
+ *	<h2 class="o-subtitle">
+ *		sub título de sección azul
+ *	</h2>
+ *	<h2 class="o-subtitle o-subtitle_line">
+ *		sub título de sección azul
+ *	</h2>
+ */
+
+.o-subtitle {
+	@include px-to-rem(font-size, 18px);
+	font-weight: $f-medium;
+	color: $c-primary-50;
+	.swiper-slide-active & {
+		-webkit-animation: text-focus-in 1.3s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+	    animation: text-focus-in 1.3s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+	}
+}
+
 .o-subheadline {
-  @include px-to-rem(padding-bottom, $gutter * 4);
-}
-.o-subheadline_center {
-	text-align: center;
-}
-.o-subheadline__title {
-  @include px-to-rem(font-size, $gutter * 4);
-}
-.o-subheadline__lead {
-  @include px-to-rem(font-size, 18px);
+	@include px-to-rem(padding-bottom, $gutter * 4);
+  }
+  .o-subheadline_center {
+	  text-align: center;
+  }
+  .o-subheadline__title {
+	@include px-to-rem(font-size, $gutter * 4);
+  }
+  .o-subheadline__lead {
+	@include px-to-rem(font-size, 18px);
+  }
+
+
+/**** Desktop ***/
+
+// 540
+@media only screen and (min-width:540px) {
+	.o-title {
+		@include px-to-rem(font-size, 56px);
+	}
+	.o-subtitle {
+		@include px-to-rem(font-size, 24px);
+	}
 }

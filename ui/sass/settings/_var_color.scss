@@ -46,6 +46,14 @@ $c-primary-20: #E6E6E6;
 $c-primary-30: #D2F3FF;
 
 /**
+  * $c-primary
+  * @color
+  * @section Primary
+*/
+
+$c-primary: #00A6E3;
+
+/**
   * $c-primary-50
   * @color
   * @section Primary
@@ -53,6 +61,21 @@ $c-primary-30: #D2F3FF;
 
 $c-primary-50: #1D45AE;
 
+/**
+  * $c-primary-90
+  * @color
+  * @section Primary
+*/
+
+$c-primary-90: #87D2EE;
+
+/**
+  * $c-primary-100
+  * @color
+  * @section Primary
+*/
+
+$c-primary-100: #D1F3FF;
 
 // -*------------------------------------*\
 // -    Secondary & tertiary
@@ -65,6 +88,7 @@ $c-primary-50: #1D45AE;
 */
 
 $c-secondary-50: #FF5D00;
+
 
 
 //-*------------------------------------*
@@ -128,6 +152,31 @@ $c-on-primary: #404040;
  */
 
  $c-surface-navy-blue-20: #D1F3FF;
+
+
+/**
+ * $c-surface-navy-blue-10
+ * @color
+ * @section Surface
+ */
+
+ $c-surface-navy-blue-10: #ECFAFF;
+
+ /**
+ * $c-surface-navy-blue-20
+ * @color
+ * @section Surface
+ */
+
+ $c-surface-navy-blue-20: #D1F3FF;
+ 
+ /**
+ * $c-dark
+ * @color
+ * @section Surface
+ */
+
+ $c-dark: #000;
 
 
 // -*------------------------------------*

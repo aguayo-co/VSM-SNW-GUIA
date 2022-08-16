@@ -163,6 +163,25 @@
   }
 }
 
+// R
+
+/**
+* @icon .i-row
+* @markup
+*   <span class="i-row"></span>
+*/
+.i-row {
+  &:before {
+    content: $i-row; 
+  }
+}
+
+.i-after-row {
+  &:after {
+    content: $i-row; 
+  }
+}
+
 
 // S
 

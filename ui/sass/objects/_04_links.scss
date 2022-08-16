@@ -39,3 +39,16 @@ a {
     margin-right: $gutter;
   }
 }
+
+.o-link_secondary {
+  color: $c-brand-primary;
+  @include px-to-rem(font-size, $font-size-base);
+  font-weight: $f-medium;
+} 
+
+.o-link_icon {
+  @include flexbox;
+  justify-content: flex-end;
+  align-items: center;
+  @include px-to-rem(column-gap, $gutter * 3);
+}

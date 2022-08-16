@@ -42,9 +42,12 @@ button {
  * @section 05. Botones
  * @markup
  *   <div class="sg-modifires">
- *      <button class="o-btn" type="button">
+ *      <a class="o-btn" type="button">
  *        Texto botón
- *      </button>
+ *      </a>
+ *      <a class="o-btn o-btn_secondary" type="button">
+ *        Texto botón
+ *      </a>
  *   </div>
  */
 
@@ -55,12 +58,13 @@ button {
   @include px-to-rem(min-width, 200px);
   border: 1px solid $c-brand-primary;
   border-radius: 50px;
-  @include px-to-rem(padding, 12px $gutter * 3);
+  @include px-to-rem(padding, 18px $gutter * 6);
   line-height: 1;
   color: $c-neutro;
   @include px-to-rem(font-size, $font-size-base);
   font-family: $f-default;
   font-weight: $f-medium;
+  text-align: center;
   background-color: $c-brand-primary;
   transition: all 0.4s;
 
@@ -69,6 +73,23 @@ button {
   &:active {
     color: $c-brand-primary;
     border-color: $c-brand-primary;
+    background-color: $c-neutro;
+    transform: scale(0.9);
+  }
+
+}
+
+.o-btn_secondary {
+  color: $c-brand-primary;
+  border-color: $c-brand-primary;
+  background-color: $c-neutro;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $c-neutro;
+    border-color: $c-brand-primary;
+    background-color: $c-brand-primary;
   }
 }
 
