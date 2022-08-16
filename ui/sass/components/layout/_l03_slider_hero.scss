@@ -243,9 +243,6 @@
 .l-slide__btn-ico {
     opacity: 1;
     transition: all .2s ease-in;
-    &::after {
-        transform: rotate(180deg);
-    }
     .swiper-button-disabled & {
         opacity: 0;
         display: none;
