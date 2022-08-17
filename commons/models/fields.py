@@ -15,6 +15,7 @@ from commons.models.components import (
     SlideImageComponent,
     SlideImageBackgroundComponent,
     SlideVideoComponent,
+    DefinitionListComponent,
 )
 from wagtail.fields import StreamField
 
@@ -97,6 +98,7 @@ class FullStreamField(StreamField):
         ("featured_content_component", FeaturedContentComponent()),
         ("testimonials_component", TestimonialsComponent()),
         ("pages_links_list_component", PagesLinksListComponent()),
+        ("definition_list_component", DefinitionListComponent()),
     ]
 
     def __init__(self, **kwargs):

@@ -246,3 +246,25 @@ class ThematicContentComponent(StructBlock):
         label = _("Contenidos Tematicos")
         icon = "list-ul"
         template = "components/thematic_content.html"
+
+
+class DefinitionListComponent(StructBlock):
+    """
+    A block that displays a definition list.
+    """
+    title = CharBlock(required=True, label=_("Título"))
+    subtitle = CharBlock(required=False, label=_("Subtítulo"))
+    introduction = CharBlock(required=False, label=_("Introducción"))
+    definition_list = ListBlock(
+        StructBlock([
+            ("title", CharBlock(required=True, label=_("Título"))),
+            ("content", RichTextBlock(required=True, label=_("Contenido"), editor="basic")),
+        ]),
+        required=True,
+        label=_("Lista de definiciones"),
+    )
+
+    class Meta:
+        icon = "list-ul"
+        label = _("Definition List")
+        template = "commons/components/definition_list_component.html"
