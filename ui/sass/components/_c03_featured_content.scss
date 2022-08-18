@@ -1,0 +1,41 @@
+/*------------------------------------*\
+  Component c03-featured-content
+  Description: Representa una breve descripción con redirecciones a contenido complementario
+  Type: Component
+\*------------------------------------*/
+
+.c-featured-content__wrap {
+  @include flexbox;
+}
+
+
+/*------------------------------------*\
+  Media Querys
+\*------------------------------------*/
+
+/**
+* Mobile | VP: max-width 768px
+*/
+@include media-query(medium-max) {
+  .c-featured-content__wrap {
+    @include flex-direction(column);
+    @include px-to-rem(row-gap, $gutter * 2);
+    @include px-to-rem(margin-top, $gutter * 5);
+  }
+}
+
+/**
+* Desktop | VP: min-width 768px
+*/
+@include media-query(medium) {
+  .c-featured-content {
+    @include flexbox;
+    @include align-items(flex-start);
+    @include px-to-rem(row-gap, $gutter * 10);
+    @include px-to-rem(column-gap, 96px);
+  }
+
+  .c-featured-content__wrap {
+    @include px-to-rem(column-gap, $gutter * 2);
+  }
+}

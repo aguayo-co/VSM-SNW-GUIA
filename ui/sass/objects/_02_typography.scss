@@ -137,3 +137,18 @@ strong,
 .o-medium {
   font-weight: $f-medium;
 }
+
+/**
+ * Class: .o-kicker
+ * @description  Texto sobre un titular, con la intención de provocar interés, editorializar o proporcionar orientación sobre el tema en los encabezados.
+ * @atom Kicker
+ * @section 03. Estilos textos
+ * @markup
+ *	<p class="o-kicker">
+ *		Etiqueta para encabezado
+ *	</p>
+ */
+
+ .o-kicker {
+  @include px-to-rem(font-size, 18px);
+}

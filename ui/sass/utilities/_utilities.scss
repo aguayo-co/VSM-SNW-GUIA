@@ -26,6 +26,10 @@
   visibility: hidden;
 }
 
+.u-rounded-16 {
+  @include px-to-rem(border-radius, $gutter * 2);
+}
+
 /**
  * Class: u-hidden-mb, display none
  * @atom Ocultar elemento en Mobile
