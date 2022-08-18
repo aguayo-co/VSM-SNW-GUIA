@@ -1,7 +1,59 @@
-{% load inspector %}
+{% load wagtailcore_tags wagtailimages_tags i18n wagtailuserbar %}
 
-<section class="o-surface o-surface_navy-blue" id="{{ block_id }}">
 
-{{ self|inspect }}
+{% spaceless %}
 
-</section>
+  <section class="o-section" id="{{ block_id }}>
+    <div class="o-canvas">
+
+      <div class="c-featured-content">
+
+        {# Cabecera y descripción #}
+        <header>
+
+          <h2 class="o-subtitle o-subtitle_primary">{{ self.title }}</h2>
+          <h3 class="o-title">{{ self.subtitle }}</h3>
+
+          {# TODO @andres.tafur poner estilos del texto enriquecido cuando este definido #}
+          <div>{{ self.description|richtext }}</div>
+
+        </header>
+
+        {# Listado de cards destacadas #}
+        <ul class="c-featured-content__wrap o-list">
+
+          {% for featured_card in self.add_featured_content %}
+            <li>
+
+              {# Card object #}
+              <article class="o-card o-card_w285 u-rounded-16">
+
+                <figure class="o-card__figure">
+                  {% image featured_card.value.image fill-285x214 class="o-card__img"  %}
+                </figure>
+
+                <div class="o-card__content">
+                  <p class="o-card__text o-text">{{ featured_card.value.description }}</p>
+
+                  <a
+                    href="{% pageurl featured_card.value.primary_action_url %}"
+                    title="{% trans 'Ir a' %} {{ featured_card.value.primary_action_text }}"
+                    class="o-card__btn o-btn o-btn_small"
+                  >
+                    {{ featured_card.value.primary_action_text }}
+                  </a>
+                </div>
+
+              </article>
+
+            </li>
+          {% endfor %}
+
+        </ul>
+
+      </div>
+
+    </div>
+  </section>
+
+{% endspaceless %}
