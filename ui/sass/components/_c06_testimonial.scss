@@ -71,13 +71,13 @@
   }
 
   .swiper-pagination-bullet {
-    opacity: 1;
+    opacity: .5;
     transition: $transition-ease-in-out-2s;
-    background: $c-neutro;
+    background: $c-brand-primary;
 
     &:hover,
     &-active {
-      background: $c-brand-primary;
+      opacity: 1;
     }
   }
 
