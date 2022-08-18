@@ -31,7 +31,7 @@
     {% endblock %}
   </head>
 
-  <body class="{% block body_class %}{% endblock %}">
+<body class="{% block body_class %}{% endblock %}" x-data="{}">
 
     {# Main JS #}
     {% wagtailuserbar %}
@@ -41,7 +41,7 @@
     {% block content %}{% endblock %}
 
     {# TODO @andres.tafur evaluemos si esto es buena idea.#}
-    {% wagtail_tag_manager/templatetags/cookie_bar.html %}
+    {% include "wagtail_tag_manager/templatetags/cookie_bar.html" %}
 
     {% flat_menu 'footer_menu' add_sub_menus_inline=True %}
 

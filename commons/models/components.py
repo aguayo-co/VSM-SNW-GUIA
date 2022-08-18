@@ -246,3 +246,17 @@ class ThematicContentComponent(StructBlock):
         label = _("Contenidos Tematicos")
         icon = "list-ul"
         template = "components/thematic_content.html"
+
+
+class BannerAdComponent(StructBlock):
+    """
+    A block that displays a banner ad.
+    """
+    banner_text = RichTextBlock(required=False, label=_("Texto de banner"), editor="basic")
+    link_text_scroll_to = CharBlock(required=False, label=_("Texto de enlace scroll to"))
+    id_link_scroll_to = CharBlock(required=False, label=_("ID de enlace scroll to"))
+
+    class Meta:
+        icon = "image"
+        label = _("Banner Ad")
+        template = "commons/components/banner_ad_component.html"
