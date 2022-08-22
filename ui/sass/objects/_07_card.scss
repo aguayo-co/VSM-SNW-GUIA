@@ -26,6 +26,7 @@
 @include media-query(medium-max) {
 
   .o-card {
+    @include px-to-rem(max-width, 380px);
     text-align: center;
   }
 

@@ -1,22 +1,25 @@
 {% load wagtailcore_tags  %}
 {% load inspector %}
 {% load utils %}
-{% comment %} {{ self.hero|inspect }} {% endcomment %}
 
 <div class="l-slide js-slide-wrapper">
   <div class="swiper js-slider-hero">
 
     {# bloque slides #}
     <div class="swiper-wrapper l-slide__swiper-wrap">
-      {% for block in self.hero %}
-        {% with prev=self.hero|prev:forloop.counter0 %}
-          {% with next=self.hero|next:forloop.counter0 %}
-              {% with first=forloop.first %}
+      {% with has_pagination=hero_pagination_texts %}
+        {% for block in self.hero %}
+          {% with prev=self.hero|prev:forloop.counter0 %}
+            {% with next=self.hero|next:forloop.counter0 %}
+                {% with first=forloop.first %}
+                  
                   {% include_block block with prev=prev next=next  %}
-              {% endwith %}
+                  
+                {% endwith %}
+            {% endwith %}
           {% endwith %}
-        {% endwith %}
-      {% endfor %}
+        {% endfor %}
+      {% endwith %}
     </div>
 
     {# buttons slider #}
@@ -24,6 +27,7 @@
     {% get_hero_control_text as hero_pagination_texts %}
     {{ hero_pagination_texts|json_script:"hero_pagination_texts" }}
 
+    {% if hero_pagination_texts %}
       <div class="o-canvas l-slide__wrap-footer">
         <nav class="l-slide__footer">
           <button class="l-slide__btn o-link swiper-button-prev">
@@ -36,7 +40,7 @@
           </button>
         </nav>
       </div>
-
+    {% endif %}
 
   </div>
 </div>
