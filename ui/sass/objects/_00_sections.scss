@@ -18,6 +18,10 @@
   background-color:  $c-surface-navy-blue-10;
 }
 
+.o-section__footer {
+  text-align: center;
+  @include px-to-rem(margin-top, $gutter * 4);
+}
 
 /*------------------------------------*\
   Media querys
@@ -33,6 +37,10 @@
   .o-surface {
     @include px-to-rem(padding-top, $gutter * 7);
     @include px-to-rem(padding-bottom, $gutter * 7);
+  }
+
+  .o-section__footer {
+    @include px-to-rem(margin-top, $gutter * 7);
   }
 
 }

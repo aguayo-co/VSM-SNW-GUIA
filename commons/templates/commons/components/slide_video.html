@@ -7,26 +7,31 @@
 
 {# media #}
 {% block media %}
-  <section class="o-surface o-surface_navy-blue" id="{{ block_id }}">
-    <div class="l-slide__media l-slide__media_video">
-      <figure class="l-slide__figure_video">
-        <div class="l-slide__video">
-          {{ self.video }}
-        </div>
-        <div class="l-slide__first-svg_video">
-          {% include "includes/hero/svg/curves.html" %}
-        </div>
-        <div class="l-slide__second-svg_video">
-          {% include "includes/hero/svg/star.html" %}
-        </div>
-      </figure>
-    </div>
-  </section>
+
+  <div class="l-slide__media l-slide__media_video">
+    <figure class="l-slide__figure_video">
+      <div class="l-slide__video">
+        {{ self.video }}
+      </div>
+      <div class="l-slide__first-svg_video">
+        {% include "includes/hero/svg/curves.html" %}
+      </div>
+      <div class="l-slide__second-svg_video">
+        {% include "includes/hero/svg/star.html" %}
+      </div>
+    </figure>
+  </div>
+
 {% endblock media %}
 
 {# media background slide #}
 {% block background-slide %}
   <div class="l-slide__bg">
-    {% include "includes/hero/svg/girl.html" %}
+    {% if self.background_illustration %}
+      {% image self.background_illustration fill-310x394-c100 class="l-slide__bg-illustration l-slide__bg-illustration_fit"  %}
+    {% else %}
+      {% include "includes/hero/svg/girl.html" %}
+    {% endif %}
   </div>
 {% endblock background-slide %}
+
