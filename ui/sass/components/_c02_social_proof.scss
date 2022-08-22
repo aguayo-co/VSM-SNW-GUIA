@@ -1,0 +1,92 @@
+.c-social-proof__list {
+    flex-wrap: wrap;
+    list-style-type: none;
+    background-color: $c-neutro;
+    border-radius: $gutter * 2;
+    box-shadow: $e-5dp;
+}
+.c-social-proof__item {
+    position: relative;
+    @include flexbox;
+    @include flex-direction(column);
+    @include align-items(center);
+    @include px-to-rem(row-gap, $gutter * 2);
+    @include px-to-rem(min-width, 290px);
+    @include px-to-rem(padding-bottom, 50px);
+    @include px-to-rem(padding-top, 50px);
+    @include px-to-rem(padding-left, 16px);
+    @include px-to-rem(padding-right, 16px);
+    
+    &:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        display: block;
+        height: 1px;
+        width: 100px;
+        background-color: $c-primary-20;
+    }
+    &:last-of-type {
+        &::after {
+            display: none;
+        }
+    }
+}
+
+.c-social-proof__value {
+    @include px-to-rem(font-size, 38px);
+}
+.c-social-proof__text {
+    text-align: center;
+    @include px-to-rem(font-size, 18px);
+}
+
+.c-social-proof__caption {
+    @include px-to-rem(margin-top, $gutter * 2);
+}
+
+
+/*------------------------------------*\
+  Media Querys
+\*------------------------------------*/
+
+/**
+* Desktop | VP: min-width 768px
+*/
+@include media-query(medium) {
+    .c-social-proof__list {
+        @include flexbox;
+    }
+    .c-social-proof__item {
+        flex: 1;
+        &:after {
+            content: "";
+            position: absolute;
+            bottom: auto;
+            right: 0;
+            display: block;
+            height: 100px;
+            width: 1px;
+            top: 50%;
+            transform: translate(0, -50%);
+            background-color: $c-primary-20;
+        }
+    }
+    .c-social-proof__value {
+        @include px-to-rem(font-size, 48px);
+    }
+    .c-social-proof__text {
+        @include px-to-rem(max-width, 250px);
+    }
+}
+
+/**
+* Mobile | VP: max-width 768px
+*/
+@include media-query(medium-max) {
+    .c-social-proof__list {
+        @include px-to-rem(max-width, 400px);
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

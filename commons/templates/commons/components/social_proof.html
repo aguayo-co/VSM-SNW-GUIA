@@ -1,7 +1,35 @@
-{% load inspector %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
 
 <section class="o-surface o-surface_navy-blue" id="{{ block_id }}">
+    <div class="o-canvas">
 
-{{ self|inspect }}
+        {# titles #}
+        <header class="o-hgroup o-hgroup_center">
+            <h3 class="o-kicker o-hgroup__space">{{ self.subtitle }}</h3>
+            <h2 class="o-headline o-hgroup__space">{{ self.title }}</h2>
+            <h4 class="o-kicker o-hgroup__space">{{ self.introduction }}</h4>
+        </header>
+   
+        {# items #}
+        <ul class="c-social-proof__list">
+            {% for item in self.add_figures %}
+                <li class="c-social-proof__item">
+                    {% image item.value.icon fill-150x125-c100 class="c-social-proof__img" %}
+                    <p class="c-social-proof__value">{{ item.value.value }}</p>
+                    <p class="c-social-proof__text">{{ item.value.description }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+     
+        {# footer section #}
+        <div class="o-section__footer">
+            <a class="o-btn">Completa el formulario</a>
+            <div class="s-richtext__basic c-social-proof__caption">
+                ** Consulta términos y condiciones
+            </div>
+        </div>
+    </div>
 
 </section>
