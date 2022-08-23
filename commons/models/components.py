@@ -1,6 +1,5 @@
 from django.utils.translation import gettext_lazy as _
 from wagtail.core.blocks import (
-    BooleanBlock,
     CharBlock,
     PageChooserBlock,
     RichTextBlock,
@@ -12,8 +11,9 @@ from wagtail.core.blocks import (
 )
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.embeds.blocks import EmbedBlock
-from wagtail.images.models import Image
 from wagtail.core import blocks
+
+from commons.models import DetailArticlePage
 
 
 class SocialProofComponent(StructBlock):
@@ -26,20 +26,30 @@ class SocialProofComponent(StructBlock):
     introduction = CharBlock(required=False, label=_("Introducción"))
     add_figures = StreamBlock(
         [
-            ("agregar_cifras", StructBlock([
-                ("icon", ImageChooserBlock(required=True, label=_("Icono"))),
-                ("value", CharBlock(required=True, label=_("Valor"))),
-                ("description", CharBlock(required=False, label=_("Descripción"))),
-            ])),
+            (
+                "agregar_cifras",
+                StructBlock(
+                    [
+                        ("icon", ImageChooserBlock(required=True, label=_("Icono"))),
+                        ("value", CharBlock(required=True, label=_("Valor"))),
+                        (
+                            "description",
+                            CharBlock(required=False, label=_("Descripción")),
+                        ),
+                    ]
+                ),
+            ),
         ],
-        required = True,
-        label = _("Lista de características"),
-        min_num = 1,
-        max_num = 3,
+        required=True,
+        label=_("Lista de características"),
+        min_num=1,
+        max_num=3,
     )
-    caption = RichTextBlock(required=False, label=_("Leyenda"), editor="basic"),
-    primary_action_text = CharBlock(required=False, label=_("Texto acción primaria")),
-    primary_action_url = PageChooserBlock(required=False, label=_("URL acción primaria")),
+    caption = (RichTextBlock(required=False, label=_("Leyenda"), editor="basic"),)
+    primary_action_text = (CharBlock(required=False, label=_("Texto acción primaria")),)
+    primary_action_url = (
+        PageChooserBlock(required=False, label=_("URL acción primaria")),
+    )
 
     class Meta:
         icon = "image"
@@ -53,24 +63,32 @@ class CatalogIndexComponent(StructBlock):
     """
 
     title = CharBlock(required=True, label=_("Título"))
+    subtitle = CharBlock(required=False, label=_("Sub título"))
     description = RichTextBlock(required=False, label=_("Descripción"), editor="inline")
     feature_list = StreamBlock(
         [
-            ("bullet_line_text", CharBlock(required=False, label=_("Línea de texto bullet"))),
-            ("simple_line_text", CharBlock(required=False, label=_("Línea de texto simple"))),
+            (
+                "bullet_line_text",
+                CharBlock(required=False, label=_("Línea de texto bullet")),
+            ),
+            (
+                "simple_line_text",
+                CharBlock(required=False, label=_("Línea de texto simple")),
+            ),
         ],
-        required = False,
+        required=False,
         label=_("Lista de características"),
     )
-    caption = RichTextBlock(required=False, label=_("Leyenda")),
+    caption = RichTextBlock(required=False, label=_("Leyenda"))
     degree_subject_snippet = StaticBlock(
         required=False, label=_("Snippet de grado de estudios")
     )
-    subtitle = CharBlock(required=False, label=_("Sub título"))
     # How to use StatikBlocks in this case?
     series = StaticBlock(required=False, label=_("Serie"))
-    primary_action_text = CharBlock(required=False, label=_("Texto acción primaria")),
-    primary_action_url = PageChooserBlock(required=False, label=_("URL acción primaria")),
+    primary_action_text = CharBlock(required=False, label=_("Texto acción primaria"))
+    primary_action_url = PageChooserBlock(
+        required=False, label=_("URL acción primaria")
+    )
 
     class Meta:
         icon = "image"
@@ -88,17 +106,33 @@ class FeaturedContentComponent(StructBlock):
     description = RichTextBlock(required=True, label=_("Descripción"), editor="basic")
     add_featured_content = StreamBlock(
         [
-            ("featured_content", StructBlock([
-                ("image", ImageChooserBlock(required=True, label=_("Imagen"))),
-                ("description", CharBlock(required=False, label=_("Descripción"))),
-                ("primary_action_text", CharBlock(required=False, label=_("Texto acción primaria"))),
-                ("primary_action_url", PageChooserBlock(required=False, label=_("URL acción primaria"))),
-            ])),
+            (
+                "featured_content",
+                StructBlock(
+                    [
+                        ("image", ImageChooserBlock(required=True, label=_("Imagen"))),
+                        (
+                            "description",
+                            CharBlock(required=False, label=_("Descripción")),
+                        ),
+                        (
+                            "primary_action_text",
+                            CharBlock(required=False, label=_("Texto acción primaria")),
+                        ),
+                        (
+                            "primary_action_url",
+                            PageChooserBlock(
+                                required=False, label=_("URL acción primaria")
+                            ),
+                        ),
+                    ]
+                ),
+            ),
         ],
-        required = True,
+        required=True,
         label=_("Contenido destacado"),
-        min_num = 1,
-        max_num = 2,
+        min_num=1,
+        max_num=2,
     )
 
     class Meta:
@@ -107,21 +141,24 @@ class FeaturedContentComponent(StructBlock):
         template = "commons/components/featured_content.html"
 
 
+class TestimonialBlock(StructBlock):
+    """A single testimonial block."""
+
+    avatar = ImageChooserBlock(required=False, label=_("Imagen"))
+    name_lastname = CharBlock(required=True, label=_("Nombre y apellido"))
+    profession = CharBlock(required=False, label=_("Profesión"))
+    review = TextBlock(required=True, label=_("Reseña"))
+
+
 class TestimonialsComponent(StructBlock):
     """
     A block that displays testimonials.
     """
+
     title = CharBlock(required=False, label=_("Título"))
-    add_testimonials = StreamBlock(
-        [
-            ("testimonial", StructBlock([
-                ("avatar", ImageChooserBlock(required=False, label=_("Imagen"))),
-                ("name_lastname", CharBlock(required=True, label=_("Nombre y apellido"))),
-                ("profession", CharBlock(required=False, label=_("Profesión"))),
-                ("review", TextBlock(required=True, label=_("Reseña"))),
-            ])),
-        ],
-        required = False,
+    add_testimonials = ListBlock(
+        TestimonialBlock,
+        required=False,
         label=_("Testimonios"),
     )
 
@@ -131,10 +168,22 @@ class TestimonialsComponent(StructBlock):
         template = "commons/components/testimonials.html"
 
 
+class DetailArticleLinkBlock(StructBlock):
+    """Each block is a single link to a page."""
+
+    title = CharBlock(required=True, label=_("Título"))
+    subtitle = RichTextBlock(required=False, label=_("Subtítulo"), editor="inline")
+    primary_action_text = CharBlock(required=False, label=_("Texto acción primaria"))
+    primary_action_url = PageChooserBlock(
+        page_type=DetailArticlePage, required=True, label=_("URL acción primaria")
+    )
+
+
 class PagesLinksListComponent(StructBlock):
     """
     A block that displays a list of pages links.
     """
+
     title = CharBlock(required=True, label=_("Título"))
     subtitle = CharBlock(required=True, label=_("Subtítulo"), editor="inline")
     featured_link_list = ListBlock(
@@ -144,14 +193,14 @@ class PagesLinksListComponent(StructBlock):
         max_num=3,
     )
     link_list = ListBlock(
-        StructBlock([
-            ("title", CharBlock(required=False, label=_("Título"))),
-            ("subtitle", RichTextBlock(required=False, label=_("Subtítulo"), editor="inline")),
-            ("primary_action_text", CharBlock(required=False, label=_("Texto acción primaria"))),
-            ("primary_action_url", PageChooserBlock(required=False, label=_("URL acción primaria"))),
-        ]),
+        DetailArticleLinkBlock,
         required=False,
         label=_("Lista de enlaces"),
+    )
+
+    primary_action_text = CharBlock(required=False, label=_("Texto acción primaria"))
+    primary_action_url = PageChooserBlock(
+        page_type=DetailArticlePage, required=True, label=_("URL acción primaria")
     )
 
     class Meta:
@@ -164,16 +213,25 @@ class SlideImageComponent(StructBlock):
     """
     A block that displays a slide image.
     """
+
     text_navigation = CharBlock(required=True, label=_("Texto de navegación"))
     title = CharBlock(required=True, label=_("Título"))
     subtitle = CharBlock(required=False, label=_("Subtítulo"))
     description = RichTextBlock(required=True, label=_("Descripción"), editor="list")
     image = ImageChooserBlock(required=True, label=_("Imagen"))
     primary_action_text = CharBlock(required=False, label=_("Texto acción primaria"))
-    primary_action_url = PageChooserBlock(required=False, label=_("URL acción primaria"))
-    secondary_action_text = CharBlock(required=False, label=_("Texto acción secundaria"))
-    secondary_action_url = PageChooserBlock(required=False, label=_("URL acción secundaria"))
-    background_illustration = ImageChooserBlock(required=False, label=_("Ilustración de fondo"))
+    primary_action_url = PageChooserBlock(
+        required=False, label=_("URL acción primaria")
+    )
+    secondary_action_text = CharBlock(
+        required=False, label=_("Texto acción secundaria")
+    )
+    secondary_action_url = PageChooserBlock(
+        required=False, label=_("URL acción secundaria")
+    )
+    background_illustration = ImageChooserBlock(
+        required=False, label=_("Ilustración de fondo")
+    )
 
     class Meta:
         icon = "image"
@@ -185,15 +243,22 @@ class SlideImageBackgroundComponent(StructBlock):
     """
     A block that displays a slide image with a background.
     """
+
     text_navigation = CharBlock(required=True, label=_("Texto de navegación"))
     title = CharBlock(required=True, label=_("Título"))
     subtitle = CharBlock(required=False, label=_("Subtítulo"))
     description = RichTextBlock(required=True, label=_("Descripción"), editor="list")
     background_image = ImageChooserBlock(required=True, label=_("Imagen"))
     primary_action_text = CharBlock(required=False, label=_("Texto acción primaria"))
-    primary_action_url = PageChooserBlock(required=False, label=_("URL acción primaria"))
-    secondary_action_text = CharBlock(required=False, label=_("Texto acción secundaria"))
-    secondary_action_url = PageChooserBlock(required=False, label=_("URL acción secundaria"))
+    primary_action_url = PageChooserBlock(
+        required=False, label=_("URL acción primaria")
+    )
+    secondary_action_text = CharBlock(
+        required=False, label=_("Texto acción secundaria")
+    )
+    secondary_action_url = PageChooserBlock(
+        required=False, label=_("URL acción secundaria")
+    )
 
     class Meta:
         icon = "image"
@@ -205,16 +270,25 @@ class SlideVideoComponent(StructBlock):
     """
     A block that displays a slide video.
     """
+
     text_navigation = CharBlock(required=True, label=_("Texto de navegación"))
     title = CharBlock(required=True, label=_("Título"))
     subtitle = CharBlock(required=False, label=_("Subtítulo"))
     description = RichTextBlock(required=True, label=_("Descripción"), editor="list")
     video = EmbedBlock(required=True, label=_("Video Url"))
     primary_action_text = CharBlock(required=False, label=_("Texto acción primaria"))
-    primary_action_url = PageChooserBlock(required=False, label=_("URL acción primaria"))
-    secondary_action_text = CharBlock(required=False, label=_("Texto acción secundaria"))
-    secondary_action_url = PageChooserBlock(required=False, label=_("URL acción secundaria"))
-    background_illustration = ImageChooserBlock(required=False, label=_("Ilustración de fondo"))
+    primary_action_url = PageChooserBlock(
+        required=False, label=_("URL acción primaria")
+    )
+    secondary_action_text = CharBlock(
+        required=False, label=_("Texto acción secundaria")
+    )
+    secondary_action_url = PageChooserBlock(
+        required=False, label=_("URL acción secundaria")
+    )
+    background_illustration = ImageChooserBlock(
+        required=False, label=_("Ilustración de fondo")
+    )
 
     class Meta:
         icon = "image"
@@ -230,6 +304,7 @@ class ThematicContentItem(StructBlock):
 
     class Meta:
         """Propiedades del componente"""
+
         label = _("Items Contenidos Tematicos")
         icon = "list-ul"
         template = "components/thematic_content_item.html"
@@ -243,6 +318,7 @@ class ThematicContentComponent(StructBlock):
 
     class Meta:
         """Propiedades del componente"""
+
         label = _("Contenidos Tematicos")
         icon = "list-ul"
         template = "components/thematic_content.html"
@@ -250,6 +326,7 @@ class ThematicContentComponent(StructBlock):
 
 class DefinitionBlock(StructBlock):
     """A defintion is a small block with explanations."""
+
     title = CharBlock(required=True, label=_("Título"))
     content = RichTextBlock(required=True, label=_("Contenido"), editor="basic")
 
@@ -258,6 +335,7 @@ class DefinitionListComponent(StructBlock):
     """
     A block that displays a definition list.
     """
+
     title = CharBlock(required=True, label=_("Título"))
     subtitle = CharBlock(required=False, label=_("Subtítulo"))
     introduction = CharBlock(required=False, label=_("Introducción"))
