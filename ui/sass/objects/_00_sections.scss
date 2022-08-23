@@ -6,24 +6,28 @@
 
 
 .o-section {
-  @include px-to-rem(margin-top, $gutter * 9);
-  @include px-to-rem(margin-bottom, $gutter * 9);
+  @include px-to-rem(margin-top, 100px);
+  @include px-to-rem(margin-bottom, 100px);
 }
 
 .o-surface {
-  @include px-to-rem(padding-top, $gutter * 9);
-  @include px-to-rem(padding-bottom, $gutter * 9);
+  @include px-to-rem(padding-top, 100px);
+  @include px-to-rem(padding-bottom, 100px);
 }
 .o-surface_navy-blue {
   background-color:  $c-surface-navy-blue-10;
 }
 
+.o-section__footer {
+  text-align: center;
+  @include px-to-rem(margin-top, $gutter * 4);
+}
 
 /*------------------------------------*\
   Media querys
 \*------------------------------------*/
 
-@include media-query(medium) {
+@include media-query(medium-max) {
 
   .o-section {
     @include px-to-rem(margin-top, $gutter * 7);
@@ -33,6 +37,10 @@
   .o-surface {
     @include px-to-rem(padding-top, $gutter * 7);
     @include px-to-rem(padding-bottom, $gutter * 7);
+  }
+
+  .o-section__footer {
+    @include px-to-rem(margin-top, $gutter * 7);
   }
 
 }

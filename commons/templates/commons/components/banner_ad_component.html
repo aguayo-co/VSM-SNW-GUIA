@@ -1,0 +1,20 @@
+{% load inspector %}
+
+<br>
+<br>
+
+Botón de scroll a componente:
+
+<br>
+
+<button @click="document.getElementById('{{block_id}}').scrollIntoView()">
+  {{self.link_text_scroll_to}}
+</button>
+
+<section class="o-surface o-surface_navy-blue" id="{{ block_id }}">
+
+  {{ self|inspect }}
+
+  {{self.description}}
+
+</section>

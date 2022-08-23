@@ -5,12 +5,14 @@
   {# Si hay testimonios se pinta el componente #}
   {% if self.add_testimonials|length > 0 %}
 
-    <section class="o-surface o-surface_navy-blue">
+    <section class="o-surface o-surface_navy-blue" id="{{ block_id }}">
 
       {% if self.title %}
-        <header class="o-subheadline o-subheadline_center">
-          <h3 class="o-subheadline__title">{{ self.title }}</h3>
-        </header>
+        <div class="o-canvas">
+          <header class="o-hgroup o-hgroup_center">
+            <h3 class="o-subheadline">{{ self.title }}</h3>
+          </header>
+        </div>
       {% endif %}
 
       <div class="swiper js-slider-testimonial">

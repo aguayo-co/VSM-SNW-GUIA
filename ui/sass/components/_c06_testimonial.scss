@@ -50,8 +50,7 @@
   position: relative;
   width: 90%;
   @include px-to-rem(max-width, 500px);
-  @include px-to-rem(min-height, 50px);
-  margin: 32px auto 0;
+  @include px-to-rem(margin, $gutter * 4 auto 0);
   @include px-to-rem(column-gap, $gutter * 4);
 }
 
@@ -65,23 +64,31 @@
   @include align-items(center);
   @include px-to-rem(column-gap, $gutter * 2);
 
+  &.swiper-pagination-bullets.swiper-pagination-horizontal {
+    .swiper-horizontal & {
+      width: max-content;
+    }
+  }
+
   .swiper-pagination-bullet {
-    opacity: 1;
+    opacity: .5;
     transition: $transition-ease-in-out-2s;
-    background: $c-neutro;
+    background: $c-brand-primary;
 
     &:hover,
     &-active {
-      background: $c-brand-primary;
+      opacity: 1;
     }
   }
 
   &.swiper-pagination-lock {
     display: none;
   }
+
 }
 
 .c-testimonial-slider__btn {
+  @include align-self(flex-end);
   border: 1px solid $c-brand-primary;
   border-radius: 50%;
   transition: $transition-ease-in-out-2s;
@@ -111,13 +118,13 @@
 
   &.swiper-button-prev {
     &::after {
-      content: $i-chevron-left;
+      content: $i-arrow-left;
     }
   }
 
   &.swiper-button-next {
     &::after {
-      content: $i-chevron-right;
+      content: $i-arrow-right;
     }
   }
 
@@ -145,9 +152,15 @@
     @include px-to-rem(font-size, $gutter * 2);
   }
 
+  .c-testimonial-slider__actions {
+    @include px-to-rem(min-height, $gutter * 4);
+  }
+
   .c-testimonial-slider__btn {
     @include px-to-rem(width, $gutter * 4);
+    @include px-to-rem(min-width, $gutter * 4);
     @include px-to-rem(height, $gutter * 4);
+    @include px-to-rem(min-height, $gutter * 4);
 
     &.swiper-button-prev,
     &.swiper-button-next {
@@ -175,9 +188,13 @@
     @include px-to-rem(font-size, 18px);
   }
 
+  .c-testimonial-slider__actions {
+    @include px-to-rem(min-height, 50px);
+  }
+
   .c-testimonial-slider__btn {
-    @include px-to-rem(width, $gutter * 6);
-    @include px-to-rem(height, $gutter * 6);
+    @include px-to-rem(min-width, $gutter * 6);
+    @include px-to-rem(min-height, $gutter * 6);
 
     &.swiper-button-prev,
     &.swiper-button-next {

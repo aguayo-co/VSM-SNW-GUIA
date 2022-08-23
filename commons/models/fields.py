@@ -16,6 +16,7 @@ from commons.models.components import (
     SlideImageBackgroundComponent,
     SlideVideoComponent,
     DefinitionListComponent,
+    BannerAdComponent,
 )
 from wagtail.fields import StreamField
 
@@ -99,6 +100,7 @@ class FullStreamField(StreamField):
         ("testimonials_component", TestimonialsComponent()),
         ("pages_links_list_component", PagesLinksListComponent()),
         ("definition_list_component", DefinitionListComponent()),
+        ("banner_ad_component", BannerAdComponent()),
     ]
 
     def __init__(self, **kwargs):
@@ -118,6 +120,7 @@ class HomeStreamField(FullStreamField):
         ("featured_content_component", FeaturedContentComponent()),
         ("testimonials_component", TestimonialsComponent()),
         ("pages_links_list_component", PagesLinksListComponent()),
+        ("banner_ad_component", BannerAdComponent()),
     ]
 
 

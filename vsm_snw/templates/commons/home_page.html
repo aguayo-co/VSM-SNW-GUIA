@@ -16,10 +16,8 @@
     {% include "includes/hero/slider_hero.html" %}
 
       {% for block in self.content %}
-        {% include_block block %}
+        {% include_block block with block_id=block.id %}
       {% endfor %}
-
-
 
   </div>
 {% endblock content %}

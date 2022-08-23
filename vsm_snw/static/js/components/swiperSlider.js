@@ -12,13 +12,8 @@ function sliderTestimonials() {
 
     initialSlide: 1,
     centeredSlides: true,
-    watchOverflow: true,
-    autoHeight: true,
     slidesPerView: "auto",
     slideActiveClass: "is-testimonial-active",
-    observer: true,
-    observeParents: true,
-    observeSlideChildren: true,
     spaceBetween: 8,
 
     breakpoints: {

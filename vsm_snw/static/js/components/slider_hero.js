@@ -19,8 +19,8 @@ function sliderHero(element) {
     new Swiper(el, {
       slidesPerView: 1,
       spaceBetween: 2,
-      speed: 900,
-      autoHeight: true,
+      effect: "fade",
+
       loop: false,
       navigation: {
         nextEl: nextEl,
