@@ -1,7 +1,24 @@
-{% load inspector %}
+{% load wagtailcore_tags inspector catalog_tags %}
 
 <section class="o-surface o-surface_navy-blue" id="{{ block_id }}">
-
+Indice
 {{ self|inspect }}
+{% get_catalog_index %}
+{% for grade, subjects in catalog_items.items %}
+  <ol>
+    <li>{{grade.name}}:
+      <ul>
+      {% for subject in subjects %}
+        <li>  {{ subject.name }}</li>
+      {% endfor %}
+      </ul>
+    </li>
+  </ol>
+{% endfor %}
+
+{% get_series %}
+{% for serie in series %}
+  <li>{{ serie.name }}</li>
+{% endfor %}
 
 </section>

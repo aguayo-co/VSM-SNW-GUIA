@@ -290,7 +290,9 @@ if DEBUG:
 # Storage
 # https://django-storages.readthedocs.io/en/latest/index.html
 # https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html
-DEFAULT_FILE_STORAGE = os.environ.get("DEFAULT_FILE_STORAGE", "storages.backends.s3boto3.S3Boto3Storage")
+DEFAULT_FILE_STORAGE = os.environ.get(
+    "DEFAULT_FILE_STORAGE", "storages.backends.s3boto3.S3Boto3Storage"
+)
 if DEFAULT_FILE_STORAGE == "storages.backends.s3boto3.S3Boto3Storage":
     AWS_DEFAULT_ACL = "public-read"
     AWS_S3_FILE_OVERWRITE = True
@@ -305,9 +307,7 @@ if DEFAULT_FILE_STORAGE == "storages.backends.s3boto3.S3Boto3Storage":
         "CacheControl": f"max-age={60 * 60 * 24 * 7 * 4}"  # 4 weeks
     }
     if os.environ.get("AWS_QUERYSTRING_AUTH", None) is not None:
-        AWS_QUERYSTRING_AUTH = (
-            os.environ.get("AWS_QUERYSTRING_AUTH") == "True"
-        )
+        AWS_QUERYSTRING_AUTH = os.environ.get("AWS_QUERYSTRING_AUTH") == "True"
     if os.environ.get("AWS_LOCATION", None) is not None:
         AWS_LOCATION = os.environ.get("AWS_LOCATION").strip("/") + "/"
     # STATICFILES_STORAGE = "storages.backends.s3boto3.S3StaticStorage"

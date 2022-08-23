@@ -15,6 +15,7 @@ from commons.models.components import (
     SlideImageComponent,
     SlideImageBackgroundComponent,
     SlideVideoComponent,
+    DefinitionListComponent,
     BannerAdComponent,
 )
 from wagtail.fields import StreamField
@@ -98,6 +99,7 @@ class FullStreamField(StreamField):
         ("featured_content_component", FeaturedContentComponent()),
         ("testimonials_component", TestimonialsComponent()),
         ("pages_links_list_component", PagesLinksListComponent()),
+        ("definition_list_component", DefinitionListComponent()),
         ("banner_ad_component", BannerAdComponent()),
     ]
 
@@ -128,6 +130,7 @@ class HeroStreamField(FullStreamField):
         ("slider_image_background_component", SlideImageBackgroundComponent()),
         ("slicer_video_component", SlideVideoComponent()),
     ]
+
     class Meta:
         min_num = 1
         max_num = 3
