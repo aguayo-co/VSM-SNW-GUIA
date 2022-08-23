@@ -248,6 +248,12 @@ class ThematicContentComponent(StructBlock):
         template = "components/thematic_content.html"
 
 
+class DefinitionBlock(StructBlock):
+    """A defintion is a small block with explanations."""
+    title = CharBlock(required=True, label=_("Título"))
+    content = RichTextBlock(required=True, label=_("Contenido"), editor="basic")
+
+
 class DefinitionListComponent(StructBlock):
     """
     A block that displays a definition list.
@@ -256,15 +262,12 @@ class DefinitionListComponent(StructBlock):
     subtitle = CharBlock(required=False, label=_("Subtítulo"))
     introduction = CharBlock(required=False, label=_("Introducción"))
     definition_list = ListBlock(
-        StructBlock([
-            ("title", CharBlock(required=True, label=_("Título"))),
-            ("content", RichTextBlock(required=True, label=_("Contenido"), editor="basic")),
-        ]),
+        DefinitionBlock,
         required=True,
-        label=_("Lista de definiciones"),
+        label=_("Definiciones"),
     )
 
     class Meta:
         icon = "list-ul"
-        label = _("Definition List")
+        label = _("Lista de Definición")
         template = "commons/components/definition_list_component.html"
