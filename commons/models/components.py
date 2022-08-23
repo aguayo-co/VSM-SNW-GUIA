@@ -13,8 +13,6 @@ from wagtail.images.blocks import ImageChooserBlock
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.core import blocks
 
-from commons.models import DetailArticlePage
-
 
 class SocialProofComponent(StructBlock):
     """
@@ -80,14 +78,15 @@ class CatalogIndexComponent(StructBlock):
         label=_("Lista de características"),
     )
     caption = RichTextBlock(required=False, label=_("Leyenda"))
-    degree_subject_snippet = StaticBlock(
-        required=False, label=_("Snippet de grado de estudios")
-    )
-    # How to use StatikBlocks in this case?
-    series = StaticBlock(required=False, label=_("Serie"))
     primary_action_text = CharBlock(required=False, label=_("Texto acción primaria"))
     primary_action_url = PageChooserBlock(
         required=False, label=_("URL acción primaria")
+    )
+    catalog = StaticBlock(
+        help_text=_(
+            "Este componente incluye automaticamente todas las Series o Sellos Editoriales, "
+            "así como el Indice de Grados > Materias"
+        )
     )
 
     class Meta:
@@ -168,17 +167,6 @@ class TestimonialsComponent(StructBlock):
         template = "commons/components/testimonials.html"
 
 
-class DetailArticleLinkBlock(StructBlock):
-    """Each block is a single link to a page."""
-
-    title = CharBlock(required=True, label=_("Título"))
-    subtitle = RichTextBlock(required=False, label=_("Subtítulo"), editor="inline")
-    primary_action_text = CharBlock(required=False, label=_("Texto acción primaria"))
-    primary_action_url = PageChooserBlock(
-        page_type=DetailArticlePage, required=True, label=_("URL acción primaria")
-    )
-
-
 class PagesLinksListComponent(StructBlock):
     """
     A block that displays a list of pages links.
@@ -193,14 +181,20 @@ class PagesLinksListComponent(StructBlock):
         max_num=3,
     )
     link_list = ListBlock(
-        DetailArticleLinkBlock,
+        PageChooserBlock(
+            page_type="commons.DetailArticlePage",
+            required=True,
+            label=_("Enlace"),
+        ),
         required=False,
         label=_("Lista de enlaces"),
     )
 
     primary_action_text = CharBlock(required=False, label=_("Texto acción primaria"))
     primary_action_url = PageChooserBlock(
-        page_type=DetailArticlePage, required=True, label=_("URL acción primaria")
+        page_type="commons.DetailArticlePage",
+        required=True,
+        label=_("URL acción primaria"),
     )
 
     class Meta:
@@ -351,14 +345,17 @@ class DefinitionListComponent(StructBlock):
         template = "commons/components/definition_list_component.html"
 
 
-
-
 class BannerAdComponent(StructBlock):
     """
     A block that displays a banner ad.
     """
-    banner_text = RichTextBlock(required=False, label=_("Texto de banner"), editor="basic")
-    link_text_scroll_to = CharBlock(required=False, label=_("Texto de enlace scroll to"))
+
+    banner_text = RichTextBlock(
+        required=False, label=_("Texto de banner"), editor="basic"
+    )
+    link_text_scroll_to = CharBlock(
+        required=False, label=_("Texto de enlace scroll to")
+    )
     id_link_scroll_to = CharBlock(required=False, label=_("ID de enlace scroll to"))
 
     class Meta:

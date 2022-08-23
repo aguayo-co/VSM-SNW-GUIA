@@ -10,14 +10,16 @@ from wagtail_tag_manager.wagtail_hooks import (
 )
 
 
-@hooks.register('construct_settings_menu')
+@hooks.register("construct_settings_menu")
 def hide_cookies_consent(request, menu_items):
-    menu_items[:] = [item for item in menu_items if item.name != 'cookie-consent-settings']
+    menu_items[:] = [
+        item for item in menu_items if item.name != "cookie-consent-settings"
+    ]
 
 
-@hooks.register('construct_main_menu')
+@hooks.register("construct_main_menu")
 def hide_cookies_consent(request, menu_items):
-    menu_items[:] = [item for item in menu_items if item.name != 'tag-manager']
+    menu_items[:] = [item for item in menu_items if item.name != "tag-manager"]
 
 
 class CustomTagManagerAdminGroup(TagManagerAdminGroup):
@@ -32,5 +34,6 @@ class CustomTagManagerAdminGroup(TagManagerAdminGroup):
         VariableModelAdmin,
         TriggerModelAdmin,
     )
+
 
 modeladmin_register(CustomTagManagerAdminGroup)
