@@ -2,7 +2,7 @@ FROM node:16.16.0-bullseye-slim as node-build
 # Set Workdir
 WORKDIR /srv/app
 # Copy app files
-COPY . .
+COPY . ./
 
 # Install the project requirements.
 RUN npm install
