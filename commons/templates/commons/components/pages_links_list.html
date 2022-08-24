@@ -1,7 +1,103 @@
-{% load inspector %}
+{% load wagtailcore_tags %}
 
-<section class="o-surface o-surface_navy-blue" id="{{ block_id }}">
+{% spaceless %}
 
-{{ self|inspect }}
+  <section id="{{ block_id }}">
 
-</section>
+    {% if self.featured_link_list|length > 0 %}
+
+      <div class="o-surface o-surface_grey">
+        <div class="o-canvas">
+
+          {# Cabecera sección #}
+          <header class="o-hgroup o-hgroup_center">
+            <h2 class="o-kicker">{{ self.title_featured }}</h2>
+            <h3 class="o-headline">{{ self.subtitle_featured }}</h3>
+          </header>
+
+          {# Enlaces destacados #}
+          <nav class="c-list-links-pages">
+            {% for featured_link in self.featured_link_list  %}
+              <a
+                href="{% pageurl featured_link %}"
+                title="Ir a {{ featured_link.seo_title }}"
+                class="c-list-links-pages__item c-list-links-pages__item_featured"
+              >
+                <h4 class="c-list-links-pages__item-title">{{ featured_link.seo_title }}</h4>
+                <p class="c-list-links-pages__item-lead">{{ featured_link.search_description }}</p>
+              </a>
+            {% endfor %}
+          </nav>
+
+        </div>
+      </div>
+
+    {% endif %}
+
+    {% if self.link_list|length > 0 %}
+
+      <div class="o-section">
+        <div class="o-canvas">
+
+          {# Cabecera subsección #}
+          {% if self.title or self.subtitle %}
+            <header class="o-hgroup o-hgroup_center">
+              {% if self.title %}
+                <h4 class="o-kicker o-hgroup__space">{{ self.title }}</h4>
+              {% endif %}
+
+              {% if self.subtitle %}
+                <h5 class="o-headline">{{ self.subtitle }}</h5>
+              {% endif %}
+            </header>
+          {% endif %}
+
+          {# Enlaces de interes #}
+          <ul class="c-list-links-pages o-list">
+            {% for another_link in self.link_list  %}
+
+              <li class="c-list-links-pages__item">
+
+                {# Categoria padre #}
+                <a
+                  href="{% pageurl another_link.get_parent %}"
+                  title="Ir a {{  another_link.get_parent.seo_title }}"
+                  class="c-list-links-pages__item-title"
+                >
+                  {{ another_link.get_parent.seo_title }}
+                </a>
+
+                {# Detalle de articulo #}
+                <a
+                  href="{% pageurl another_link %}"
+                  title="Ir a {{ another_link.seo_title }}"
+                  class="c-list-links-pages__item-lead"
+                >
+                  {{ another_link.seo_title }}
+                </a>
+
+              </li>
+
+            {% endfor %}
+          </ul>
+
+          {% if self.primary_action_text %}
+            <div class="o-calls-to-actions">
+              <a
+                href="{% pageurl self.primary_action_url %}"
+                title="Ir a {{ self.primary_action_text }}"
+                class="o-btn i-after-external-redirect"
+              >
+                {{ self.primary_action_text }}
+              </a>
+            </div>
+          {% endif %}
+
+        </div>
+      </div>
+
+    {% endif %}
+
+  </section>
+
+{% endspaceless %}

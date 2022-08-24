@@ -1,0 +1,8 @@
+.o-calls-to-actions {
+  @include flexbox;
+  @include flex-direction(column);
+  @include align-items(center);
+  @include justify-content(center);
+  @include px-to-rem(row-gap, $gutter * 2);
+  @include px-to-rem(margin-top, $gutter * 4);
+}

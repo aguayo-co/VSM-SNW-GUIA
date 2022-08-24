@@ -29,7 +29,7 @@ class SocialProofComponent(StructBlock):
                 StructBlock(
                     [
                         ("icon", ImageChooserBlock(required=True, label=_("Icono"))),
-                        ("value", CharBlock(required=True, label=_("Valor"))),
+                        ("value", CharBlock(required=False, label=_("Valor"))),
                         (
                             "description",
                             CharBlock(required=False, label=_("Descripción")),
@@ -172,14 +172,16 @@ class PagesLinksListComponent(StructBlock):
     A block that displays a list of pages links.
     """
 
-    title = CharBlock(required=True, label=_("Título"))
-    subtitle = CharBlock(required=True, label=_("Subtítulo"), editor="inline")
+    title_featured = CharBlock(required=True, label=_("Título destacados"))
+    subtitle_featured = CharBlock(required=True, label=_("Subtítulo destacados"))
     featured_link_list = ListBlock(
         PageChooserBlock(required=False, label=_("Enlace destacado")),
         required=False,
         label=_("Lista de enlaces destacados"),
         max_num=3,
     )
+    title = CharBlock(required=False, label=_("Título"))
+    subtitle = CharBlock(required=False, label=_("Subtítulo"))
     link_list = ListBlock(
         PageChooserBlock(
             page_type="commons.DetailArticlePage",
