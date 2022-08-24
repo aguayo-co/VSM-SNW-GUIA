@@ -147,7 +147,7 @@ STATICFILES_FINDERS = [
 STATICFILES_DIRS = [
     os.path.join(PROJECT_DIR, "static"),
     os.path.join(BASE_DIR, "ui"),
-    #os.path.join(BASE_DIR, "node_modules"),
+    # os.path.join(BASE_DIR, "node_modules"),
 ]
 
 

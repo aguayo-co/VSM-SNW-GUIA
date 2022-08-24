@@ -20,28 +20,27 @@
         <ul class="o-list swiper-wrapper">
           
           {% for testimonial in self.add_testimonials %}
-
             {# Card testimonio #}
             <li class="c-testimonial swiper-slide">
 
-              {% if testimonial.value.avatar %}
+              {% if testimonial.avatar %}
                 <figure class="c-testimonial__figure">
-                  {% image testimonial.value.avatar fill-100x100 class="o-img" %}
+                  {% image testimonial.avatar fill-100x100 class="o-img" %}
                 </figure>
               {% endif %}
 
               <div>
-                <h4 class="c-testimonial__title"> {{ testimonial.value.name_lastname }} </h4>
+                <h4 class="c-testimonial__title"> {{ testimonial.name_lastname }} </h4>
 
-                {% if testimonial.value.profession %}
+                {% if testimonial.profession %}
                   <p
                     class="c-testimonial__text c-testimonial__text_bold"
                   >
-                    {{ testimonial.value.profession }}
+                    {{ testimonial.profession }}
                   </p>
                 {% endif %}
 
-                <p class="c-testimonial__text">"{{ testimonial.value.review }}"</p>
+                <p class="c-testimonial__text">"{{ testimonial.review }}"</p>
               </div>
 
             </li>

@@ -20,11 +20,13 @@ from commons.models.fields import (
     FullStreamField,
     HomeStreamField,
     HeroStreamField,
-    DetailProductStreamField, CourseDetailStreamField,
+    DetailProductStreamField,
+    CourseDetailStreamField,
 )
 
 
 items_per_page = 10
+
 
 class BasePage(Page):
     """The basic model that all Pages inherit from."""
@@ -120,7 +122,11 @@ class HomePage(BasePage):
 
     hero = HeroStreamField()
 
-    content_panels = [FieldPanel("title"), FieldPanel(CONTENT_FIELD), FieldPanel("hero")]
+    content_panels = [
+        FieldPanel("title"),
+        FieldPanel(CONTENT_FIELD),
+        FieldPanel("hero"),
+    ]
     subpage_types = [
         "commons.BlogPage",
         "commons.CatalogPage",
@@ -178,7 +184,9 @@ class CatalogPage(BasePage):
 
     CONTENT_FIELD = "_content_catalog"
 
-    _content_catalog = StreamField([], verbose_name=("Contenido"), null=True, blank=True)
+    _content_catalog = StreamField(
+        [], verbose_name=("Contenido"), null=True, blank=True
+    )
 
     content_panels = BasePage.replace_content_field(CONTENT_FIELD)
     subpage_types = [
@@ -232,7 +240,9 @@ class ContentPage(BasePage):
 
     CONTENT_FIELD = "_content_content"
 
-    _content_content = StreamField([], verbose_name=("Contenido"), null=True, blank=True)
+    _content_content = StreamField(
+        [], verbose_name=("Contenido"), null=True, blank=True
+    )
 
     content_panels = BasePage.replace_content_field(CONTENT_FIELD)
 
@@ -248,7 +258,9 @@ class CourseDetailPage(BasePage):
 
     CONTENT_FIELD = "_content_course_detail"
 
-    _content_course_detail = CourseDetailStreamField(verbose_name=("Contenido"), null=True, blank=True)
+    _content_course_detail = CourseDetailStreamField(
+        verbose_name=("Contenido"), null=True, blank=True
+    )
 
     hero = HeroStreamField(null=True, blank=True)
 
@@ -275,7 +287,11 @@ class CourseDetailPage(BasePage):
         blank=True,
     )
 
-    content_panels = [FieldPanel("title"), FieldPanel(CONTENT_FIELD), FieldPanel("hero")]
+    content_panels = [
+        FieldPanel("title"),
+        FieldPanel(CONTENT_FIELD),
+        FieldPanel("hero"),
+    ]
     promote_panels = BasePage.promote_panels
     settings_panels = BasePage.settings_panels
     course_information = [
@@ -286,7 +302,7 @@ class CourseDetailPage(BasePage):
                 FieldPanel("hashtag_youtube"),
                 FieldPanel("registration_form_url"),
             ],
-            heading=_("Información del Curso")
+            heading=_("Información del Curso"),
         ),
     ]
 
@@ -309,7 +325,9 @@ class CategoryHomePage(BasePage):
 
     CONTENT_FIELD = "_content_category_homepage"
 
-    _content_category_homepage = StreamField([], verbose_name=("Contenido"), null=True, blank=True)
+    _content_category_homepage = StreamField(
+        [], verbose_name=("Contenido"), null=True, blank=True
+    )
 
     content_panels = BasePage.replace_content_field(CONTENT_FIELD)
 
@@ -355,7 +373,9 @@ class DetailProductPage(BasePage):
     CONTENT_FIELD = "_content_detail_product"
     CONTENT_FIELD_THEMATIC = "_thematic_content"
 
-    _content_detail_product = DetailProductStreamField(verbose_name=_("Contenido"), null=True, blank=True)
+    _content_detail_product = DetailProductStreamField(
+        verbose_name=_("Contenido"), null=True, blank=True
+    )
     _thematic_content = StreamField(
         block_types=[
             ("thematic_content", ThematicContentComponent()),
@@ -520,7 +540,6 @@ class DetailProductPage(BasePage):
         blank=True,
     )
 
-
     content_panels = BasePage.replace_content_field(CONTENT_FIELD)
     promote_panels = BasePage.promote_panels
     settings_panels = BasePage.settings_panels
@@ -582,7 +601,9 @@ class DetailArticlePage(BasePage):
 
     CONTENT_FIELD = "_content_detail_article"
 
-    _content_detail_article = StreamField([],verbose_name=("Contenido"), null=True, blank=True)
+    _content_detail_article = StreamField(
+        [], verbose_name=("Contenido"), null=True, blank=True
+    )
 
     content_panels = BasePage.replace_content_field(CONTENT_FIELD)
 
