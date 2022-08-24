@@ -140,3 +140,9 @@ class DetailProductStreamField(FullStreamField):
     block_types = [
         ("pages_links_list_component", PagesLinksListComponent()),
     ]
+
+
+class CourseDetailStreamField(FullStreamField):
+    block_types = [
+        ("banner_ad_component", BannerAdComponent()),
+    ]

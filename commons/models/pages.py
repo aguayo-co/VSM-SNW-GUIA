@@ -20,7 +20,7 @@ from commons.models.fields import (
     FullStreamField,
     HomeStreamField,
     HeroStreamField,
-    DetailProductStreamField,
+    DetailProductStreamField, CourseDetailStreamField,
 )
 
 
@@ -243,6 +243,67 @@ class ContentPage(BasePage):
         verbose_name_plural = _("Content")
 
 
+class CourseDetailPage(BasePage):
+    """Model for the course detail page."""
+
+    CONTENT_FIELD = "_content_course_detail"
+
+    _content_course_detail = CourseDetailStreamField(verbose_name=("Contenido"), null=True, blank=True)
+
+    hero = HeroStreamField(null=True, blank=True)
+
+    responsible = CharField(
+        verbose_name=_("Responsable"),
+        max_length=255,
+        null=True,
+        blank=True,
+    )
+    date_time_event = models.DateField(
+        verbose_name=_("Fecha y hora del evento"),
+        null=True,
+        blank=True,
+    )
+    hashtag_youtube = CharField(
+        verbose_name=_("Hashtag Youtube"),
+        max_length=255,
+        null=True,
+        blank=True,
+    )
+    registration_form_url = models.URLField(
+        verbose_name=_("Url Formulario de Inscripción"),
+        null=True,
+        blank=True,
+    )
+
+    content_panels = [FieldPanel("title"), FieldPanel(CONTENT_FIELD), FieldPanel("hero")]
+    promote_panels = BasePage.promote_panels
+    settings_panels = BasePage.settings_panels
+    course_information = [
+        MultiFieldPanel(
+            [
+                FieldPanel("responsible"),
+                FieldPanel("date_time_event"),
+                FieldPanel("hashtag_youtube"),
+                FieldPanel("registration_form_url"),
+            ],
+            heading=_("Información del Curso")
+        ),
+    ]
+
+    edit_handler = TabbedInterface(
+        [
+            ObjectList(content_panels, heading=_("Contenido")),
+            ObjectList(promote_panels, heading=_("Promocionar")),
+            ObjectList(settings_panels, heading=_("Propiedades"), classname="settings"),
+            ObjectList(course_information, heading=_("Información del Curso")),
+        ]
+    )
+
+    class Meta:
+        verbose_name = _("Detalle de Curso")
+        verbose_name_plural = _("Detalle de Cursos")
+
+
 class CategoryHomePage(BasePage):
     """Model for the category commons page."""
 
@@ -254,6 +315,7 @@ class CategoryHomePage(BasePage):
 
     subpage_types = [
         "commons.DetailArticlePage",
+        "commons.CourseDetailPage",
     ]
 
     class Meta:
