@@ -45,7 +45,19 @@
 */
 .i-arrow-right {
   &:before {
-    content: $i-arrow-right; 
+    content: $i-arrow-right;
+  }
+}
+
+.i-arrow-down {
+  &:before {
+    content: $i-arrow-down;
+  }
+}
+
+.i-after-arrow-down {
+  &:after {
+    content: $i-arrow-down;
   }
 }
 
@@ -56,14 +68,15 @@
 */
 .i-arrow-left {
   &:before {
-    content: $i-arrow-left; 
+    content: $i-arrow-left;
   }
 }
 .i-after-arrow-left {
   &:before {
-    content: $i-arrow-left; 
+    content: $i-arrow-left;
   }
 }
+
 
 // B
 
@@ -136,6 +149,23 @@
   }
 }
 
+// E
+
+/**
+* @icon .i-external-redirect
+* @markup
+*   <span class="i-external-redirect"></span>
+*/
+.i-external-redirect {
+  &::before {
+    content: $i-external-redirect;
+  }
+}
+.i-after-external-redirect {
+  &::after {
+    content: $i-external-redirect;
+  }
+}
 
 // F
 
