@@ -10,18 +10,14 @@
 
 {% block content %}
 
-  <div class="wireframe">
+  {# Slider Hero #}
+  {% include "includes/hero/slider_hero.html" %}
 
-    {# Slider Hero #}
-    {% include "includes/hero/slider_hero.html" %}
+  {% for block in self.content %}
+    {% include_block block with block_id=block.id %}
+  {% endfor %}
 
-      {% for block in self.content %}
-        {% include_block block with block_id=block.id %}
-      {% endfor %}
-
-  </div>
 {% endblock content %}
-
 {% block extra_js %}
-  <script type="module" src="{% static 'js/components/slider_hero.js' %}"></script>
+  <script src="{% static 'js/components/bannerAd.js' %}"></script>
 {% endblock %}

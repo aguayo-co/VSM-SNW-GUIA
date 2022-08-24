@@ -245,7 +245,7 @@ WAGTAILADMIN_RICH_TEXT_EDITORS = {
     "basic": {
         "WIDGET": "wagtail.admin.rich_text.DraftailRichTextArea",
         "OPTIONS": {
-            "plugins": [
+            "features": [
                 "bold",
                 "italic",
                 "underline",
