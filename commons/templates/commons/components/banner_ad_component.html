@@ -1,20 +1,38 @@
-{% load inspector %}
+{% load static %}
 
-<br>
-<br>
 
-Botón de scroll a componente:
+<section id="{{ block_id }}" class="o-surface_navy-blue js-target-banner-ad">
 
-<br>
+  {# Componente Banner AD #}
+  <div class="c-banner-ad">
 
-<button @click="document.getElementById('{{block_id}}').scrollIntoView()">
-  {{self.link_text_scroll_to}}
-</button>
+    <div class="c-banner-ad__wrap o-canvas">
 
-<section class="o-surface o-surface_navy-blue" id="{{ block_id }}">
+      {# Texto enriquecido #}
+      {% if self.banner_text %}
+        <div>
+          {{ self.banner_text }}
+        </div>
+      {% endif %}
 
-  {{ self|inspect }}
+      {# Botón para scroll to #}
+      {% if self.link_text_scroll_to %}
+        <button
+          class="o-btn o-btn_secondary o-btn_small i-after-arrow-down"
+          data-id-scroll-to="{{ self.id_link_scroll_to }}"
+          @click="clickToScrollInToComponentSelected(event)"
+        >
+          {{ self.link_text_scroll_to }}
+        </button>
+      {% endif %}
 
-  {{self.description}}
+    </div>
+    
+    {# Botón para ocultar banner #}
+    <button class="c-banner-ad__btn-close i-close" @click="hideBannerAd(event)">
+      <span class="u-hidden">Cerrar</span>
+    </button>
 
+  </div>
+  
 </section>

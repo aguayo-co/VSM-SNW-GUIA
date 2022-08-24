@@ -11,7 +11,7 @@ window.Alpine = Alpine;
 
 window.onload = function () {
     new headerMenuNavigation();
-    renderSliders()
+    renderSliders();
 }
 
 // Start AlpineJs

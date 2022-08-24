@@ -1,0 +1,60 @@
+.c-banner-ad {
+  position: relative;
+}
+
+.c-banner-ad__wrap {
+  @include flexbox;
+  @include align-items(center);
+  @include px-to-rem(row-gap, $gutter * 3);
+}
+
+.c-banner-ad__btn-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  @include px-to-rem(padding, $gutter * 2 $gutter * 2 0 0);
+  color: $c-brand-primary;
+  transition: $transition-ease-in-out-2s;
+
+  &:hover {
+    transform: scale(0.9)
+  }
+}
+
+
+/*------------------------------------*\
+  Media Querys
+\*------------------------------------*/
+
+/**
+* Mobile | VP: max width 768px
+*/
+@include media-query(medium-max) {
+  .c-banner-ad {
+    @include px-to-rem(padding, $gutter * 3 0);
+    text-align: center;
+  }
+
+  .c-banner-ad__wrap {
+    @include flex-direction(column);
+    @include px-to-rem(max-width, 300px);
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+/**
+* Desktop | VP: min-width 768px
+*/
+@include media-query(medium) {
+  .c-banner-ad {
+    @include px-to-rem(padding, $gutter * 2 0);
+  }
+
+  .c-banner-ad__wrap {
+    @include flex-wrap(wrap);
+    @include justify-content(space-between);
+    @include px-to-rem(column-gap, $gutter * 3);
+    @include px-to-rem(row-gap, $gutter * 2);
+  }
+}

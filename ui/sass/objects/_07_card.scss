@@ -12,7 +12,9 @@
 }
 
 .o-card__btn {
+  @include px-to-rem(min-width, 140px);
   @include px-to-rem(margin-top, $gutter * 2);
+  @include px-to-rem(padding, $gutter * 2);
 }
 
 

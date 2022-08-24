@@ -150,5 +150,6 @@ strong,
  */
 
  .o-kicker {
+  font-weight: $f-regular;
   @include px-to-rem(font-size, 18px);
 }
