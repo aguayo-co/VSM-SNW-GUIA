@@ -15,7 +15,7 @@ urlpatterns = [
     path("admin/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
     path("search/", search_views.search, name="search"),
-    path('wtm/', include(wtm_urls)),
+    path("wtm/", include(wtm_urls)),
 ]
 
 
@@ -27,7 +27,7 @@ if settings.DEBUG:
     urlpatterns += staticfiles_urlpatterns()
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     # Django Debug Toolbar
-    urlpatterns.append(path('__debug__/', include('debug_toolbar.urls')))
+    urlpatterns.append(path("__debug__/", include("debug_toolbar.urls")))
 
 urlpatterns = urlpatterns + [
     # For anything not caught by a more specific rule above, hand over to

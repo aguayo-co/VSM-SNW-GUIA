@@ -6,38 +6,56 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('commons', '0014_detailproductpage_idiom_and_more'),
+        ("commons", "0014_detailproductpage_idiom_and_more"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='detailproductpage',
-            name='author',
-            field=models.CharField(blank=True, max_length=255, null=True, verbose_name='Autor'),
+            model_name="detailproductpage",
+            name="author",
+            field=models.CharField(
+                blank=True, max_length=255, null=True, verbose_name="Autor"
+            ),
         ),
         migrations.AddField(
-            model_name='detailproductpage',
-            name='editorial_team',
-            field=models.CharField(blank=True, max_length=255, null=True, verbose_name='Equipo Editorial'),
+            model_name="detailproductpage",
+            name="editorial_team",
+            field=models.CharField(
+                blank=True, max_length=255, null=True, verbose_name="Equipo Editorial"
+            ),
         ),
         migrations.AddField(
-            model_name='detailproductpage',
-            name='first_edition',
-            field=models.CharField(blank=True, max_length=255, null=True, verbose_name='Primera Edición'),
+            model_name="detailproductpage",
+            name="first_edition",
+            field=models.CharField(
+                blank=True, max_length=255, null=True, verbose_name="Primera Edición"
+            ),
         ),
         migrations.AddField(
-            model_name='detailproductpage',
-            name='isbn',
-            field=models.CharField(blank=True, max_length=255, null=True, verbose_name='ISBN'),
+            model_name="detailproductpage",
+            name="isbn",
+            field=models.CharField(
+                blank=True, max_length=255, null=True, verbose_name="ISBN"
+            ),
         ),
         migrations.AddField(
-            model_name='detailproductpage',
-            name='second_reprint',
-            field=models.CharField(blank=True, max_length=255, null=True, verbose_name='Segunda Reimpresión'),
+            model_name="detailproductpage",
+            name="second_reprint",
+            field=models.CharField(
+                blank=True,
+                max_length=255,
+                null=True,
+                verbose_name="Segunda Reimpresión",
+            ),
         ),
         migrations.AlterField(
-            model_name='detailproductpage',
-            name='idiom',
-            field=models.CharField(choices=[('en', 'Inglés'), ('es', 'Español')], default='es', max_length=10, verbose_name='Idioma'),
+            model_name="detailproductpage",
+            name="idiom",
+            field=models.CharField(
+                choices=[("en", "Inglés"), ("es", "Español")],
+                default="es",
+                max_length=10,
+                verbose_name="Idioma",
+            ),
         ),
     ]

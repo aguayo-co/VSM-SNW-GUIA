@@ -10,119 +10,308 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('wagtailcore', '0069_log_entry_jsonfield'),
-        ('wagtailimages', '0024_index_image_file_hash'),
+        ("wagtailcore", "0069_log_entry_jsonfield"),
+        ("wagtailimages", "0024_index_image_file_hash"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='BasePage',
+            name="BasePage",
             fields=[
-                ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.page')),
-                ('_content_base', wagtail.fields.StreamField([], blank=True, null=True, use_json_field=None, verbose_name='Contenido')),
-                ('keywords', models.CharField(blank=True, default='', max_length=100, verbose_name='Palabras clave')),
-                ('search_image', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtailimages.image', verbose_name='Imagen para buscadores.')),
+                (
+                    "page_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="wagtailcore.page",
+                    ),
+                ),
+                (
+                    "_content_base",
+                    wagtail.fields.StreamField(
+                        [],
+                        blank=True,
+                        null=True,
+                        use_json_field=None,
+                        verbose_name="Contenido",
+                    ),
+                ),
+                (
+                    "keywords",
+                    models.CharField(
+                        blank=True,
+                        default="",
+                        max_length=100,
+                        verbose_name="Palabras clave",
+                    ),
+                ),
+                (
+                    "search_image",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="+",
+                        to="wagtailimages.image",
+                        verbose_name="Imagen para buscadores.",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Página Base',
-                'verbose_name_plural': 'Páginas Base',
+                "verbose_name": "Página Base",
+                "verbose_name_plural": "Páginas Base",
             },
-            bases=('wagtailcore.page',),
+            bases=("wagtailcore.page",),
         ),
         migrations.CreateModel(
-            name='BlogPage',
+            name="BlogPage",
             fields=[
-                ('basepage_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='commons.basepage')),
-                ('_content_blog', wagtail.fields.StreamField([], blank=True, null=True, use_json_field=None, verbose_name='Contenido')),
+                (
+                    "basepage_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="commons.basepage",
+                    ),
+                ),
+                (
+                    "_content_blog",
+                    wagtail.fields.StreamField(
+                        [],
+                        blank=True,
+                        null=True,
+                        use_json_field=None,
+                        verbose_name="Contenido",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Blog',
-                'verbose_name_plural': 'Blog',
+                "verbose_name": "Blog",
+                "verbose_name_plural": "Blog",
             },
-            bases=('commons.basepage',),
+            bases=("commons.basepage",),
         ),
         migrations.CreateModel(
-            name='CatalogPage',
+            name="CatalogPage",
             fields=[
-                ('basepage_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='commons.basepage')),
-                ('_content_catalog', wagtail.fields.StreamField([], blank=True, null=True, use_json_field=None, verbose_name='Contenido')),
+                (
+                    "basepage_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="commons.basepage",
+                    ),
+                ),
+                (
+                    "_content_catalog",
+                    wagtail.fields.StreamField(
+                        [],
+                        blank=True,
+                        null=True,
+                        use_json_field=None,
+                        verbose_name="Contenido",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Catálogo',
-                'verbose_name_plural': 'Catálogo',
+                "verbose_name": "Catálogo",
+                "verbose_name_plural": "Catálogo",
             },
-            bases=('commons.basepage',),
+            bases=("commons.basepage",),
         ),
         migrations.CreateModel(
-            name='CategoryHomePage',
+            name="CategoryHomePage",
             fields=[
-                ('basepage_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='commons.basepage')),
-                ('_content_category_homepage', wagtail.fields.StreamField([], blank=True, null=True, use_json_field=None, verbose_name='Contenido')),
+                (
+                    "basepage_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="commons.basepage",
+                    ),
+                ),
+                (
+                    "_content_category_homepage",
+                    wagtail.fields.StreamField(
+                        [],
+                        blank=True,
+                        null=True,
+                        use_json_field=None,
+                        verbose_name="Contenido",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Category Home',
-                'verbose_name_plural': 'Category Home',
+                "verbose_name": "Category Home",
+                "verbose_name_plural": "Category Home",
             },
-            bases=('commons.basepage',),
+            bases=("commons.basepage",),
         ),
         migrations.CreateModel(
-            name='ContentPage',
+            name="ContentPage",
             fields=[
-                ('basepage_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='commons.basepage')),
-                ('_content_content', wagtail.fields.StreamField([], blank=True, null=True, use_json_field=None, verbose_name='Contenido')),
+                (
+                    "basepage_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="commons.basepage",
+                    ),
+                ),
+                (
+                    "_content_content",
+                    wagtail.fields.StreamField(
+                        [],
+                        blank=True,
+                        null=True,
+                        use_json_field=None,
+                        verbose_name="Contenido",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Content',
-                'verbose_name_plural': 'Content',
+                "verbose_name": "Content",
+                "verbose_name_plural": "Content",
             },
-            bases=('commons.basepage',),
+            bases=("commons.basepage",),
         ),
         migrations.CreateModel(
-            name='DetailArticlePage',
+            name="DetailArticlePage",
             fields=[
-                ('basepage_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='commons.basepage')),
-                ('_content_detail_article', wagtail.fields.StreamField([], blank=True, null=True, use_json_field=None, verbose_name='Contenido')),
+                (
+                    "basepage_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="commons.basepage",
+                    ),
+                ),
+                (
+                    "_content_detail_article",
+                    wagtail.fields.StreamField(
+                        [],
+                        blank=True,
+                        null=True,
+                        use_json_field=None,
+                        verbose_name="Contenido",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Detalle de artículo',
-                'verbose_name_plural': 'Detalles de artículos',
+                "verbose_name": "Detalle de artículo",
+                "verbose_name_plural": "Detalles de artículos",
             },
-            bases=('commons.basepage',),
+            bases=("commons.basepage",),
         ),
         migrations.CreateModel(
-            name='DetailProductPage',
+            name="DetailProductPage",
             fields=[
-                ('basepage_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='commons.basepage')),
-                ('_content_detail_product', wagtail.fields.StreamField([], blank=True, null=True, use_json_field=None, verbose_name='Contenido')),
+                (
+                    "basepage_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="commons.basepage",
+                    ),
+                ),
+                (
+                    "_content_detail_product",
+                    wagtail.fields.StreamField(
+                        [],
+                        blank=True,
+                        null=True,
+                        use_json_field=None,
+                        verbose_name="Contenido",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Detail Product',
-                'verbose_name_plural': 'Detail Product',
+                "verbose_name": "Detail Product",
+                "verbose_name_plural": "Detail Product",
             },
-            bases=('commons.basepage',),
+            bases=("commons.basepage",),
         ),
         migrations.CreateModel(
-            name='FormPage',
+            name="FormPage",
             fields=[
-                ('basepage_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='commons.basepage')),
-                ('_content_form', wagtail.fields.StreamField([], blank=True, null=True, use_json_field=None, verbose_name='Contenido')),
+                (
+                    "basepage_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="commons.basepage",
+                    ),
+                ),
+                (
+                    "_content_form",
+                    wagtail.fields.StreamField(
+                        [],
+                        blank=True,
+                        null=True,
+                        use_json_field=None,
+                        verbose_name="Contenido",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Form',
-                'verbose_name_plural': 'Form',
+                "verbose_name": "Form",
+                "verbose_name_plural": "Form",
             },
-            bases=('commons.basepage',),
+            bases=("commons.basepage",),
         ),
         migrations.CreateModel(
-            name='ThematicHomePage',
+            name="ThematicHomePage",
             fields=[
-                ('basepage_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='commons.basepage')),
-                ('_content_thematic_homepage', wagtail.fields.StreamField([], blank=True, null=True, use_json_field=None, verbose_name='Contenido')),
+                (
+                    "basepage_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="commons.basepage",
+                    ),
+                ),
+                (
+                    "_content_thematic_homepage",
+                    wagtail.fields.StreamField(
+                        [],
+                        blank=True,
+                        null=True,
+                        use_json_field=None,
+                        verbose_name="Contenido",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Thematic Home',
-                'verbose_name_plural': 'Thematic Home',
+                "verbose_name": "Thematic Home",
+                "verbose_name_plural": "Thematic Home",
             },
-            bases=('commons.basepage',),
+            bases=("commons.basepage",),
         ),
     ]

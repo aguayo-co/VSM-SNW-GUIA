@@ -7,27 +7,50 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('wagtailimages', '0024_index_image_file_hash'),
-        ('commons', '0009_santillanasettings_chatbot_and_more'),
+        ("wagtailimages", "0024_index_image_file_hash"),
+        ("commons", "0009_santillanasettings_chatbot_and_more"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='degree',
-            name='number',
-            field=models.IntegerField(default=0, verbose_name='Número'),
+            model_name="degree",
+            name="number",
+            field=models.IntegerField(default=0, verbose_name="Número"),
             preserve_default=False,
         ),
         migrations.CreateModel(
-            name='Serie',
+            name="Serie",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(blank=True, max_length=255, null=True, verbose_name='Nombre')),
-                ('image', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtailimages.image', verbose_name='Imagen')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(
+                        blank=True, max_length=255, null=True, verbose_name="Nombre"
+                    ),
+                ),
+                (
+                    "image",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="+",
+                        to="wagtailimages.image",
+                        verbose_name="Imagen",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Serie',
-                'verbose_name_plural': 'Series',
+                "verbose_name": "Serie",
+                "verbose_name_plural": "Series",
             },
         ),
     ]

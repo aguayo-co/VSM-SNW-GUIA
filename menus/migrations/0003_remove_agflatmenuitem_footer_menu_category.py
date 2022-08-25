@@ -6,12 +6,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('menus', '0002_agflatmenuitem_footer_menu_category'),
+        ("menus", "0002_agflatmenuitem_footer_menu_category"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='agflatmenuitem',
-            name='footer_menu_category',
+            model_name="agflatmenuitem",
+            name="footer_menu_category",
         ),
     ]

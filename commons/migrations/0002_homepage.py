@@ -8,20 +8,39 @@ import wagtail.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('commons', '0001_initial'),
+        ("commons", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='HomePage',
+            name="HomePage",
             fields=[
-                ('basepage_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='commons.basepage')),
-                ('_content_home', wagtail.fields.StreamField([], blank=True, null=True, use_json_field=None, verbose_name='Contenido')),
+                (
+                    "basepage_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="commons.basepage",
+                    ),
+                ),
+                (
+                    "_content_home",
+                    wagtail.fields.StreamField(
+                        [],
+                        blank=True,
+                        null=True,
+                        use_json_field=None,
+                        verbose_name="Contenido",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Home',
-                'verbose_name_plural': 'Home',
+                "verbose_name": "Home",
+                "verbose_name_plural": "Home",
             },
-            bases=('commons.basepage',),
+            bases=("commons.basepage",),
         ),
     ]

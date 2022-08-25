@@ -7,21 +7,31 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('commons', '0002_homepage'),
+        ("commons", "0002_homepage"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='ExternalRedirect',
+            name="ExternalRedirect",
             fields=[
-                ('basepage_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='commons.basepage')),
-                ('redirect_url', models.URLField()),
+                (
+                    "basepage_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="commons.basepage",
+                    ),
+                ),
+                ("redirect_url", models.URLField()),
             ],
             options={
-                'verbose_name': 'Redirección',
-                'verbose_name_plural': 'Redirecciones',
-                'abstract': False,
+                "verbose_name": "Redirección",
+                "verbose_name_plural": "Redirecciones",
+                "abstract": False,
             },
-            bases=('commons.basepage',),
+            bases=("commons.basepage",),
         ),
     ]

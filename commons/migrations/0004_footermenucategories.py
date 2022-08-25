@@ -6,19 +6,27 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('commons', '0003_externalredirect'),
+        ("commons", "0003_externalredirect"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='FooterMenuCategories',
+            name="FooterMenuCategories",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255, verbose_name='Nombre')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=255, verbose_name="Nombre")),
             ],
             options={
-                'verbose_name': 'Categoría del menú footer',
-                'verbose_name_plural': 'Categorías del menú footer',
+                "verbose_name": "Categoría del menú footer",
+                "verbose_name_plural": "Categorías del menú footer",
             },
         ),
     ]

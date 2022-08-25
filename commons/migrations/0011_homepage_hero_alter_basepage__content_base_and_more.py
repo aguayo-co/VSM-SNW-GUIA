@@ -7,24 +7,30 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('commons', '0010_degree_number_serie'),
+        ("commons", "0010_degree_number_serie"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='homepage',
-            name='hero',
-            field=commons.models.fields.HeroStreamField(default=None, use_json_field=None),
+            model_name="homepage",
+            name="hero",
+            field=commons.models.fields.HeroStreamField(
+                default=None, use_json_field=None
+            ),
             preserve_default=False,
         ),
         migrations.AlterField(
-            model_name='basepage',
-            name='_content_base',
-            field=commons.models.fields.FullStreamField(blank=True, null=True, use_json_field=None, verbose_name='Contenido'),
+            model_name="basepage",
+            name="_content_base",
+            field=commons.models.fields.FullStreamField(
+                blank=True, null=True, use_json_field=None, verbose_name="Contenido"
+            ),
         ),
         migrations.AlterField(
-            model_name='homepage',
-            name='_content_home',
-            field=commons.models.fields.HomeStreamField(blank=True, null=True, use_json_field=None, verbose_name='Contenido'),
+            model_name="homepage",
+            name="_content_home",
+            field=commons.models.fields.HomeStreamField(
+                blank=True, null=True, use_json_field=None, verbose_name="Contenido"
+            ),
         ),
     ]
