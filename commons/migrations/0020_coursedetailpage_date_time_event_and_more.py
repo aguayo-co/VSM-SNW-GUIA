@@ -7,33 +7,43 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('commons', '0019_coursedetailpage'),
+        ("commons", "0019_coursedetailpage"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='coursedetailpage',
-            name='date_time_event',
-            field=models.DateField(blank=True, null=True, verbose_name='Fecha y hora del evento'),
+            model_name="coursedetailpage",
+            name="date_time_event",
+            field=models.DateField(
+                blank=True, null=True, verbose_name="Fecha y hora del evento"
+            ),
         ),
         migrations.AddField(
-            model_name='coursedetailpage',
-            name='hashtag_youtube',
-            field=models.CharField(blank=True, max_length=255, null=True, verbose_name='Hashtag Youtube'),
+            model_name="coursedetailpage",
+            name="hashtag_youtube",
+            field=models.CharField(
+                blank=True, max_length=255, null=True, verbose_name="Hashtag Youtube"
+            ),
         ),
         migrations.AddField(
-            model_name='coursedetailpage',
-            name='hero',
-            field=commons.models.fields.HeroStreamField(blank=True, null=True, use_json_field=None),
+            model_name="coursedetailpage",
+            name="hero",
+            field=commons.models.fields.HeroStreamField(
+                blank=True, null=True, use_json_field=None
+            ),
         ),
         migrations.AddField(
-            model_name='coursedetailpage',
-            name='registration_form_url',
-            field=models.URLField(blank=True, null=True, verbose_name='Url Formulario de Inscripción'),
+            model_name="coursedetailpage",
+            name="registration_form_url",
+            field=models.URLField(
+                blank=True, null=True, verbose_name="Url Formulario de Inscripción"
+            ),
         ),
         migrations.AddField(
-            model_name='coursedetailpage',
-            name='responsible',
-            field=models.CharField(blank=True, max_length=255, null=True, verbose_name='Responsable'),
+            model_name="coursedetailpage",
+            name="responsible",
+            field=models.CharField(
+                blank=True, max_length=255, null=True, verbose_name="Responsable"
+            ),
         ),
     ]

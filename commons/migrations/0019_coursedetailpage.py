@@ -8,20 +8,38 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('commons', '0018_remove_serie_select_serie_editorial_serie_type'),
+        ("commons", "0018_remove_serie_select_serie_editorial_serie_type"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='CourseDetailPage',
+            name="CourseDetailPage",
             fields=[
-                ('basepage_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='commons.basepage')),
-                ('_content_course_detail', commons.models.fields.CourseDetailStreamField(blank=True, null=True, use_json_field=None, verbose_name='Contenido')),
+                (
+                    "basepage_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="commons.basepage",
+                    ),
+                ),
+                (
+                    "_content_course_detail",
+                    commons.models.fields.CourseDetailStreamField(
+                        blank=True,
+                        null=True,
+                        use_json_field=None,
+                        verbose_name="Contenido",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Detalle de Curso',
-                'verbose_name_plural': 'Detalle de Cursos',
+                "verbose_name": "Detalle de Curso",
+                "verbose_name_plural": "Detalle de Cursos",
             },
-            bases=('commons.basepage',),
+            bases=("commons.basepage",),
         ),
     ]
