@@ -63,7 +63,7 @@ class Serie(models.Model):
         max_length=255,
         choices=(("serie", _("Serie")), ("editorial", _("Editorial"))),
         verbose_name=_("Tipo"),
-        default="serie"
+        default="serie",
     )
 
     panels = [

@@ -8,6 +8,7 @@ from wagtail.core.blocks import (
     StructBlock,
     TextBlock,
     ListBlock,
+    BooleanBlock,
 )
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.embeds.blocks import EmbedBlock
@@ -364,3 +365,79 @@ class BannerAdComponent(StructBlock):
         icon = "image"
         label = _("Banner Ad")
         template = "commons/components/banner_ad_component.html"
+
+
+class FreeContentComponent(StructBlock):
+    """
+    A block that displays a free content.
+    """
+
+    title = CharBlock(required=False, label=_("Título"))
+    show_in_content_table = BooleanBlock(
+        required=False, label=_("Mostrar en tabla de contenido")
+    )
+    content = StreamBlock(
+        [
+            (
+                "rich_text",
+                StructBlock(
+                    [("rich_text", RichTextBlock())],
+                    label=_("Texto Enriquecido"),
+                    required=True,
+                ),
+            ),
+            (
+                "cite",
+                StructBlock(
+                    [
+                        ("cite", RichTextBlock(required=True, label=_("Cita"))),
+                        ("cite_author", CharBlock(required=False, label=_("Autor"))),
+                        ("footnote", CharBlock(required=False, label=_("Nota"))),
+                        ("url", PageChooserBlock(required=False, label=_("URL"))),
+                    ],
+                    label=_("Cita"),
+                    required=False,
+                ),
+            ),
+            (
+                "image",
+                StructBlock(
+                    [
+                        ("image", ImageChooserBlock(required=True, label=_("Imagen"))),
+                        (
+                            "description",
+                            CharBlock(required=False, label=_("Descripción")),
+                        ),
+                        ("credits", CharBlock(required=False, label=_("Créditos"))),
+                    ],
+                    label=_("Imagen"),
+                    required=False,
+                ),
+            ),
+        ],
+        label=_("Contenido"),
+        required=True,
+    )
+
+    class Meta:
+        icon = "image"
+        label = _("Free Content")
+        template = "commons/components/free_content_component.html"
+
+
+class AgendaComponent(StructBlock):
+    """
+    A block that displays an agenda.
+    """
+
+    title = CharBlock(required=True, label=_("Título"))
+    course_list = ListBlock(
+        PageChooserBlock(required=False, label=_("Select páginas")),
+        required=False,
+        label=_("Listado de cursos"),
+    )
+
+    class Meta:
+        icon = "list-ul"
+        label = _("Agenda")
+        template = "commons/components/agenda_component.html"

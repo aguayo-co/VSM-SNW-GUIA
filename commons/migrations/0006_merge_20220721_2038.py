@@ -6,9 +6,8 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('commons', '0005_degree_subject'),
-        ('commons', '0005_delete_footermenucategories'),
+        ("commons", "0005_degree_subject"),
+        ("commons", "0005_delete_footermenucategories"),
     ]
 
-    operations = [
-    ]
+    operations = []

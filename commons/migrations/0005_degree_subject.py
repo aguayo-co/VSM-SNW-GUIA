@@ -6,30 +6,46 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('commons', '0004_footermenucategories'),
+        ("commons", "0004_footermenucategories"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Degree',
+            name="Degree",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255, verbose_name='Nombre')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=255, verbose_name="Nombre")),
             ],
             options={
-                'verbose_name': 'Grado',
-                'verbose_name_plural': 'Grados',
+                "verbose_name": "Grado",
+                "verbose_name_plural": "Grados",
             },
         ),
         migrations.CreateModel(
-            name='Subject',
+            name="Subject",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255, verbose_name='Nombre')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=255, verbose_name="Nombre")),
             ],
             options={
-                'verbose_name': 'Asunto',
-                'verbose_name_plural': 'Asuntos',
+                "verbose_name": "Asunto",
+                "verbose_name_plural": "Asuntos",
             },
         ),
     ]

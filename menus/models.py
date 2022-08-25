@@ -18,4 +18,3 @@ class AGFlatMenuItem(AbstractFlatMenuItem):
         on_delete=models.CASCADE,
         related_name="custom_flat_menu_items",
     )
-

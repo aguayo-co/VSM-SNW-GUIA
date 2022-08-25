@@ -32,11 +32,15 @@ def get_hero_control_text(context):
     for index, block in enumerate(context["self"].hero):
         # Prev Element
         if index != 0:
-            elements[index+1]["prev"] = context["self"].hero[index-1].value["text_navigation"]
+            elements[index + 1]["prev"] = (
+                context["self"].hero[index - 1].value["text_navigation"]
+            )
 
         # Next Element
         try:
-            elements[index+1]["next"] = context["self"].hero[index+1].value["text_navigation"]
+            elements[index + 1]["next"] = (
+                context["self"].hero[index + 1].value["text_navigation"]
+            )
         except IndexError:
             pass
     return elements

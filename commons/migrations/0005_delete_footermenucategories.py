@@ -6,12 +6,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('menus', '0003_remove_agflatmenuitem_footer_menu_category'),
-        ('commons', '0004_footermenucategories'),
+        ("menus", "0003_remove_agflatmenuitem_footer_menu_category"),
+        ("commons", "0004_footermenucategories"),
     ]
 
     operations = [
         migrations.DeleteModel(
-            name='FooterMenuCategories',
+            name="FooterMenuCategories",
         ),
     ]

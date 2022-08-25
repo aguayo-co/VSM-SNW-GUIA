@@ -22,7 +22,7 @@ class SantillanaSettings(BaseSetting):
         verbose_name=_("Logo del sitio"),
         on_delete=PROTECT,
         related_name="+",
-        null=True
+        null=True,
     )
     logo_url = ForeignKey(
         "wagtailcore.Page",
@@ -54,9 +54,7 @@ class SantillanaSettings(BaseSetting):
 
     # Cookies
     cookies_text = RichTextField(
-        verbose_name=_("Texto Cookies"),
-        editor="inline",
-        blank=True
+        verbose_name=_("Texto Cookies"), editor="inline", blank=True
     )
 
     # Scripts
