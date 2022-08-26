@@ -95,6 +95,17 @@
 // C
 
 /**
+* @icon .i-check
+* @markup
+*   <span class="i-check"></span>
+*/
+.i-check {
+  &::before {
+    content: $i-check;
+  }
+}
+
+/**
 * @icon .i-chevron-up
 * @markup
 *   <span class="i-chevron-up"></span>
@@ -219,6 +230,30 @@
 .i-mail {
   &::before {
     content: $i-mail;
+  }
+}
+
+/**
+* @icon .i-minor
+* @markup
+*   <span class="i-minor"></span>
+*/
+.i-minor {
+  &::before {
+    content: $i-minor;
+  }
+}
+
+// P
+
+/**
+* @icon .i-plus
+* @markup
+*   <span class="i-plus"></span>
+*/
+.i-plus {
+  &::before {
+    content: $i-plus;
   }
 }
 
