@@ -1,0 +1,68 @@
+.l-cookie {
+  position: fixed;
+  right: 0;
+  bottom: -100%;
+  left: 0;
+  width: 90%;
+  margin: 0 auto;
+  @include px-to-rem(border-radius, 20px);
+  background: $c-neutro;
+  box-shadow: 0 6px 23px rgba(20, 20, 43, 0.5);
+  z-index: 10;
+  transition: bottom 0.4s ease-in-out;
+
+  &.is-cookie-show {
+    @include px-to-rem(bottom, 50px);
+  }
+}
+
+.l-cookie__text {
+  &::before {
+    content: url("/static/images/cookie/cookie.svg");
+    line-height: 1;
+  }
+}
+
+.l-cookie__btn {
+  min-width: max-content;
+}
+
+
+/*------------------------------------*\
+  Media Querys
+\*------------------------------------*/
+
+/**
+* Mobile | VP: max-width 768px
+*/
+@include media-query(medium-max) {
+  .l-cookie {
+    @include px-to-rem(padding, $gutter * 2);
+    text-align: center;
+  }
+
+  .l-cookie__text {
+    @include px-to-rem(margin-bottom, $gutter * 2);
+  }
+}
+
+/**
+* Desktop | VP: max-width 768px
+*/
+@include media-query(medium) {
+  .l-cookie {
+    @include px-to-rem(padding, $gutter * 4);
+  }
+
+  .l-cookie,
+  .l-cookie__text {
+    @include flexbox;
+    @include align-items(center);
+    @include px-to-rem(column-gap, $gutter * 4);
+    @include px-to-rem(max-width, 950px);
+  }
+
+  .l-cookie__text {
+    @include px-to-rem(padding-right, $gutter * 3);
+  }
+}
