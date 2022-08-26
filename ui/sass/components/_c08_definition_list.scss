@@ -1,0 +1,134 @@
+.c-definition-list-inner {
+  background-color: $c-surface-grey-10;
+}
+
+.c-definition-list__title {
+  @include flexbox;
+  @include flex-direction(row-reverse);
+  @include justify-content(space-between);
+  @include align-items(center);
+  @include px-to-rem(padding, $gutter * 3 0);
+  font-weight: $f-medium;
+  @include px-to-rem(font-size, 20px);
+  line-height: 1.3;
+  transition: $transition-ease-in-out-2s;
+  cursor: pointer;
+
+  &::before {
+    @include px-to-rem(margin-left, $gutter * 3);
+  }
+
+  &:not( &:last-of-type) {
+    border-bottom: 2px solid $c-surface-grey-20;
+  }
+
+  &.is-dropdown-show,
+  &:hover {
+    color: $c-brand-primary;
+  }
+
+  &.is-dropdown-show {
+
+    &::before {
+      content: $i-minor;
+    }
+
+    &:last-of-type {
+      border-bottom: 2px solid $c-surface-grey-20;
+    }
+
+    // Hermano del titulo seleccionado
+    +.c-definition-list__description {
+      @include px-to-rem(max-height, 2000px);
+      @include px-to-rem(padding, $gutter * 3);
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+}
+
+.c-definition-list__description {
+  max-height: 0;
+  border-bottom: 2px solid $c-surface-grey-20;
+  opacity: 0;
+  visibility: hidden;
+  transition: $transition-ease-in-out-2s;
+}
+
+
+/*------------------------------------*\
+  Media Querys
+\*------------------------------------*/
+
+/**
+* Mobile | VP: max-width 989px
+*/
+@media(max-width: 989px) {
+  .c-definition-list-inner {
+    @include px-to-rem(padding, $gutter * 7 0);
+  }
+
+  .c-definition-list {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .c-definition-list__figure {
+    display: none;
+  }
+
+}
+
+/**
+* desktop | VP: min-width 990px
+*/
+@media(min-width: 990px) {
+  .c-definition-list-inner {
+    @include flexbox;
+    @include align-items(stretch);
+  }
+
+  .c-definition-list {
+    width: 100%;
+    @include px-to-rem(max-width, 690px);
+    @include px-to-rem(padding-top, 100px);
+    @include px-to-rem(padding-right, $gutter * 5);
+    @include px-to-rem(padding-bottom, 100px);
+    @include px-to-rem(padding-left, 100px);
+  }
+
+  .c-definition-list__figure {
+    position: relative;
+    @include px-to-rem(max-width, 614px);
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: rgba($c-brand-primary, 0.5);
+    }
+  }
+
+  .c-definition-list__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .c-definition-list {
+    @include align-self(center);
+  }
+}
+
+/**
+* Desktop | VP: max-width 1700px
+*/
+@media(min-width: 1700px) {
+  .c-definition-list {
+    @include px-to-rem(max-width, 890px);
+  }
+}

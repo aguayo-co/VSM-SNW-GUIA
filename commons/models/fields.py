@@ -124,6 +124,7 @@ class HomeStreamField(FullStreamField):
         ("featured_content_component", FeaturedContentComponent()),
         ("testimonials_component", TestimonialsComponent()),
         ("pages_links_list_component", PagesLinksListComponent()),
+        ("definition_list_component", DefinitionListComponent()),
         ("banner_ad_component", BannerAdComponent()),
         ("free_content_component", FreeContentComponent()),
         ("agenda_component", AgendaComponent()),

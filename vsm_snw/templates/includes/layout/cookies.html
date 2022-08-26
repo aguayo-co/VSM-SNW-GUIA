@@ -1,0 +1,29 @@
+{#  From Settings  #}
+{% load wagtailsettings_tags %}
+{% get_settings use_default_site=True %}
+
+{% load i18n static wagtailuserbar wagtailcore_tags wagtailimages_tags %}
+
+
+{% spaceless %}
+  {% with settings.commons.SantillanaSettings as settings_site  %}
+
+    <div class="l-cookie js-target-cookie">
+
+      {# Texto cookies #}
+      <div class="l-cookie__text">
+        {{ settings_site.cookies_text|richtext }}
+      </div>
+
+      {# Botón para cerrar #}
+      <button
+        type="button"
+        class="o-btn o-btn_primary l-cookie__btn js-btn-remove-cookie"
+      >
+        {% trans 'Aceptar' %}
+      </button>
+
+    </div>
+
+  {% endwith %}
+{% endspaceless %}

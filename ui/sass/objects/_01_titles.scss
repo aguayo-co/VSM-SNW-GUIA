@@ -33,7 +33,7 @@ h6 {
  */
 
 .o-hgroup {
-  @include px-to-rem(max-width, 612px);
+  @include px-to-rem(max-width, 700px);
   @include px-to-rem(padding-bottom, $gutter * 4);
 }
 .o-hgroup_center {

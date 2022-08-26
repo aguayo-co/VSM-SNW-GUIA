@@ -45,6 +45,9 @@
 
     {% flat_menu 'footer_menu' add_sub_menus_inline=True %}
 
+    {# Cookies #}
+    {% include "includes/layout/cookies.html" %}
+
     {# Global javascript #}
     {% vite_asset 'js/main.js' %}
 
