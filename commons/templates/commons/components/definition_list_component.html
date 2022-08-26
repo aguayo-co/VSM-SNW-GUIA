@@ -1,3 +1,56 @@
-{% load inspector %}
+{% load static %}
 
-{{ self|inspect }}
+{% spaceless %}
+
+  {% if self.definition_list|length > 0 %}
+
+    <section id="{{ block_id }}">
+
+      <div class="o-section o-canvas">
+
+        {# Cabecera sección #}
+        <header class="o-hgroup o-hgroup_center">
+
+          {% if self.subtitle %}
+            <h2 class="o-kicker">{{ self.subtitle }}</h2>
+          {% endif %}
+
+          <h3 class="o-headline">{{ self.title }}</h3>
+
+          {% if self.introduction %}
+            <p class="o-kicker">{{ self.introduction }}</p>
+          {% endif %}
+
+        </header>
+            
+      </div>
+
+      <div class="c-definition-list-inner">
+
+        {# Imagen #}
+        <figure class="c-definition-list__figure">
+          <img
+            src="{% static 'images/definition_list/student.jpg' %}"
+            class="c-definition-list__img"
+          >
+        </figure>
+
+        {# Lista definición #}
+        <dl class="c-definition-list o-list">
+          {% for definition_list in self.definition_list %}
+            <dt
+              class="c-definition-list__title i-plus js-dropdown-button"
+            >
+              {{ definition_list.title }}
+            </dt>
+            <dd class="c-definition-list__description">{{ definition_list.content }}</dd>
+          {% endfor %}
+        </dl>
+
+      </div>
+
+    </section>
+
+  {% endif %}
+
+{% endspaceless %}
