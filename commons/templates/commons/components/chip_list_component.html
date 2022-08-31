@@ -1,0 +1,35 @@
+{% load wagtailcore_tags i18n %}
+
+<section class="o-surface o-surface_grey" id="{{ block_id }}">
+  <div class="o-canvas">
+
+    <header class="o-hgroup">
+      <h3 class="o-subheadline">{{ self.title }}</h3>
+    </header>
+
+    <nav class="c-list-chip">
+
+      {% for category in self.link_list %}
+        <a
+          href="{% pageurl category %}"
+          title="{% trans 'Ir a ' %} {{ category.title }}"
+          class="c-list-chip__chip o-btn o-btn_secondary o-btn_outline-grey"
+        >
+          {{ category.title }}
+        </a>
+      {% endfor %}
+
+      {% if self.primary_action_text %}
+        <a
+          href="{% pageurl self.primary_action_url %}"
+          title="{% trans 'Ir a ' %} {{ self.primary_action_text }}"
+          class="c-list-chip__chip o-btn i-after-external-redirect"
+        >
+          {{ self.primary_action_text }}
+        </a>
+      {% endif %}
+
+    </nav>
+
+  </div>
+</section>

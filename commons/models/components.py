@@ -441,3 +441,31 @@ class AgendaComponent(StructBlock):
         icon = "list-ul"
         label = _("Agenda")
         template = "commons/components/agenda_component.html"
+
+
+class ChipListComponent(StructBlock):
+    """
+    A block that displays an chip list.
+    """
+
+    title = CharBlock(required=True, label=_("Título"))
+    link_list = ListBlock(
+        PageChooserBlock(
+            required=True,
+            label=_("Enlace"),
+        ),
+        min_num=1,
+        max_num=7,
+        required=False,
+        label=_("Lista de enlaces"),
+    )
+    primary_action_text = CharBlock(required=False, label=_("Texto acción primaria"))
+    primary_action_url = PageChooserBlock(
+        required=False,
+        label=_("URL acción primaria"),
+    )
+
+    class Meta:
+        icon = "list-ul"
+        label = _("Listado de chips")
+        template = "commons/components/chip_list_component.html"

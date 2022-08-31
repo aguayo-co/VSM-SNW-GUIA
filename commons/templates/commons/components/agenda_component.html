@@ -1,7 +1,110 @@
-{% load inspector %}
+{% load wagtailcore_tags i18n %}
 
-<section class="o-surface o-surface_navy-blue" id="{{ block_id }}">
 
-{{ self|inspect }}
+{% spaceless %}
 
-</section>
+  <section class="o-section" id="{{ block_id }}">
+
+    <div class="o-canvas">
+
+      {# Cabecera sección #}
+      {% if self.title %}
+        <header class="o-hgroup o-hgroup_center">
+          <h3 class="o-subheadline">{{ self.title }}</h3>
+          <p class="o-kicker">{{ self.title }}</p>
+        </header>
+      {% endif %}
+
+      {% now "m d Y H:i" as current_year %}
+      {% for course in self.course_list %}
+
+        <article class="c-agenda js-counter-target">
+
+          <header class="c-agenda__header">
+
+            {% if  course.specific.date_time_event %}
+              <time
+                datetime="{{ course.specific.date_time_event|date:"m d Y H:i" }}"
+                class="c-agenda__date js-counter-datetime"
+              >
+                {# Dia #}
+                <span class="c-agenda__date-day">{{ course.specific.date_time_event|date:"d"}}</span>
+
+                {# Mes y Año #}
+                {{ course.specific.date_time_event|date:"F"}}, 
+                {{ course.specific.date_time_event|date:"o"}} 
+              </time>
+            {% endif %}
+
+            {# Cabecera #}
+            <div class="c-agenda__head">
+
+              {# Categoria papa #}
+              <a
+                href="{% pageurl course.get_parent %}"
+                title="{% trans 'Ir a' %} {{ course.get_parent.title }}"
+                class="o-link u-inherit-color"
+              >
+                {{ course.get_parent.title }}
+              </a>
+
+              <h4 class="c-agenda__title">{{ course.title }}</h4>
+
+              {% if course.specific.responsible %}
+                <p class="c-agenda__text o-text u-inherit-color">{{ course.specific.responsible }}</p>
+              {% endif %}
+
+            </div>
+
+          </header>
+
+          {# Call to actions #}
+          <footer class="c-agenda__footer">
+
+            {% if course.specific.registration_form_url and course.specific.date_time_event|date:'m d Y H:i' > current_year %}
+
+              <span
+                class="c-agenda__timer js-counter-timer"
+              >
+                {% trans "Faltan: " %}
+
+                <span>
+                  <span class="js-counter-hours">00</span>:<span class="js-counter-minutes">00</span>:<span class="js-counter-seconds">00</span>
+                </span>
+
+              </span>
+    
+              <a
+                href="{{ course.specific.registration_form_url }}"
+                data-href-btn-course="{% pageurl course %}"
+                data-text-btn-course="{% trans 'Ir al curso' %}"
+                title="{% trans 'Ir al formulario de inscripción' %}"
+                target="_blank"
+                class="c-agenda__btn o-btn js-counter-callto"
+              >
+                {% trans "Inscribete" %}
+              </a>
+
+            {% else %}
+
+              <a
+                href="{% pageurl course %}"
+                title="{% trans 'Ir a ' %} {{ course.title }}"
+                class="c-agenda__btn o-btn o-btn_secondary o-btn_outline-grey"
+              >
+                {% trans "Ir al curso" %}
+              </a>
+
+            {% endif %}
+
+          </footer>
+
+        </article>  
+
+      {% endfor %}
+
+    </div>
+
+  </section>
+
+{% endspaceless %}

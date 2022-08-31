@@ -1,5 +1,95 @@
-// Las variaciones se van a trabajar como modificadores
+.s-richtext {
+  br {
+    content: "";
+    display: block;
+    @include px-to-rem(padding-bottom, $gutter);
+  }
 
-// .s-richtext
-// .s-richtext_inline
+  a {
+    position: relative;
+    padding: 0;
+    text-decoration: underline;
+    text-underline-position: under;
+    word-break: break-all;
+    color: $c-default-link;
+
+    &:hover {
+      color: $c-primary-20;
+    }
+  }
+
+  li,
+  p {
+    font-weight: $f-light;
+    @include px-to-rem(font-size, 18px);
+
+    &:not(:last-of-type) {
+      @include px-to-rem(margin-bottom, $gutter * 3);
+    }
+  };
+
+  h2,
+  h3,
+  h4 {
+    @include px-to-rem(margin-top, $gutter * 4);
+    @include px-to-rem(margin-bottom, $gutter * 3);
+  };
+
+  h2 {
+    @include px-to-rem(font-size, 24px);
+  };
+
+}
+
+.s-richtext_list,
+.s-richtext_inline {
+  p {
+    &:not(:last-of-type) {
+      @include px-to-rem(margin-bottom, $gutter);
+    }
+  }
+}
+
 // .s-richtext_basic
+.s-richtext_list {
+  ul,
+  ol {
+    @include px-to-rem(margin-top, $gutter * 3);
+    @include px-to-rem(margin-bottom, $gutter * 3);
+    @include px-to-rem(margin-left, $gutter * 5);
+
+    ul,
+    ol {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  };
+}
+
+.s-richtext_list-check {
+  li {
+    @include px-to-rem(padding-left, $gutter * 2);
+
+    &:not(:last-of-type) {
+      @include px-to-rem(margin-bottom, $gutter * 2);
+    }
+
+    &::marker {
+      content: $i-check;
+      font-family: '#{$font-family-ico}';
+    }
+  }
+}
+
+
+/*------------------------------------*\
+  Media querys
+\*------------------------------------*/
+
+@include media-query(medium) {
+  .s-richtext {
+    h2 {
+      @include px-to-rem(font-size, 32px);
+    };
+  }
+}

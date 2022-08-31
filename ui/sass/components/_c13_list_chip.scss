@@ -1,0 +1,17 @@
+.c-list-chip {
+  @include flexbox;
+  @include flex-wrap(wrap);
+  @include align-items(center);
+  @include px-to-rem(column-gap, $gutter * 2);
+  @include px-to-rem(row-gap, $gutter * 2);
+}
+
+.c-list-chip__chip {
+  width: max-content;
+  min-width: max-content;
+  max-width: max-content;
+  @include px-to-rem(border-width, 2px);
+  @include px-to-rem(padding, $gutter * 2 $gutter * 3);
+  font-weight: $f-medium;
+  line-height: 1;
+}

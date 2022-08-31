@@ -41,6 +41,9 @@ h6 {
   margin-left: auto;
   text-align: center;
 }
+.o-hgroup_without-pb {
+  padding-bottom: 0
+}
 
 .o-hgroup__space {
   @include px-to-rem(margin-bottom, $gutter * 2);

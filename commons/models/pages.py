@@ -271,7 +271,7 @@ class CourseDetailPage(BasePage):
         null=True,
         blank=True,
     )
-    date_time_event = models.DateField(
+    date_time_event = models.DateTimeField(
         verbose_name=_("Fecha y hora del evento"),
         null=True,
         blank=True,

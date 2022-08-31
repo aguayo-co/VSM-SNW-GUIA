@@ -82,12 +82,11 @@ $c-primary-90: #87D2EE;
 $c-secondary-50: #FF5D00;
 
 
-
-//-*------------------------------------*
-//-    On
-//-    Color de textos, encima de las superficies:
-//-    Tipografía y colores de iconografía.
-//-*------------------------------------*
+// -*------------------------------------*
+// -    On
+// -    Color de textos, encima de las superficies:
+// -    Tipografía y colores de iconografía.
+// -*------------------------------------*
 
 /**
   * $c-on-primary
@@ -95,15 +94,15 @@ $c-secondary-50: #FF5D00;
   * @section On
 */
 
-$c-on-primary: #404040;
+$c-on-primary: #424242;
 
 
-//-*------------------------------------*
-//-    Background - Surface
-//-    Aparece detrás del contenido. 
-//-    Fondos, bordes
-//-    ej: $c-bg-surface: #fff;
-//-*------------------------------------*
+// -*------------------------------------*
+// -    Background - Surface
+// -    Aparece detrás del contenido.
+// -    Fondos, bordes
+// -    ej: $c-bg-surface: #fff;
+// -*------------------------------------*
 
 /**
  * $c-surface-grey-10
@@ -111,7 +110,7 @@ $c-on-primary: #404040;
  * @section Surface
  */
 
- $c-surface-grey-10: #FAFAFA;
+$c-surface-grey-10: #FAFAFA;
 
 /**
  * $c-surface-grey-20
@@ -119,7 +118,7 @@ $c-on-primary: #404040;
  * @section Surface
  */
 
- $c-surface-grey-20: #ECECEC;
+$c-surface-grey-20: #ECECEC;
 
 /**
  * $c-surface-grey-50
@@ -127,7 +126,7 @@ $c-on-primary: #404040;
  * @section Surface
  */
 
- $c-surface-grey-50: #191C1F;
+$c-surface-grey-50: #191C1F;
 
 /**
  * $c-surface-navy-blue-10
@@ -135,7 +134,7 @@ $c-on-primary: #404040;
  * @section Surface
  */
 
- $c-surface-navy-blue-10: #ECFAFF;
+$c-surface-navy-blue-10: #ECFAFF;
 
 /**
  * $c-surface-navy-blue-20
@@ -143,7 +142,7 @@ $c-on-primary: #404040;
  * @section Surface
  */
 
- $c-surface-navy-blue-20: #D1F3FF;
+$c-surface-navy-blue-20: #D1F3FF;
 
 
 /**
@@ -152,15 +151,15 @@ $c-on-primary: #404040;
  * @section Surface
  */
 
- $c-surface-navy-blue-10: #ECFAFF;
- 
- /**
+$c-surface-navy-blue-10: #ECFAFF;
+
+/**
  * $c-dark
  * @color
  * @section Surface
  */
 
- $c-dark: #000;
+$c-dark: #000;
 
 // -*------------------------------------*
 // -    Default & Brand
@@ -172,5 +171,7 @@ $c-default-text: $c-on-primary;
 $c-default-title: $c-on-primary;
 
 $c-brand-primary: $c-primary-50;
+
+$c-default-link: $c-brand-primary;
 
 $c-brand-secondary: $c-secondary-50;
