@@ -4,7 +4,8 @@
   Type: Component
 \*------------------------------------*/
 .c-featured-content {
-  flex-wrap: wrap;
+  @include flex-wrap(wrap);
+  @include px-to-rem(column-gap, $gutter * 5);
 }
 
 .c-featured-content__header {

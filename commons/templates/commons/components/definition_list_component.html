@@ -9,7 +9,7 @@
       <div class="o-section o-canvas">
 
         {# Cabecera sección #}
-        <header class="o-hgroup o-hgroup_center">
+        <header class="o-hgroup o-hgroup_center o-hgroup_without-pb">
 
           {% if self.subtitle %}
             <h2 class="o-kicker">{{ self.subtitle }}</h2>
@@ -43,7 +43,14 @@
             >
               {{ definition_list.title }}
             </dt>
-            <dd class="c-definition-list__description">{{ definition_list.content }}</dd>
+            <dd
+              class="
+                c-definition-list__description
+                s-richtext s-richtext_list-check
+              "
+            >
+              {{ definition_list.content }}
+            </dd>
           {% endfor %}
         </dl>
 

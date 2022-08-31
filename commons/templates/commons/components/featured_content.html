@@ -14,8 +14,11 @@
           <h3 class="o-sidebar__subtitle o-sidebar__space-bottom">{{ self.subtitle }}</h3>
           <h2 class="o-sidebar__title">{{ self.title }}</h2>
 
-          {# TODO @andres.tafur poner estilos del texto enriquecido cuando este definido #}
-          <div class="o-sidebar__deck s-richtext_basic">{{ self.description|richtext }}</div>
+          <div
+            class="o-sidebar__deck s-richtext s-richtext_inline"
+          >
+            {{ self.description|richtext }}
+          </div>
 
         </header>
 

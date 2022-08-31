@@ -67,14 +67,9 @@
   line-height: 1;
 }
 
-/**
-* TODO @Andres Eliminar estos estilos cuando el texto enriquecido este definido
-*/
 .c-footer__copyright {
   p {
-    font-weight: $f-light;
     @include px-to-rem(font-size, 14px);
-    text-align: center;
   }
 }
 
