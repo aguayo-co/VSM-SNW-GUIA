@@ -1,0 +1,109 @@
+.c-agenda {
+  @include px-to-rem(padding-bottom, $gutter * 3);
+
+  &:not( &:last-of-type) {
+    @include px-to-rem(margin-bottom, $gutter * 3);
+    border-bottom: 1px solid $c-surface-grey-20;
+  }
+}
+
+.c-agenda__head {
+  @include px-to-rem(max-width, 500px);
+}
+
+.c-agenda__link {
+  font-weight: $f-light;
+}
+
+.c-agenda__title {
+  @include px-to-rem(margin, $gutter 0);
+}
+
+.c-agenda__timer {
+  display: inline-block;
+  @include px-to-rem(margin-right, $gutter * 3);
+  font-weight: $f-medium;
+}
+
+.c-agenda__footer {
+  @include flexbox;
+  @include justify-content(flex-end);
+  @include align-items(center);
+  @include px-to-rem(margin-top, $gutter * 3);
+}
+
+@include media-query(medium-max) {
+  .c-agenda {
+    @include px-to-rem(max-width, 450px);
+    margin: 0 auto;
+  }
+
+  .c-agenda__date,
+  .c-agenda__title {
+    @include px-to-rem(font-size, 20px);
+  }
+
+  .c-agenda__title {
+    @include px-to-rem(padding-right, $gutter * 5);
+  }
+
+  .c-agenda__date {
+    display: block;
+    @include px-to-rem(margin-bottom, $gutter * 4);
+    font-weight: $f-medium;
+  }
+
+  .c-agenda__text {
+    font-weight: $f-light;
+  }
+
+  .c-agenda__btn {
+    flex: 1 auto;
+    min-width: auto;
+  }
+
+  .c-agenda__timer {
+    flex: 1 1 80%;
+  }
+}
+
+@include media-query(medium) {
+  .c-agenda,
+  .c-agenda__header {
+    @include flexbox;
+    @include align-items(center);
+  }
+
+  .c-agenda {
+    @include justify-content(space-between);
+  }
+
+  .c-agenda__header {
+    @include px-to-rem(column-gap, $gutter * 3);
+  }
+
+  .c-agenda__date {
+    @include px-to-rem(min-width, 160px);
+    @include px-to-rem(border-radius, $gutter);
+    border: 1px solid;
+    @include px-to-rem(padding, $gutter * 2 0);
+    font-weight: $f-light;
+    text-align: center;
+  }
+
+  .c-agenda__date-day {
+    display: block;
+    @include px-to-rem(font-size, $gutter * 4);
+    font-weight: $f-medium;
+    line-height: 1;
+  }
+
+  .c-agenda__title {
+    @include px-to-rem(font-size, $gutter * 4);
+  }
+
+  .c-agenda__footer {
+    @include flex-wrap(wrap);
+  }
+
+}

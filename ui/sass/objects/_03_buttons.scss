@@ -98,6 +98,11 @@ button {
   }
 }
 
+.o-btn_outline-grey {
+  border-color: $c-default-text;
+  color: $c-default-text;
+}
+
 .o-btn_small {
   @include px-to-rem(min-width, 210px);
   @include px-to-rem(padding, $gutter * 2);
