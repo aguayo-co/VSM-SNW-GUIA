@@ -2,7 +2,7 @@ from collections import defaultdict
 
 from django import template
 
-from commons.models import DetailProductPage, Serie
+from commons.models import DetailProductPage, Serie, CatalogPage
 
 register = template.Library()
 
@@ -21,4 +21,13 @@ def get_catalog_index(context):
 @register.simple_tag(takes_context=True)
 def get_series(context):
     context.update({"series": Serie.objects.iterator()})
+    return ""
+
+
+@register.simple_tag(takes_context=True)
+def get_catalog_page(context):
+    catalog_page = None
+    if CatalogPage.objects.live().exists():
+        catalog_page = CatalogPage.objects.live()
+    context.update({"catalog_page": catalog_page})
     return ""
