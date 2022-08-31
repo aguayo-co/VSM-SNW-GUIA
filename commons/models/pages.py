@@ -23,6 +23,7 @@ from commons.models.fields import (
     DetailProductStreamField,
     CourseDetailStreamField,
 )
+from commons.models.snippets import Degree
 
 
 items_per_page = 10
@@ -594,6 +595,12 @@ class DetailProductPage(BasePage):
     class Meta:
         verbose_name = _("Detail Product")
         verbose_name_plural = _("Detail Product")
+
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+        context["related_pages"] = DetailProductPage.objects.filter(subject=self.subject).exclude(id=self.id).live()
+        context["related_degrees"] = Degree.objects.exclude(name=self.grade)
+        return context
 
 
 class DetailArticlePage(BasePage):

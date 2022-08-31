@@ -1,5 +1,33 @@
 {% load i18n %}
 {% load inspector %}
+{% load catalog_tags %}
+{% get_catalog_page %}
+
+{{ catalog_page|inspect }}
+
+{% for page in catalog_page %}
+
+{{ page.url }}
+
+<br>
+
+{% endfor %}
+
+{{ catalog_page|inspect }}
+
+{% for page in related_pages %}
+
+{{ page }}
+
+{% endfor %}
+
+{{ related_degrees|inspect }}
+
+{% for degree in related_degrees %}
+
+    {{ degree }}
+
+{% endfor %}
 
 {% language self.idiom %}
     <p>{% trans "ejemplo" %}</p>
