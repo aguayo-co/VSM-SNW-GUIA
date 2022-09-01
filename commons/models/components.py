@@ -469,3 +469,29 @@ class ChipListComponent(StructBlock):
         icon = "list-ul"
         label = _("Listado de chips")
         template = "commons/components/chip_list_component.html"
+
+
+class ProductsListComponent(StructBlock):
+    """
+    A block that displays a products list.
+    """
+
+    title = CharBlock(required=True, label=_("Título"))
+    primary_action_text = CharBlock(required=False, label=_("Texto acción primaria"))
+    primary_action_url = PageChooserBlock(
+        required=False, label=_("URL acción primaria")
+    )
+    secondary_action_text = CharBlock(required=False, label=_("Texto acción secundaria"))
+    secondary_action_url = PageChooserBlock(
+        required=False, label=_("URL acción secundaria")
+    )
+    products_list = ListBlock(
+        PageChooserBlock(required=True, label=_("Enlace a producto")),
+        required=False,
+        label=_("Listado de productos"),
+    )
+
+    class Meta:
+        icon = "list-ul"
+        label = _("Listado de productos")
+        template = "commons/components/products_list_component.html"

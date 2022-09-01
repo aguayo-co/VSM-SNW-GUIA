@@ -152,6 +152,7 @@ class BlogPage(BasePage):
 
     subpage_types = [
         "commons.CategoryHomePage",
+        "commons.ThematicHomePage",
     ]
 
     class Meta:
@@ -360,6 +361,32 @@ class CategoryHomePage(BasePage):
 
         context["sub_pages"] = frequent_questions
 
+        return context
+
+
+class ThematicHomePage(BasePage):
+    """Model for the thematic commons page."""
+
+    CONTENT_FIELD = "_content_thematic_homepage"
+
+    _content_thematic_homepage = StreamField(
+        [], verbose_name=("Contenido"), null=True, blank=True
+    )
+
+    content_panels = BasePage.replace_content_field(CONTENT_FIELD)
+
+    subpage_types = [
+        "commons.CourseDetailPage",
+    ]
+
+    class Meta:
+        verbose_name = _("Thematic Home")
+        verbose_name_plural = _("Thematic Home")
+
+    def get_context(self, request, *args, **kwargs):
+        """Adding custom stuff to our context."""
+        context = super().get_context(request, *args, **kwargs)
+        context["sub_pages"] = CourseDetailPage.objects.child_of(self).live()
         return context
 
 
