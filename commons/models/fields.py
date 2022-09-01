@@ -20,6 +20,7 @@ from commons.models.components import (
     FreeContentComponent,
     AgendaComponent,
     ChipListComponent,
+    ProductsListComponent,
 )
 from wagtail.fields import StreamField
 
@@ -107,6 +108,7 @@ class FullStreamField(StreamField):
         ("free_content_component", FreeContentComponent()),
         ("agenda_component", AgendaComponent()),
         ("chip_list_component", ChipListComponent()),
+        ("products_list_component", ProductsListComponent()),
     ]
 
     def __init__(self, **kwargs):
@@ -131,6 +133,7 @@ class HomeStreamField(FullStreamField):
         ("free_content_component", FreeContentComponent()),
         ("agenda_component", AgendaComponent()),
         ("chip_list_component", ChipListComponent()),
+        ("products_list_component", ProductsListComponent()),
     ]
 
 
