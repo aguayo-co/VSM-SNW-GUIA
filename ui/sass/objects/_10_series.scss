@@ -1,0 +1,29 @@
+.o-series-list {
+  @include flexbox;
+  @include align-items(center);
+  @include px-to-rem(column-gap, $gutter * 8);
+  list-style: none;
+  overflow: auto;
+}
+
+.o-series-list__item {
+  @include px-to-rem(padding, $gutter * 2);
+  border: 1px solid $c-brand-primary;
+  border-radius: 50%;
+  @include px-to-rem(max-width, 100px);
+  @include px-to-rem(max-height, 100px);
+  @include px-to-rem(min-width, 100px);
+  @include px-to-rem(min-height, 100px);
+  cursor: pointer;
+  transition: $transition-ease-in-out-2s;
+
+  &:hover {
+    background-color: rgba($c-brand-primary, 0.3);
+  }
+}
+
+@include media-query(medium) {
+  .o-series-list {
+    @include justify-content(center);
+  }
+}

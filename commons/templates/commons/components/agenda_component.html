@@ -20,44 +20,6 @@
 
         <article class="c-agenda js-counter-target">
 
-          <header class="c-agenda__header">
-
-            {% if  course.specific.date_time_event %}
-              <time
-                datetime="{{ course.specific.date_time_event|date:"m d Y H:i" }}"
-                class="c-agenda__date js-counter-datetime"
-              >
-                {# Dia #}
-                <span class="c-agenda__date-day">{{ course.specific.date_time_event|date:"d"}}</span>
-
-                {# Mes y Año #}
-                {{ course.specific.date_time_event|date:"F"}}, 
-                {{ course.specific.date_time_event|date:"o"}} 
-              </time>
-            {% endif %}
-
-            {# Cabecera #}
-            <div class="c-agenda__head">
-
-              {# Categoria papa #}
-              <a
-                href="{% pageurl course.get_parent %}"
-                title="{% trans 'Ir a' %} {{ course.get_parent.title }}"
-                class="o-link u-inherit-color"
-              >
-                {{ course.get_parent.title }}
-              </a>
-
-              <h4 class="c-agenda__title">{{ course.title }}</h4>
-
-              {% if course.specific.responsible %}
-                <p class="c-agenda__text o-text u-inherit-color">{{ course.specific.responsible }}</p>
-              {% endif %}
-
-            </div>
-
-          </header>
-
           {# Call to actions #}
           <footer class="c-agenda__footer">
 
@@ -98,6 +60,44 @@
             {% endif %}
 
           </footer>
+
+          <header class="c-agenda__header">
+
+            {% if  course.specific.date_time_event %}
+              <time
+                datetime="{{ course.specific.date_time_event|date:"m d Y H:i" }}"
+                class="c-agenda__date js-counter-datetime"
+              >
+                {# Dia #}
+                <span class="c-agenda__date-day">{{ course.specific.date_time_event|date:"d"}}</span>
+
+                {# Mes y Año #}
+                {{ course.specific.date_time_event|date:"F"}}, 
+                {{ course.specific.date_time_event|date:"o"}} 
+              </time>
+            {% endif %}
+
+            {# Cabecera #}
+            <div class="c-agenda__head">
+
+              {# Categoria papa #}
+              <a
+                href="{% pageurl course.get_parent %}"
+                title="{% trans 'Ir a' %} {{ course.get_parent.title }}"
+                class="o-link u-inherit-color"
+              >
+                {{ course.get_parent.title }}
+              </a>
+
+              <h4 class="c-agenda__title">{{ course.title }}</h4>
+
+              {% if course.specific.responsible %}
+                <p class="c-agenda__text o-text u-inherit-color">{{ course.specific.responsible }}</p>
+              {% endif %}
+
+            </div>
+
+          </header>
 
         </article>  
 

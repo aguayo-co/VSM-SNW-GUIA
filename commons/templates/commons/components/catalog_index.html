@@ -1,24 +1,45 @@
-{% load wagtailcore_tags inspector catalog_tags %}
+{% load wagtailcore_tags wagtailimages_tags catalog_tags i18n %}
 
-<section class="o-surface o-surface_navy-blue" id="{{ block_id }}">
-Indice
-{{ self|inspect }}
-{% get_catalog_index %}
-{% for grade, subjects in catalog_items.items %}
-  <ol>
-    <li>{{grade.name}}:
-      <ul>
-      {% for subject in subjects %}
-        <li>  {{ subject.name }}</li>
+{% spaceless %}
+  <section class="o-section" id="{{ block_id }}">
+    <div class="o-canvas">
+
+      {% get_catalog_index %}
+      {% for grade, subjects in catalog_items.items %}
+        <ol>
+          <li>{{grade.name}}:
+            <ul>
+            {% for subject in subjects %}
+              <li>  {{ subject.name }}</li>
+            {% endfor %}
+            </ul>
+          </li>
+        </ol>
       {% endfor %}
-      </ul>
-    </li>
-  </ol>
-{% endfor %}
 
-{% get_series %}
-{% for serie in series %}
-  <li>{{ serie.name }}</li>
-{% endfor %}
+      <header class="o-hgroup o-hgroup_center">
+        <h3 class="o-kicker">
+          {% trans "Filtra el catálogo por las Series Santillana Contigo" %}
+        </h3>
+      </header>
+      
+      {% get_series %}
+      {% get_catalog_page %}
+      <nav class="o-series-list">
 
-</section>
+        {% for serie in series %}
+          <a
+            href="{% pageurl catalog_page %}?serie={{ serie.id }}"
+            title="{% trans 'Filtrar por Serie ' %}{{ serie.name }}"
+          >
+            <figure class="o-series-list__item">
+              {% image serie.image fill-89x90 class="o-img" %}
+            </figure>
+          </a>
+        {% endfor %}
+
+      </nav>
+
+    </div>
+  </section>
+{% endspaceless %}
