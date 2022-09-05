@@ -1,10 +1,15 @@
 .c-agenda {
+  @include flexbox;
   @include px-to-rem(padding-bottom, $gutter * 3);
 
   &:not( &:last-of-type) {
     @include px-to-rem(margin-bottom, $gutter * 3);
     border-bottom: 1px solid $c-surface-grey-20;
   }
+}
+
+.c-agenda__header {
+  transition: $transition-ease-in-out-2s;
 }
 
 .c-agenda__head {
@@ -30,10 +35,15 @@
   @include justify-content(flex-end);
   @include align-items(center);
   @include px-to-rem(margin-top, $gutter * 3);
+
+  &:hover + .c-agenda__header {
+    color: $c-brand-primary;
+  }
 }
 
 @include media-query(medium-max) {
   .c-agenda {
+    @include flex-direction(column-reverse);
     @include px-to-rem(max-width, 450px);
     margin: 0 auto;
   }
@@ -68,7 +78,10 @@
 }
 
 @include media-query(medium) {
-  .c-agenda,
+  .c-agenda {
+    @include flex-direction(row-reverse);
+  }
+
   .c-agenda__header {
     @include flexbox;
     @include align-items(center);
