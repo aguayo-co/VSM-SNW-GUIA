@@ -1,6 +1,7 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db import models
 from django.db.models import ForeignKey, TextField, CharField, URLField
+from django.http import HttpResponsePermanentRedirect
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 from wagtail.admin.panels import TabbedInterface, ObjectList, StreamFieldPanel
@@ -625,7 +626,11 @@ class DetailProductPage(BasePage):
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
-        context["related_pages"] = DetailProductPage.objects.filter(subject=self.subject).exclude(id=self.id).live()
+        context["related_pages"] = (
+            DetailProductPage.objects.filter(subject=self.subject)
+            .exclude(id=self.id)
+            .live()
+        )
         context["related_degrees"] = Degree.objects.exclude(name=self.grade)
         return context
 

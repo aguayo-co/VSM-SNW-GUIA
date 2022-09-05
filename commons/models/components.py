@@ -481,7 +481,9 @@ class ProductsListComponent(StructBlock):
     primary_action_url = PageChooserBlock(
         required=False, label=_("URL acción primaria")
     )
-    secondary_action_text = CharBlock(required=False, label=_("Texto acción secundaria"))
+    secondary_action_text = CharBlock(
+        required=False, label=_("Texto acción secundaria")
+    )
     secondary_action_url = PageChooserBlock(
         required=False, label=_("URL acción secundaria")
     )

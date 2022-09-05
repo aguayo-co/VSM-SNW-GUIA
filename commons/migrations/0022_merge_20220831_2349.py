@@ -6,9 +6,8 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('commons', '0021_alter_coursedetailpage_date_time_event'),
-        ('commons', '0021_thematichomepage'),
+        ("commons", "0021_alter_coursedetailpage_date_time_event"),
+        ("commons", "0021_thematichomepage"),
     ]
 
-    operations = [
-    ]
+    operations = []

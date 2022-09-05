@@ -26,8 +26,5 @@ def get_series(context):
 
 @register.simple_tag(takes_context=True)
 def get_catalog_page(context):
-    catalog_page = None
-    if CatalogPage.objects.live().exists():
-        catalog_page = CatalogPage.objects.first()
-    context.update({"catalog_page": catalog_page})
+    context.update({"catalog_page": CatalogPage.objects.live().first()})
     return ""
