@@ -31,7 +31,5 @@ RUN apt-get update && apt-get install --no-install-recommends -y git curl postgr
 
 # Install Dependencies
 RUN pip install -r requirements.txt
-RUN python manage.py migrate --noinput
-RUN python manage.py compilescss --use-storage
-RUN python manage.py collectstatic --no-input
-CMD ["python", "-Wd", "manage.py", "runserver", "--nostatic", "0.0.0.0:8000"]
+RUN chmod +x /srv/app/run_dev.sh
+CMD ["/bin/bash","-c","/srv/app/run_dev.sh"]

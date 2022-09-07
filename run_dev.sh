@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 python manage.py migrate --noinput
 python manage.py compilescss --use-storage
