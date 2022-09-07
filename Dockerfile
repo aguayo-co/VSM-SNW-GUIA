@@ -14,6 +14,8 @@ RUN npm run build
 FROM python:3.8.13-slim-bullseye as python-build
 
 ARG DATABASE_URL=${DATABASE_URL}
+ARG SECRET_KEY=${SECRET_KEY}
+ENV SECRET_KEY=${SECRET_KEY}
 ENV DATABASE_URL=${DATABASE_URL}
 
 # Copy app files
