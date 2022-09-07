@@ -33,7 +33,7 @@ class SocialProofComponent(StructBlock):
                     [
                         (
                             "icon",
-                            ImageOrSVGBlock("icon", required=True, label=_("Icono")),
+                            ImageOrSVGBlock("icon", required=False, label=_("Icono")),
                         ),
                         ("value", CharBlock(required=False, label=_("Valor"))),
                         (
