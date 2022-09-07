@@ -1,5 +1,6 @@
 {% load static wagtailcore_tags wagtailuserbar menu_tags %}
 {% load snw_sass %}
+{% load wtm_tags %}
 {% load fixed_django_vite %}
 
 
@@ -40,13 +41,10 @@
 
     {% block content %}{% endblock %}
 
-    {# TODO @andres.tafur evaluemos si esto es buena idea.#}
-    {% include "wagtail_tag_manager/templatetags/cookie_bar.html" %}
-
     {% flat_menu 'footer_menu' add_sub_menus_inline=True %}
 
     {# Cookies #}
-    {% include "includes/layout/cookies.html" %}
+    {% wtm_cookie_bar %}
 
     {# Global javascript #}
     {% vite_asset 'js/main.js' %}

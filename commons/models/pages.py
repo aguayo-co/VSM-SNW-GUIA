@@ -24,6 +24,8 @@ from commons.models.fields import (
     DetailProductStreamField,
     CourseDetailStreamField,
 )
+from wagtail_svg_images.models import ImageOrSvgField
+from wagtail_svg_images.panels import ImageOrSVGPanel
 from commons.models.snippets import Degree
 
 
@@ -37,7 +39,7 @@ class BasePage(Page):
 
     _content_base = FullStreamField(verbose_name=("Contenido"), null=True, blank=True)
 
-    search_image = models.ForeignKey(
+    search_image = ImageOrSvgField(
         "wagtailimages.Image",
         null=True,
         blank=True,
@@ -57,7 +59,7 @@ class BasePage(Page):
             [
                 FieldPanel("seo_title"),
                 FieldPanel("search_description"),
-                FieldPanel("search_image"),
+                ImageOrSVGPanel("search_image"),
             ],
             heading=_("SEO"),
         ),
@@ -418,7 +420,7 @@ class DetailProductPage(BasePage):
         null=True,
         blank=True,
     )
-    image = models.ForeignKey(
+    image = ImageOrSvgField(
         "wagtailimages.Image",
         null=True,
         blank=True,
@@ -576,7 +578,7 @@ class DetailProductPage(BasePage):
         MultiFieldPanel(
             [
                 FieldPanel("short_description"),
-                FieldPanel("image"),
+                ImageOrSVGPanel("image"),
                 SnippetChooserPanel("grade"),
                 SnippetChooserPanel("subject"),
                 SnippetChooserPanel("serie"),

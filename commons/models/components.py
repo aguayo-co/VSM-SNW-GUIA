@@ -14,6 +14,8 @@ from wagtail.images.blocks import ImageChooserBlock
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.core import blocks
 
+from wagtail_svg_images.blocks import ImageOrSVGBlock
+
 
 class SocialProofComponent(StructBlock):
     """
@@ -29,7 +31,10 @@ class SocialProofComponent(StructBlock):
                 "agregar_cifras",
                 StructBlock(
                     [
-                        ("icon", ImageChooserBlock(required=True, label=_("Icono"))),
+                        (
+                            "icon",
+                            ImageOrSVGBlock("icon", required=True, label=_("Icono")),
+                        ),
                         ("value", CharBlock(required=False, label=_("Valor"))),
                         (
                             "description",
@@ -110,7 +115,10 @@ class FeaturedContentComponent(StructBlock):
                 "featured_content",
                 StructBlock(
                     [
-                        ("image", ImageChooserBlock(required=True, label=_("Imagen"))),
+                        (
+                            "image",
+                            ImageOrSVGBlock("image", required=True, label=_("Imagen")),
+                        ),
                         (
                             "description",
                             CharBlock(required=False, label=_("Descripción")),
@@ -144,7 +152,7 @@ class FeaturedContentComponent(StructBlock):
 class TestimonialBlock(StructBlock):
     """A single testimonial block."""
 
-    avatar = ImageChooserBlock(required=False, label=_("Imagen"))
+    avatar = ImageOrSVGBlock("avatar", required=False, label=_("Imagen"))
     name_lastname = CharBlock(required=True, label=_("Nombre y apellido"))
     profession = CharBlock(required=False, label=_("Profesión"))
     review = TextBlock(required=True, label=_("Reseña"))
@@ -215,7 +223,7 @@ class SlideImageComponent(StructBlock):
     title = CharBlock(required=True, label=_("Título"))
     subtitle = CharBlock(required=False, label=_("Subtítulo"))
     description = RichTextBlock(required=True, label=_("Descripción"), editor="list")
-    image = ImageChooserBlock(required=True, label=_("Imagen"))
+    image = ImageOrSVGBlock("image", required=True, label=_("Imagen"))
     primary_action_text = CharBlock(required=False, label=_("Texto acción primaria"))
     primary_action_url = PageChooserBlock(
         required=False, label=_("URL acción primaria")
@@ -226,8 +234,8 @@ class SlideImageComponent(StructBlock):
     secondary_action_url = PageChooserBlock(
         required=False, label=_("URL acción secundaria")
     )
-    background_illustration = ImageChooserBlock(
-        required=False, label=_("Ilustración de fondo")
+    background_illustration = ImageOrSVGBlock(
+        "background_illustration", required=False, label=_("Ilustración de fondo")
     )
 
     class Meta:
@@ -245,7 +253,9 @@ class SlideImageBackgroundComponent(StructBlock):
     title = CharBlock(required=True, label=_("Título"))
     subtitle = CharBlock(required=False, label=_("Subtítulo"))
     description = RichTextBlock(required=True, label=_("Descripción"), editor="list")
-    background_image = ImageChooserBlock(required=True, label=_("Imagen"))
+    background_image = ImageOrSVGBlock(
+        "background_image", required=True, label=_("Imagen")
+    )
     primary_action_text = CharBlock(required=False, label=_("Texto acción primaria"))
     primary_action_url = PageChooserBlock(
         required=False, label=_("URL acción primaria")
@@ -283,8 +293,8 @@ class SlideVideoComponent(StructBlock):
     secondary_action_url = PageChooserBlock(
         required=False, label=_("URL acción secundaria")
     )
-    background_illustration = ImageChooserBlock(
-        required=False, label=_("Ilustración de fondo")
+    background_illustration = ImageOrSVGBlock(
+        "background_illustration", required=False, label=_("Ilustración de fondo")
     )
 
     class Meta:
@@ -403,7 +413,10 @@ class FreeContentComponent(StructBlock):
                 "image",
                 StructBlock(
                     [
-                        ("image", ImageChooserBlock(required=True, label=_("Imagen"))),
+                        (
+                            "image",
+                            ImageOrSVGBlock("image", required=True, label=_("Imagen")),
+                        ),
                         (
                             "description",
                             CharBlock(required=False, label=_("Descripción")),

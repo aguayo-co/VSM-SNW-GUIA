@@ -1,5 +1,6 @@
-{% load wagtailimages_tags %}
+{% load svg_tags %}
 {% load wagtailcore_tags %}
+{% load inspector %}
 
 
 <section class="o-surface o-surface_navy-blue" id="{{ block_id }}">
@@ -16,7 +17,7 @@
         <ul class="c-social-proof__list">
             {% for item in self.add_figures %}
                 <li class="c-social-proof__item">
-                    {% image item.value.icon fill-150x125-c100 class="c-social-proof__img" %}
+                    {% svg-image item.value.icon fill-150x125-c100 class="c-social-proof__img" %}
                     <p class="c-social-proof__value">{{ item.value.value }}</p>
                     <p class="c-social-proof__text">{{ item.value.description }}</p>
                 </li>

@@ -1,6 +1,6 @@
 {% extends "extend/components/extend_hero_slider.html" %}
 {% load inspector %}
-{% load wagtailimages_tags %}
+{% load local_svg %}
 {% load wagtailcore_tags %}
 
 {% block modifires-swiper-slide %} l-slide_margin{% endblock modifires-swiper-slide %}
@@ -28,7 +28,7 @@
 {% block background-slide %}
   <div class="l-slide__bg">
     {% if self.background_illustration %}
-      {% image self.background_illustration fill-310x394-c100 class="l-slide__bg-illustration l-slide__bg-illustration_fit"  %}
+      {% svg-image self.background_illustration fill-310x394-c100 class="l-slide__bg-illustration l-slide__bg-illustration_fit"  %}
     {% else %}
       {% include "includes/hero/svg/girl.html" %}
     {% endif %}

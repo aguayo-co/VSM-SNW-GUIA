@@ -27,7 +27,6 @@ def prev(a_list, current_position):
 
 @register.simple_tag(takes_context=True)
 def get_hero_control_text(context):
-    print(context["self"].hero)
     elements = defaultdict(lambda: {"prev": None, "next": None})
     for index, block in enumerate(context["self"].hero):
         # Prev Element
