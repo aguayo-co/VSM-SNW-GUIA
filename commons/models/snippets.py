@@ -12,10 +12,24 @@ class Degree(models.Model):
 
     name = models.CharField(max_length=255, verbose_name=_("Nombre"))
     number = models.IntegerField(verbose_name=_("Número"))
+    color = models.CharField(
+        max_length=255,
+        verbose_name=_("Color"),
+        choices=(
+            ("turquesa", _("Turquesa")),
+            ("yellow", _("Amarillo")),
+            ("blue", _("Azul")),
+        ),
+        default="turquesa",
+        help_text=_(
+            "Personaliza la apariencia del Grado cambiando el color"
+        )
+    )
 
     panels = [
         FieldPanel("name"),
         FieldPanel("number"),
+        FieldPanel("color")
     ]
 
     def __str__(self):
