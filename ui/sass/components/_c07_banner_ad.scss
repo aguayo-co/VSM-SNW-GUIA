@@ -33,6 +33,12 @@
   .c-banner-ad {
     @include px-to-rem(padding, $gutter * 3 0);
     text-align: center;
+
+    .s-richtext {
+      a {
+        display: block;
+      }
+    }
   }
 
   .c-banner-ad__wrap {
