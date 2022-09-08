@@ -14,7 +14,7 @@ class Degree(models.Model):
     number = models.IntegerField(verbose_name=_("Número"))
     color = models.CharField(
         max_length=255,
-        verbose_name=_("Color del Grado"),
+        verbose_name=_("Color"),
         choices=(
             ("turquesa", _("Turquesa")),
             ("yellow", _("Amarillo")),
