@@ -1,0 +1,13 @@
+{% load inspector %}
+{% load navigation_index %}
+{% get_index %}
+
+{% for element in index %}
+
+    <br>
+    {{ element|inspect }}
+    <br>
+
+    <a href="#{{ element.id }}">link to component: {{ element.value.title }}</a>
+
+{% endfor %}

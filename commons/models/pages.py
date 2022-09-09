@@ -23,6 +23,8 @@ from commons.models.fields import (
     HeroStreamField,
     DetailProductStreamField,
     CourseDetailStreamField,
+    CategoryHomePageStreamField,
+    ThematicHomePageStreamField,
 )
 from wagtail_svg_images.models import ImageOrSvgField
 from wagtail_svg_images.panels import ImageOrSVGPanel
@@ -128,8 +130,8 @@ class HomePage(BasePage):
 
     content_panels = [
         FieldPanel("title"),
-        FieldPanel(CONTENT_FIELD),
         FieldPanel("hero"),
+        FieldPanel(CONTENT_FIELD),
     ]
     subpage_types = [
         "commons.BlogPage",
@@ -294,8 +296,8 @@ class CourseDetailPage(BasePage):
 
     content_panels = [
         FieldPanel("title"),
-        FieldPanel(CONTENT_FIELD),
         FieldPanel("hero"),
+        FieldPanel(CONTENT_FIELD),
     ]
     promote_panels = BasePage.promote_panels
     settings_panels = BasePage.settings_panels
@@ -330,9 +332,7 @@ class CategoryHomePage(BasePage):
 
     CONTENT_FIELD = "_content_category_homepage"
 
-    _content_category_homepage = StreamField(
-        [], verbose_name=("Contenido"), null=True, blank=True
-    )
+    _content_category_homepage = CategoryHomePageStreamField(verbose_name=_("Contenido"), null=True, blank=True)
 
     content_panels = BasePage.replace_content_field(CONTENT_FIELD)
 
@@ -372,9 +372,7 @@ class ThematicHomePage(BasePage):
 
     CONTENT_FIELD = "_content_thematic_homepage"
 
-    _content_thematic_homepage = StreamField(
-        [], verbose_name=("Contenido"), null=True, blank=True
-    )
+    _content_thematic_homepage = ThematicHomePageStreamField(verbose_name=("Contenido"), null=True, blank=True)
 
     content_panels = BasePage.replace_content_field(CONTENT_FIELD)
 
