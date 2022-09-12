@@ -427,6 +427,21 @@ class FreeContentComponent(StructBlock):
                     required=False,
                 ),
             ),
+            (
+                "video",
+                StructBlock(
+                    [
+                        ("video", EmbedBlock(required=True, label=_("Video"))),
+                        (
+                            "description",
+                            CharBlock(required=False, label=_("Descripción")),
+                        ),
+                        ("credits", CharBlock(required=False, label=_("Créditos"))),
+                    ],
+                    label=_("Video"),
+                    required=False,
+                ),
+            ),
         ],
         label=_("Contenido"),
         required=True,
@@ -510,3 +525,18 @@ class ProductsListComponent(StructBlock):
         icon = "list-ul"
         label = _("Listado de productos")
         template = "commons/components/products_list_component.html"
+
+
+class NavigationIndexComponent(StructBlock):
+    """
+    A block that displays a navigation index.
+    """
+
+    info = StaticBlock(
+        help_text=_("Este componente muestra un indice de los componentes de esta página que hayan sido promovidos."),
+    )
+
+    class Meta:
+        icon = "list-ul"
+        label = _("Índice de navegación")
+        template = "commons/components/navigation_index_component.html"
