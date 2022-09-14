@@ -25,6 +25,7 @@ from commons.models.fields import (
     CourseDetailStreamField,
     CategoryHomePageStreamField,
     ThematicHomePageStreamField,
+    DetailProductIntroStreamField,
 )
 from wagtail_svg_images.models import ImageOrSvgField
 from wagtail_svg_images.panels import ImageOrSVGPanel
@@ -332,7 +333,9 @@ class CategoryHomePage(BasePage):
 
     CONTENT_FIELD = "_content_category_homepage"
 
-    _content_category_homepage = CategoryHomePageStreamField(verbose_name=_("Contenido"), null=True, blank=True)
+    _content_category_homepage = CategoryHomePageStreamField(
+        verbose_name=_("Contenido"), null=True, blank=True
+    )
 
     content_panels = BasePage.replace_content_field(CONTENT_FIELD)
 
@@ -372,7 +375,9 @@ class ThematicHomePage(BasePage):
 
     CONTENT_FIELD = "_content_thematic_homepage"
 
-    _content_thematic_homepage = ThematicHomePageStreamField(verbose_name=("Contenido"), null=True, blank=True)
+    _content_thematic_homepage = ThematicHomePageStreamField(
+        verbose_name=("Contenido"), null=True, blank=True
+    )
 
     content_panels = BasePage.replace_content_field(CONTENT_FIELD)
 
@@ -402,6 +407,9 @@ class DetailProductPage(BasePage):
     CONTENT_FIELD = "_content_detail_product"
     CONTENT_FIELD_THEMATIC = "_thematic_content"
 
+    intro_detail_product = DetailProductIntroStreamField(
+        verbose_name=_("Características y Beneficios"), null=True, blank=True
+    )
     _content_detail_product = DetailProductStreamField(
         verbose_name=_("Contenido"), null=True, blank=True
     )
@@ -569,7 +577,11 @@ class DetailProductPage(BasePage):
         blank=True,
     )
 
-    content_panels = BasePage.replace_content_field(CONTENT_FIELD)
+    content_panels = (
+        [BasePage.replace_content_field(CONTENT_FIELD)[0]]
+        + [StreamFieldPanel("intro_detail_product")]
+        + [BasePage.replace_content_field(CONTENT_FIELD)[-1]]
+    )
     promote_panels = BasePage.promote_panels
     settings_panels = BasePage.settings_panels
     product_property = [
