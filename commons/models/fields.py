@@ -158,6 +158,12 @@ class DetailProductStreamField(FullStreamField):
     ]
 
 
+class DetailProductIntroStreamField(FullStreamField):
+    block_types = [
+        ("free_content", FreeContentComponent()),
+    ]
+
+
 class CourseDetailStreamField(FullStreamField):
     block_types = [
         ("banner_ad_component", BannerAdComponent()),
@@ -171,6 +177,7 @@ class CategoryHomePageStreamField(FullStreamField):
         ("chip_list_component", ChipListComponent()),
         ("links_list_component", PagesLinksListComponent()),
     ]
+
 
 class ThematicHomePageStreamField(FullStreamField):
     block_types = [

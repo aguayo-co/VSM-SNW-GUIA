@@ -533,7 +533,9 @@ class NavigationIndexComponent(StructBlock):
     """
 
     info = StaticBlock(
-        help_text=_("Este componente muestra un indice de los componentes de esta página que hayan sido promovidos."),
+        help_text=_(
+            "Este componente muestra un indice de los componentes de esta página que hayan sido promovidos."
+        ),
     )
 
     class Meta:

@@ -21,16 +21,10 @@ class Degree(models.Model):
             ("blue", _("Azul")),
         ),
         default="turquesa",
-        help_text=_(
-            "Personaliza la apariencia del Grado cambiando el color"
-        )
+        help_text=_("Personaliza la apariencia del Grado cambiando el color"),
     )
 
-    panels = [
-        FieldPanel("name"),
-        FieldPanel("number"),
-        FieldPanel("color")
-    ]
+    panels = [FieldPanel("name"), FieldPanel("number"), FieldPanel("color")]
 
     def __str__(self):
         """A readable representation."""
