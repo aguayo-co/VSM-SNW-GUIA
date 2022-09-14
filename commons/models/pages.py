@@ -30,6 +30,8 @@ from commons.models.fields import (
 )
 from wagtail_svg_images.models import ImageOrSvgField
 from wagtail_svg_images.panels import ImageOrSVGPanel
+
+from commons.models.mixins import FilterMixin
 from commons.models.snippets import Degree
 
 
@@ -188,7 +190,7 @@ class BlogPage(BasePage):
         return context
 
 
-class CatalogPage(BasePage):
+class CatalogPage(FilterMixin, BasePage):
     """Catalog page model."""
 
     CONTENT_FIELD = "_content_catalog"
@@ -212,18 +214,26 @@ class CatalogPage(BasePage):
         page = request.GET.get("page", None)
         order_by = request.GET.get("order_by", None)
 
-        queryset = DetailProductPage.objects.all()
+        # filters
+        filter_names = ["serie", "subject", "grade"]
+        filters = {
+            a_filter: request.GET.get(a_filter, None)
+            for a_filter in filter_names
+            if request.GET.get(a_filter, None) not in ["", None]
+        }
+        queryset = DetailProductPage.objects.filter(**filters)
 
         paginator = Paginator(queryset, items_per_page)
 
         try:
-            frequent_questions = paginator.page(page)
+            object_list = paginator.page(page)
         except PageNotAnInteger:
-            frequent_questions = paginator.page(1)
+            object_list = paginator.page(1)
         except EmptyPage:
-            frequent_questions = paginator.page(paginator.num_pages)
+            object_list = paginator.page(paginator.num_pages)
 
-        context["sub_pages"] = frequent_questions
+        context["object_list"] = object_list
+        context["filter_form"] = self.get_filter_form(*args, request=request, **kwargs)
 
         return context
 

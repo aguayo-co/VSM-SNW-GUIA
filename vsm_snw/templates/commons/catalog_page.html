@@ -7,25 +7,37 @@
 
 {% block content %}
 
-{% for page in sub_pages %}
+  <form method="GET">
+    {{ filter_form }}
+    <input type="submit" value="Filtrar">
+  </form>
+
+{# Ordenado #}
+  <select id="order_by" name="order_by" @click="">
+    {% for option in self.order_by_options %}
+      <option value="{{ option.0 }}">{{ option.1 }}</option>
+    {% endfor %}
+  </select>
+
+  {% for book in object_list %}
 
     <div class="row">
         <div class="col-md-12">
-            <h1>{{ page.title }}</h1>
+            <h1>{{ book.title }}</h1>
         </div>
     </div>
 
-{% endfor %}
+  {% endfor %}
 
 <ul class="pagination">
-  {% if sub_pages.has_previous %}
-    <li><a href="?page={{ sub_pages.previous_page_number }}"><i class="fa fa-angle-left"></i></a></li>
+  {% if object_list.has_previous %}
+    <li><a href="?page={{ object_list.previous_page_number }}"><i class="fa fa-angle-left"></i></a></li>
   {% endif %}
-  {% for page_num in sub_pages.paginator.page_range %}
-    <li {% if page_num == sub_pages.number %}class="active"{% endif %}><a href="?page={{ page_num }}">{{ page_num }}</a></li>
+  {% for page_num in object_list.paginator.page_range %}
+    <li {% if page_num == object_list.number %}class="active"{% endif %}><a href="?page={{ page_num }}">{{ page_num }}</a></li>
   {% endfor %}
-  {% if sub_pages.has_next %}
-    <li><a href="?page={{ sub_pages.next_page_number }}"><i class="fa fa-angle-right"></i></a></li>
+  {% if object_list.has_next %}
+    <li><a href="?page={{ object_list.next_page_number }}"><i class="fa fa-angle-right"></i></a></li>
   {% endif %}
 </ul>
 
