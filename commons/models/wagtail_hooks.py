@@ -25,7 +25,7 @@ def hide_cookies_consent(request, menu_items):
 class CustomTagManagerAdminGroup(TagManagerAdminGroup):
     """Customized class for Tag Manager Group."""
 
-    menu_label = _("Tag administrator")
+    menu_label = _("Etiqueta administrator")
     menu_icon = "code"
     menu_order = 640
     items = (
