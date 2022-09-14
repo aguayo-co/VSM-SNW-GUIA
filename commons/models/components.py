@@ -57,7 +57,7 @@ class SocialProofComponent(StructBlock):
 
     class Meta:
         icon = "image"
-        label = _("Social Proof")
+        label = _("Prueba social")
         template = "commons/components/social_proof.html"
 
 
@@ -97,7 +97,7 @@ class CatalogIndexComponent(StructBlock):
 
     class Meta:
         icon = "image"
-        label = _("Catalogo Index")
+        label = _("Índice de Catalogo")
         template = "commons/components/catalog_index.html"
 
 
@@ -145,7 +145,7 @@ class FeaturedContentComponent(StructBlock):
 
     class Meta:
         icon = "image"
-        label = _("Featured Content")
+        label = _("Contenido destacado")
         template = "commons/components/featured_content.html"
 
 
@@ -172,7 +172,7 @@ class TestimonialsComponent(StructBlock):
 
     class Meta:
         icon = "image"
-        label = _("Testimonials")
+        label = _("Testimonios")
         template = "commons/components/testimonials.html"
 
 
@@ -210,7 +210,7 @@ class PagesLinksListComponent(StructBlock):
 
     class Meta:
         icon = "image"
-        label = _("Pages Links List")
+        label = _("Lista de enlaces de páginas")
         template = "commons/components/pages_links_list.html"
 
 
@@ -240,7 +240,7 @@ class SlideImageComponent(StructBlock):
 
     class Meta:
         icon = "image"
-        label = _("Slide Image")
+        label = _("Imagen del slide")
         template = "commons/components/slide_image.html"
 
 
@@ -269,7 +269,7 @@ class SlideImageBackgroundComponent(StructBlock):
 
     class Meta:
         icon = "image"
-        label = _("Slide Image Background")
+        label = _("Imagen de fondo del slide")
         template = "commons/components/slide_image_background.html"
 
 
@@ -299,7 +299,7 @@ class SlideVideoComponent(StructBlock):
 
     class Meta:
         icon = "image"
-        label = _("Slide Video")
+        label = _("Video del slide")
         template = "commons/components/slide_video.html"
 
 
@@ -449,7 +449,7 @@ class FreeContentComponent(StructBlock):
 
     class Meta:
         icon = "image"
-        label = _("Free Content")
+        label = _("Contenido Libre")
         template = "commons/components/free_content_component.html"
 
 

@@ -4,6 +4,7 @@ from django.db.models import ForeignKey, TextField, CharField, URLField
 from django.http import HttpResponsePermanentRedirect
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
+from django.shortcuts import render
 from wagtail.admin.panels import TabbedInterface, ObjectList, StreamFieldPanel
 from wagtail.documents import get_document_model_string
 from wagtail.documents.edit_handlers import DocumentChooserPanel
@@ -239,8 +240,8 @@ class FormPage(BasePage):
     subpage_types = []
 
     class Meta:
-        verbose_name = _("Form")
-        verbose_name_plural = _("Form")
+        verbose_name = _("Formulario")
+        verbose_name_plural = _("Formularios")
 
 
 class ContentPage(BasePage):
@@ -257,8 +258,8 @@ class ContentPage(BasePage):
     subpage_types = []
 
     class Meta:
-        verbose_name = _("Content")
-        verbose_name_plural = _("Content")
+        verbose_name = _("Contenido")
+        verbose_name_plural = _("Contenidos")
 
 
 class CourseDetailPage(BasePage):
@@ -345,8 +346,8 @@ class CategoryHomePage(BasePage):
     ]
 
     class Meta:
-        verbose_name = _("Category Home")
-        verbose_name_plural = _("Category Home")
+        verbose_name = _("Home de categoría")
+        verbose_name_plural = _("Home de categorías")
 
     def get_context(self, request, *args, **kwargs):
         """Adding custom stuff to our context."""
@@ -386,8 +387,8 @@ class ThematicHomePage(BasePage):
     ]
 
     class Meta:
-        verbose_name = _("Thematic Home")
-        verbose_name_plural = _("Thematic Home")
+        verbose_name = _("Home de temática")
+        verbose_name_plural = _("Home de temáticas")
 
     def get_context(self, request, *args, **kwargs):
         """Adding custom stuff to our context."""
@@ -515,7 +516,7 @@ class DetailProductPage(BasePage):
         blank=True,
     )
     student_book = ForeignKey(
-        get_document_model_string(),
+        "commons.ExternalRedirect",
         verbose_name=_("Libro del Estudiante"),
         on_delete=models.SET_NULL,
         related_name="+",
@@ -554,7 +555,7 @@ class DetailProductPage(BasePage):
     )
     reader = ForeignKey(
         get_document_model_string(),
-        verbose_name=_("Reader"),
+        verbose_name=_("Lector"),
         on_delete=models.SET_NULL,
         related_name="+",
         null=True,
@@ -576,6 +577,12 @@ class DetailProductPage(BasePage):
         null=True,
         blank=True,
     )
+    title_description = CharField(
+        verbose_name=_("Título de la descripción"),
+        max_length=255,
+        null=True,
+        blank=True,
+    )
 
     content_panels = (
         [BasePage.replace_content_field(CONTENT_FIELD)[0]]
@@ -588,6 +595,7 @@ class DetailProductPage(BasePage):
         MultiFieldPanel(
             [
                 FieldPanel("short_description"),
+                FieldPanel("title_description"),
                 ImageOrSVGPanel("image"),
                 SnippetChooserPanel("grade"),
                 SnippetChooserPanel("subject"),
@@ -633,8 +641,8 @@ class DetailProductPage(BasePage):
     subpage_types = []
 
     class Meta:
-        verbose_name = _("Detail Product")
-        verbose_name_plural = _("Detail Product")
+        verbose_name = _("Detalle de Producto")
+        verbose_name_plural = _("Detalles de Productos")
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
@@ -683,3 +691,18 @@ class ExternalRedirect(BasePage):
     def serve(self, request, *args, **kwargs):
         """Return a permanent redirect response."""
         return HttpResponsePermanentRedirect(self.redirect_url)
+
+class ThankYouPage(BasePage):
+    """Define una página que redirecciona a una URL externa."""
+
+    content_panels = Page.content_panels
+
+    class Meta(Page.Meta):
+        """Define properties for Page."""
+
+        verbose_name = _("Página de Gracias")
+        verbose_name_plural = _("Página de Gracias")
+
+    def serve(self, request, *args, **kwargs):
+        """Return a permanent redirect response."""
+        return render(request, "commons/thank_you_page.html")
