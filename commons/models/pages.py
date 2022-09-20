@@ -176,7 +176,7 @@ class BlogPage(BasePage):
 
         queryset = CategoryHomePage.objects.all()
 
-        paginator = Paginator(queryset, items_per_page)
+        paginator = Paginator(queryset, 1)
 
         try:
             frequent_questions = paginator.page(page)
@@ -213,7 +213,14 @@ class CatalogPage(FilterMixin, BasePage):
         context = super().get_context(request, *args, **kwargs)
         page = request.GET.get("page", None)
         order_by = request.GET.get("order_by", None)
-
+        # filters
+        filter_names = ["serie", "subject", "grade"]
+        filters = {
+            a_filter: request.GET.get(a_filter, None)
+            for a_filter in filter_names
+            if request.GET.get(a_filter, None) not in ["", None]
+        }
+        queryset = DetailProductPage.objects.filter(**filters)
         # filters
         filter_names = ["serie", "subject", "grade"]
         filters = {
