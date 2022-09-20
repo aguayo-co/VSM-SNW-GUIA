@@ -57,7 +57,7 @@ class SocialProofComponent(StructBlock):
 
     class Meta:
         icon = "image"
-        label = _("Social Proof")
+        label = _("Prueba social")
         template = "commons/components/social_proof.html"
 
 
@@ -97,7 +97,7 @@ class CatalogIndexComponent(StructBlock):
 
     class Meta:
         icon = "image"
-        label = _("Catalogo Index")
+        label = _("Índice de Catalogo")
         template = "commons/components/catalog_index.html"
 
 
@@ -145,7 +145,7 @@ class FeaturedContentComponent(StructBlock):
 
     class Meta:
         icon = "image"
-        label = _("Featured Content")
+        label = _("Contenido destacado")
         template = "commons/components/featured_content.html"
 
 
@@ -172,7 +172,7 @@ class TestimonialsComponent(StructBlock):
 
     class Meta:
         icon = "image"
-        label = _("Testimonials")
+        label = _("Testimonios")
         template = "commons/components/testimonials.html"
 
 
@@ -210,7 +210,7 @@ class PagesLinksListComponent(StructBlock):
 
     class Meta:
         icon = "image"
-        label = _("Pages Links List")
+        label = _("Lista de enlaces de páginas")
         template = "commons/components/pages_links_list.html"
 
 
@@ -240,7 +240,7 @@ class SlideImageComponent(StructBlock):
 
     class Meta:
         icon = "image"
-        label = _("Slide Image")
+        label = _("Imagen del slide")
         template = "commons/components/slide_image.html"
 
 
@@ -269,7 +269,7 @@ class SlideImageBackgroundComponent(StructBlock):
 
     class Meta:
         icon = "image"
-        label = _("Slide Image Background")
+        label = _("Imagen de fondo del slide")
         template = "commons/components/slide_image_background.html"
 
 
@@ -299,7 +299,7 @@ class SlideVideoComponent(StructBlock):
 
     class Meta:
         icon = "image"
-        label = _("Slide Video")
+        label = _("Video del slide")
         template = "commons/components/slide_video.html"
 
 
@@ -427,6 +427,21 @@ class FreeContentComponent(StructBlock):
                     required=False,
                 ),
             ),
+            (
+                "video",
+                StructBlock(
+                    [
+                        ("video", EmbedBlock(required=True, label=_("Video"))),
+                        (
+                            "description",
+                            CharBlock(required=False, label=_("Descripción")),
+                        ),
+                        ("credits", CharBlock(required=False, label=_("Créditos"))),
+                    ],
+                    label=_("Video"),
+                    required=False,
+                ),
+            ),
         ],
         label=_("Contenido"),
         required=True,
@@ -434,7 +449,7 @@ class FreeContentComponent(StructBlock):
 
     class Meta:
         icon = "image"
-        label = _("Free Content")
+        label = _("Contenido Libre")
         template = "commons/components/free_content_component.html"
 
 
@@ -510,3 +525,20 @@ class ProductsListComponent(StructBlock):
         icon = "list-ul"
         label = _("Listado de productos")
         template = "commons/components/products_list_component.html"
+
+
+class NavigationIndexComponent(StructBlock):
+    """
+    A block that displays a navigation index.
+    """
+
+    info = StaticBlock(
+        help_text=_(
+            "Este componente muestra un indice de los componentes de esta página que hayan sido promovidos."
+        ),
+    )
+
+    class Meta:
+        icon = "list-ul"
+        label = _("Índice de navegación")
+        template = "commons/components/navigation_index_component.html"

@@ -92,7 +92,7 @@
 
                       <a
                         class="c-header__link c-header__link_primary"
-                        href="{{ menu_item.href }}?grade={{ degree.id }}"
+                        href="{{ menu_item.href }}?grade={{ degree.pk }}"
                         title="{% trans 'Ir a ' %}{{ degree }}"
                       >
                         {{ degree }}
@@ -104,7 +104,7 @@
                             <li>
                               <a
                                 class="c-header__link c-header__submenu-link"
-                                href="{{ menu_item.href }}?grade={{ degree.id }}&subject={{ subject.id }}"
+                                href="{{ menu_item.href }}?grade={{ degree.pk }}&subject={{ subject.pk }}"
                                 title="{% trans 'Ir a ' %}{{ subject }}"
                               >
                                 {{ subject }}

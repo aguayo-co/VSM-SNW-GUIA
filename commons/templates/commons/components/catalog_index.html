@@ -1,44 +1,128 @@
 {% load wagtailcore_tags svg_tags catalog_tags i18n %}
+{% get_catalog_page %}
+
 
 {% spaceless %}
   <section class="o-section" id="{{ block_id }}">
-    <div class="o-canvas">
+    <div class="o-canvas o-canvas_w1246">
 
-      {% get_catalog_index %}
-      {% for grade, subjects in catalog_items.items %}
-        <ol>
-          <li>{{grade.name}}:
-            <ul>
-            {% for subject in subjects %}
-              <li>  {{ subject.name }}</li>
-            {% endfor %}
+      <div class="c-catalog-index o-sidebar__wrapper">
+
+        {# Cabecera y descripción #}
+        <header class="c-catalog-index__header c-featured-content__header">
+
+          {% if self.subtitle %}
+            <h3
+              class="o-sidebar__subtitle o-sidebar__subtitle_sm o-sidebar__space-bottom"
+            >
+              {{ self.subtitle }}
+            </h3>
+          {% endif %}
+
+          <h2 class="o-sidebar__title">{{ self.title }}</h2>
+
+          {% if self.description %}
+            <div
+              class="o-sidebar__deck s-richtext s-richtext_inline o-sidebar__space-bottom"
+            >
+              {{ self.description|richtext }}
+            </div>
+          {% endif %}
+
+          {% if self.feature_list|length > 0 %}
+            <ul
+              class="c-catalog-index__featured o-sidebar__space-bottom s-richtext s-richtext_list-check"
+            >
+
+              {% for item in self.feature_list %}
+                <li class="{% if item.block_type == "simple_line_text" %}is-not-check{% endif %}">
+                  {{ item.value }} 
+                </li>
+              {% endfor %}
+
             </ul>
-          </li>
-        </ol>
-      {% endfor %}
+          {% endif %}
 
-      <header class="o-hgroup o-hgroup_center">
-        <h3 class="o-kicker">
-          {% trans "Filtra el catálogo por las Series Santillana Contigo" %}
-        </h3>
-      </header>
+        </header>
+
+        <div class="c-catalog-index__content">
+
+          {% if self.caption %}
+            <div class="c-catalog-index__caption s-richtext s-richtext_inline">
+              {{ self.caption|richtext }}
+            </div>
+          {% endif %}
+
+          <ul class="c-catalog-index__grades o-list">
+            {% get_catalog_index %}
+            {% for grade, subjects in catalog_items.items %}
+
+              <li class="c-catalog-index__grade c-catalog-index__grade_{{ grade.color }} o-card u-rounded-16">
+
+                <div class="c-catalog-index__grade-vector">
+                  <p class="c-catalog-index__grade-name">{{ grade.name }}</p>
+                </div>
+
+                <div class="o-card__content o-card__content_space-mb">
+
+                  <nav class="c-catalog-index__subjects">
+                    {% for subject in subjects %}
+                      <a
+                        href="{% pageurl catalog_page %}?degree={{ grade.pk }}&subject={{ subject.pk }}"
+                        class="o-link o-link_secondary"
+                      >
+                        {{ subject.name }}
+                      </a>
+                    {% endfor %}
+                    </nav>
+
+                </div>
+
+              </li>
+                
+            {% endfor %}
+          </ul>
+
+        </div>
+
+      </div>
       
+      {# Bloque de series #}
       {% get_series %}
-      {% get_catalog_page %}
-      <nav class="o-series-list">
+      {% if series %}
+        <header class="o-hgroup o-hgroup_center">
+          <h3 class="o-kicker">
+            {% trans "Filtra el catálogo por las Series Santillana Contigo" %}
+          </h3>
+        </header>
+        
+        <nav class="o-series-list">
 
-        {% for serie in series %}
+          {% for serie in series %}
+            <a
+              href="{% pageurl catalog_page %}?serie={{ serie.id }}"
+              title="{% trans 'Filtrar por Serie ' %}{{ serie.name }}"
+            >
+              <figure class="o-series-list__item">
+                {% svg-image serie.image fill-89x90 class="o-img" %}
+              </figure>
+            </a>
+          {% endfor %}
+
+        </nav>
+      {% endif %}
+
+      {% if self.primary_action_text %}
+        <div class="o-calls-to-actions">
           <a
-            href="{% pageurl catalog_page %}?serie={{ serie.id }}"
-            title="{% trans 'Filtrar por Serie ' %}{{ serie.name }}"
+            href="{% pageurl self.primary_action_url %}"
+            title="Ir a {{ self.primary_action_text }}"
+            class="o-btn"
           >
-            <figure class="o-series-list__item">
-              {% svg-image serie.image fill-89x90 class="o-img" %}
-            </figure>
+            {{ self.primary_action_text }}
           </a>
-        {% endfor %}
-
-      </nav>
+        </div>
+      {% endif %}
 
     </div>
   </section>

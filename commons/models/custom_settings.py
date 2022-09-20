@@ -117,5 +117,5 @@ class SantillanaSettings(BaseSetting):
     class Meta:
         """Meta attributes for Settings."""
 
-        verbose_name = "Configuración Santillana"
-        verbose_name_plural = "Configuraciones Santillana"
+        verbose_name = _("Configuración Santillana")
+        verbose_name_plural = _("Configuraciones Santillana")

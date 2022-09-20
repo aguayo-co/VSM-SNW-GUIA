@@ -4,6 +4,7 @@ from django.db.models import ForeignKey, TextField, CharField, URLField
 from django.http import HttpResponsePermanentRedirect
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
+from django.shortcuts import render
 from wagtail.admin.panels import TabbedInterface, ObjectList, StreamFieldPanel
 from wagtail.documents import get_document_model_string
 from wagtail.documents.edit_handlers import DocumentChooserPanel
@@ -23,6 +24,9 @@ from commons.models.fields import (
     HeroStreamField,
     DetailProductStreamField,
     CourseDetailStreamField,
+    CategoryHomePageStreamField,
+    ThematicHomePageStreamField,
+    DetailProductIntroStreamField,
 )
 from wagtail_svg_images.models import ImageOrSvgField
 from wagtail_svg_images.panels import ImageOrSVGPanel
@@ -130,8 +134,8 @@ class HomePage(BasePage):
 
     content_panels = [
         FieldPanel("title"),
-        FieldPanel(CONTENT_FIELD),
         FieldPanel("hero"),
+        FieldPanel(CONTENT_FIELD),
     ]
     subpage_types = [
         "commons.BlogPage",
@@ -217,8 +221,16 @@ class CatalogPage(FilterMixin, BasePage):
             if request.GET.get(a_filter, None) not in ["", None]
         }
         queryset = DetailProductPage.objects.filter(**filters)
+        # filters
+        filter_names = ["serie", "subject", "grade"]
+        filters = {
+            a_filter: request.GET.get(a_filter, None)
+            for a_filter in filter_names
+            if request.GET.get(a_filter, None) not in ["", None]
+        }
+        queryset = DetailProductPage.objects.filter(**filters)
 
-        paginator = Paginator(queryset, 1)
+        paginator = Paginator(queryset, items_per_page)
 
         try:
             object_list = paginator.page(page)
@@ -245,8 +257,8 @@ class FormPage(BasePage):
     subpage_types = []
 
     class Meta:
-        verbose_name = _("Form")
-        verbose_name_plural = _("Form")
+        verbose_name = _("Formulario")
+        verbose_name_plural = _("Formularios")
 
 
 class ContentPage(BasePage):
@@ -263,8 +275,8 @@ class ContentPage(BasePage):
     subpage_types = []
 
     class Meta:
-        verbose_name = _("Content")
-        verbose_name_plural = _("Content")
+        verbose_name = _("Contenido")
+        verbose_name_plural = _("Contenidos")
 
 
 class CourseDetailPage(BasePage):
@@ -303,8 +315,8 @@ class CourseDetailPage(BasePage):
 
     content_panels = [
         FieldPanel("title"),
-        FieldPanel(CONTENT_FIELD),
         FieldPanel("hero"),
+        FieldPanel(CONTENT_FIELD),
     ]
     promote_panels = BasePage.promote_panels
     settings_panels = BasePage.settings_panels
@@ -339,8 +351,8 @@ class CategoryHomePage(BasePage):
 
     CONTENT_FIELD = "_content_category_homepage"
 
-    _content_category_homepage = StreamField(
-        [], verbose_name=("Contenido"), null=True, blank=True
+    _content_category_homepage = CategoryHomePageStreamField(
+        verbose_name=_("Contenido"), null=True, blank=True
     )
 
     content_panels = BasePage.replace_content_field(CONTENT_FIELD)
@@ -351,8 +363,8 @@ class CategoryHomePage(BasePage):
     ]
 
     class Meta:
-        verbose_name = _("Category Home")
-        verbose_name_plural = _("Category Home")
+        verbose_name = _("Home de categoría")
+        verbose_name_plural = _("Home de categorías")
 
     def get_context(self, request, *args, **kwargs):
         """Adding custom stuff to our context."""
@@ -381,8 +393,8 @@ class ThematicHomePage(BasePage):
 
     CONTENT_FIELD = "_content_thematic_homepage"
 
-    _content_thematic_homepage = StreamField(
-        [], verbose_name=("Contenido"), null=True, blank=True
+    _content_thematic_homepage = ThematicHomePageStreamField(
+        verbose_name=("Contenido"), null=True, blank=True
     )
 
     content_panels = BasePage.replace_content_field(CONTENT_FIELD)
@@ -392,8 +404,8 @@ class ThematicHomePage(BasePage):
     ]
 
     class Meta:
-        verbose_name = _("Thematic Home")
-        verbose_name_plural = _("Thematic Home")
+        verbose_name = _("Home de temática")
+        verbose_name_plural = _("Home de temáticas")
 
     def get_context(self, request, *args, **kwargs):
         """Adding custom stuff to our context."""
@@ -413,6 +425,9 @@ class DetailProductPage(BasePage):
     CONTENT_FIELD = "_content_detail_product"
     CONTENT_FIELD_THEMATIC = "_thematic_content"
 
+    intro_detail_product = DetailProductIntroStreamField(
+        verbose_name=_("Características y Beneficios"), null=True, blank=True
+    )
     _content_detail_product = DetailProductStreamField(
         verbose_name=_("Contenido"), null=True, blank=True
     )
@@ -518,7 +533,7 @@ class DetailProductPage(BasePage):
         blank=True,
     )
     student_book = ForeignKey(
-        get_document_model_string(),
+        "commons.ExternalRedirect",
         verbose_name=_("Libro del Estudiante"),
         on_delete=models.SET_NULL,
         related_name="+",
@@ -557,7 +572,7 @@ class DetailProductPage(BasePage):
     )
     reader = ForeignKey(
         get_document_model_string(),
-        verbose_name=_("Reader"),
+        verbose_name=_("Lector"),
         on_delete=models.SET_NULL,
         related_name="+",
         null=True,
@@ -579,14 +594,25 @@ class DetailProductPage(BasePage):
         null=True,
         blank=True,
     )
+    title_description = CharField(
+        verbose_name=_("Título de la descripción"),
+        max_length=255,
+        null=True,
+        blank=True,
+    )
 
-    content_panels = BasePage.replace_content_field(CONTENT_FIELD)
+    content_panels = (
+        [BasePage.replace_content_field(CONTENT_FIELD)[0]]
+        + [StreamFieldPanel("intro_detail_product")]
+        + [BasePage.replace_content_field(CONTENT_FIELD)[-1]]
+    )
     promote_panels = BasePage.promote_panels
     settings_panels = BasePage.settings_panels
     product_property = [
         MultiFieldPanel(
             [
                 FieldPanel("short_description"),
+                FieldPanel("title_description"),
                 ImageOrSVGPanel("image"),
                 SnippetChooserPanel("grade"),
                 SnippetChooserPanel("subject"),
@@ -632,8 +658,8 @@ class DetailProductPage(BasePage):
     subpage_types = []
 
     class Meta:
-        verbose_name = _("Detail Product")
-        verbose_name_plural = _("Detail Product")
+        verbose_name = _("Detalle de Producto")
+        verbose_name_plural = _("Detalles de Productos")
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
@@ -682,3 +708,18 @@ class ExternalRedirect(BasePage):
     def serve(self, request, *args, **kwargs):
         """Return a permanent redirect response."""
         return HttpResponsePermanentRedirect(self.redirect_url)
+
+class ThankYouPage(BasePage):
+    """Define una página que redirecciona a una URL externa."""
+
+    content_panels = Page.content_panels
+
+    class Meta(Page.Meta):
+        """Define properties for Page."""
+
+        verbose_name = _("Página de Gracias")
+        verbose_name_plural = _("Página de Gracias")
+
+    def serve(self, request, *args, **kwargs):
+        """Return a permanent redirect response."""
+        return render(request, "commons/thank_you_page.html")
