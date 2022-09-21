@@ -423,7 +423,6 @@ class DetailProductPage(BasePage):
     ]
 
     CONTENT_FIELD = "_content_detail_product"
-    CONTENT_FIELD_THEMATIC = "_thematic_content"
 
     intro_detail_product = DetailProductIntroStreamField(
         verbose_name=_("Características y Beneficios"), null=True, blank=True
@@ -431,7 +430,7 @@ class DetailProductPage(BasePage):
     _content_detail_product = DetailProductStreamField(
         verbose_name=_("Contenido"), null=True, blank=True
     )
-    _thematic_content = StreamField(
+    thematic_content = StreamField(
         block_types=[
             ("thematic_content", ThematicContentComponent()),
         ],
@@ -643,7 +642,6 @@ class DetailProductPage(BasePage):
             heading=_("Materiales"),
         ),
     ]
-    thematic_content = [FieldPanel(CONTENT_FIELD_THEMATIC)]
 
     edit_handler = TabbedInterface(
         [
@@ -651,7 +649,9 @@ class DetailProductPage(BasePage):
             ObjectList(promote_panels, heading=_("Promocionar")),
             ObjectList(settings_panels, heading=_("Propiedades"), classname="settings"),
             ObjectList(product_property, heading=_("Propiedad del producto")),
-            ObjectList(thematic_content, heading=_("Contenidos Tematicos")),
+            ObjectList(
+                [FieldPanel("thematic_content")], heading=_("Contenidos Tematicos")
+            ),
         ]
     )
 
@@ -708,6 +708,7 @@ class ExternalRedirect(BasePage):
     def serve(self, request, *args, **kwargs):
         """Return a permanent redirect response."""
         return HttpResponsePermanentRedirect(self.redirect_url)
+
 
 class ThankYouPage(BasePage):
     """Define una página que redirecciona a una URL externa."""
