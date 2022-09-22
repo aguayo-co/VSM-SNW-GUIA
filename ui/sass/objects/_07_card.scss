@@ -32,6 +32,10 @@
     text-align: center;
   }
 
+  .o-card__content_space-mb {
+    @include px-to-rem(padding, $gutter * 4 $gutter * 3);
+  }
+
   .o-card__figure {
     @include px-to-rem(height, 166px);
   }

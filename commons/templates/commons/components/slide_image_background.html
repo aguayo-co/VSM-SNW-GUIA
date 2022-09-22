@@ -1,9 +1,9 @@
 {% extends "extend/components/extend_hero_slider.html" %}
 {% load inspector %}
-{% load wagtailimages_tags %}
+{% load svg_tags %}
 {% load wagtailcore_tags %}
 
-{% block modifires-header %} l-slide__header_height{% endblock modifires-header %}
+{% block modifires-header %}is-slide-background l-slide__header_height{% endblock modifires-header %}
 
 {% block modifires-container %} l-slide__container_flex{% endblock modifires-container %}
 
@@ -13,7 +13,7 @@
 
   <div class="l-slide__media_bg">
     <figure class="l-slide__figure_img-bg">
-      {% image self.background_image original class="l-slide__img-bg"  %}
+      {% svg-image self.background_image original class="l-slide__img-bg"  %}
     </figure>
   </div>
 

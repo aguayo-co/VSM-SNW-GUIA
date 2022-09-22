@@ -14,6 +14,8 @@ from wagtail.images.blocks import ImageChooserBlock
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.core import blocks
 
+from wagtail_svg_images.blocks import ImageOrSVGBlock
+
 
 class SocialProofComponent(StructBlock):
     """
@@ -29,7 +31,10 @@ class SocialProofComponent(StructBlock):
                 "agregar_cifras",
                 StructBlock(
                     [
-                        ("icon", ImageChooserBlock(required=True, label=_("Icono"))),
+                        (
+                            "icon",
+                            ImageOrSVGBlock("icon", required=False, label=_("Icono")),
+                        ),
                         ("value", CharBlock(required=False, label=_("Valor"))),
                         (
                             "description",
@@ -52,7 +57,7 @@ class SocialProofComponent(StructBlock):
 
     class Meta:
         icon = "image"
-        label = _("Social Proof")
+        label = _("Prueba social")
         template = "commons/components/social_proof.html"
 
 
@@ -92,7 +97,7 @@ class CatalogIndexComponent(StructBlock):
 
     class Meta:
         icon = "image"
-        label = _("Catalogo Index")
+        label = _("Índice de Catalogo")
         template = "commons/components/catalog_index.html"
 
 
@@ -110,7 +115,10 @@ class FeaturedContentComponent(StructBlock):
                 "featured_content",
                 StructBlock(
                     [
-                        ("image", ImageChooserBlock(required=True, label=_("Imagen"))),
+                        (
+                            "image",
+                            ImageOrSVGBlock("image", required=True, label=_("Imagen")),
+                        ),
                         (
                             "description",
                             CharBlock(required=False, label=_("Descripción")),
@@ -137,14 +145,14 @@ class FeaturedContentComponent(StructBlock):
 
     class Meta:
         icon = "image"
-        label = _("Featured Content")
+        label = _("Contenido destacado")
         template = "commons/components/featured_content.html"
 
 
 class TestimonialBlock(StructBlock):
     """A single testimonial block."""
 
-    avatar = ImageChooserBlock(required=False, label=_("Imagen"))
+    avatar = ImageOrSVGBlock("avatar", required=False, label=_("Imagen"))
     name_lastname = CharBlock(required=True, label=_("Nombre y apellido"))
     profession = CharBlock(required=False, label=_("Profesión"))
     review = TextBlock(required=True, label=_("Reseña"))
@@ -164,7 +172,7 @@ class TestimonialsComponent(StructBlock):
 
     class Meta:
         icon = "image"
-        label = _("Testimonials")
+        label = _("Testimonios")
         template = "commons/components/testimonials.html"
 
 
@@ -202,7 +210,7 @@ class PagesLinksListComponent(StructBlock):
 
     class Meta:
         icon = "image"
-        label = _("Pages Links List")
+        label = _("Lista de enlaces de páginas")
         template = "commons/components/pages_links_list.html"
 
 
@@ -215,7 +223,7 @@ class SlideImageComponent(StructBlock):
     title = CharBlock(required=True, label=_("Título"))
     subtitle = CharBlock(required=False, label=_("Subtítulo"))
     description = RichTextBlock(required=True, label=_("Descripción"), editor="list")
-    image = ImageChooserBlock(required=True, label=_("Imagen"))
+    image = ImageOrSVGBlock("image", required=True, label=_("Imagen"))
     primary_action_text = CharBlock(required=False, label=_("Texto acción primaria"))
     primary_action_url = PageChooserBlock(
         required=False, label=_("URL acción primaria")
@@ -226,13 +234,13 @@ class SlideImageComponent(StructBlock):
     secondary_action_url = PageChooserBlock(
         required=False, label=_("URL acción secundaria")
     )
-    background_illustration = ImageChooserBlock(
-        required=False, label=_("Ilustración de fondo")
+    background_illustration = ImageOrSVGBlock(
+        "background_illustration", required=False, label=_("Ilustración de fondo")
     )
 
     class Meta:
         icon = "image"
-        label = _("Slide Image")
+        label = _("Imagen del slide")
         template = "commons/components/slide_image.html"
 
 
@@ -245,7 +253,9 @@ class SlideImageBackgroundComponent(StructBlock):
     title = CharBlock(required=True, label=_("Título"))
     subtitle = CharBlock(required=False, label=_("Subtítulo"))
     description = RichTextBlock(required=True, label=_("Descripción"), editor="list")
-    background_image = ImageChooserBlock(required=True, label=_("Imagen"))
+    background_image = ImageOrSVGBlock(
+        "background_image", required=True, label=_("Imagen")
+    )
     primary_action_text = CharBlock(required=False, label=_("Texto acción primaria"))
     primary_action_url = PageChooserBlock(
         required=False, label=_("URL acción primaria")
@@ -259,7 +269,7 @@ class SlideImageBackgroundComponent(StructBlock):
 
     class Meta:
         icon = "image"
-        label = _("Slide Image Background")
+        label = _("Imagen de fondo del slide")
         template = "commons/components/slide_image_background.html"
 
 
@@ -283,13 +293,13 @@ class SlideVideoComponent(StructBlock):
     secondary_action_url = PageChooserBlock(
         required=False, label=_("URL acción secundaria")
     )
-    background_illustration = ImageChooserBlock(
-        required=False, label=_("Ilustración de fondo")
+    background_illustration = ImageOrSVGBlock(
+        "background_illustration", required=False, label=_("Ilustración de fondo")
     )
 
     class Meta:
         icon = "image"
-        label = _("Slide Video")
+        label = _("Video del slide")
         template = "commons/components/slide_video.html"
 
 
@@ -403,7 +413,10 @@ class FreeContentComponent(StructBlock):
                 "image",
                 StructBlock(
                     [
-                        ("image", ImageChooserBlock(required=True, label=_("Imagen"))),
+                        (
+                            "image",
+                            ImageOrSVGBlock("image", required=True, label=_("Imagen")),
+                        ),
                         (
                             "description",
                             CharBlock(required=False, label=_("Descripción")),
@@ -414,6 +427,21 @@ class FreeContentComponent(StructBlock):
                     required=False,
                 ),
             ),
+            (
+                "video",
+                StructBlock(
+                    [
+                        ("video", EmbedBlock(required=True, label=_("Video"))),
+                        (
+                            "description",
+                            CharBlock(required=False, label=_("Descripción")),
+                        ),
+                        ("credits", CharBlock(required=False, label=_("Créditos"))),
+                    ],
+                    label=_("Video"),
+                    required=False,
+                ),
+            ),
         ],
         label=_("Contenido"),
         required=True,
@@ -421,7 +449,7 @@ class FreeContentComponent(StructBlock):
 
     class Meta:
         icon = "image"
-        label = _("Free Content")
+        label = _("Contenido Libre")
         template = "commons/components/free_content_component.html"
 
 
@@ -469,3 +497,48 @@ class ChipListComponent(StructBlock):
         icon = "list-ul"
         label = _("Listado de chips")
         template = "commons/components/chip_list_component.html"
+
+
+class ProductsListComponent(StructBlock):
+    """
+    A block that displays a products list.
+    """
+
+    title = CharBlock(required=True, label=_("Título"))
+    primary_action_text = CharBlock(required=False, label=_("Texto acción primaria"))
+    primary_action_url = PageChooserBlock(
+        required=False, label=_("URL acción primaria")
+    )
+    secondary_action_text = CharBlock(
+        required=False, label=_("Texto acción secundaria")
+    )
+    secondary_action_url = PageChooserBlock(
+        required=False, label=_("URL acción secundaria")
+    )
+    products_list = ListBlock(
+        PageChooserBlock(required=True, label=_("Enlace a producto")),
+        required=False,
+        label=_("Listado de productos"),
+    )
+
+    class Meta:
+        icon = "list-ul"
+        label = _("Listado de productos")
+        template = "commons/components/products_list_component.html"
+
+
+class NavigationIndexComponent(StructBlock):
+    """
+    A block that displays a navigation index.
+    """
+
+    info = StaticBlock(
+        help_text=_(
+            "Este componente muestra un indice de los componentes de esta página que hayan sido promovidos."
+        ),
+    )
+
+    class Meta:
+        icon = "list-ul"
+        label = _("Índice de navegación")
+        template = "commons/components/navigation_index_component.html"

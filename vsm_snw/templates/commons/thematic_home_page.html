@@ -1,0 +1,8 @@
+{% load inspector %}
+{{ sub_pages|inspect }}
+
+{% for page in sub_pages %}
+
+    {{ page }}
+
+{%  endfor %}

@@ -12,12 +12,14 @@ from wagtail.contrib.settings.models import BaseSetting, register_setting
 from wagtail.core.fields import RichTextField
 
 from .fields import SocialNetworksField
+from wagtail_svg_images.models import ImageOrSvgField
+from wagtail_svg_images.panels import ImageOrSVGPanel
 
 
 @register_setting(icon="cogs")
 class SantillanaSettings(BaseSetting):
     # Logos
-    logo = ForeignKey(
+    logo = ImageOrSvgField(
         "wagtailimages.Image",
         verbose_name=_("Logo del sitio"),
         on_delete=PROTECT,
@@ -36,7 +38,7 @@ class SantillanaSettings(BaseSetting):
     social_networks = SocialNetworksField(_("Redes sociales"), blank=True, default=dict)
 
     # Footer
-    logo_footer = ForeignKey(
+    logo_footer = ImageOrSvgField(
         "wagtailimages.Image",
         verbose_name=_("Logo del footer"),
         on_delete=SET_NULL,
@@ -69,7 +71,7 @@ class SantillanaSettings(BaseSetting):
     panels = [
         MultiFieldPanel(
             [
-                FieldPanel("logo"),
+                ImageOrSVGPanel("logo"),
                 FieldPanel("logo_url"),
             ],
             heading=_("Logo Principal"),
@@ -82,7 +84,8 @@ class SantillanaSettings(BaseSetting):
         ),
         MultiFieldPanel(
             [
-                FieldPanel("logo_footer"),
+                FieldPanel("logo_url"),
+                ImageOrSVGPanel("logo_footer"),
                 FieldPanel("copyright"),
             ],
             heading=_("Footer"),
@@ -114,5 +117,5 @@ class SantillanaSettings(BaseSetting):
     class Meta:
         """Meta attributes for Settings."""
 
-        verbose_name = "Configuración Santillana"
-        verbose_name_plural = "Configuraciones Santillana"
+        verbose_name = _("Configuración Santillana")
+        verbose_name_plural = _("Configuraciones Santillana")

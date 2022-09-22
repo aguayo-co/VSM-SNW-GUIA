@@ -14,7 +14,11 @@ RUN npm run build
 FROM python:3.8.13-slim-bullseye as python-build
 
 ARG DATABASE_URL=${DATABASE_URL}
+ARG SECRET_KEY=${SECRET_KEY}
+ARG DJANGO_VITE_DEV_MODE=${DJANGO_VITE_DEV_MODE}
+ENV SECRET_KEY=${SECRET_KEY}
 ENV DATABASE_URL=${DATABASE_URL}
+ENV DJANGO_VITE_DEV_MODE=${DJANGO_VITE_DEV_MODE}
 
 # Copy app files
 COPY --from=node-build /srv/app/ /srv/app
@@ -27,4 +31,5 @@ RUN apt-get update && apt-get install --no-install-recommends -y git curl postgr
 
 # Install Dependencies
 RUN pip install -r requirements.txt
+RUN chmod +x /srv/app/run_dev.sh
 CMD ["sh","/srv/app/run_dev.sh"]

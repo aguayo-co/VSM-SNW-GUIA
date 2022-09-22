@@ -15,7 +15,7 @@ optional = false
 python-versions = ">=3.7"
 
 [package.extras]
-tests = ["pytest", "pytest-asyncio", "mypy (>=0.800)"]
+tests = ["mypy (>=0.800)", "pytest", "pytest-asyncio"]
 
 [[package]]
 name = "backports.zoneinfo"
@@ -140,9 +140,9 @@ optional = false
 python-versions = ">=3.4"
 
 [package.extras]
+development = ["Django (>=2.0,<2.1)", "django-extensions", "ipdb", "werkzeug"]
+docs = ["Sphinx (>=1.7.4)", "pyenchant (>=2.0)", "sphinx-rtd-theme (>=0.3)", "sphinxcontrib-spelling (>=1.4)"]
 testing = ["coverage"]
-docs = ["sphinx-rtd-theme (>=0.3)", "sphinxcontrib-spelling (>=1.4)", "Sphinx (>=1.7.4)", "pyenchant (>=2.0)"]
-development = ["django-extensions", "werkzeug", "ipdb", "Django (>=2.0,<2.1)"]
 
 [[package]]
 name = "django-compressor"
@@ -282,7 +282,7 @@ python-versions = "*"
 Django = ">=1.11"
 
 [package.extras]
-dev = ["flake8", "black"]
+dev = ["black", "flake8"]
 
 [[package]]
 name = "djangorestframework"
@@ -307,7 +307,7 @@ python-versions = "*"
 [package.extras]
 html5lib = ["beautifulsoup4 (>=4.4.1,<5)", "html5lib (>=0.999,<=1.0.1)"]
 lxml = ["lxml (>=4.2.0,<5)"]
-testing = ["tox (>=2.3.1)", "markov-draftjs (==0.1.1)", "memory-profiler (==0.47)", "psutil (==5.4.1)", "coverage (>=4.1.0)", "flake8 (>=3.2.0)", "isort (==4.2.5)", "beautifulsoup4 (>=4.4.1,<5)", "html5lib (>=0.999,<=1.0.1)", "lxml (>=4.2.0,<5)"]
+testing = ["beautifulsoup4 (>=4.4.1,<5)", "coverage (>=4.1.0)", "flake8 (>=3.2.0)", "html5lib (>=0.999,<=1.0.1)", "isort (==4.2.5)", "lxml (>=4.2.0,<5)", "markov-draftjs (==0.1.1)", "memory-profiler (==0.47)", "psutil (==5.4.1)", "tox (>=2.3.1)"]
 
 [[package]]
 name = "et-xmlfile"
@@ -330,10 +330,10 @@ six = ">=1.9"
 webencodings = "*"
 
 [package.extras]
-lxml = ["lxml"]
-genshi = ["genshi"]
+all = ["chardet (>=2.2)", "genshi", "lxml"]
 chardet = ["chardet (>=2.2)"]
-all = ["lxml", "chardet (>=2.2)", "genshi"]
+genshi = ["genshi"]
+lxml = ["lxml"]
 
 [[package]]
 name = "idna"
@@ -413,7 +413,7 @@ tzdata = {version = "*", markers = "sys_platform == \"win32\""}
 binary = ["psycopg-binary (==3.0.15)"]
 c = ["psycopg-c (==3.0.15)"]
 dev = ["black (>=22.3.0)", "dnspython (>=2.1)", "flake8 (>=4.0)", "mypy (>=0.920,!=0.930,!=0.931)", "types-setuptools (>=57.4)", "wheel (>=0.37)"]
-docs = ["Sphinx (>=4.2)", "furo (==2021.11.23)", "sphinx-autobuild (>=2021.3.14)", "sphinx-autodoc-typehints (>=1.12)", "dnspython (>=2.1)", "shapely (>=1.7)"]
+docs = ["Sphinx (>=4.2)", "dnspython (>=2.1)", "furo (==2021.11.23)", "shapely (>=1.7)", "sphinx-autobuild (>=2021.3.14)", "sphinx-autodoc-typehints (>=1.12)"]
 pool = ["psycopg-pool"]
 test = ["mypy (>=0.920,!=0.930,!=0.931)", "pproxy (>=2.7)", "pytest (>=6.2.5)", "pytest-asyncio (>=0.16,<0.17)", "pytest-cov (>=3.0)", "pytest-randomly (>=3.10)"]
 
@@ -559,7 +559,7 @@ optional = false
 python-versions = ">=3.5"
 
 [package.extras]
-docs = ["mkdocs-material (>=6.2,<6.3)", "mkdocs (>=1.1,<1.2)"]
+docs = ["mkdocs (>=1.1,<1.2)", "mkdocs-material (>=6.2,<6.3)"]
 
 [[package]]
 name = "tzdata"
@@ -578,8 +578,8 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*, <4"
 
 [package.extras]
-brotli = ["brotlicffi (>=0.8.0)", "brotli (>=1.0.9)", "brotlipy (>=0.6.0)"]
-secure = ["pyOpenSSL (>=0.14)", "cryptography (>=1.3.4)", "idna (>=2.0.0)", "certifi", "ipaddress"]
+brotli = ["brotli (>=1.0.9)", "brotlicffi (>=0.8.0)", "brotlipy (>=0.6.0)"]
+secure = ["certifi", "cryptography (>=1.3.4)", "idna (>=2.0.0)", "ipaddress", "pyOpenSSL (>=0.14)"]
 socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 
 [[package]]
@@ -611,8 +611,19 @@ Willow = ">=1.4,<1.5"
 xlsxwriter = ">=1.2.8,<4.0"
 
 [package.extras]
-docs = ["pyenchant (>=3.1.1,<4)", "sphinxcontrib-spelling (>=5.4.0,<6)", "Sphinx (>=1.5.2)", "sphinx-autobuild (>=0.6.0)", "sphinx-wagtail-theme (==5.1.1)", "myst-parser (==0.17.0)"]
-testing = ["python-dateutil (>=2.7)", "pytz (>=2014.7)", "elasticsearch (>=5.0,<6.0)", "Jinja2 (>=3.0,<3.2)", "boto3 (>=1.16,<1.17)", "freezegun (>=0.3.8)", "openpyxl (>=2.6.4)", "azure-mgmt-cdn (>=5.1,<6.0)", "azure-mgmt-frontdoor (>=0.3,<0.4)", "django-pattern-library (>=0.7,<0.8)", "coverage (>=3.7.0)", "black (==22.3.0)", "flake8 (>=3.6.0)", "isort (==5.6.4)", "flake8-blind-except (==0.1.1)", "flake8-comprehensions (==3.8.0)", "flake8-print (==2.0.2)", "doc8 (==0.8.1)", "flake8-assertive (==2.0.0)", "curlylint (==0.13.1)", "djhtml (==1.4.13)", "polib (>=1.1,<2.0)"]
+docs = ["Sphinx (>=1.5.2)", "myst-parser (==0.17.0)", "pyenchant (>=3.1.1,<4)", "sphinx-autobuild (>=0.6.0)", "sphinx-wagtail-theme (==5.1.1)", "sphinxcontrib-spelling (>=5.4.0,<6)"]
+testing = ["Jinja2 (>=3.0,<3.2)", "azure-mgmt-cdn (>=5.1,<6.0)", "azure-mgmt-frontdoor (>=0.3,<0.4)", "black (==22.3.0)", "boto3 (>=1.16,<1.17)", "coverage (>=3.7.0)", "curlylint (==0.13.1)", "django-pattern-library (>=0.7,<0.8)", "djhtml (==1.4.13)", "doc8 (==0.8.1)", "elasticsearch (>=5.0,<6.0)", "flake8 (>=3.6.0)", "flake8-assertive (==2.0.0)", "flake8-blind-except (==0.1.1)", "flake8-comprehensions (==3.8.0)", "flake8-print (==2.0.2)", "freezegun (>=0.3.8)", "isort (==5.6.4)", "openpyxl (>=2.6.4)", "polib (>=1.1,<2.0)", "python-dateutil (>=2.7)", "pytz (>=2014.7)"]
+
+[[package]]
+name = "wagtail-generic-chooser"
+version = "0.4"
+description = "A toolkit for custom chooser popups in Wagtail"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+requests = ">=2.11.1,<3.0"
 
 [[package]]
 name = "wagtail-instance-selector"
@@ -621,6 +632,18 @@ description = "A widget for Wagtail's admin that allows you to create and select
 category = "main"
 optional = false
 python-versions = "*"
+
+[[package]]
+name = "wagtail-svg-images"
+version = "0.1.22"
+description = "Workaround to support SVG as Images in Wagtail"
+category = "main"
+optional = false
+python-versions = ">=3.8,<4.0"
+
+[package.dependencies]
+wagtail = ">=3.0,<4.0"
+wagtailsvg = ">=0.0.33,<0.0.34"
 
 [[package]]
 name = "wagtail-tag-manager"
@@ -635,8 +658,8 @@ selenium = ">=3.141.0,<3.142.0"
 wagtail = ">=2.11,<3.1"
 
 [package.extras]
-test = ["wagtail-factories", "pytest", "pytest-sugar", "pytest-randomly", "pytest-pythonpath", "pytest-django", "pytest-cov", "pycodestyle", "freezegun", "flake8", "flake8-imports", "flake8-debugger", "flake8-blind-except", "faker", "factory-boy"]
 docs = ["sphinx (>=2.4.0)"]
+test = ["Faker", "factory-boy", "flake8", "flake8-blind-except", "flake8-debugger", "flake8-imports", "freezegun", "pycodestyle", "pytest", "pytest-cov", "pytest-django", "pytest-pythonpath", "pytest-randomly", "pytest-sugar", "wagtail-factories"]
 
 [[package]]
 name = "wagtail-transfer"
@@ -662,8 +685,8 @@ develop = false
 django-cogwheels = "0.3"
 
 [package.extras]
-development = ["wagtail (>=2.15)", "django-debug-toolbar", "django-extensions", "ipdb", "werkzeug", "beautifulsoup4 (>=4.8,<4.10)", "coverage (>=4.5)", "django-webtest (>=1.9,<1.10)"]
-docs = ["pyenchant (>=2.0)", "Sphinx (>=1.7.4)", "sphinxcontrib-spelling (>=1.4)", "sphinx-rtd-theme (>=0.3)"]
+development = ["beautifulsoup4 (>=4.8,<4.10)", "coverage (>=4.5)", "django-debug-toolbar", "django-extensions", "django-webtest (>=1.9,<1.10)", "ipdb", "wagtail (>=2.15)", "werkzeug"]
+docs = ["Sphinx (>=1.7.4)", "pyenchant (>=2.0)", "sphinx-rtd-theme (>=0.3)", "sphinxcontrib-spelling (>=1.4)"]
 testing = ["beautifulsoup4 (>=4.8,<4.10)", "coverage (>=4.5)", "django-webtest (>=1.9,<1.10)"]
 
 [package.source]
@@ -671,6 +694,17 @@ type = "git"
 url = "https://github.com/jazzband/wagtailmenus.git"
 reference = "v3.1.2"
 resolved_reference = "100d90c27e0b2bcd828a4667e86deae49c4842d0"
+
+[[package]]
+name = "wagtailsvg"
+version = "0.0.33"
+description = "Wagtail SVG"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+wagtail-generic-chooser = "0.4.0"
 
 [[package]]
 name = "webencodings"
@@ -689,7 +723,7 @@ optional = false
 python-versions = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*"
 
 [package.extras]
-testing = ["mock (>=3.0,<4.0)", "Wand (>=0.6,<1.0)", "Pillow (>=6.0.0,<10.0.0)"]
+testing = ["Pillow (>=6.0.0,<10.0.0)", "Wand (>=0.6,<1.0)", "mock (>=3.0,<4.0)"]
 
 [[package]]
 name = "xlrd"
@@ -700,9 +734,9 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*"
 
 [package.extras]
-test = ["pytest-cov", "pytest"]
-docs = ["sphinx"]
 build = ["twine", "wheel"]
+docs = ["sphinx"]
+test = ["pytest", "pytest-cov"]
 
 [[package]]
 name = "xlsxwriter"
@@ -723,7 +757,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "35edb4854a17e63ae54efecc1b61112e16cfedeab517e33187ea91329bb164f2"
+content-hash = "1ec61a6c62d18beefa7b2678d1fed71bb161c88f39783e661b5b3dbcaf52053b"
 
 [metadata.files]
 anyascii = [
@@ -1074,10 +1108,18 @@ wagtail = [
     {file = "wagtail-3.0.1-py3-none-any.whl", hash = "sha256:107d7a1ac9a4fde0fa2e454cc84f548dc41581cc627881abf4bbac3d5a30244c"},
     {file = "wagtail-3.0.1.tar.gz", hash = "sha256:917393fcea8644734beb323d607e02e4316370982ba0b4ea689a576567247bc8"},
 ]
+wagtail-generic-chooser = [
+    {file = "wagtail-generic-chooser-0.4.tar.gz", hash = "sha256:5ca673da2696c005c22c84f63259c8e23c1e065fd029d167c7aeb3eb193a9de0"},
+    {file = "wagtail_generic_chooser-0.4-py3-none-any.whl", hash = "sha256:b5b34ad38fa286cc3ab0b9fb1b3dc800fd98ebed59506428fcedd14c56bc1900"},
+]
 wagtail-instance-selector = [
     {file = "wagtail-instance-selector-2.1.2.tar.gz", hash = "sha256:4713bdcc39ed3d73d03196a2194b8d40b76fc83a8a80eaef5fdfa8bf43b46663"},
     {file = "wagtail_instance_selector-2.1.2-py2.py3-none-any.whl", hash = "sha256:6f90a1d5209dae9b93f18b7f3f36a0a14e1672e7c0e8279919e206a45690484d"},
     {file = "wagtail_instance_selector-2.1.2-py3-none-any.whl", hash = "sha256:af438d0d08adcaebfb6ae9133f9fb16c9b68af23ec22478cc1425d55b621c729"},
+]
+wagtail-svg-images = [
+    {file = "wagtail-svg-images-0.1.22.tar.gz", hash = "sha256:3bb3bc0c19ea644800660af2c48d937b53a71a6f539db927f3a30803ec4872f3"},
+    {file = "wagtail_svg_images-0.1.22-py3-none-any.whl", hash = "sha256:62fccc5fc74407fa1f5ea492b34b718b21d86f62ee70af0030826919ee4e8449"},
 ]
 wagtail-tag-manager = [
     {file = "wagtail-tag-manager-1.4.0.tar.gz", hash = "sha256:6fd52cd1af3d3606b694dfde2236c9b931011a2bd76200d7c2ff0732be7b5928"},
@@ -1088,6 +1130,10 @@ wagtail-transfer = [
     {file = "wagtail_transfer-0.8.5-py3-none-any.whl", hash = "sha256:1ec0847adc385f226d292532077e32a019fe2ba5c0ddf7819cac9c66c8e85a77"},
 ]
 wagtailmenus = []
+wagtailsvg = [
+    {file = "wagtailsvg-0.0.33-py3-none-any.whl", hash = "sha256:2d9b884bb4547c5f61ec2f2914e960ec42078efeaeda060c08a3fb7f8cfec861"},
+    {file = "wagtailsvg-0.0.33.tar.gz", hash = "sha256:5f4b72b78e4c9d109fbfda29d38622e1fc4405502e05620cb7f63eaf0157936a"},
+]
 webencodings = [
     {file = "webencodings-0.5.1-py2.py3-none-any.whl", hash = "sha256:a0af1213f3c2226497a97e2b3aa01a7e4bee4f403f95be16fc9acd2947514a78"},
     {file = "webencodings-0.5.1.tar.gz", hash = "sha256:b36a1c245f2d304965eb4e0a82848379241dc04b865afcc4aab16748587e1923"},

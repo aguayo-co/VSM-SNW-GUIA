@@ -1,0 +1,150 @@
+.c-catalog-index {
+  @include flex-wrap(wrap);
+  @include px-to-rem(column-gap, $gutter * 5);
+  @include px-to-rem(padding-bottom, $gutter * 6);
+  border-bottom: 1px solid $c-surface-grey-20;
+}
+
+.c-catalog-index__content {
+  flex: 1 50%;
+}
+
+.c-catalog-index__header {
+  &.c-featured-content__header {
+    flex: auto;
+  }
+}
+
+.c-catalog-index__featured {
+  @include px-to-rem(padding-left, $gutter * 2);
+
+  &.s-richtext_list-check {
+
+    li {
+
+      &:not(:last-of-type) {
+        @include px-to-rem(margin-bottom, $gutter);
+      }
+
+      &::marker {
+        color: $c-brand-primary;
+      }
+    }
+
+    .is-not-check {
+      margin-left: -16px;
+      padding-left: 0;
+      font-weight: $f-bold;
+
+      &::marker {
+        content: "";
+      }
+    }
+
+  }
+}
+
+.c-catalog-index__grades,
+.c-catalog-index__grade {
+  @include flexbox;
+}
+
+.c-catalog-index__grades {
+  @include justify-content(space-between);
+  @include px-to-rem(column-gap, $gutter * 3);
+}
+
+.c-catalog-index__grade {
+  @include flex-direction(column);
+  flex: 1;
+}
+
+.c-catalog-index__grade-vector {
+  @include px-to-rem(height, 208px);
+  @include px-to-rem(padding, $gutter * 2 0 0 $gutter * 2);
+  @include px-to-rem(font-size, $gutter * 4);
+  background-position: bottom right;
+  background-repeat: no-repeat;
+
+  .c-catalog-index__grade_turquesa & {
+    color: $c-turquesa-50;
+    background-image: url('#{$path-img}/catalog_index/grade_primero.svg');
+    background-color: $c-turquesa-20;
+  }
+
+  .c-catalog-index__grade_yellow & {
+    color: $c-yellow-50;
+    background-image: url('#{$path-img}/catalog_index/grade_segundo.svg');
+    background-color: $c-yellow-20;
+  }
+
+  .c-catalog-index__grade_blue & {
+    color: $c-blue-50;
+    background-image: url('#{$path-img}/catalog_index/grade_tercero.svg');
+    background-color: $c-blue-20;
+  }
+}
+
+.c-catalog-index__grade-name {
+  @include px-to-rem(max-width, 180px);
+  line-height: 1.2;
+  text-align: left;
+}
+
+.c-catalog-index__caption {
+  @include px-to-rem(max-width, 550px);
+  @include px-to-rem(margin-bottom, $gutter * 5);
+}
+
+.c-catalog-index__subjects {
+  @include flexbox;
+  @include align-items(center);
+  @include flex-wrap(wrap);
+  @include px-to-rem(column-gap, $gutter * 2);
+  @include px-to-rem(row-gap, $gutter);
+}
+
+
+/*------------------------------------*\
+  Media Querys
+\*------------------------------------*/
+
+/**
+* Mobile | VP: max-width 768px
+*/
+@include media-query(medium-max) {
+  .c-catalog-index {
+    @include px-to-rem(margin-bottom, $gutter * 6);
+  }
+
+  .c-catalog-index__grades {
+    @include flex-wrap(wrap);
+    @include justify-content(center);
+    @include px-to-rem(row-gap, $gutter * 2);
+  }
+
+  .c-catalog-index__grade {
+    flex: 1 100%;
+  }
+
+  .c-catalog-index__grade-vector {
+    @include px-to-rem(height, 158px);
+    background-position: 100% 200%;
+  }
+
+}
+
+/**
+* Desktop | VP: max-width 768px
+*/
+@include media-query(medium) {
+  .c-catalog-index__grade {
+    .o-card__content {
+      flex: 1;
+    }
+  }
+
+  .c-catalog-index__grade-vector {
+    background-position: 118% 104%;
+  }
+}

@@ -77,17 +77,20 @@
     animation: text-focus-in 0.9s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
   }
 
-  &.s-richtext {
-    li,
-    p {
-      @include px-to-rem(margin-bottom, $gutter);
-    }
+  .is-slide-background & {
+    &.s-richtext {
+      li,
+      p {
+        @include px-to-rem(margin-bottom, $gutter);
+      }
 
-    p,
-    a {
-      color: $c-neutro;
+      p,
+      a {
+        color: $c-neutro;
+      }
     }
   }
+
 }
 
 .l-slide__cta {

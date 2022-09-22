@@ -2,6 +2,8 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.snippets.models import register_snippet
+from wagtail_svg_images.models import ImageOrSvgField
+from wagtail_svg_images.panels import ImageOrSVGPanel
 
 
 @register_snippet
@@ -10,11 +12,19 @@ class Degree(models.Model):
 
     name = models.CharField(max_length=255, verbose_name=_("Nombre"))
     number = models.IntegerField(verbose_name=_("Número"))
+    color = models.CharField(
+        max_length=255,
+        verbose_name=_("Color"),
+        choices=(
+            ("turquesa", _("Turquesa")),
+            ("yellow", _("Amarillo")),
+            ("blue", _("Azul")),
+        ),
+        default="turquesa",
+        help_text=_("Personaliza la apariencia del Grado cambiando el color"),
+    )
 
-    panels = [
-        FieldPanel("name"),
-        FieldPanel("number"),
-    ]
+    panels = [FieldPanel("name"), FieldPanel("number"), FieldPanel("color")]
 
     def __str__(self):
         """A readable representation."""
@@ -51,7 +61,7 @@ class Serie(models.Model):
     name = models.CharField(
         max_length=255, verbose_name=_("Nombre"), null=True, blank=True
     )
-    image = models.ForeignKey(
+    image = ImageOrSvgField(
         "wagtailimages.Image",
         null=True,
         blank=True,
@@ -68,7 +78,7 @@ class Serie(models.Model):
 
     panels = [
         FieldPanel("name"),
-        FieldPanel("image"),
+        ImageOrSVGPanel("image"),
         FieldPanel("type"),
     ]
 

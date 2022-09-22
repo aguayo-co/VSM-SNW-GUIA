@@ -20,6 +20,8 @@ from commons.models.components import (
     FreeContentComponent,
     AgendaComponent,
     ChipListComponent,
+    ProductsListComponent,
+    NavigationIndexComponent,
 )
 from wagtail.fields import StreamField
 
@@ -107,6 +109,8 @@ class FullStreamField(StreamField):
         ("free_content_component", FreeContentComponent()),
         ("agenda_component", AgendaComponent()),
         ("chip_list_component", ChipListComponent()),
+        ("products_list_component", ProductsListComponent()),
+        ("navigation_index_component", NavigationIndexComponent()),
     ]
 
     def __init__(self, **kwargs):
@@ -131,6 +135,8 @@ class HomeStreamField(FullStreamField):
         ("free_content_component", FreeContentComponent()),
         ("agenda_component", AgendaComponent()),
         ("chip_list_component", ChipListComponent()),
+        ("products_list_component", ProductsListComponent()),
+        ("navigation_index_component", NavigationIndexComponent()),
     ]
 
 
@@ -152,7 +158,31 @@ class DetailProductStreamField(FullStreamField):
     ]
 
 
+class DetailProductIntroStreamField(FullStreamField):
+    block_types = [
+        ("free_content", FreeContentComponent()),
+    ]
+
+
 class CourseDetailStreamField(FullStreamField):
     block_types = [
         ("banner_ad_component", BannerAdComponent()),
+    ]
+
+
+class CategoryHomePageStreamField(FullStreamField):
+    block_types = [
+        ("catalog_index_component", CatalogIndexComponent()),
+        ("agenda_component", AgendaComponent()),
+        ("chip_list_component", ChipListComponent()),
+        ("links_list_component", PagesLinksListComponent()),
+    ]
+
+
+class ThematicHomePageStreamField(FullStreamField):
+    block_types = [
+        ("catalog_index_component", CatalogIndexComponent()),
+        ("agenda_component", AgendaComponent()),
+        ("chip_list_component", ChipListComponent()),
+        ("links_list_component", PagesLinksListComponent()),
     ]

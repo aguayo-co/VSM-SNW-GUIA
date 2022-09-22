@@ -11,6 +11,9 @@
   margin-left: auto;
   margin-right: auto;
 }
+.o-canvas_w1246 {
+  @include px-to-rem(max-width, 1246px); //1380px
+}
 
 .o-canvas-slide {
   @include px-to-rem(max-width, $canvas-max-width-slide); //1015px
