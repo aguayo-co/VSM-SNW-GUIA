@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     "commons",
     "menus",
     "search",
+    "forms",
     "wagtail.contrib.forms",
     "wagtail.contrib.modeladmin",
     "wagtail.contrib.redirects",
