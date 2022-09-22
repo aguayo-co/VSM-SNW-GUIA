@@ -6,13 +6,23 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('commons', '0023_basepage_search_image_is_svg_and_more'),
+        ("commons", "0023_basepage_search_image_is_svg_and_more"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='degree',
-            name='color',
-            field=models.CharField(choices=[('turquesa', 'Turquesa'), ('yellow', 'Amarillo'), ('blue', 'Azul')], default='turquesa', help_text='Personaliza la apariencia del Grado cambiando el color', max_length=255, verbose_name='Color del Grado'),
+            model_name="degree",
+            name="color",
+            field=models.CharField(
+                choices=[
+                    ("turquesa", "Turquesa"),
+                    ("yellow", "Amarillo"),
+                    ("blue", "Azul"),
+                ],
+                default="turquesa",
+                help_text="Personaliza la apariencia del Grado cambiando el color",
+                max_length=255,
+                verbose_name="Color del Grado",
+            ),
         ),
     ]

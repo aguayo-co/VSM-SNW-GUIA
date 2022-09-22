@@ -84,7 +84,6 @@ class SantillanaSettings(BaseSetting):
         ),
         MultiFieldPanel(
             [
-                FieldPanel("logo_url"),
                 ImageOrSVGPanel("logo_footer"),
                 FieldPanel("copyright"),
             ],

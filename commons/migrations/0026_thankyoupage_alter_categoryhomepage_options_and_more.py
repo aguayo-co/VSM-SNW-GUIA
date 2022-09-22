@@ -7,45 +7,74 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('commons', '0025_detailproductpage_title_description_and_more'),
+        ("commons", "0025_detailproductpage_title_description_and_more"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='ThankYouPage',
+            name="ThankYouPage",
             fields=[
-                ('basepage_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='commons.basepage')),
+                (
+                    "basepage_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="commons.basepage",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Página de Gracias',
-                'verbose_name_plural': 'Página de Gracias',
-                'abstract': False,
+                "verbose_name": "Página de Gracias",
+                "verbose_name_plural": "Página de Gracias",
+                "abstract": False,
             },
-            bases=('commons.basepage',),
+            bases=("commons.basepage",),
         ),
         migrations.AlterModelOptions(
-            name='categoryhomepage',
-            options={'verbose_name': 'Home de categoría', 'verbose_name_plural': 'Home de categorías'},
+            name="categoryhomepage",
+            options={
+                "verbose_name": "Home de categoría",
+                "verbose_name_plural": "Home de categorías",
+            },
         ),
         migrations.AlterModelOptions(
-            name='contentpage',
-            options={'verbose_name': 'Contenido', 'verbose_name_plural': 'Contenidos'},
+            name="contentpage",
+            options={"verbose_name": "Contenido", "verbose_name_plural": "Contenidos"},
         ),
         migrations.AlterModelOptions(
-            name='detailproductpage',
-            options={'verbose_name': 'Detalle de Producto', 'verbose_name_plural': 'Detalles de Productos'},
+            name="detailproductpage",
+            options={
+                "verbose_name": "Detalle de Producto",
+                "verbose_name_plural": "Detalles de Productos",
+            },
         ),
         migrations.AlterModelOptions(
-            name='formpage',
-            options={'verbose_name': 'Formulario', 'verbose_name_plural': 'Formularios'},
+            name="formpage",
+            options={
+                "verbose_name": "Formulario",
+                "verbose_name_plural": "Formularios",
+            },
         ),
         migrations.AlterModelOptions(
-            name='thematichomepage',
-            options={'verbose_name': 'Home de temática', 'verbose_name_plural': 'Home de temáticas'},
+            name="thematichomepage",
+            options={
+                "verbose_name": "Home de temática",
+                "verbose_name_plural": "Home de temáticas",
+            },
         ),
         migrations.AlterField(
-            model_name='detailproductpage',
-            name='student_book',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='commons.externalredirect', verbose_name='Libro del Estudiante'),
+            model_name="detailproductpage",
+            name="student_book",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="+",
+                to="commons.externalredirect",
+                verbose_name="Libro del Estudiante",
+            ),
         ),
     ]

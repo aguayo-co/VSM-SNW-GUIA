@@ -153,9 +153,7 @@ class HeroStreamField(FullStreamField):
 
 
 class DetailProductStreamField(FullStreamField):
-    block_types = [
-        ("chip_list_component", ChipListComponent())
-    ]
+    block_types = [("chip_list_component", ChipListComponent())]
 
 
 class DetailProductIntroStreamField(FullStreamField):

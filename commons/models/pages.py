@@ -1,40 +1,35 @@
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db import models
-from django.db.models import ForeignKey, TextField, CharField, URLField
+from django.db.models import CharField, ForeignKey, TextField, URLField
 from django.http import HttpResponsePermanentRedirect
+from django.shortcuts import render
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
-from django.shortcuts import render
-from wagtail.admin.panels import TabbedInterface, ObjectList, StreamFieldPanel
+from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel
+from wagtail.admin.panels import ObjectList, StreamFieldPanel, TabbedInterface
+from wagtail.core.models import Page
+from wagtail.core.templatetags.wagtailcore_tags import pageurl
 from wagtail.documents import get_document_model_string
 from wagtail.documents.edit_handlers import DocumentChooserPanel
-from wagtail.fields import StreamField, RichTextField
-from wagtail.core.templatetags.wagtailcore_tags import pageurl
-from wagtail.admin.edit_handlers import (
-    FieldPanel,
-    MultiFieldPanel,
-)
-from wagtail.core.models import Page
+from wagtail.fields import RichTextField, StreamField
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
-
-from commons.models.components import ThematicContentComponent
-from commons.models.fields import (
-    FullStreamField,
-    HomeStreamField,
-    HeroStreamField,
-    DetailProductStreamField,
-    CourseDetailStreamField,
-    CategoryHomePageStreamField,
-    ThematicHomePageStreamField,
-    DetailProductIntroStreamField,
-    ContentPageStreamField,
-)
 from wagtail_svg_images.models import ImageOrSvgField
 from wagtail_svg_images.panels import ImageOrSVGPanel
 
+from commons.models.components import ThematicContentComponent
+from commons.models.fields import (
+    CategoryHomePageStreamField,
+    ContentPageStreamField,
+    CourseDetailStreamField,
+    DetailProductIntroStreamField,
+    DetailProductStreamField,
+    FullStreamField,
+    HeroStreamField,
+    HomeStreamField,
+    ThematicHomePageStreamField,
+)
 from commons.models.mixins import FilterMixin
 from commons.models.snippets import Degree
-
 
 items_per_page = 10
 
@@ -83,7 +78,7 @@ class BasePage(Page):
     subpage_types = [
         "commons.BlogPage",
         "commons.ContentPage",
-        "commons.FormPage",
+        "forms.FormPage",
         "commons.HomePage",
     ]
 
@@ -142,7 +137,7 @@ class HomePage(BasePage):
         "commons.BlogPage",
         "commons.CatalogPage",
         "commons.ContentPage",
-        "commons.FormPage",
+        "forms.FormPage",
         "commons.ExternalRedirect",
     ]
 
@@ -244,22 +239,6 @@ class CatalogPage(FilterMixin, BasePage):
         context["filter_form"] = self.get_filter_form(*args, request=request, **kwargs)
 
         return context
-
-
-class FormPage(BasePage):
-    """Model for the form page."""
-
-    CONTENT_FIELD = "_content_form"
-
-    _content_form = StreamField([], verbose_name=("Contenido"), null=True, blank=True)
-
-    content_panels = BasePage.replace_content_field(CONTENT_FIELD)
-
-    subpage_types = []
-
-    class Meta:
-        verbose_name = _("Formulario")
-        verbose_name_plural = _("Formularios")
 
 
 class ContentPage(BasePage):
@@ -743,19 +722,3 @@ class ExternalRedirect(BasePage):
     def serve(self, request, *args, **kwargs):
         """Return a permanent redirect response."""
         return HttpResponsePermanentRedirect(self.redirect_url)
-
-
-class ThankYouPage(BasePage):
-    """Define una página que redirecciona a una URL externa."""
-
-    content_panels = Page.content_panels
-
-    class Meta(Page.Meta):
-        """Define properties for Page."""
-
-        verbose_name = _("Página de Gracias")
-        verbose_name_plural = _("Página de Gracias")
-
-    def serve(self, request, *args, **kwargs):
-        """Return a permanent redirect response."""
-        return render(request, "commons/thank_you_page.html")

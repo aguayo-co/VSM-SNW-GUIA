@@ -7,18 +7,22 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('commons', '0031_degree_image_degree_image_is_svg_degree_image_svg'),
+        ("commons", "0031_degree_image_degree_image_is_svg_degree_image_svg"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='contentpage',
-            name='footer_content',
-            field=commons.models.fields.CourseDetailStreamField(blank=True, null=True, use_json_field=None, verbose_name='Contenido'),
+            model_name="contentpage",
+            name="footer_content",
+            field=commons.models.fields.CourseDetailStreamField(
+                blank=True, null=True, use_json_field=None, verbose_name="Contenido"
+            ),
         ),
         migrations.AlterField(
-            model_name='contentpage',
-            name='_content_content',
-            field=commons.models.fields.DetailProductIntroStreamField(blank=True, null=True, use_json_field=None, verbose_name='Intro'),
+            model_name="contentpage",
+            name="_content_content",
+            field=commons.models.fields.DetailProductIntroStreamField(
+                blank=True, null=True, use_json_field=None, verbose_name="Intro"
+            ),
         ),
     ]

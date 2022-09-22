@@ -7,28 +7,47 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('commons', '0024_degree_color'),
+        ("commons", "0024_degree_color"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='detailproductpage',
-            name='intro_detail_product',
-            field=commons.models.fields.DetailProductStreamField(blank=True, null=True, use_json_field=None, verbose_name='Características y Beneficios'),
+            model_name="detailproductpage",
+            name="intro_detail_product",
+            field=commons.models.fields.DetailProductStreamField(
+                blank=True,
+                null=True,
+                use_json_field=None,
+                verbose_name="Características y Beneficios",
+            ),
         ),
         migrations.AlterField(
-            model_name='categoryhomepage',
-            name='_content_category_homepage',
-            field=commons.models.fields.CategoryHomePageStreamField(blank=True, null=True, use_json_field=None, verbose_name='Contenido'),
+            model_name="categoryhomepage",
+            name="_content_category_homepage",
+            field=commons.models.fields.CategoryHomePageStreamField(
+                blank=True, null=True, use_json_field=None, verbose_name="Contenido"
+            ),
         ),
         migrations.AlterField(
-            model_name='degree',
-            name='color',
-            field=models.CharField(choices=[('turquesa', 'Turquesa'), ('yellow', 'Amarillo'), ('blue', 'Azul')], default='turquesa', help_text='Personaliza la apariencia del Grado cambiando el color', max_length=255, verbose_name='Color'),
+            model_name="degree",
+            name="color",
+            field=models.CharField(
+                choices=[
+                    ("turquesa", "Turquesa"),
+                    ("yellow", "Amarillo"),
+                    ("blue", "Azul"),
+                ],
+                default="turquesa",
+                help_text="Personaliza la apariencia del Grado cambiando el color",
+                max_length=255,
+                verbose_name="Color",
+            ),
         ),
         migrations.AlterField(
-            model_name='thematichomepage',
-            name='_content_thematic_homepage',
-            field=commons.models.fields.ThematicHomePageStreamField(blank=True, null=True, use_json_field=None, verbose_name='Contenido'),
+            model_name="thematichomepage",
+            name="_content_thematic_homepage",
+            field=commons.models.fields.ThematicHomePageStreamField(
+                blank=True, null=True, use_json_field=None, verbose_name="Contenido"
+            ),
         ),
     ]
