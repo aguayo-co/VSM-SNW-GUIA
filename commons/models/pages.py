@@ -27,6 +27,7 @@ from commons.models.fields import (
     CategoryHomePageStreamField,
     ThematicHomePageStreamField,
     DetailProductIntroStreamField,
+    ContentPageStreamField,
 )
 from wagtail_svg_images.models import ImageOrSvgField
 from wagtail_svg_images.panels import ImageOrSVGPanel
@@ -266,11 +267,18 @@ class ContentPage(BasePage):
 
     CONTENT_FIELD = "_content_content"
 
-    _content_content = StreamField(
-        [], verbose_name=("Contenido"), null=True, blank=True
+    _content_content = DetailProductIntroStreamField(
+        verbose_name=("Intro"), null=True, blank=True
     )
 
-    content_panels = BasePage.replace_content_field(CONTENT_FIELD)
+    footer_content = ContentPageStreamField(
+        verbose_name=("Contenido"), null=True, blank=True
+    )
+
+    content_panels = [
+        FieldPanel(CONTENT_FIELD),
+        FieldPanel("footer_content"),
+    ]
 
     subpage_types = []
 
@@ -284,7 +292,11 @@ class CourseDetailPage(BasePage):
 
     CONTENT_FIELD = "_content_course_detail"
 
-    _content_course_detail = CourseDetailStreamField(
+    _content_course_detail = DetailProductIntroStreamField(
+        verbose_name=("Intro"), null=True, blank=True
+    )
+
+    footer_content = CourseDetailStreamField(
         verbose_name=("Contenido"), null=True, blank=True
     )
 
@@ -317,6 +329,7 @@ class CourseDetailPage(BasePage):
         FieldPanel("title"),
         FieldPanel("hero"),
         FieldPanel(CONTENT_FIELD),
+        FieldPanel("footer_content"),
     ]
     promote_panels = BasePage.promote_panels
     settings_panels = BasePage.settings_panels
@@ -377,13 +390,13 @@ class CategoryHomePage(BasePage):
         paginator = Paginator(queryset, items_per_page)
 
         try:
-            frequent_questions = paginator.page(page)
+            object_list = paginator.page(page)
         except PageNotAnInteger:
-            frequent_questions = paginator.page(1)
+            object_list = paginator.page(1)
         except EmptyPage:
-            frequent_questions = paginator.page(paginator.num_pages)
+            object_list = paginator.page(paginator.num_pages)
 
-        context["sub_pages"] = frequent_questions
+        context["object_list"] = object_list
 
         return context
 
@@ -410,7 +423,22 @@ class ThematicHomePage(BasePage):
     def get_context(self, request, *args, **kwargs):
         """Adding custom stuff to our context."""
         context = super().get_context(request, *args, **kwargs)
-        context["sub_pages"] = CourseDetailPage.objects.child_of(self).live()
+        page = request.GET.get("page", None)
+        order_by = request.GET.get("order_by", None)
+
+        queryset = CourseDetailPage.objects.child_of(self).live()
+
+        paginator = Paginator(queryset, items_per_page)
+
+        try:
+            object_list = paginator.page(page)
+        except PageNotAnInteger:
+            object_list = paginator.page(1)
+        except EmptyPage:
+            object_list = paginator.page(paginator.num_pages)
+
+        context["object_list"] = object_list
+
         return context
 
 
@@ -475,11 +503,17 @@ class DetailProductPage(BasePage):
         null=True,
         blank=True,
     )
+    campo_formacion = CharField(
+        verbose_name=_("Campo formación"),
+        max_length=255,
+        null=True,
+        blank=True,
+    )
     cod_conaliteg = CharField(
         verbose_name=_("Codigo CONALITEG"),
         max_length=255,
     )
-    idiom = models.CharField(
+    language = models.CharField(
         verbose_name=_("Idioma"),
         choices=IDIOM_CHOICES,
         max_length=10,
@@ -610,14 +644,15 @@ class DetailProductPage(BasePage):
     product_property = [
         MultiFieldPanel(
             [
-                FieldPanel("short_description"),
                 FieldPanel("title_description"),
+                FieldPanel("short_description"),
                 ImageOrSVGPanel("image"),
                 SnippetChooserPanel("grade"),
                 SnippetChooserPanel("subject"),
                 SnippetChooserPanel("serie"),
+                FieldPanel("campo_formacion"),
                 FieldPanel("cod_conaliteg"),
-                FieldPanel("idiom"),
+                FieldPanel("language"),
                 FieldPanel("isbn"),
                 FieldPanel("author"),
                 FieldPanel("editorial_team"),

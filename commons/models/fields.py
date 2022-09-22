@@ -154,7 +154,7 @@ class HeroStreamField(FullStreamField):
 
 class DetailProductStreamField(FullStreamField):
     block_types = [
-        ("pages_links_list_component", PagesLinksListComponent()),
+        ("chip_list_component", ChipListComponent())
     ]
 
 
@@ -166,7 +166,14 @@ class DetailProductIntroStreamField(FullStreamField):
 
 class CourseDetailStreamField(FullStreamField):
     block_types = [
-        ("banner_ad_component", BannerAdComponent()),
+        ("agenda_component", AgendaComponent()),
+        ("chip_list_component", ChipListComponent()),
+    ]
+
+
+class ContentPageStreamField(FullStreamField):
+    block_types = [
+        ("social_proof_component", SocialProofComponent()),
     ]
 
 
