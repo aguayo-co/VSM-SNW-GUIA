@@ -1,0 +1,65 @@
+{% load wagtailcore_tags i18n %}
+
+{# Contenido tab #2 #}
+<dt
+  class="c-tabs__title c-tabs__title_order-two o-medium js-dropdown-button"
+>
+  {% trans "Detalles del libro" %}
+</dt>
+
+<dd class="c-tabs__content">
+  <div class="c-tabs__inner">
+
+    <dl class="o-feature-list">
+      <dt class="o-feature-list__title">{% trans "Código Conaliteg" %}:</dt>
+      <dd class="o-feature-list__description">{{ self.cod_conaliteg }}</dd>
+
+      <dt class="o-feature-list__title">{% trans "Sello editorial" %}:</dt>
+      <dd class="o-feature-list__description">
+        {% firstof  self.serie "-" %}
+      </dd>
+
+      <dt class="o-feature-list__title">{% trans "Autor" %}:</dt>
+      <dd class="o-feature-list__description">
+        {% firstof  self.author "-" %}
+      </dd>
+
+      <dt class="o-feature-list__title">{% trans "Equipo editorial" %}:</dt>
+      <dd class="o-feature-list__description">
+        {% firstof  self.editorial_team "-" %}
+      </dd>
+
+      <dt class="o-feature-list__title">{% trans "Primera edición" %}:</dt>
+      <dd class="o-feature-list__description">
+        {% firstof  self.first_edition "-" %}
+      </dd>
+
+      <dt class="o-feature-list__title">{% trans "Segunda Reimpresión" %}:</dt>
+      <dd class="o-feature-list__description">
+        {% firstof  self.second_reprint "-" %}
+      </dd>
+
+      <dt class="o-feature-list__title">{% trans "ISBN" %}:</dt>
+      <dd class="o-feature-list__description">
+        {% firstof  self.isbn "-" %}
+      </dd>
+
+      <dt class="o-feature-list__title">{% trans "Oficio SEP" %}:</dt>
+      <dd class="o-feature-list__description">
+        {% if self.office_sep %}
+          <a
+            class="o-feature-list__btn i-after-arrow-down"
+            href="{{ self.office_sep.url }}"
+            download
+          >
+            {% trans "Descarga PDF" %}
+          </a>
+        {% else %}
+        -
+        {% endif %}
+      </dd>
+    </dl>
+
+  </div>
+</dd>
+{# Fin contenido tab #2 #}
