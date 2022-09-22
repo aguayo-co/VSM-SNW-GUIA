@@ -23,8 +23,21 @@ class Degree(models.Model):
         default="turquesa",
         help_text=_("Personaliza la apariencia del Grado cambiando el color"),
     )
+    image = ImageOrSvgField(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+        verbose_name=_("Imagen"),
+    )
 
-    panels = [FieldPanel("name"), FieldPanel("number"), FieldPanel("color")]
+    panels = [
+        FieldPanel("name"),
+        FieldPanel("number"),
+        FieldPanel("color"),
+        ImageOrSVGPanel("image"),
+    ]
 
     def __str__(self):
         """A readable representation."""
