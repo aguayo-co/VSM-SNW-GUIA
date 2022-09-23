@@ -1,0 +1,9 @@
+{% extends 'extend/extend_content_page.html' %}
+
+
+{% load wagtailcore_tags wagtailembeds_tags svg_tags %}
+
+
+{% block media_page %}
+  {% svg-image self.search_image fill-1200x630 class="c-intro-content__img" %}
+{% endblock media_page %}

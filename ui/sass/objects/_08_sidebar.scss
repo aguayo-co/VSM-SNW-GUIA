@@ -1,60 +1,60 @@
 .o-sidebar__wrapper {
-    @include flexbox;
-    @include flex-direction(column);
-    @include px-to-rem(column-gap, $gutter);
-    @include  px-to-rem(row-gap, $gutter * 3);
+  @include flexbox;
+  @include flex-direction(column);
+  @include px-to-rem(column-gap, $gutter);
+  @include px-to-rem(row-gap, $gutter * 3);
 }
 // Modifires .o-sidebar__wrapper
 .o-sidebar__wrapper_reverse {
-    @include flex-direction(column-reverse);
+  @include flex-direction(column-reverse);
 }
 .o-sidebar__wrapper_gutter {
-    @include align-items(flex-start);
-    @include px-to-rem(row-gap, $gutter * 5);
-    @include px-to-rem(column-gap, 96px);
+  @include align-items(flex-start);
+  @include px-to-rem(row-gap, $gutter * 5);
+  @include px-to-rem(column-gap, 96px);
 }
 
 .o-sidebar__title {
-    @include px-to-rem(font-size, $gutter * 4);
+  @include px-to-rem(font-size, $gutter * 4);
 }
 
 .o-sidebar__subtitle {
-    @include px-to-rem(font-size, 18px);
-    
-    color: $c-primary-50;
-    font-weight: $f-medium;
+  @include px-to-rem(font-size, 18px);
+
+  color: $c-primary-50;
+  font-weight: $f-medium;
 }
 .o-sidebar__subtitle_sm {
-    @include px-to-rem(font-size, $gutter * 2);
-    color: $c-on-primary;
+  @include px-to-rem(font-size, $gutter * 2);
+  color: inherit;
 }
 
 .o-sidebar__space-bottom {
-    @include px-to-rem(margin-bottom, $gutter * 2);
+  @include px-to-rem(margin-bottom, $gutter * 2);
 }
 
 .o-sidebar__deck {
-    @include px-to-rem(margin-top, $gutter * 2);
+  @include px-to-rem(margin-top, $gutter * 2);
 }
 
-@include media-query(medium) { 
-    .o-sidebar__wrapper {
-        flex-direction: row;
-        @include px-to-rem(margin-bottom, $gutter * 6);
-        @include px-to-rem(margin-top, $gutter * 4);
-    }
-    .o-sidebar__title {
-        @include px-to-rem(font-size, $gutter * 7);
-    }
-    
-    .o-sidebar__subtitle {
-        @include px-to-rem(font-size, $gutter * 3);
-    }
-    .o-sidebar__subtitle_sm {
-        @include px-to-rem(font-size, 18px);
-    }
+@include media-query(medium) {
+  .o-sidebar__wrapper {
+    flex-direction: row;
+    @include px-to-rem(margin-bottom, $gutter * 6);
+    @include px-to-rem(margin-top, $gutter * 4);
+  }
+  .o-sidebar__title {
+    @include px-to-rem(font-size, $gutter * 7);
+  }
 
-    .o-sidebar__deck {
-        @include px-to-rem(margin-top, $gutter * 3);
-    }
+  .o-sidebar__subtitle {
+    @include px-to-rem(font-size, $gutter * 3);
+  }
+  .o-sidebar__subtitle_sm {
+    @include px-to-rem(font-size, 18px);
+  }
+
+  .o-sidebar__deck {
+    @include px-to-rem(margin-top, $gutter * 3);
+  }
 }

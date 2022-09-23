@@ -18,6 +18,13 @@
     }
   }
 
+  ul,
+  ol {
+    @include px-to-rem(margin-top, $gutter * 3);
+    @include px-to-rem(margin-bottom, $gutter * 3);
+    @include px-to-rem(margin-left, $gutter * 5);
+  }
+
   li,
   p {
     font-weight: $f-light;
@@ -28,16 +35,51 @@
     }
   };
 
-  h2,
-  h3,
-  h4 {
-    @include px-to-rem(margin-top, $gutter * 4);
+  h2 {
+    @include px-to-rem(margin-top, $gutter * 6);
     @include px-to-rem(margin-bottom, $gutter * 3);
-  };
+  }
 
   h2 {
-    @include px-to-rem(font-size, 24px);
-  };
+    @include px-to-rem(font-size, $gutter * 3);
+  }
+
+  h3 {
+    @include px-to-rem(font-size, 20px);
+    color: rgba($color: $c-default-text, $alpha: 0.5);
+    @include px-to-rem(margin-bottom, $gutter * 3);
+  }
+
+  iframe,
+  figure,
+  img {
+    display: block;
+    width: 100%;
+    @include px-to-rem(max-width, 642px);
+    @include px-to-rem(min-height, 344px);
+    margin-right: auto;
+    margin-left: auto;
+    @include px-to-rem(margin-bottom, $gutter * 3);
+  }
+
+  blockquote {
+    @include px-to-rem(margin-top, $gutter * 3);
+    @include px-to-rem(margin-bottom, $gutter * 3);
+    @include px-to-rem(padding, $gutter * 3 $gutter * 4);
+    border-left: 2px solid $c-default-text;
+    background-color: $c-surface-grey-10;
+
+    p {
+      &::before,
+      &::after {
+        content: '"';
+      }
+
+      font-weight: $f-light;
+      @include px-to-rem(font-size, $gutter * 2);
+      line-height: 1.2;
+    }
+  }
 
 }
 
@@ -54,16 +96,12 @@
 .s-richtext_list {
   ul,
   ol {
-    @include px-to-rem(margin-top, $gutter * 3);
-    @include px-to-rem(margin-bottom, $gutter * 3);
-    @include px-to-rem(margin-left, $gutter * 5);
-
     ul,
     ol {
       margin-top: 0;
       margin-bottom: 0;
     }
-  };
+  }
 }
 
 .s-richtext_list-check {
@@ -89,7 +127,24 @@
 @include media-query(medium) {
   .s-richtext {
     h2 {
-      @include px-to-rem(font-size, 32px);
-    };
+      @include px-to-rem(font-size, $gutter * 4);
+    }
+
+    h3 {
+      @include px-to-rem(font-size, $gutter * 3);
+    }
+
+    blockquote {
+      @include px-to-rem(padding, $gutter * 7);
+
+      p {
+        &::before,
+        &::after {
+          content: '"';
+        }
+
+        @include px-to-rem(font-size, 18px);
+      }
+    }
   }
 }

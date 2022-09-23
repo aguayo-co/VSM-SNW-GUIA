@@ -1,7 +1,36 @@
-{% load inspector %}
+{% load wagtailcore_tags svg_tags %}
 
-<section class="o-surface o-surface_navy-blue" id="{{ block_id }}">
 
-{{ self|inspect }}
+{% spaceless %}
 
-</section>
+  <div class="o-inner">
+
+    <div class="s-richtext">
+      {% for content in self.content %}
+
+        {% if content.value.cite %}
+
+          <blockquote>
+
+            {{ content.value.cite.source|richtext }}
+
+          </blockquote>
+        
+        {% elif content.value.image %}
+
+          <figure>
+            {% svg-image content.value.image fill-642x370 class="o-img"  %}
+          </figure>
+
+        {% else %}
+
+          {{ content.value.rich_text|richtext }}
+
+        {% endif %}
+
+      {% endfor %}
+    </div>
+
+  </div>
+
+{% endspaceless %}
