@@ -1,0 +1,24 @@
+@include media-query(medium) {
+  .o-filter-band {
+    @include flexbox;
+    @include justify-content(space-between);
+    @include align-items(center);
+    @include px-to-rem(padding, $gutter * 3 0);
+  }
+
+  .o-filter-band__item {
+    @include px-to-rem(max-width, 260px);
+  }
+}
+
+@include media-query(medium-max) {
+  .o-filter-band {
+    @include px-to-rem(padding, $gutter * 7 0);
+    text-align: center;
+  }
+
+  .o-filter-band__item {
+    width: 100%;
+    @include px-to-rem(margin-top, $gutter * 3);
+  }
+}

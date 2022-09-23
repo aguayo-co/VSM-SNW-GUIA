@@ -12,15 +12,17 @@
       
       {# Logo #}
       {% with settings.commons.SantillanaSettings as settings_site  %}
-        <a
-          class="c-header__brand"
-          href="{% pageurl settings_site.logo_url %}"
-          title="Santillana"
-        >
-          <figure>
-            {% svg-image settings_site.logo fill-134x32 class="o-img" %}
-          </figure>
-        </a>
+        {% if settings_site.logo_url %}
+          <a
+            class="c-header__brand"
+            href="{% pageurl settings_site.logo_url %}"
+            title="Santillana"
+          >
+            <figure>
+              {% svg-image settings_site.logo fill-134x32 class="o-img" %}
+            </figure>
+          </a>
+        {% endif %}
       {% endwith %}
 
       {# Buscador y Menu hamburguesa #}

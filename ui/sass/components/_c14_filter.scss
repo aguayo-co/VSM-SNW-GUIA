@@ -1,0 +1,222 @@
+.c-filter,
+.c-filter__toggle {
+  @include flexbox;
+}
+
+.c-filter__action {
+  @include px-to-rem(min-width, 160px);
+  @include px-to-rem(max-width, 160px);
+  @include px-to-rem(padding-right, $gutter * 4);
+  @include px-to-rem(padding-left, $gutter * 4);
+
+  &:first-of-type {
+    @include px-to-rem(margin-right, $gutter);
+  }
+}
+
+.c-filter__item {
+  border: none;
+  font-weight: $f-medium;
+  text-align: left;
+  color: $c-brand-primary;
+}
+
+.c-filter__toggle {
+  @include flex-direction(row-reverse);
+  @include justify-content(space-between);
+  @include align-items(center);
+  @include px-to-rem(padding, $gutter * 2);
+  line-height: 1;
+  transition: $transition-ease-in-out-2s;
+  cursor: pointer;
+
+  &::before {
+    @include px-to-rem(font-size, 14px);
+    transition: $transition-ease-in-out-2s;
+  }
+
+  &.is-dropdown-show {
+    color: $c-neutro;
+    background-color: $c-brand-primary;
+
+    &::before {
+      transform: rotate(180deg);
+    }
+
+    +.c-filter__list {
+      @include px-to-rem(max-height, 1800px);
+      font-size: inherit;
+      opacity: 1;
+      visibility: visible;
+      z-index: 10;
+
+      &:not(.c-filter__list_bg) {
+        @include px-to-rem(padding, $gutter * 3);
+      }
+    }
+  }
+}
+
+.c-filter__list {
+  max-height: 0;
+  border: 1px solid;
+  font-size: 0;
+  z-index: -10;
+  opacity: 0;
+  visibility: hidden;
+  background: $c-neutro;
+  transition: $transition-ease-in-out-2s;
+}
+
+.c-filter__option {
+  position: relative;
+  border-bottom: 1px solid $c-surface-grey-10;
+
+  &:not(.c-filter__list_bg &) {
+    @include px-to-rem(padding, $gutter * 2 0);
+
+    &:first-of-type {
+      padding-top: 0;
+    }
+
+    &:last-of-type {
+      padding-bottom: 0;
+      border: none;
+    }
+  }
+
+}
+
+.c-filter__option-input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+
+  &:checked + .c-filter__option-label {
+    &::before {
+      background-color: $c-surface-navy-blue-20;
+    }
+
+    &::after {
+      opacity: 1;
+    }
+  }
+}
+
+.c-filter__option-label {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  cursor: pointer;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: block;
+    @include px-to-rem(width, 20px);
+    @include px-to-rem(height, 20px);
+    margin: auto;
+    @include px-to-rem(border-radius, 6px);
+    border: 2px solid $c-brand-primary;
+    background: $c-surface-grey-10;
+  }
+
+  &::after {
+    content: $i-check;
+    position: absolute;
+    @include px-to-rem(top, $gutter);
+    @include px-to-rem(right, 5px);
+    font-family: $font-family-ico;
+    @include px-to-rem(font-size, 14px);
+    line-height: 1;
+    opacity: 0;
+  }
+}
+
+.c-filter__option-label_bg {
+  @include px-to-rem(padding, $gutter * 2 $gutter * 3);
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    color: $c-neutro;
+    background-color: $c-brand-primary;
+  }
+
+  &::after,
+  &::before {
+    display: none;
+  }
+}
+
+@include media-query(medium) {
+  .c-filter,
+  .c-filter__group {
+    @include flexbox;
+  }
+
+  .c-filter {
+    @include flex-direction(column);
+    @include px-to-rem(row-gap, $gutter * 3);
+    @include px-to-rem(padding-bottom, $gutter * 3);
+  }
+
+  .c-filter__actions {
+    text-align: right;
+  }
+
+  .c-filter__group {
+    @include align-items(center);
+    @include justify-content(space-between);
+    @include px-to-rem(column-gap, $gutter * 2);
+  }
+
+  .c-filter__item {
+    position: relative;
+    flex: 1 100%;
+    border-bottom: 2px solid;
+  }
+
+  .c-filter__list {
+    position: absolute;
+    top: 117%;
+    right: 0;
+    left: 0;
+    width: 100%;
+  }
+}
+
+@include media-query(medium-max) {
+  .c-filter {
+    @include flex-direction(column);
+    @include px-to-rem(row-gap, $gutter * 5);
+    @include px-to-rem(padding-bottom, $gutter * 4);
+  }
+
+  .c-filter__group {
+    @include flexbox;
+    @include flex-wrap(wrap);
+    @include justify-content(space-between);
+    @include align-items(center);
+    @include px-to-rem(row-gap, $gutter * 3);
+  }
+
+  .c-filter__item {
+    flex: 1 100%;
+  }
+
+  .c-filter__toggle {
+    border-bottom: 2px solid;
+
+    &.is-dropdown-show {
+      +.c-filter__list {
+        @include px-to-rem(margin-top, $gutter);
+      }
+    }
+  }
+}

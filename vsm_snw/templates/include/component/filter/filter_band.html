@@ -1,0 +1,50 @@
+{% load i18n %}
+
+<div class="o-canvas">
+
+  <div class="o-filter-band">
+    <p
+      class="o-text o-primary o-light"
+    >
+      {% trans "Encuentra" %}
+      <strong>{{  object_list.paginator.count }}</strong>
+      {% trans "libros de secundaria" %}
+    </p>
+
+    {# Ordenado #}
+    <div class="c-filter__item o-filter-band__item">
+
+      <p class="c-filter__toggle i-chevron-down js-dropdown-button">{% trans "Ordenar por" %}</p> 
+
+      <ul class="c-filter__list c-filter__list_bg o-list">
+        {% for option in self.order_by_options  %}
+
+          <li class="c-filter__option">
+
+            <input
+              id="{{ option.0 }}"
+              class="c-filter__option-input"
+              type="checkbox"
+              name="{{ option.0 }}"
+              value="{{ option.0 }}"
+              {% if choices.data.selected %}checked{% endif %}
+              @click=""
+            >
+
+            <label
+              class="c-filter__option-label c-filter__option-label_bg"
+              for="{{ option.0 }}"
+            >
+              {{ option.1 }}
+            </label>
+
+          </li>
+
+        {% endfor %}
+      </ul>
+
+    </div>
+
+  </div>
+
+</div>

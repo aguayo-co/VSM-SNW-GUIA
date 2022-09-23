@@ -152,6 +152,10 @@ class HeroStreamField(FullStreamField):
         max_num = 3
 
 
+class CatalogPageStreamField(FullStreamField):
+    block_types = [("pages_links_list_component", PagesLinksListComponent())]
+
+
 class DetailProductStreamField(FullStreamField):
     block_types = [("chip_list_component", ChipListComponent())]
 

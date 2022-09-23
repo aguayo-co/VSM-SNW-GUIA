@@ -68,7 +68,7 @@
                   <nav class="c-catalog-index__subjects">
                     {% for subject in subjects %}
                       <a
-                        href="{% pageurl catalog_page %}?degree={{ grade.pk }}&subject={{ subject.pk }}"
+                        href="{% pageurl catalog_page %}?grade={{ grade.pk }}&subject={{ subject.pk }}"
                         class="o-link o-link_secondary"
                       >
                         {{ subject.name }}

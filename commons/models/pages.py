@@ -20,6 +20,7 @@ from commons.models.components import ThematicContentComponent
 from commons.models.fields import (
     CategoryHomePageStreamField,
     ContentPageStreamField,
+    CatalogPageStreamField,
     CourseDetailStreamField,
     DetailProductIntroStreamField,
     DetailProductStreamField,
@@ -191,8 +192,10 @@ class CatalogPage(FilterMixin, BasePage):
 
     CONTENT_FIELD = "_content_catalog"
 
-    _content_catalog = StreamField(
-        [], verbose_name=("Contenido"), null=True, blank=True
+    _content_catalog = CatalogPageStreamField(
+        verbose_name=_("Contenido"),
+        null=True,
+        blank=True
     )
 
     content_panels = BasePage.replace_content_field(CONTENT_FIELD)
