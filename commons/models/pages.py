@@ -215,20 +215,11 @@ class CatalogPage(FilterMixin, BasePage):
         # filters
         filter_names = ["serie", "subject", "grade"]
         filters = {
-            a_filter: request.GET.get(a_filter, None)
+            f"{a_filter}__in": request.GET.getlist(a_filter, None)
             for a_filter in filter_names
             if request.GET.get(a_filter, None) not in ["", None]
         }
         queryset = DetailProductPage.objects.filter(**filters)
-        # filters
-        filter_names = ["serie", "subject", "grade"]
-        filters = {
-            a_filter: request.GET.get(a_filter, None)
-            for a_filter in filter_names
-            if request.GET.get(a_filter, None) not in ["", None]
-        }
-        queryset = DetailProductPage.objects.filter(**filters)
-
         paginator = Paginator(queryset, items_per_page)
 
         try:
