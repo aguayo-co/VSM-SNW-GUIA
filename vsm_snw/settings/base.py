@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     "wagtail_svg_images",
     "wagtailsvg",
     "generic_chooser",
+    "hitcount",
 ]
 
 MIDDLEWARE = [

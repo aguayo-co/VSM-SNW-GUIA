@@ -15,6 +15,8 @@ from wagtail.fields import RichTextField, StreamField
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail_svg_images.models import ImageOrSvgField
 from wagtail_svg_images.panels import ImageOrSVGPanel
+from hitcount.models import HitCount
+from hitcount.views import HitCountMixin
 
 from commons.models.components import ThematicContentComponent
 from commons.models.fields import (
@@ -28,7 +30,7 @@ from commons.models.fields import (
     HomeStreamField,
     ThematicHomePageStreamField,
 )
-from commons.models.mixins import FilterMixin
+from commons.models.mixins import FilterMixin, OrderMixin
 from commons.models.snippets import Degree
 
 items_per_page = 10
@@ -114,6 +116,14 @@ class BasePage(Page):
         """Devuelve el campo de contenido definido en CONTENT_FIELD."""
         return getattr(self, self.CONTENT_FIELD)
 
+
+    def serve(self, request, *args, **kwargs):
+        """Redirecciona a la página de idioma correcto."""
+        hit_count = HitCount.objects.get_for_object(self)
+        HitCountMixin.hit_count(request, hit_count)
+
+        return super().serve(request, *args, **kwargs)
+
     class Meta:
         verbose_name = _("Página Base")
         verbose_name_plural = _("Páginas Base")
@@ -168,9 +178,12 @@ class BlogPage(BasePage):
         """Adding custom stuff to our context."""
         context = super().get_context(request, *args, **kwargs)
         page = request.GET.get("page", None)
-        order_by = request.GET.get("order_by", None)
+        order_by = self.get_order_by(request)
 
-        queryset = CategoryHomePage.objects.all()
+        if order_by is not None:
+            queryset = CategoryHomePage.objects.all().order_by(order_by)
+        else:
+            queryset = CategoryHomePage.objects.all()
 
         paginator = Paginator(queryset, 1)
 
@@ -182,17 +195,18 @@ class BlogPage(BasePage):
             frequent_questions = paginator.page(paginator.num_pages)
 
         context["sub_pages"] = frequent_questions
+        context["order_by"] = order_by
 
         return context
 
 
-class CatalogPage(FilterMixin, BasePage):
+class CatalogPage(FilterMixin, OrderMixin, BasePage):
     """Catalog page model."""
 
     CONTENT_FIELD = "_content_catalog"
 
     _content_catalog = StreamField(
-        [], verbose_name=("Contenido"), null=True, blank=True
+        [], verbose_name=_("Contenido"), null=True, blank=True
     )
 
     content_panels = BasePage.replace_content_field(CONTENT_FIELD)
@@ -208,7 +222,8 @@ class CatalogPage(FilterMixin, BasePage):
         """Adding custom stuff to our context."""
         context = super().get_context(request, *args, **kwargs)
         page = request.GET.get("page", None)
-        order_by = request.GET.get("order_by", None)
+        order_by = self.get_order_by(request)
+
         # filters
         filter_names = ["serie", "subject", "grade"]
         filters = {
@@ -216,15 +231,10 @@ class CatalogPage(FilterMixin, BasePage):
             for a_filter in filter_names
             if request.GET.get(a_filter, None) not in ["", None]
         }
-        queryset = DetailProductPage.objects.filter(**filters)
-        # filters
-        filter_names = ["serie", "subject", "grade"]
-        filters = {
-            a_filter: request.GET.get(a_filter, None)
-            for a_filter in filter_names
-            if request.GET.get(a_filter, None) not in ["", None]
-        }
-        queryset = DetailProductPage.objects.filter(**filters)
+        if order_by is not None:
+            queryset = DetailProductPage.objects.filter(**filters).order_by(order_by)
+        else:
+            queryset = DetailProductPage.objects.filter(**filters)
 
         paginator = Paginator(queryset, items_per_page)
 
@@ -237,6 +247,7 @@ class CatalogPage(FilterMixin, BasePage):
 
         context["object_list"] = object_list
         context["filter_form"] = self.get_filter_form(*args, request=request, **kwargs)
+        context["order_form"] = OrderMixin.get_order_by_options(self)
 
         return context
 
@@ -338,7 +349,7 @@ class CourseDetailPage(BasePage):
         verbose_name_plural = _("Detalle de Cursos")
 
 
-class CategoryHomePage(BasePage):
+class CategoryHomePage(OrderMixin, BasePage):
     """Model for the category commons page."""
 
     CONTENT_FIELD = "_content_category_homepage"
@@ -362,9 +373,12 @@ class CategoryHomePage(BasePage):
         """Adding custom stuff to our context."""
         context = super().get_context(request, *args, **kwargs)
         page = request.GET.get("page", None)
-        order_by = request.GET.get("order_by", None)
+        order_by = self.get_order_by(request)
 
-        queryset = DetailArticlePage.objects.all()
+        if order_by is not None:
+            queryset = DetailArticlePage.objects.all().order_by(order_by)
+        else:
+            queryset = DetailArticlePage.objects.all()
 
         paginator = Paginator(queryset, items_per_page)
 
@@ -376,11 +390,12 @@ class CategoryHomePage(BasePage):
             object_list = paginator.page(paginator.num_pages)
 
         context["object_list"] = object_list
+        context["order_form"] = OrderMixin.get_order_by_options(self)
 
         return context
 
 
-class ThematicHomePage(BasePage):
+class ThematicHomePage(OrderMixin, BasePage):
     """Model for the thematic commons page."""
 
     CONTENT_FIELD = "_content_thematic_homepage"
@@ -403,9 +418,12 @@ class ThematicHomePage(BasePage):
         """Adding custom stuff to our context."""
         context = super().get_context(request, *args, **kwargs)
         page = request.GET.get("page", None)
-        order_by = request.GET.get("order_by", None)
+        order_by = self.get_order_by(request)
 
-        queryset = CourseDetailPage.objects.child_of(self).live()
+        if order_by is not None:
+            queryset = CourseDetailPage.objects.child_of(self).live().order_by(order_by)
+        else:
+            queryset = CourseDetailPage.objects.child_of(self).live()
 
         paginator = Paginator(queryset, items_per_page)
 
@@ -417,6 +435,7 @@ class ThematicHomePage(BasePage):
             object_list = paginator.page(paginator.num_pages)
 
         context["object_list"] = object_list
+        context["order_form"] = OrderMixin.get_order_by_options(self)
 
         return context
 

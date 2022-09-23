@@ -6,6 +6,9 @@
 {% block body_class %}template-homepage{% endblock %}
 
 {% block content %}
+  {% for item in order_form %}
+    {{ item }}
+  {% endfor %}
   <form method="GET">
     {{ filter_form }}
     <input type="submit" value="Filtrar">
