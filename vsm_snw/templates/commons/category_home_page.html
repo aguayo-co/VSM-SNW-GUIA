@@ -28,16 +28,16 @@
         {% for card in object_list %}
 
           <article class="o-card o-card_article u-rounded-16">
-
-            <figure class="o-card__figure">
-              {% svg-image card.search_image fill-350x273 class="o-card__img"  %}
-            </figure>
-          
-            <div class="o-card__content">
-              <p class="o-kicker">{{ card.get_parent.title }}</p>
-              <p class="o-card__text o-text">{{ card.seo_title }}</p>
-            </div>
-          
+            <a href="{% pageurl card %}">
+              <figure class="o-card__figure">
+                {% svg-image card.search_image fill-350x273 class="o-card__img"  %}
+              </figure>
+            
+              <div class="o-card__content">
+                <p class="o-kicker">{{ card.get_parent.title }}</p>
+                <p class="o-card__text o-text">{{ card.seo_title }}</p>
+              </div>
+            </a>
           </article>
           
         {% endfor %}
