@@ -85,63 +85,7 @@
 
   {% if related_pages|length > 0 %}
     {# Descubre mas libros #}
-    <section class="o-section">
-      <div class="o-canvas-dk">
-
-        <div class="o-hgroup-band_column o-hgroup-band_border">
-
-          <header class="o-hgroup-band__header">
-            <h2 class="o-subheadline">
-              {% trans "Descubre más libros del" %}
-            </h2>
-            <a
-              href="{% pageurl catalog_page %}"
-              title="{% trans 'Ir a ' %} {{ catalog_page.title }}"
-              class="o-kicker o-link o-link_secondary"
-            >
-              {{ catalog_page.title }}
-            </a>
-          </header>
-
-          <a
-            href="{{ self.student_book.url }}"
-            title="{% trans 'Ir a ' %} {{ self.student_book }}"
-            target="_blank"
-            class="o-btn o-btn_secondary">{{ self.title }}
-          </a>
-
-        </div>
-
-        <div class="o-card-product-slider swiper js-slider-product">
-
-          <div class="o-list swiper-wrapper">
-            {% for page in related_pages %}
-
-              {# Card detalle producto (Libro) #}
-              {% include "include/component/card/product_card.html" with swiper_class='swiper-slide' object=page only %}
-
-            {% endfor %}
-          </div>
-
-          {% if related_pages|length > 2 %}
-            <div class="c-testimonial-slider__actions">
-
-              <!-- If we need navigation buttons -->
-              <span class="c-testimonial-slider__btn swiper-button-prev"></span>
-
-              <!-- If we need pagination -->
-              <div class="c-testimonial-slider__pagination swiper-pagination"></div>
-
-              <span class="c-testimonial-slider__btn swiper-button-next"></span>
-
-            </div>
-          {% endif %}
-
-        </div>
-
-      </div>
-    </section>
-    {# Fin descubre mas libros #}
+    {% include 'include/product/product_list_detail.html' with object_list=related_pages %}
   {% endif %}
 
   {# Grados relacionados #}

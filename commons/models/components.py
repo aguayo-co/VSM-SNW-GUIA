@@ -516,7 +516,12 @@ class ProductsListComponent(StructBlock):
         required=False, label=_("URL acción secundaria")
     )
     products_list = ListBlock(
-        PageChooserBlock(required=True, label=_("Enlace a producto")),
+        PageChooserBlock(
+            page_type="commons.DetailProductPage",
+            required=True,
+            label=_("Enlace a producto"),
+        ),
+        min_len=1,
         required=False,
         label=_("Listado de productos"),
     )

@@ -1,6 +1,6 @@
-//-*----------------------------------*
-//-  Objects: Styles for text
-//-*----------------------------------*
+// -*----------------------------------*
+// -  Objects: Styles for text
+// -*----------------------------------*
 
 /**
  * Class: theme | <html>
@@ -120,6 +120,25 @@ strong,
 }
 
 /**
+ * Class: .o-regular | <strong>, <b>
+ * @description  define estilo regular para el texto.
+ *  ♣ Propiedades: 400
+ * @atom Texto regular
+ * @section 03. Estilos textos
+ * @markup
+ *  <p class="o-text">
+ *	  Ad ea velit nisi <span class="o-regular">aliquip nostrud laboris</span> laborum aliquip laborum.
+ *  </p>
+ *  <p class="o-text">
+ *	  <strong>Ad ea velit nisi aliquip nostrud laboris laborum aliquip laborum</strong>
+ *  </p>
+ */
+
+.o-regular {
+  font-weight: $f-regular;
+}
+
+/**
  * Class: .o-medium | <strong>, <b>
  * @description  define estilo semi negrilla para el texto.
  *  ♣ Propiedades: 500
@@ -149,7 +168,11 @@ strong,
  *	</p>
  */
 
- .o-kicker {
+.o-kicker {
   font-weight: $f-regular;
   @include px-to-rem(font-size, 18px);
+}
+
+.o-primary {
+  color: $c-brand-primary;
 }

@@ -108,6 +108,10 @@ button {
   @include px-to-rem(padding, $gutter * 2);
 }
 
+.o-btn_bg-transparent {
+  background-color: transparent;
+}
+
 
 /**
  * Class: o-btn-round

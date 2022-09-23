@@ -1,7 +1,4 @@
-{% load inspector %}
+{% load wagtailcore_tags i18n %}
 
-<section class="o-surface o-surface_navy-blue" id="{{ block_id }}">
 
-{{ self|inspect }}
-
-</section>
+{% include 'include/product/product_list_component.html' with object_list=self.products_list %}

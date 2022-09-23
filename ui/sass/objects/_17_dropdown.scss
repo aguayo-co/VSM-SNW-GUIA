@@ -1,0 +1,62 @@
+.o-dropdown__btn {
+  @include flexbox;
+  @include flex-direction(row-reverse);
+  @include justify-content(space-between);
+  @include align-items(center);
+  @include px-to-rem(padding, $gutter * 3 0);
+  font-weight: $f-medium;
+  line-height: 1.3;
+  transition: $transition-ease-in-out-2s;
+  cursor: pointer;
+  @include px-to-rem(font-size, 20px);
+
+  &::before {
+    @include px-to-rem(margin-left, $gutter * 3);
+  }
+
+  &.is-dropdown-show,
+  &:hover {
+    color: $c-brand-primary;
+  }
+
+  &:not( &:last-of-type) {
+    border-bottom: 2px solid $c-surface-grey-20;
+  }
+
+  &.is-dropdown-show {
+
+    &::before {
+      content: $i-minor;
+    }
+
+    &:last-of-type {
+      border-bottom: 2px solid $c-surface-grey-20;
+    }
+
+    // Hermano del titulo seleccionado
+    +.o-dropdown__content {
+      @include px-to-rem(max-height, 2000px);
+      @include px-to-rem(padding, $gutter * 3);
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+.o-dropdown__content {
+  max-height: 0;
+  border-bottom: 2px solid $c-surface-grey-20;
+  opacity: 0;
+  visibility: hidden;
+  transition: $transition-ease-in-out-2s;
+
+  &.s-richtext {
+    ul {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+}
+.o-dropdown__content_primary {
+  color: $c-brand-primary;
+}

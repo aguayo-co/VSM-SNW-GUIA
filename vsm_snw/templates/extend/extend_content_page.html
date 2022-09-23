@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+
+{% load wagtailcore_tags wagtailembeds_tags inspector i18n %}
+
+{% block content %}
+
+  <section class="o-surface_gradient">
+    <div class="o-canvas o-canvas_shadow">
+      <div class="o-surface">
+
+        {# Componente intro content #}
+        <div class="c-intro-content">
+
+          <header class="c-intro-content__header o-inner">
+            <h1 class="c-intro-content__title o-sidebar__title o-regular">{{ self.title }}</h1>
+
+            {% block course_detail %}{% endblock course_detail %}
+
+          </header>
+
+          <figure class="c-intro-content__media">
+            {% block media_page %}{% endblock media_page %}
+          </figure>
+
+        </div>
+
+        {% block social_share %}{% endblock social_share %}
+
+        {# Intro de la página (Texto enriquecido) #}
+        {% for block in self.content %}
+          {% include_block block with block_id=block.id %}
+        {% endfor %}
+
+      </div>
+    </div>
+  </section>
+
+  {# Componentes página #}
+  {% for block in self.footer_content %}
+    {% include_block block with block_id=block.id %}
+  {% endfor %}
+
+{% endblock content %}

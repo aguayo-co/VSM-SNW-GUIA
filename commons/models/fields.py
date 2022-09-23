@@ -170,6 +170,7 @@ class CourseDetailStreamField(FullStreamField):
     block_types = [
         ("agenda_component", AgendaComponent()),
         ("chip_list_component", ChipListComponent()),
+        ("products_list_component", ProductsListComponent()),
     ]
 
 
