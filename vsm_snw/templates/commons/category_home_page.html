@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load wagtailcore_tags i18n %}
+{% load wagtailcore_tags svg_tags i18n %}
 
 
 {% block content %}
@@ -19,21 +19,29 @@
   {# Fin cabecera #}
 
   {# Filtro ordenar por y label de resultados #}
-  {% include "include/component/filter/filter_band.html" with results_caption="cursos de capacitación docente en" %}
+  {% include "include/component/filter/filter_band.html" with results_caption="artículos en" %}
 
-  {# Cursos de la categoria #}
   <section class="o-section">
     <div class="o-canvas">
 
-      <header class="o-hgroup o-hgroup_center">
-        <h3 class="o-subheadline">{% trans 'Contenido mas destacado' %}</h3>
-        <p class="o-kicker">{% trans 'Contenido mas destacado' %}</p>
-      </header>
+      <div class="o-card-article-wrap">
+        {% for card in object_list %}
 
-      {% for course in object_list %}
-        {# Componente agenda #}
-        {% include 'include/component/agenda.html' with course=course only %}
-      {% endfor %}
+          <article class="o-card o-card_article u-rounded-16">
+
+            <figure class="o-card__figure">
+              {% svg-image card.search_image fill-350x273 class="o-card__img"  %}
+            </figure>
+          
+            <div class="o-card__content">
+              <p class="o-kicker">{{ card.get_parent.title }}</p>
+              <p class="o-card__text o-text">{{ card.seo_title }}</p>
+            </div>
+          
+          </article>
+          
+        {% endfor %}
+      </div>
 
     </div>
 

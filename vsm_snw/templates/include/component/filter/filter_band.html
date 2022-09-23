@@ -8,7 +8,11 @@
     >
       {% trans "Encuentra" %}
       <strong>{{  object_list.paginator.count }}</strong>
-      {% trans "libros de secundaria" %}
+      {% blocktrans %}{{ results_caption }}{% endblocktrans %}
+
+      {% if not is_catalog_page %}
+        {{ self.title }}
+      {% endif %}
     </p>
 
     {# Ordenado #}
