@@ -16,7 +16,7 @@ class FilterMixin:
 
 class OrderMixin:
     order_by_options = (
-        ("popularity", _("Los más populares")),
+        ("hits", _("Los más populares")),
         ("-date", _("Fecha, Descendente")),
         ("date", _("Fecha, Ascendente")),
         ("Author", _("Autor A/Z")),
