@@ -8,6 +8,16 @@ from wagtail_tag_manager.wagtail_hooks import (
     TriggerModelAdmin,
     VariableModelAdmin,
 )
+from hitcount.models import HitCount
+from hitcount.views import HitCountMixin
+
+
+@hooks.register("before_serve_page")
+def increment_view_count(page, request, serve_args, serve_kwargs):
+    hit_count = HitCount.objects.get_for_object(page)
+    hit_count_response = HitCountMixin.hit_count(request, hit_count)
+    print(hit_count_response)
+    print(hit_count.hits)
 
 
 @hooks.register("construct_settings_menu")

@@ -15,6 +15,7 @@ from wagtail.fields import RichTextField, StreamField
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail_svg_images.models import ImageOrSvgField
 from wagtail_svg_images.panels import ImageOrSVGPanel
+from hitcount.models import HitCountMixin
 
 from commons.models.components import ThematicContentComponent
 from commons.models.fields import (
@@ -29,13 +30,13 @@ from commons.models.fields import (
     HomeStreamField,
     ThematicHomePageStreamField,
 )
-from commons.models.mixins import FilterMixin
+from commons.models.mixins import FilterMixin, OrderMixin
 from commons.models.snippets import Degree
 
 items_per_page = 10
 
 
-class BasePage(Page):
+class BasePage(Page, HitCountMixin):
     """The basic model that all Pages inherit from."""
 
     CONTENT_FIELD = "_content_base"
