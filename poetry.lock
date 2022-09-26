@@ -45,14 +45,14 @@ lxml = ["lxml"]
 
 [[package]]
 name = "boto3"
-version = "1.24.47"
+version = "1.24.79"
 description = "The AWS SDK for Python"
 category = "main"
 optional = false
 python-versions = ">= 3.7"
 
 [package.dependencies]
-botocore = ">=1.27.47,<1.28.0"
+botocore = ">=1.27.79,<1.28.0"
 jmespath = ">=0.7.1,<2.0.0"
 s3transfer = ">=0.6.0,<0.7.0"
 
@@ -61,7 +61,7 @@ crt = ["botocore[crt] (>=1.21.0,<2.0a0)"]
 
 [[package]]
 name = "botocore"
-version = "1.27.47"
+version = "1.27.79"
 description = "Low-level, data-driven core of boto 3."
 category = "main"
 optional = false
@@ -73,11 +73,11 @@ python-dateutil = ">=2.1,<3.0.0"
 urllib3 = ">=1.25.4,<1.27"
 
 [package.extras]
-crt = ["awscrt (==0.13.8)"]
+crt = ["awscrt (==0.14.0)"]
 
 [[package]]
 name = "certifi"
-version = "2022.6.15"
+version = "2022.9.14"
 description = "Python package for providing Mozilla's CA Bundle."
 category = "main"
 optional = false
@@ -85,7 +85,7 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "charset-normalizer"
-version = "2.1.0"
+version = "2.1.1"
 description = "The Real First Universal Charset Detector. Open, modern and actively maintained alternative to Chardet."
 category = "main"
 optional = false
@@ -103,8 +103,8 @@ optional = false
 python-versions = "*"
 
 [[package]]
-name = "django"
-version = "4.0.6"
+name = "Django"
+version = "4.0.7"
 description = "A high-level Python web framework that encourages rapid development and clean, pragmatic design."
 category = "main"
 optional = false
@@ -146,7 +146,7 @@ testing = ["coverage"]
 
 [[package]]
 name = "django-compressor"
-version = "4.0"
+version = "4.1"
 description = "Compresses linked and inline JavaScript or CSS into single cached files."
 category = "main"
 optional = false
@@ -159,15 +159,23 @@ rjsmin = "1.2.0"
 
 [[package]]
 name = "django-debug-toolbar"
-version = "3.5.0"
+version = "3.6.0"
 description = "A configurable set of panels that display various debug information about the current request/response."
 category = "main"
 optional = false
 python-versions = ">=3.7"
 
 [package.dependencies]
-Django = ">=3.2"
+Django = ">=3.2.4"
 sqlparse = ">=0.2.0"
+
+[[package]]
+name = "django-etc"
+version = "1.3.1"
+description = "Tiny stuff for Django that won't fit into separate apps."
+category = "main"
+optional = false
+python-versions = "*"
 
 [[package]]
 name = "django-filter"
@@ -179,6 +187,17 @@ python-versions = ">=3.6"
 
 [package.dependencies]
 Django = ">=2.2"
+
+[[package]]
+name = "django-hitcount"
+version = "1.3.5"
+description = "Hit counting application for Django."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+django-etc = ">=1.2.0"
 
 [[package]]
 name = "django-modelcluster"
@@ -286,14 +305,14 @@ dev = ["black", "flake8"]
 
 [[package]]
 name = "djangorestframework"
-version = "3.13.1"
+version = "3.14.0"
 description = "Web APIs for Django, made easy."
 category = "main"
 optional = false
 python-versions = ">=3.6"
 
 [package.dependencies]
-django = ">=2.2"
+django = ">=3.0"
 pytz = "*"
 
 [[package]]
@@ -337,7 +356,7 @@ lxml = ["lxml"]
 
 [[package]]
 name = "idna"
-version = "3.3"
+version = "3.4"
 description = "Internationalized Domain Names in Applications (IDNA)"
 category = "main"
 optional = false
@@ -386,7 +405,7 @@ python-versions = ">=3.6"
 et-xmlfile = "*"
 
 [[package]]
-name = "pillow"
+name = "Pillow"
 version = "9.1.1"
 description = "Python Imaging Library (Fork)"
 category = "main"
@@ -399,23 +418,24 @@ tests = ["check-manifest", "coverage", "defusedxml", "markdown2", "olefile", "pa
 
 [[package]]
 name = "psycopg"
-version = "3.0.15"
+version = "3.1.2"
 description = "PostgreSQL database adapter for Python"
 category = "main"
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.7"
 
 [package.dependencies]
 "backports.zoneinfo" = {version = ">=0.2.0", markers = "python_version < \"3.9\""}
+typing-extensions = {version = ">=4.1", markers = "python_version < \"3.11\""}
 tzdata = {version = "*", markers = "sys_platform == \"win32\""}
 
 [package.extras]
-binary = ["psycopg-binary (==3.0.15)"]
-c = ["psycopg-c (==3.0.15)"]
-dev = ["black (>=22.3.0)", "dnspython (>=2.1)", "flake8 (>=4.0)", "mypy (>=0.920,!=0.930,!=0.931)", "types-setuptools (>=57.4)", "wheel (>=0.37)"]
-docs = ["Sphinx (>=4.2)", "dnspython (>=2.1)", "furo (==2021.11.23)", "shapely (>=1.7)", "sphinx-autobuild (>=2021.3.14)", "sphinx-autodoc-typehints (>=1.12)"]
+binary = ["psycopg-binary (==3.1.2)"]
+c = ["psycopg-c (==3.1.2)"]
+dev = ["black (>=22.3.0)", "dnspython (>=2.1)", "flake8 (>=4.0)", "mypy (>=0.940)", "types-setuptools (>=57.4)", "wheel (>=0.37)"]
+docs = ["Sphinx (>=5.0)", "furo (==2022.6.21)", "sphinx-autobuild (>=2021.3.14)", "sphinx-autodoc-typehints (>=1.12)"]
 pool = ["psycopg-pool"]
-test = ["mypy (>=0.920,!=0.930,!=0.931)", "pproxy (>=2.7)", "pytest (>=6.2.5)", "pytest-asyncio (>=0.16,<0.17)", "pytest-cov (>=3.0)", "pytest-randomly (>=3.10)"]
+test = ["mypy (>=0.940)", "pproxy (>=2.7)", "pytest (>=6.2.5)", "pytest-asyncio (>=0.17)", "pytest-cov (>=3.0)", "pytest-randomly (>=3.10)"]
 
 [[package]]
 name = "psycopg2-binary"
@@ -438,7 +458,7 @@ six = ">=1.5"
 
 [[package]]
 name = "pytz"
-version = "2022.1"
+version = "2022.2.1"
 description = "World timezone definitions, modern and historical"
 category = "main"
 optional = false
@@ -552,7 +572,7 @@ yaml = ["pyyaml"]
 
 [[package]]
 name = "telepath"
-version = "0.2"
+version = "0.3"
 description = "A library for exchanging data between Python and JavaScript"
 category = "main"
 optional = false
@@ -562,8 +582,16 @@ python-versions = ">=3.5"
 docs = ["mkdocs (>=1.1,<1.2)", "mkdocs-material (>=6.2,<6.3)"]
 
 [[package]]
+name = "typing-extensions"
+version = "4.3.0"
+description = "Backported and Experimental Type Hints for Python 3.7+"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[[package]]
 name = "tzdata"
-version = "2022.1"
+version = "2022.2"
 description = "Provider of IANA time zone data"
 category = "main"
 optional = false
@@ -571,7 +599,7 @@ python-versions = ">=2"
 
 [[package]]
 name = "urllib3"
-version = "1.26.10"
+version = "1.26.12"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
 category = "main"
 optional = false
@@ -579,12 +607,12 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*, 
 
 [package.extras]
 brotli = ["brotli (>=1.0.9)", "brotlicffi (>=0.8.0)", "brotlipy (>=0.6.0)"]
-secure = ["certifi", "cryptography (>=1.3.4)", "idna (>=2.0.0)", "ipaddress", "pyOpenSSL (>=0.14)"]
+secure = ["certifi", "cryptography (>=1.3.4)", "idna (>=2.0.0)", "ipaddress", "pyOpenSSL (>=0.14)", "urllib3-secure-extra"]
 socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 
 [[package]]
 name = "wagtail"
-version = "3.0.1"
+version = "3.0.3"
 description = "A Django content management system."
 category = "main"
 optional = false
@@ -612,7 +640,7 @@ xlsxwriter = ">=1.2.8,<4.0"
 
 [package.extras]
 docs = ["Sphinx (>=1.5.2)", "myst-parser (==0.17.0)", "pyenchant (>=3.1.1,<4)", "sphinx-autobuild (>=0.6.0)", "sphinx-wagtail-theme (==5.1.1)", "sphinxcontrib-spelling (>=5.4.0,<6)"]
-testing = ["Jinja2 (>=3.0,<3.2)", "azure-mgmt-cdn (>=5.1,<6.0)", "azure-mgmt-frontdoor (>=0.3,<0.4)", "black (==22.3.0)", "boto3 (>=1.16,<1.17)", "coverage (>=3.7.0)", "curlylint (==0.13.1)", "django-pattern-library (>=0.7,<0.8)", "djhtml (==1.4.13)", "doc8 (==0.8.1)", "elasticsearch (>=5.0,<6.0)", "flake8 (>=3.6.0)", "flake8-assertive (==2.0.0)", "flake8-blind-except (==0.1.1)", "flake8-comprehensions (==3.8.0)", "flake8-print (==2.0.2)", "freezegun (>=0.3.8)", "isort (==5.6.4)", "openpyxl (>=2.6.4)", "polib (>=1.1,<2.0)", "python-dateutil (>=2.7)", "pytz (>=2014.7)"]
+testing = ["Jinja2 (>=3.0,<3.2)", "azure-mgmt-cdn (>=5.1,<6.0)", "azure-mgmt-frontdoor (>=0.3,<0.4)", "black (==22.3.0)", "boto3 (>=1.16,<1.17)", "coverage (>=3.7.0)", "curlylint (==0.13.1)", "django-pattern-library (>=0.7,<0.8)", "djhtml (==1.4.13)", "doc8 (==0.8.1)", "elasticsearch (>=5.0,<6.0)", "flake8 (>=3.6.0)", "flake8-assertive (==2.0.0)", "flake8-blind-except (==0.1.1)", "flake8-comprehensions (==3.8.0)", "flake8-print (==5.0.0)", "freezegun (>=0.3.8)", "isort (==5.6.4)", "openpyxl (>=2.6.4)", "polib (>=1.1,<2.0)", "python-dateutil (>=2.7)", "pytz (>=2014.7)"]
 
 [[package]]
 name = "wagtail-generic-chooser"
@@ -686,7 +714,7 @@ django-cogwheels = "0.3"
 
 [package.extras]
 development = ["beautifulsoup4 (>=4.8,<4.10)", "coverage (>=4.5)", "django-debug-toolbar", "django-extensions", "django-webtest (>=1.9,<1.10)", "ipdb", "wagtail (>=2.15)", "werkzeug"]
-docs = ["Sphinx (>=1.7.4)", "pyenchant (>=2.0)", "sphinx-rtd-theme (>=0.3)", "sphinxcontrib-spelling (>=1.4)"]
+docs = ["Sphinx (>=1.7.4)", "pyenchant (>=2.0)", "sphinx_rtd_theme (>=0.3)", "sphinxcontrib-spelling (>=1.4)"]
 testing = ["beautifulsoup4 (>=4.8,<4.10)", "coverage (>=4.5)", "django-webtest (>=1.9,<1.10)"]
 
 [package.source]
@@ -715,7 +743,7 @@ optional = false
 python-versions = "*"
 
 [[package]]
-name = "willow"
+name = "Willow"
 version = "1.4.1"
 description = "A Python image library that sits on top of Pillow, Wand and OpenCV"
 category = "main"
@@ -739,7 +767,7 @@ docs = ["sphinx"]
 test = ["pytest", "pytest-cov"]
 
 [[package]]
-name = "xlsxwriter"
+name = "XlsxWriter"
 version = "3.0.3"
 description = "A Python module for creating Excel XLSX files."
 category = "main"
@@ -757,7 +785,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "1ec61a6c62d18beefa7b2678d1fed71bb161c88f39783e661b5b3dbcaf52053b"
+content-hash = "2bd690f3698cf01e380b52a67edb78454d044309ceec0d8e1f0906716963dc04"
 
 [metadata.files]
 anyascii = [
@@ -792,28 +820,28 @@ beautifulsoup4 = [
     {file = "beautifulsoup4-4.9.3.tar.gz", hash = "sha256:84729e322ad1d5b4d25f805bfa05b902dd96450f43842c4e99067d5e1369eb25"},
 ]
 boto3 = [
-    {file = "boto3-1.24.47-py3-none-any.whl", hash = "sha256:8fa1e0ce6e95a2b7da1d1a9992aee7b05c5478538ea9052e2753999fc46f2f97"},
-    {file = "boto3-1.24.47.tar.gz", hash = "sha256:02b30776fd1b6c0fdf2d72d1365e5adcc6f0baa6540a450946b1a02db3a5ace6"},
+    {file = "boto3-1.24.79-py3-none-any.whl", hash = "sha256:c05f82633b086a7aa6dba9edec56ba8137835d6eb2bfca98bedb32d93eb657a9"},
+    {file = "boto3-1.24.79.tar.gz", hash = "sha256:973a23d629a7aed77a662fcd55505c210bc48642cddfc64a1a9f3dbd18468d19"},
 ]
 botocore = [
-    {file = "botocore-1.27.47-py3-none-any.whl", hash = "sha256:262d7b10ca2194b9ba63fd972185729e3ee38f99faed518d62580f93af900ad0"},
-    {file = "botocore-1.27.47.tar.gz", hash = "sha256:160a3fa8e3062a48299a1b44ef2ec81f9a58cd3edd0da58808e5c2cc8dd9257f"},
+    {file = "botocore-1.27.79-py3-none-any.whl", hash = "sha256:10be90eb6ece83fc915b1bb15d2561a0ecefd33a7c1612a8f78da006f99d58f0"},
+    {file = "botocore-1.27.79.tar.gz", hash = "sha256:1187a685f0205b8acdde873fc3b081b036bed9104c91e9702b176e7b76ea63d0"},
 ]
 certifi = [
-    {file = "certifi-2022.6.15-py3-none-any.whl", hash = "sha256:fe86415d55e84719d75f8b69414f6438ac3547d2078ab91b67e779ef69378412"},
-    {file = "certifi-2022.6.15.tar.gz", hash = "sha256:84c85a9078b11105f04f3036a9482ae10e4621616db313fe045dd24743a0820d"},
+    {file = "certifi-2022.9.14-py3-none-any.whl", hash = "sha256:e232343de1ab72c2aa521b625c80f699e356830fd0e2c620b465b304b17b0516"},
+    {file = "certifi-2022.9.14.tar.gz", hash = "sha256:36973885b9542e6bd01dea287b2b4b3b21236307c56324fcc3f1160f2d655ed5"},
 ]
 charset-normalizer = [
-    {file = "charset-normalizer-2.1.0.tar.gz", hash = "sha256:575e708016ff3a5e3681541cb9d79312c416835686d054a23accb873b254f413"},
-    {file = "charset_normalizer-2.1.0-py3-none-any.whl", hash = "sha256:5189b6f22b01957427f35b6a08d9a0bc45b46d3788ef5a92e978433c7a35f8a5"},
+    {file = "charset-normalizer-2.1.1.tar.gz", hash = "sha256:5a3d016c7c547f69d6f81fb0db9449ce888b418b5b9952cc5e6e66843e9dd845"},
+    {file = "charset_normalizer-2.1.1-py3-none-any.whl", hash = "sha256:83e9a75d1911279afd89352c68b45348559d1fc0506b054b346651b5e7fee29f"},
 ]
 dj-database-url = [
     {file = "dj-database-url-0.5.0.tar.gz", hash = "sha256:4aeaeb1f573c74835b0686a2b46b85990571159ffc21aa57ecd4d1e1cb334163"},
     {file = "dj_database_url-0.5.0-py2.py3-none-any.whl", hash = "sha256:851785365761ebe4994a921b433062309eb882fedd318e1b0fcecc607ed02da9"},
 ]
-django = [
-    {file = "Django-4.0.6-py3-none-any.whl", hash = "sha256:ca54ebedfcbc60d191391efbf02ba68fb52165b8bf6ccd6fe71f098cac1fe59e"},
-    {file = "Django-4.0.6.tar.gz", hash = "sha256:a67a793ff6827fd373555537dca0da293a63a316fe34cb7f367f898ccca3c3ae"},
+Django = [
+    {file = "Django-4.0.7-py3-none-any.whl", hash = "sha256:41bd65a9e5f8a89cdbfa7a7bba45cd7431ae89e750af82dea8a35fd1a7ecbe66"},
+    {file = "Django-4.0.7.tar.gz", hash = "sha256:9c6d5ad36be798e562ddcaa6b17b1c3ff2d3c4f529a47432b69fb9a30f847461"},
 ]
 django-appconf = [
     {file = "django-appconf-1.0.5.tar.gz", hash = "sha256:be3db0be6c81fa84742000b89a81c016d70ae66a7ccb620cdef592b1f1a6aaa4"},
@@ -824,16 +852,24 @@ django-cogwheels = [
     {file = "django_cogwheels-0.3-py3-none-any.whl", hash = "sha256:197bd05e7114403d7301214b3f8a371c4fb6039cf21c811f099438b167b5ed21"},
 ]
 django-compressor = [
-    {file = "django_compressor-4.0-py2.py3-none-any.whl", hash = "sha256:b4fe15cc23bf39420b37cb0030572bd0971104ca1ec3764f502c0f179e576dff"},
-    {file = "django_compressor-4.0.tar.gz", hash = "sha256:1db91b6d04293636a68bd1328dc7bb90d636b0295f67b1cc6d4fa102b9fd25f6"},
+    {file = "django_compressor-4.1-py2.py3-none-any.whl", hash = "sha256:61f313852b4c8d4ef2534cda3d2366f45ca3e399b3cbe10590e516cc6b45542d"},
+    {file = "django_compressor-4.1.tar.gz", hash = "sha256:8ece621d2a98f6c6635480cb8b3701db890a99f793f95ca20cb00abc194d331d"},
 ]
 django-debug-toolbar = [
-    {file = "django-debug-toolbar-3.5.0.tar.gz", hash = "sha256:97965f2630692de316ea0c1ca5bfa81660d7ba13146dbc6be2059cf55b35d0e5"},
-    {file = "django_debug_toolbar-3.5.0-py3-none-any.whl", hash = "sha256:89a52128309eb4da12738801ff0c202d2ff8730d1c3225fac6acf630c303e661"},
+    {file = "django-debug-toolbar-3.6.0.tar.gz", hash = "sha256:95fc2fd29c56cc86678aae9f6919ececefe892f2a78c4004b193a223a8380c3d"},
+    {file = "django_debug_toolbar-3.6.0-py3-none-any.whl", hash = "sha256:fe7fe3f21865218827e2162ecc06eba386dfe8cffe4f3501c49bb4359e06a0e6"},
+]
+django-etc = [
+    {file = "django-etc-1.3.1.tar.gz", hash = "sha256:6568e2448d2648967c09799a1f11637f8802b50dff2d733207271d6b60db174e"},
+    {file = "django_etc-1.3.1-py2.py3-none-any.whl", hash = "sha256:c58f9a85872cbd88d6d98a6bf2cc4aba5eb739eccaaacc27d049435ff5378e4e"},
 ]
 django-filter = [
     {file = "django-filter-21.1.tar.gz", hash = "sha256:632a251fa8f1aadb4b8cceff932bb52fe2f826dd7dfe7f3eac40e5c463d6836e"},
     {file = "django_filter-21.1-py3-none-any.whl", hash = "sha256:f4a6737a30104c98d2e2a5fb93043f36dd7978e0c7ddc92f5998e85433ea5063"},
+]
+django-hitcount = [
+    {file = "django-hitcount-1.3.5.tar.gz", hash = "sha256:5fe70720a75e49bfcee5c4312a7df989bb9e22848039bba1de4406f96fb9cf4d"},
+    {file = "django_hitcount-1.3.5-py2.py3-none-any.whl", hash = "sha256:b04debff8fd7fe2d255e1d357c27f838aa45c54ed1835b3fd01af30df5319756"},
 ]
 django-modelcluster = [
     {file = "django-modelcluster-6.0.tar.gz", hash = "sha256:cdcffef5baf5d3759ee04c5b60ffaf1a0c95fc0f265e762f3ddfadde3394e5db"},
@@ -867,8 +903,8 @@ django-vite = [
     {file = "django_vite-2.0.2-py3-none-any.whl", hash = "sha256:f11f4747183b884ee4e6c2ea12f0aa96a846574ee7344c05ac96b4fa89309535"},
 ]
 djangorestframework = [
-    {file = "djangorestframework-3.13.1-py3-none-any.whl", hash = "sha256:24c4bf58ed7e85d1fe4ba250ab2da926d263cd57d64b03e8dcef0ac683f8b1aa"},
-    {file = "djangorestframework-3.13.1.tar.gz", hash = "sha256:0c33407ce23acc68eca2a6e46424b008c9c02eceb8cf18581921d0092bc1f2ee"},
+    {file = "djangorestframework-3.14.0-py3-none-any.whl", hash = "sha256:eb63f58c9f218e1a7d064d17a70751f528ed4e1d35547fdade9aaf4cd103fd08"},
+    {file = "djangorestframework-3.14.0.tar.gz", hash = "sha256:579a333e6256b09489cbe0a067e66abe55c6595d8926be6b99423786334350c8"},
 ]
 draftjs-exporter = [
     {file = "draftjs_exporter-2.1.7-py3-none-any.whl", hash = "sha256:d415a9964690a2cddb66a31ef32dd46c277e9b80434b94e39e3043188ed83e33"},
@@ -883,8 +919,8 @@ html5lib = [
     {file = "html5lib-1.1.tar.gz", hash = "sha256:b2e5b40261e20f354d198eae92afc10d750afb487ed5e50f9c4eaf07c184146f"},
 ]
 idna = [
-    {file = "idna-3.3-py3-none-any.whl", hash = "sha256:84d9dd047ffa80596e0f246e2eab0b391788b0503584e8945f2368256d2735ff"},
-    {file = "idna-3.3.tar.gz", hash = "sha256:9d643ff0a55b762d5cdb124b8eaa99c66322e2157b69160bc32796e824360e6d"},
+    {file = "idna-3.4-py3-none-any.whl", hash = "sha256:90b77e79eaa3eba6de819a0c442c0b4ceefc341a7a2ab77d7562bf49f425c5c2"},
+    {file = "idna-3.4.tar.gz", hash = "sha256:814f528e8dead7d329833b91c5faa87d60bf71824cd12a7530b5526063d02cb4"},
 ]
 jmespath = [
     {file = "jmespath-1.0.1-py3-none-any.whl", hash = "sha256:02e2e4cc71b5bcab88332eebf907519190dd9e6e82107fa7f83b1003a6252980"},
@@ -910,7 +946,7 @@ openpyxl = [
     {file = "openpyxl-3.0.10-py2.py3-none-any.whl", hash = "sha256:0ab6d25d01799f97a9464630abacbb34aafecdcaa0ef3cba6d6b3499867d0355"},
     {file = "openpyxl-3.0.10.tar.gz", hash = "sha256:e47805627aebcf860edb4edf7987b1309c1b3632f3750538ed962bbcc3bd7449"},
 ]
-pillow = [
+Pillow = [
     {file = "Pillow-9.1.1-cp310-cp310-macosx_10_10_x86_64.whl", hash = "sha256:42dfefbef90eb67c10c45a73a9bc1599d4dac920f7dfcbf4ec6b80cb620757fe"},
     {file = "Pillow-9.1.1-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:ffde4c6fabb52891d81606411cbfaf77756e3b561b566efd270b3ed3791fde4e"},
     {file = "Pillow-9.1.1-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:9c857532c719fb30fafabd2371ce9b7031812ff3889d75273827633bca0c4602"},
@@ -951,8 +987,8 @@ pillow = [
     {file = "Pillow-9.1.1.tar.gz", hash = "sha256:7502539939b53d7565f3d11d87c78e7ec900d3c72945d4ee0e2f250d598309a0"},
 ]
 psycopg = [
-    {file = "psycopg-3.0.15-py3-none-any.whl", hash = "sha256:9e9beaf38ace6bdf5a5ad969130339d69d61e6ad41114d166779e591bfe40076"},
-    {file = "psycopg-3.0.15.tar.gz", hash = "sha256:1c5637f47e9a4d9b742a0b101f39189bebae0f625bfdfb0cf8a54dd5fe677610"},
+    {file = "psycopg-3.1.2-py3-none-any.whl", hash = "sha256:a61d8841352b2e5c83c0677b8b856bafbf57568e5687ace8872738b29acfd5c9"},
+    {file = "psycopg-3.1.2.tar.gz", hash = "sha256:57b356b1dc86a45f0a6388ca6fde77360639eb24c9aae033ee8fbbed713dce79"},
 ]
 psycopg2-binary = [
     {file = "psycopg2-binary-2.9.3.tar.gz", hash = "sha256:761df5313dc15da1502b21453642d7599d26be88bff659382f8f9747c7ebea4e"},
@@ -1017,8 +1053,8 @@ python-dateutil = [
     {file = "python_dateutil-2.8.2-py2.py3-none-any.whl", hash = "sha256:961d03dc3453ebbc59dbdea9e4e11c5651520a876d0f4db161e8674aae935da9"},
 ]
 pytz = [
-    {file = "pytz-2022.1-py2.py3-none-any.whl", hash = "sha256:e68985985296d9a66a881eb3193b0906246245294a881e7c8afe623866ac6a5c"},
-    {file = "pytz-2022.1.tar.gz", hash = "sha256:1e760e2fe6a8163bc0b3d9a19c4f84342afa0a2affebfaa84b01b978a02ecaa7"},
+    {file = "pytz-2022.2.1-py2.py3-none-any.whl", hash = "sha256:220f481bdafa09c3955dfbdddb7b57780e9a94f5127e35456a48589b9e0c0197"},
+    {file = "pytz-2022.2.1.tar.gz", hash = "sha256:cea221417204f2d1a2aa03ddae3e867921971d0d76f14d87abb4414415bbdcf5"},
 ]
 rcssmin = [
     {file = "rcssmin-1.1.0-cp27-cp27m-manylinux1_i686.whl", hash = "sha256:2211a5c91ea14a5937b57904c9121f8bfef20987825e55368143da7d25446e3b"},
@@ -1093,20 +1129,24 @@ tablib = [
     {file = "tablib-3.2.1.tar.gz", hash = "sha256:a57f2770b8c225febec1cb1e65012a69cf30dd28be810e0ff98d024768c7d0f1"},
 ]
 telepath = [
-    {file = "telepath-0.2-py35-none-any.whl", hash = "sha256:801615094d3d964e178183099bf04020f4ff9c84ec43945d40b096df0a5767ee"},
-    {file = "telepath-0.2.tar.gz", hash = "sha256:ef4cf2a45ed1908c58639c346756955f8a73ae79002a8116d596b3fd702bf84c"},
+    {file = "telepath-0.3-py35-none-any.whl", hash = "sha256:fbdbc6bdd9a4a5c2b230caae242fa6ba4994c9dbcfd780df9be63f2966feb034"},
+    {file = "telepath-0.3.tar.gz", hash = "sha256:54f4b57232461bc67c54f63f437cb6d26843c189bae6b7ba8e4457f98d78e515"},
+]
+typing-extensions = [
+    {file = "typing_extensions-4.3.0-py3-none-any.whl", hash = "sha256:25642c956049920a5aa49edcdd6ab1e06d7e5d467fc00e0506c44ac86fbfca02"},
+    {file = "typing_extensions-4.3.0.tar.gz", hash = "sha256:e6d2677a32f47fc7eb2795db1dd15c1f34eff616bcaf2cfb5e997f854fa1c4a6"},
 ]
 tzdata = [
-    {file = "tzdata-2022.1-py2.py3-none-any.whl", hash = "sha256:238e70234214138ed7b4e8a0fab0e5e13872edab3be586ab8198c407620e2ab9"},
-    {file = "tzdata-2022.1.tar.gz", hash = "sha256:8b536a8ec63dc0751342b3984193a3118f8fca2afe25752bb9b7fffd398552d3"},
+    {file = "tzdata-2022.2-py2.py3-none-any.whl", hash = "sha256:c3119520447d68ef3eb8187a55a4f44fa455f30eb1b4238fa5691ba094f2b05b"},
+    {file = "tzdata-2022.2.tar.gz", hash = "sha256:21f4f0d7241572efa7f7a4fdabb052e61b55dc48274e6842697ccdf5253e5451"},
 ]
 urllib3 = [
-    {file = "urllib3-1.26.10-py2.py3-none-any.whl", hash = "sha256:8298d6d56d39be0e3bc13c1c97d133f9b45d797169a0e11cdd0e0489d786f7ec"},
-    {file = "urllib3-1.26.10.tar.gz", hash = "sha256:879ba4d1e89654d9769ce13121e0f94310ea32e8d2f8cf587b77c08bbcdb30d6"},
+    {file = "urllib3-1.26.12-py2.py3-none-any.whl", hash = "sha256:b930dd878d5a8afb066a637fbb35144fe7901e3b209d1cd4f524bd0e9deee997"},
+    {file = "urllib3-1.26.12.tar.gz", hash = "sha256:3fa96cf423e6987997fc326ae8df396db2a8b7c667747d47ddd8ecba91f4a74e"},
 ]
 wagtail = [
-    {file = "wagtail-3.0.1-py3-none-any.whl", hash = "sha256:107d7a1ac9a4fde0fa2e454cc84f548dc41581cc627881abf4bbac3d5a30244c"},
-    {file = "wagtail-3.0.1.tar.gz", hash = "sha256:917393fcea8644734beb323d607e02e4316370982ba0b4ea689a576567247bc8"},
+    {file = "wagtail-3.0.3-py3-none-any.whl", hash = "sha256:111ed9a0a6ff26d5d881d52deb4bf52b627d79a53c43829611752dbb68a9192f"},
+    {file = "wagtail-3.0.3.tar.gz", hash = "sha256:23b3e541401355ea183372582050ea52b049c956dd5b506197f957bb68423ab3"},
 ]
 wagtail-generic-chooser = [
     {file = "wagtail-generic-chooser-0.4.tar.gz", hash = "sha256:5ca673da2696c005c22c84f63259c8e23c1e065fd029d167c7aeb3eb193a9de0"},
@@ -1138,7 +1178,7 @@ webencodings = [
     {file = "webencodings-0.5.1-py2.py3-none-any.whl", hash = "sha256:a0af1213f3c2226497a97e2b3aa01a7e4bee4f403f95be16fc9acd2947514a78"},
     {file = "webencodings-0.5.1.tar.gz", hash = "sha256:b36a1c245f2d304965eb4e0a82848379241dc04b865afcc4aab16748587e1923"},
 ]
-willow = [
+Willow = [
     {file = "Willow-1.4.1-py2.py3-none-any.whl", hash = "sha256:fc4042696d090e75aef922fa1ed26d483c764f005b36cf523cf7c34e69d5dd7a"},
     {file = "Willow-1.4.1.tar.gz", hash = "sha256:0df8ff528531e00b48d40bf72ed81beac1dc82f2d42e5bbed4aff0218bef8c0d"},
 ]
@@ -1146,7 +1186,7 @@ xlrd = [
     {file = "xlrd-2.0.1-py2.py3-none-any.whl", hash = "sha256:6a33ee89877bd9abc1158129f6e94be74e2679636b8a205b43b85206c3f0bbdd"},
     {file = "xlrd-2.0.1.tar.gz", hash = "sha256:f72f148f54442c6b056bf931dbc34f986fd0c3b0b6b5a58d013c9aef274d0c88"},
 ]
-xlsxwriter = [
+XlsxWriter = [
     {file = "XlsxWriter-3.0.3-py3-none-any.whl", hash = "sha256:df0aefe5137478d206847eccf9f114715e42aaea077e6a48d0e8a2152e983010"},
     {file = "XlsxWriter-3.0.3.tar.gz", hash = "sha256:e89f4a1d2fa2c9ea15cde77de95cd3fd8b0345d0efb3964623f395c8c4988b7f"},
 ]
