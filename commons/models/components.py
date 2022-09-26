@@ -50,14 +50,15 @@ class SocialProofComponent(StructBlock):
         max_num=3,
     )
     caption = (RichTextBlock(required=False, label=_("Leyenda"), editor="basic"),)
-    primary_action_text = (CharBlock(required=False, label=_("Texto acción primaria")),)
-    primary_action_url = (
-        PageChooserBlock(required=False, label=_("URL acción primaria")),
+    primary_action_text = CharBlock(required=False, label=_("Texto acción primaria"))
+    primary_action_url = PageChooserBlock(
+        required=False, label=_("URL acción primaria")
     )
+    caption = RichTextBlock(required=False, label=_("Leyenda"), editor='inline')
 
     class Meta:
         icon = "image"
-        label = _("Prueba social")
+        label = _("Social proof")
         template = "commons/components/social_proof.html"
 
 
@@ -516,7 +517,12 @@ class ProductsListComponent(StructBlock):
         required=False, label=_("URL acción secundaria")
     )
     products_list = ListBlock(
-        PageChooserBlock(required=True, label=_("Enlace a producto")),
+        PageChooserBlock(
+            page_type="commons.DetailProductPage",
+            required=True,
+            label=_("Enlace a producto"),
+        ),
+        min_len=1,
         required=False,
         label=_("Listado de productos"),
     )

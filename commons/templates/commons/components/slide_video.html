@@ -14,10 +14,10 @@
         {{ self.video }}
       </div>
       <div class="l-slide__first-svg_video">
-        {% include "includes/hero/svg/curves.html" %}
+        {% include "include/hero/svg/curves.html" %}
       </div>
       <div class="l-slide__second-svg_video">
-        {% include "includes/hero/svg/star.html" %}
+        {% include "include/hero/svg/star.html" %}
       </div>
     </figure>
   </div>
@@ -30,7 +30,7 @@
     {% if self.background_illustration %}
       {% svg-image self.background_illustration fill-310x394-c100 class="l-slide__bg-illustration l-slide__bg-illustration_fit"  %}
     {% else %}
-      {% include "includes/hero/svg/girl.html" %}
+      {% include "include/hero/svg/girl.html" %}
     {% endif %}
   </div>
 {% endblock background-slide %}

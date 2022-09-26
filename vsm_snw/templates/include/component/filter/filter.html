@@ -1,0 +1,61 @@
+{% load i18n %}
+
+<form class="c-filter" method="GET">
+
+  <h2 class="c-filter__title o-text o-bold u-inherit-color">{% trans "Filtra por" %}</h2>
+
+  <div class="c-filter__group">
+
+    {% for field in filter_form %}
+
+      <div class="c-filter__item">
+
+        <p class="c-filter__toggle i-chevron-down js-dropdown-button">{{ field.label }}</p> 
+
+        <ul class="c-filter__list o-list">
+          {% for choices in field.subwidgets  %}
+
+            <li class="c-filter__option">
+
+              <input
+                id="{{ choices.data.label|slugify }}"
+                class="c-filter__option-input"
+                type="checkbox"
+                name="{{ choices.data.name }}"
+                value="{{ choices.data.value|slugify }}"
+                {% if choices.data.selected %}checked{% endif %}
+              >
+
+              <label
+                class="c-filter__option-label"
+                for="{{ choices.data.label|slugify }}"
+              >
+                {{ choices.data.label }}
+              </label>
+
+            </li>
+
+          {% endfor %}
+        </ul>
+
+      </div>
+
+    {% endfor %}
+
+  </div>
+  
+  <footer class="c-filter__actions">
+    <button
+      class="c-filter__action o-btn o-btn_secondary o-btn_bg-transparent"
+    >
+      {% trans "Borrar filtros" %}
+    </button>
+    <button
+      type="submit"
+      class="c-filter__action o-btn"
+    >
+      {% trans "Filtrar" %}
+    </button>
+  </footer>
+
+</form>

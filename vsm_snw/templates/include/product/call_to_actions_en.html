@@ -1,0 +1,73 @@
+{% load wagtailcore_tags i18n %}
+
+
+{% if self.student_book %}
+  <a
+    class="l-thematic-content__action o-btn i-after-book"
+    href="{% pageurl self.student_book %}"
+    title="{% trans "Go to" %} {{ self.student_book.title }}"
+    target="_blank"
+  >
+    {% trans "Student’s book" %}
+  </a>
+{% endif %}
+
+{% if self.parent_programming %}
+  <a
+    class="l-thematic-content__action o-btn i-after-download"
+    href="{{ self.parent_programming.url }}"
+    download
+  >
+    {% trans 'Scope & Sequence' %}
+  </a>
+{% endif %}
+
+{% if self.teacher_book %}
+  <a
+    class="l-thematic-content__action o-btn i-after-download"
+    href="{{ self.teacher_book.url }}"
+    download
+  >
+    {% trans "Teacher’s guide (ES)" %}
+  </a>
+{% endif %}
+
+{% if self.teacher_book_english %}
+  <a
+    class="l-thematic-content__action o-btn i-after-download"
+    href="{{ self.teacher_book_english.url }}"
+    download
+  >
+    {% trans "Teacher’s guide (EN)" %}
+  </a>
+{% endif %}
+
+{% if self.reader %}
+  <a
+    class="l-thematic-content__action o-btn i-after-download"
+    href="{{ self.reader.url }}"
+    download
+  >
+    {% trans "Reader" %}
+  </a>
+{% endif %}
+
+{% if self.audio %}
+  <a
+    class="l-thematic-content__action o-btn i-after-download"
+    href="{{ self.audio.url }}"
+    download
+  >
+    {% trans "Audios" %}
+  </a>
+{% endif %}
+
+{% if self.posters %}
+  <a
+    class="l-thematic-content__action o-btn i-after-download"
+    href="{{ self.posters.url }}"
+    download
+  >
+    {% trans "Posters" %}
+  </a>
+{% endif %}

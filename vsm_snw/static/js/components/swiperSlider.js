@@ -3,6 +3,7 @@ import Swiper, { Navigation, Pagination } from 'swiper';
 export default renderSliders => {
   sliderTestimonials();
   sliderHero();
+  sliderProduct();
 }
 
 function sliderHero() {
@@ -74,6 +75,39 @@ function sliderTestimonials() {
     breakpoints: {
       768: {
         spaceBetween: 32,
+      }
+    },
+
+    // Pagination bullets
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+
+    // Navigation arrows
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+
+  });
+}
+
+function sliderProduct() {
+  new Swiper('.js-slider-product', {
+
+    // configure Swiper to use modules
+    modules: [Navigation, Pagination],
+
+    slidesPerView: "auto",
+    spaceBetween: 8,
+    centeredSlides: true,
+
+    breakpoints: {
+      768: {
+        centeredSlides: false,
+        spaceBetween: 32,
+        slidesPerView: 2,
       }
     },
 

@@ -1,0 +1,37 @@
+{% load wagtailcore_tags i18n %}
+
+{# Contenido tab #3 #}
+<dt
+  class="c-tabs__title c-tabs__title_order-three o-medium js-dropdown-button"
+>
+  {% trans "Contenidos temáticos" %}
+</dt>
+
+<dd class="c-tabs__content">
+  <div class="c-tabs__inner">
+
+    {# Lista definición #}
+    <dl class="o-list">
+      {% for thematic_content in self.thematic_content %}
+
+        <dt class="o-dropdown__btn i-plus js-dropdown-button">
+          {{ thematic_content.value.title }}
+        </dt>
+          
+        <dd class="o-dropdown__content o-dropdown__content_primary s-richtext">
+          <ul class="o-list">
+            {% for items in thematic_content.value.items %}
+              <li>
+                {{ items.title }}:
+                <strong class="u-block-mb">{{ items.description }}</strong>
+              </li>
+            {% endfor %}
+          </ul>
+        </dd>
+
+      {% endfor %}
+    </dl>
+
+  </div>
+</dd>
+{# Fin contenido tab #3 #}

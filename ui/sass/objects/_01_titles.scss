@@ -44,9 +44,30 @@ h6 {
 .o-hgroup_without-pb {
   padding-bottom: 0
 }
+.o-hgroup-band_border {
+  border-bottom: 1px solid $c-surface-grey-20;
+
+  .o-hgroup-band__header {
+    padding-top: 0;
+  }
+}
+
+.o-hgroup-band__header_center {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
 
 .o-hgroup__space {
   @include px-to-rem(margin-bottom, $gutter * 2);
+}
+
+.o-hgroup-band__tag {
+  display: block;
+  @include px-to-rem(min-width, 220px);
+  @include px-to-rem(border-radius, $gutter $gutter 0 0);
+  @include px-to-rem(padding, $gutter * 2 $gutter * 7);
+  background: $c-neutro;
 }
 
 .o-headline {
@@ -62,6 +83,57 @@ h6 {
 /*------------------------------------*\
   Media Querys
 \*------------------------------------*/
+
+@media screen and(max-width: 600px) {
+  .o-hgroup-band {
+    text-align: center;
+  }
+
+  .o-hgroup-band__header {
+    @include px-to-rem(padding, $gutter * 4 $gutter);
+  }
+
+  .o-hgroup-band__subtitle {
+    @include px-to-rem(margin-bottom, $gutter);
+  }
+
+  .o-hgroup-band__tag {
+    max-width: max-content;
+    margin: 0 auto;
+  }
+
+  .o-hgroup-band_border {
+    @include px-to-rem(margin-bottom, $gutter * 7);
+    @include px-to-rem(padding-bottom, $gutter * 7);
+  }
+}
+
+@media screen and(min-width: 601px) {
+  .o-hgroup-band_column {
+    @include flexbox;
+    @include justify-content(space-between);
+    @include align-items(center);
+  }
+
+  .o-hgroup-band__header {
+    @include px-to-rem(padding, $gutter * 3 0);
+  }
+
+  .o-hgroup-band__header_padding56 {
+    @include px-to-rem(padding-top, $gutter * 7);
+    @include px-to-rem(padding-bottom, $gutter * 7);
+  }
+
+  .o-hgroup-band_border {
+    @include px-to-rem(margin-bottom, $gutter * 4);
+    @include px-to-rem(padding-bottom, $gutter);
+  }
+
+  .o-hgroup-band__tag {
+    @include align-self(flex-end);
+  }
+
+}
 
 /**
 * Desktop | VP: min-width 768px

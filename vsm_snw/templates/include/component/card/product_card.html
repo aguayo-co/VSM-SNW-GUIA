@@ -1,0 +1,36 @@
+{% load wagtailcore_tags svg_tags i18n %}
+
+
+{% spaceless %}
+  <article class="o-card-product {{ swiper_class }}">
+    <a
+      href="{% pageurl object %}"
+      title="{% trans 'Ir a ' %} {{ object.title }}"
+    >
+
+      <figure class="o-card-product__figure">
+        {% svg-image object.image fill-224x284 class="o-card-product__img" %}
+
+        <figcaption class="o-card-product__caption">
+
+          <span
+            class="o-card-product__kicker t-theme-{{ object.grade.color }}"
+          >
+            {{ object.grade }}
+          </span>
+
+          <p class="o-card-product__title">{{ object.title }}</p>
+
+          {% if object.serie %}
+            {# Chip serie #}
+            <figure class="o-card-product__pin">
+              {% svg-image object.serie.image fill-60x60 class="o-img" %}
+            </figure>
+          {% endif %}
+
+        </figcaption>
+      </figure>
+
+    </a>
+  </article>
+{% endspaceless %}

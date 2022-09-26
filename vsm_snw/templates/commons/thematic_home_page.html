@@ -1,13 +1,50 @@
-{% load inspector %}
+{% extends 'base.html' %}
+{% load wagtailcore_tags i18n %}
 
-{% for item in order_form %}
-  {{ item }}
-{% endfor %}
 
-{{ sub_pages|inspect }}
+{% block content %}
 
-{% for page in sub_pages %}
+  {# Cabecera #}
+  <div class="o-hgroup-band o-surface_navy-blue">
+    <div class="o-canvas">
 
-    {{ page }}
+      <header class="o-hgroup-band__header o-hgroup-band__header_center o-hgroup-band__header_padding56">
+        {% if self.title %}
+          <h1 class="o-headline">{{ self.title }}</h1>
+        {% endif %}
+      </header>
 
-{%  endfor %}
+    </div>
+  </div>
+  {# Fin cabecera #}
+
+  {# Filtro ordenar por y label de resultados #}
+  {% include "include/component/filter/filter_band.html" with results_caption="cursos de capacitación docente en" %}
+
+  {# Cursos de la categoria #}
+  <section class="o-section">
+    <div class="o-canvas">
+
+      <header class="o-hgroup o-hgroup_center">
+        <h3 class="o-subheadline">{% trans 'Contenido mas destacado' %}</h3>
+        <p class="o-kicker">{% trans 'Contenido mas destacado' %}</p>
+      </header>
+
+      {% for course in object_list %}
+        {# Componente agenda #}
+        {% include 'include/component/agenda.html' with course=course only %}
+      {% endfor %}
+
+    </div>
+
+    {# Paginador #}
+    {% include "include/paginator.html" %}
+  </section>
+
+  {# Componentes de la página #}
+  {% for block in self.content %}
+    {% include_block block with block_id=block.id %}
+  {% endfor %}
+
+{% endblock content %}
+

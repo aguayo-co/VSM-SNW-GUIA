@@ -1,20 +1,40 @@
-//-*------------------------------------*
-//-   .o- class Objects Canvas.
-//-   Contenedor general que enmarca y alinea las “cajas" con respecto al ancho.
-//-   El canvas es el espacio disponible para el contenido.
-//-*------------------------------------*
+// -*------------------------------------*
+// -   .o- class Objects Canvas.
+// -   Contenedor general que enmarca y alinea las “cajas" con respecto al ancho.
+// -   El canvas es el espacio disponible para el contenido.
+// -*------------------------------------*
 
 
 .o-canvas {
-  width: $canvas-with; //95%
-  @include px-to-rem(max-width, $canvas-max-with); //1380px
+  width: $canvas-with; // 95%
+  @include px-to-rem(max-width, $canvas-max-with); // 1380px
   margin-left: auto;
   margin-right: auto;
 }
 .o-canvas_w1246 {
-  @include px-to-rem(max-width, 1246px); //1380px
+  @include px-to-rem(max-width, 1246px); // 1380px
+}
+.o-canvas_shadow {
+  background-color: $c-neutro;
+  box-shadow: 0 8px 16px -4px rgba(22, 34, 51, 0.08);
 }
 
 .o-canvas-slide {
-  @include px-to-rem(max-width, $canvas-max-width-slide); //1015px
+  @include px-to-rem(max-width, $canvas-max-width-slide); // 1015px
+}
+
+.o-inner {
+  width: $canvas-with; // 95%
+  @include px-to-rem(max-width, 750px); // 800px
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media screen and(min-width: 601px) {
+  .o-canvas-dk {
+    width: $canvas-with; // 95%
+    @include px-to-rem(max-width, $canvas-max-with); // 1380px
+    margin-left: auto;
+    margin-right: auto;
+  }
 }

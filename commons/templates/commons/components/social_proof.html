@@ -1,6 +1,4 @@
-{% load svg_tags %}
-{% load wagtailcore_tags %}
-{% load inspector %}
+{% load svg_tags wagtailcore_tags i18n %}
 
 
 <section class="o-surface o-surface_navy-blue" id="{{ block_id }}">
@@ -26,10 +24,16 @@
      
         {# footer section #}
         <div class="o-section__footer">
-            <a class="o-btn">Completa el formulario</a>
-            <div class="s-richtext__basic c-social-proof__caption">
-                ** Consulta términos y condiciones
-            </div>
+          <a
+            href="{% pageurl self.primary_action_url %}"
+            title="{% trans 'Ir a' %} {{ self.primary_action_text }}"
+            class="o-btn"
+          >
+              {{ self.primary_action_text }}
+          </a>
+          <div class="s-richtext s-richtext_inline c-social-proof__caption">
+            {{ self.caption|richtext }}
+          </div>
         </div>
     </div>
 

@@ -1,0 +1,49 @@
+{% load wagtailcore_tags i18n %}
+
+
+<section class="o-section">
+  <div class="o-canvas-dk">
+
+    <div class="o-hgroup-band o-hgroup-band_column o-hgroup-band_border">
+
+      <header class="o-hgroup-band__header">
+        <h2 class="o-subheadline">
+          {% block title_component %}{% endblock title_component %}
+        </h2>
+
+        {% block primary_action %}{% endblock primary_action %}
+      </header>
+
+      {% block secondary_action %}{% endblock secondary_action %}
+
+    </div>
+
+    <div class="o-card-product-slider swiper js-slider-product">
+
+      <div class="o-list swiper-wrapper">
+        {% for page in object_list %}
+
+          {# Card detalle producto (Libro) #}
+          {% include "include/component/card/product_card.html" with swiper_class='swiper-slide' object=page only %}
+
+        {% endfor %}
+      </div>
+
+      {% if object_list|length > 2 %}
+        <div class="c-testimonial-slider__actions">
+
+          <!-- If we need navigation buttons -->
+          <span class="c-testimonial-slider__btn swiper-button-prev"></span>
+
+          <!-- If we need pagination -->
+          <div class="c-testimonial-slider__pagination swiper-pagination"></div>
+
+          <span class="c-testimonial-slider__btn swiper-button-next"></span>
+
+        </div>
+      {% endif %}
+
+    </div>
+
+  </div>
+</section>
