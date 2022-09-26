@@ -198,9 +198,7 @@ class CatalogPage(FilterMixin, BasePage, OrderMixin):
     CONTENT_FIELD = "_content_catalog"
 
     _content_catalog = CatalogPageStreamField(
-        verbose_name=_("Contenido"),
-        null=True,
-        blank=True
+        verbose_name=_("Contenido"), null=True, blank=True
     )
 
     content_panels = BasePage.replace_content_field(CONTENT_FIELD)

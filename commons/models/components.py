@@ -54,7 +54,7 @@ class SocialProofComponent(StructBlock):
     primary_action_url = PageChooserBlock(
         required=False, label=_("URL acción primaria")
     )
-    caption = RichTextBlock(required=False, label=_("Leyenda"), editor='inline')
+    caption = RichTextBlock(required=False, label=_("Leyenda"), editor="inline")
 
     class Meta:
         icon = "image"
