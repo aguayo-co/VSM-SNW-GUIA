@@ -1,0 +1,54 @@
+{% load wagtailcore_tags i18n %}
+
+
+{# Video play #}
+{% if self.video %}
+  <div class="u-full-width">
+    <a
+      class="l-thematic-content__action o-btn o-btn_secondary i-after-play js-play-video-btn"
+    >
+      {% trans "Ver video" %}
+    </a>
+  </div>
+{% endif %}
+
+{% if self.student_book %}
+  <a
+    class="l-thematic-content__action o-btn i-after-book"
+    href="{% pageurl self.student_book %}"
+    title="{% trans "Ir a " %} {{ self.student_book.title }}"
+    target="_blank"
+  >
+    {% trans "Libro del estudiante" %}
+  </a>
+{% endif %}
+
+{% if self.teacher_book %}
+  <a
+    class="l-thematic-content__action o-btn i-after-download"
+    href="{{ self.teacher_book.url }}"
+    download
+  >
+    {% trans "Libro para el docente" %}
+  </a>
+{% endif %}
+
+{% if self.teaching_dosage %}
+  <a
+    class="l-thematic-content__action o-btn i-after-download"
+    href="{{ self.teaching_dosage.url }}"
+    download
+  >
+    {% trans "Dosificación para el docente" %}
+  </a>
+{% endif %}
+
+{% if self.parent_programming %}
+  <a
+    class="l-thematic-content__action o-btn i-after-download"
+    href="{{ self.parent_programming.url }}"
+    download
+  >
+    {% trans "Programación para padres" %}
+  </a>
+{% endif %}

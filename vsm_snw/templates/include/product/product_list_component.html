@@ -1,0 +1,28 @@
+{% extends 'extend/components/extend_product_list.html' %}
+
+{% load wagtailcore_tags i18n %}
+
+
+{% block title_component %}
+  {{ self.title }}
+{% endblock title_component %}
+
+{% block primary_action %}
+  <a
+    href="{% pageurl self.primary_action_url %}"
+    title="{% trans 'Ir a ' %} {{ self.primary_action_text }}"
+    class="o-kicker o-link o-link_secondary"
+  >
+    {{ self.primary_action_text }}
+  </a>
+{% endblock primary_action %}
+
+{% block secondary_action %}
+  <a
+    href="{% pageurl self.secondary_action_url %}"
+    title="{% trans 'Ir a ' %} {{ self.secondary_action_text }}"
+    class="o-btn o-btn_secondary"
+  >
+    {{ self.secondary_action_text }}
+  </a>
+{% endblock secondary_action %}

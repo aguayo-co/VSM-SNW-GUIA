@@ -9,6 +9,21 @@
 
 
 /**
+ * Class: u-full-width, Establece el 100% de un elemento
+ * @atom Establece el 100% de un elemento
+ * @section Utils
+ * @markup
+ *  <a href="#" class="u-full-width">
+ *    <span class="u-hidden">Twitter</span>
+ *  </a>
+ */
+
+.u-full-width {
+  width: 100%;
+}
+
+
+/**
  * Class: u-hidden, display none
  * @atom Ocultar elemento
  * @section Utils
@@ -46,6 +61,11 @@
     opacity: 0;
     visibility: hidden;
   }
+
+  .u-block-mb {
+    display: block;
+  }
+  
 }
 
 /**

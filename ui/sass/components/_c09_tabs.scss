@@ -1,0 +1,134 @@
+.c-tabs__title {
+
+  &.is-dropdown-show {
+    color: $c-brand-primary;
+    background-color: $c-primary-100;
+
+    +.c-tabs__content {
+      @include px-to-rem(max-height, 2000px);
+      @include px-to-rem(padding, $gutter * 4 $gutter * 2);
+      font-size: inherit;
+      opacity: 1;
+      visibility: visible;
+      background-color: $c-primary-100;
+      z-index: 10;
+    }
+  }
+
+}
+
+.c-tabs__content {
+  width: 100%;
+  max-height: 0;
+  font-size: 0;
+  opacity: 0;
+  visibility: hidden;
+  z-index: -10;
+
+  .s-richtext {
+    h2 {
+      margin-top: 0;
+    }
+
+    h2,
+    p,
+    ul,
+    ol,
+    li {
+      @include px-to-rem(margin-top, 8px);
+      @include px-to-rem(margin-bottom, 8px);
+    }
+  }
+}
+
+@include media-query(medium-max) {
+  .c-tabs__title {
+    border-bottom: 2px solid $c-surface-grey-20;
+    @include px-to-rem(padding, $gutter * 4 $gutter * 2);
+    font-weight: $f-medium;
+    background: $c-surface-grey-10;
+    line-height: 1;
+  }
+
+  .c-tabs__content {
+    .s-richtext {
+      h2 {
+        @include px-to-rem(font-size, 20px);
+      }
+    }
+  }
+}
+
+@include media-query(medium) {
+
+  .c-tabs {
+    @include flexbox;
+    @include flex-wrap(wrap);
+    @include justify-content(center);
+    @include align-items(center);
+    @include px-to-rem(column-gap, $gutter);
+  }
+
+  .c-tabs__title {
+    @include px-to-rem(min-width, 360px);
+    @include px-to-rem(border-radius, $gutter $gutter 0 0);
+    @include px-to-rem(padding, $gutter * 3 $gutter * 5);
+    text-align: center;
+    text-decoration: underline;
+    line-height: 1;
+    cursor: pointer;
+    background-color: $c-surface-grey-10;
+
+    &.c-tabs__title_order-one {
+      order: 1;
+    }
+
+    &.c-tabs__title_order-two {
+      order: 2;
+    }
+
+    &.c-tabs__title_order-three {
+      order: 3;
+    }
+
+    &.is-dropdown-show {
+      text-decoration: none;
+
+      +.c-tabs__content {
+        display: block;
+        height: max-content;
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+
+  }
+
+  .c-tabs__content {
+    top: 100%;
+    order: 4;
+    opacity: 0;
+    visibility: hidden;
+    transition: $transition-ease-in-out-2s;
+
+    .s-richtext {
+      h2 {
+        @include px-to-rem(font-size, $gutter * 3);
+      }
+    }
+  }
+
+  .c-tabs__inner {
+    width: $canvas-with; // 95%
+    @include px-to-rem(max-width, $canvas-max-with); // 1380px
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+}
+
+@media(min-width: 768px) and(max-width: 1095px) {
+  .c-tabs__title {
+    min-width: max-content;
+  }
+}

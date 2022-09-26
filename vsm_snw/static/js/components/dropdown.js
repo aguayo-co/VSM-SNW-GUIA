@@ -21,8 +21,10 @@ export default class Dropdown {
         for (let i = 0; i < this.siblingsLength.length; i++) {
           const sibling = this.siblingsLength[i]
 
-          if (sibling.classList.contains(this.classToShowContent)) {
-            sibling.classList.remove(this.classToShowContent)
+          if (sibling.classList) {
+            if (sibling.classList.contains(this.classToShowContent)) {
+              sibling.classList.remove(this.classToShowContent)
+            }
           }
         }
 

@@ -22,7 +22,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     {# Favicon #}
-    {% include "includes/favicon.html" %}
+    {% include "include/favicon.html" %}
 
     {# Global stylesheets #}
     <link href="{% sass_src 'sass/theme_santillana.scss' %}" rel="stylesheet" type="text/css" />
@@ -37,7 +37,7 @@
     {# Main JS #}
     {% wagtailuserbar %}
 
-    {% include "includes/layout/header.html" %}
+    {% include "include/layout/header.html" %}
 
     {% block content %}{% endblock %}
 

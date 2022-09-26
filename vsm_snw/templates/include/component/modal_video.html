@@ -1,0 +1,17 @@
+{% load  wagtailembeds_tags %}
+
+<div class="o-video js-play-video-target">
+
+  <div class="o-canvas">
+
+    <div class="o-video__media">
+      {% embed self.video %}
+    </div>
+
+  </div>
+
+  <button class="o-video__btn-close js-play-video-close i-close">
+    <span class="u-hidden">Cerrar modal</span>
+  </button>
+
+</div>

@@ -1,7 +1,5 @@
 {% extends "base.html" %}
-{% load fixed_django_vite wagtailcore_tags  %}
-{% load static %}
-{% load inspector %}
+{% load fixed_django_vite wagtailcore_tags static %}
 
 {% block body_class %}template-homepage{% endblock %}
 
@@ -11,7 +9,7 @@
 {% block content %}
 
   {# Slider Hero #}
-  {% include "includes/hero/slider_hero.html" %}
+  {% include "include/hero/slider_hero.html" %}
 
   {% for block in self.content %}
     {% include_block block with block_id=block.id %}

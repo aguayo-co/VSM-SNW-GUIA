@@ -1,0 +1,29 @@
+{% extends 'extend/components/extend_product_list.html' %}
+
+{% load wagtailcore_tags i18n %}
+
+
+{% block title_component %}
+  {% trans "Descubre más libros del" %}
+{% endblock title_component %}
+
+{% block primary_action %}
+  <a
+    href="{% pageurl catalog_page %}"
+    title="{% trans 'Ir a ' %} {{ catalog_page.title }}"
+    class="o-kicker o-link o-link_secondary"
+  >
+    {{ catalog_page.title }}
+  </a>
+{% endblock primary_action %}
+
+{% block secondary_action %}
+  <a
+    href="{{ self.student_book.url }}"
+    title="{% trans 'Ir a ' %} {{ self.student_book }}"
+    target="_blank"
+    class="o-btn o-btn_secondary"
+  >
+    {{ self.title }}
+  </a>
+{% endblock secondary_action %}

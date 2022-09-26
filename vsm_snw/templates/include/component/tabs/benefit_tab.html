@@ -1,0 +1,25 @@
+{% load wagtailcore_tags i18n %}
+
+{# Contenido tab #1 #}
+<dt
+  class="c-tabs__title c-tabs__title_order-one o-medium js-dropdown-button is-dropdown-show"
+>
+  {% trans "Características y beneficios" %}
+</dt>
+
+<dd class="c-tabs__content">
+  <div class="c-tabs__inner">
+
+    <div class="s-richtext s-richtext_inline">
+      {% for featured_benefits in self.intro_detail_product %}
+
+        {% for featured_benefits_content in featured_benefits.value.content %}
+          {{ featured_benefits_content.value.rich_text|richtext }}
+        {% endfor %}
+
+      {% endfor %}
+    </div>
+    
+  </div>
+</dd>
+{# Fin contenido tab #1 #}

@@ -91,6 +91,22 @@
   }
 }
 
+/**
+* @icon .i-book
+* @markup
+*   <span class="i-book"></span>
+*/
+.i-book {
+  &::before {
+    content: $i-book;
+  }
+}
+.i-after-book {
+  &::after {
+    content: $i-book;
+  }
+}
+
 
 // C
 
@@ -160,6 +176,25 @@
   }
 }
 
+
+// D
+
+/**
+* @icon .i-download
+* @markup
+*   <span class="i-download"></span>
+*/
+.i-download {
+  &::before {
+    content: $i-download;
+  }
+}
+.i-after-download {
+  &::after {
+    content: $i-download;
+  }
+}
+
 // E
 
 /**
@@ -205,6 +240,22 @@
   }
 }
 
+/**
+* @icon .i-home
+* @markup
+*   <span class="i-home"></span>
+*/
+.i-home {
+  &::before {
+    content: $i-home;
+  }
+}
+.i-after-home {
+  &::after {
+    content: $i-home;
+  }
+}
+
 
 // I
 
@@ -219,6 +270,24 @@
   }
 }
 
+
+// L
+
+/**
+* @icon .i-link
+* @markup
+*   <span class="i-link"></span>
+*/
+.i-link {
+  &::before {
+    content: $i-link;
+  }
+}
+.i-after-link {
+  &::after {
+    content: $i-link;
+  }
+}
 
 // M
 
@@ -245,6 +314,22 @@
 }
 
 // P
+
+/**
+* @icon .i-play
+* @markup
+*   <span class="i-play"></span>
+*/
+.i-play {
+  &::before {
+    content: $i-play;
+  }
+}
+.i-after-play {
+  &::after {
+    content: $i-play;
+  }
+}
 
 /**
 * @icon .i-plus

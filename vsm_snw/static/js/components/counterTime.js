@@ -3,28 +3,30 @@ export default class CounterTime {
 
     this.element = element
     // formato fecha: mm/dd/yyyy
-    this.dateTimeTarget = this.element.querySelector(".js-counter-datetime").getAttribute("datetime")
-    this.dateTarget = new Date(`${this.dateTimeTarget}`);
+    if (this.element.querySelector(".js-counter-datetime")) {
+      this.dateTimeTarget = this.element.querySelector(".js-counter-datetime").getAttribute("datetime")
+      this.dateTarget = new Date(`${this.dateTimeTarget}`);
 
-    this.hours = this.element.querySelector(".js-counter-hours");
-    this.minutes = this.element.querySelector(".js-counter-minutes");
-    this.seconds = this.element.querySelector(".js-counter-seconds");
+      this.hours = this.element.querySelector(".js-counter-hours");
+      this.minutes = this.element.querySelector(".js-counter-minutes");
+      this.seconds = this.element.querySelector(".js-counter-seconds");
 
-    this.milisecondsOfSecond = 1000;
-    this.milisecondsOfMinute = this.milisecondsOfSecond * 60;
-    this.milisecondsOfHour = this.milisecondsOfMinute * 60;
-    this.milisecondsOfDay = this.milisecondsOfHour * 24;
+      this.milisecondsOfSecond = 1000;
+      this.milisecondsOfMinute = this.milisecondsOfSecond * 60;
+      this.milisecondsOfHour = this.milisecondsOfMinute * 60;
+      this.milisecondsOfDay = this.milisecondsOfHour * 24;
 
-    this.duration = 0;
-    this.remaining_days = 0;
-    this.remaining_hours = 0;
-    this.remaining_minutes = 0;
-    this.remaining_seconds = 0;
+      this.duration = 0;
+      this.remaining_days = 0;
+      this.remaining_hours = 0;
+      this.remaining_minutes = 0;
+      this.remaining_seconds = 0;
 
-    this.timerTarget = this.element.querySelector(".js-counter-timer");
-    this.callToAction = this.element.querySelector(".js-counter-callto");
+      this.timerTarget = this.element.querySelector(".js-counter-timer");
+      this.callToAction = this.element.querySelector(".js-counter-callto");
 
-    this.init();
+      this.init();
+    }
   }
 
   init() {

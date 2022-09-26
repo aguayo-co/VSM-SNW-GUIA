@@ -1,34 +1,130 @@
-{% load i18n %}
-{% load inspector %}
-{% load catalog_tags %}
-{% get_catalog_page %}
+{% extends "base.html" %}
 
-{{ catalog_page|inspect }}
+{% load wagtailcore_tags svg_tags wagtailembeds_tags catalog_tags i18n %}
 
-{% for page in catalog_page %}
 
-{{ page.url }}
+{% block content %}
+  {% get_catalog_page %}
 
-<br>
+  {# Cabecera #}
+  <div class="t-theme-{{ self.grade.color }}">
+    <div class="o-canvas">
 
-{% endfor %}
+      <div class="o-hgroup-band o-hgroup-band_column">
 
-{{ catalog_page|inspect }}
+        <header class="o-hgroup-band__header">
+          {% if self.campo_formacion %}
+            <h1
+              class="o-hgroup-band__subtitle o-sidebar__subtitle o-sidebar__subtitle_sm"
+            >
+              {{ self.campo_formacion }}
+            </h1>
+          {% endif %}
 
-{% for page in related_pages %}
+          <h2 class="o-sidebar__title o-regular">{{ self.title }}</h2>
+        </header>
 
-{{ page }}
+        <span class="o-hgroup-band__tag">{{ self.grade }}</span>
 
-{% endfor %}
+      </div>
 
-{{ related_degrees|inspect }}
+    </div>
+  </div>
+  {# Fin cabecera #}
 
-{% for degree in related_degrees %}
+  {# Imagen descripción y botonera producto #}
+  <section class="o-section">
+    <div class="o-canvas">
 
-    {{ degree }}
+      <div class="l-thematic-content">
 
-{% endfor %}
+        {% if self.image %}
+          <figure class="l-thematic-content__figure">
+            {% svg-image self.image fill-350x476 class="l-thematic-content__img"  %}
+          </figure>
+        {% endif %}
 
-{% language self.idiom %}
-    <p>{% trans "ejemplo" %}</p>
-{% endlanguage %}
+        <div class="l-thematic-content__content">
+
+          {% if self.title_description %}
+            <strong class="l-thematic-content__text">
+              {{ self.title_description }}
+            </strong>
+          {% endif %}
+
+          {# Call to actions detalle del libro #}
+          <nav class="l-thematic-content__actions">
+            {% if self.language == 'es' %}
+              {% include 'include/product/call_to_actions_es.html' %}
+            {% else %}
+              {% include 'include/product/call_to_actions_en.html' %}
+            {% endif %}
+          </nav>
+
+          {% if self.short_description %}
+            <div class="s-richtext s-richtext_inline l-thematic-content__text o-light">
+              {{ self.short_description|richtext }}
+            </div>
+          {% endif %}
+
+          {# Componente social share #}
+          {% include 'include/component/social_share.html' %}
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+  {# Fin imagen descripción y botonera producto #}
+
+  {# Tabs con detalles del producto #}
+  <section>
+    {% include 'include/component/tabs/tabs.html' %}
+  </section>
+
+  {% if related_pages|length > 0 %}
+    {# Descubre mas libros #}
+    {% include 'include/product/product_list_detail.html' with object_list=related_pages %}
+  {% endif %}
+
+  {# Grados relacionados #}
+  <section class="o-surface o-surface_grey o-section_border">
+    <div class="o-canvas">
+  
+      <header class="o-hgroup">
+        <h3
+          class="o-subheadline"
+        >
+          {% trans 'Navega los libros de ' %} {{ self.subject }} {% trans ' por' %}
+        </h3>
+      </header>
+  
+      <nav class="c-list-chip">
+  
+        {% for degree in related_degrees %}
+          <a
+            href="{% pageurl catalog_page %}?grade={{ degree.pk }}"
+            title="{% trans 'Filtrar por' %} {{ degree.name }}"
+            class="c-list-chip__chip o-btn o-btn_secondary o-btn_outline-grey"
+          >
+            {{ degree.name }}
+          </a>
+        {% endfor %}
+  
+      </nav>
+  
+    </div>
+  </section>
+  {# Fin grados relacionados #}
+
+  {# Componentes página #}
+  {% for block in self.content %}
+    {% include_block block with block_id=block.id %}
+  {% endfor %}
+
+  {% if self.video %}
+    {% include 'include/component/modal_video.html' %}
+  {% endif %}
+
+{% endblock content %}

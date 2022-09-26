@@ -42,8 +42,6 @@ a {
 
 .o-link_secondary {
   color: $c-brand-primary;
-  @include px-to-rem(font-size, $font-size-base);
-  font-weight: $f-medium;
 } 
 
 .o-link_icon {

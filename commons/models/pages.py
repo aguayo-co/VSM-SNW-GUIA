@@ -20,6 +20,7 @@ from commons.models.components import ThematicContentComponent
 from commons.models.fields import (
     CategoryHomePageStreamField,
     ContentPageStreamField,
+    CatalogPageStreamField,
     CourseDetailStreamField,
     DetailProductIntroStreamField,
     DetailProductStreamField,
@@ -191,8 +192,10 @@ class CatalogPage(FilterMixin, BasePage):
 
     CONTENT_FIELD = "_content_catalog"
 
-    _content_catalog = StreamField(
-        [], verbose_name=("Contenido"), null=True, blank=True
+    _content_catalog = CatalogPageStreamField(
+        verbose_name=_("Contenido"),
+        null=True,
+        blank=True
     )
 
     content_panels = BasePage.replace_content_field(CONTENT_FIELD)
@@ -212,20 +215,11 @@ class CatalogPage(FilterMixin, BasePage):
         # filters
         filter_names = ["serie", "subject", "grade"]
         filters = {
-            a_filter: request.GET.get(a_filter, None)
+            f"{a_filter}__in": request.GET.getlist(a_filter, None)
             for a_filter in filter_names
             if request.GET.get(a_filter, None) not in ["", None]
         }
         queryset = DetailProductPage.objects.filter(**filters)
-        # filters
-        filter_names = ["serie", "subject", "grade"]
-        filters = {
-            a_filter: request.GET.get(a_filter, None)
-            for a_filter in filter_names
-            if request.GET.get(a_filter, None) not in ["", None]
-        }
-        queryset = DetailProductPage.objects.filter(**filters)
-
         paginator = Paginator(queryset, items_per_page)
 
         try:
