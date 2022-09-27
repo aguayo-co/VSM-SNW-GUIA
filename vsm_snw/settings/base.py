@@ -317,3 +317,32 @@ if DEFAULT_FILE_STORAGE == "storages.backends.s3boto3.S3Boto3Storage":
         AWS_LOCATION = os.environ.get("AWS_LOCATION").strip("/") + "/"
     # STATICFILES_STORAGE = "storages.backends.s3boto3.S3StaticStorage"
     SASS_PROCESSOR_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+
+# LoGGING
+# Add root console logger with configurable level.
+# https://docs.djangoproject.com/en/3.2/topics/logging/#topic-logging-parts-loggers
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "level": os.getenv("LOG_LEVEL", "WARNING"),
+        },
+    },
+    "root": {
+        "handlers": ["console"],
+        "level": os.getenv("LOG_LEVEL", "WARNING"),
+    },
+    "loggers": {
+        "django.db": {
+            "handlers": ["console"],
+            "level": os.getenv("DB_LOG_LEVEL", "ERROR"),
+            "propagate": False,
+        },
+        "": {
+            "handlers": ["console"],
+            "level": os.getenv("LOG_LEVEL", "WARNING"),
+        },
+    },
+}
