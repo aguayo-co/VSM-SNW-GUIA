@@ -539,31 +539,30 @@ class DetailProductPage(BasePage):
         null=True,
         blank=True,
     )
-    teacher_book = ForeignKey(
-        get_document_model_string(),
+    teacher_book = models.ForeignKey(
+        "commons.Book",
         verbose_name=_("Libro del docente (Español)"),
         on_delete=models.SET_NULL,
         related_name="+",
         null=True,
         blank=True,
     )
-    teacher_book_english = ForeignKey(
-        get_document_model_string(),
+    teacher_book_english = models.ForeignKey(
+        "commons.Book",
         verbose_name=_("Libro del docente (Inglés)"),
         on_delete=models.SET_NULL,
         related_name="+",
         null=True,
         blank=True,
     )
-    student_book = ForeignKey(
-        "commons.ExternalRedirect",
+    student_book = models.ForeignKey(
+        "commons.Book",
         verbose_name=_("Libro del Estudiante"),
         on_delete=models.SET_NULL,
         related_name="+",
         null=True,
         blank=True,
     )
-
     office_sep = ForeignKey(
         get_document_model_string(),
         verbose_name=_("Oficio SEP"),
@@ -653,9 +652,9 @@ class DetailProductPage(BasePage):
         ),
         MultiFieldPanel(
             [
-                DocumentChooserPanel("teacher_book"),
-                DocumentChooserPanel("teacher_book_english"),
-                DocumentChooserPanel("student_book"),
+                SnippetChooserPanel("teacher_book"),
+                SnippetChooserPanel("teacher_book_english"),
+                SnippetChooserPanel("student_book"),
                 DocumentChooserPanel("office_sep"),
                 FieldPanel("video"),
                 DocumentChooserPanel("teaching_dosage"),

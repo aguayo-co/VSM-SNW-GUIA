@@ -67,6 +67,20 @@ class SantillanaSettings(BaseSetting):
     )
     chatbot = TextField(verbose_name=_("Chatbot"), blank=True)
 
+    # Terms and Conditions
+    terms_and_conditions = RichTextField(
+        verbose_name=_("Términos y condiciones"),
+        editor="inline",
+        blank=True,
+    )
+
+    # key recaptcha
+    key_recaptcha = TextField(
+        verbose_name=_("Key reCAPTCHA"),
+        null=True,
+        blank=True,
+    )
+
     # Panels
     panels = [
         MultiFieldPanel(
@@ -110,6 +124,13 @@ class SantillanaSettings(BaseSetting):
                 FieldPanel("cookies_text"),
             ],
             heading=_("Mensaje de Cookies"),
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("terms_and_conditions"),
+                FieldPanel("key_recaptcha"),
+            ],
+            heading=_("Configuraciones de formularios"),
         ),
     ]
 
