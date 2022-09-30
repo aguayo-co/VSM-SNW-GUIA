@@ -18,14 +18,16 @@
           {# Enlaces destacados #}
           <nav class="c-list-links-pages">
             {% for featured_link in self.featured_link_list  %}
-              <a
-                href="{% pageurl featured_link %}"
-                title="Ir a {{ featured_link.seo_title }}"
-                class="c-list-links-pages__item c-list-links-pages__item_featured"
-              >
-                <h4 class="c-list-links-pages__item-title">{{ featured_link.seo_title }}</h4>
-                <p class="c-list-links-pages__item-lead">{{ featured_link.search_description }}</p>
-              </a>
+              {% if featured_link %}
+                <a
+                  href="{% pageurl featured_link %}"
+                  title="Ir a {{ featured_link.seo_title }}"
+                  class="c-list-links-pages__item c-list-links-pages__item_featured"
+                >
+                  <h4 class="c-list-links-pages__item-title">{{ featured_link.seo_title }}</h4>
+                  <p class="c-list-links-pages__item-lead">{{ featured_link.search_description }}</p>
+                </a>
+              {% endif %}
             {% endfor %}
           </nav>
 
@@ -41,7 +43,7 @@
 
           {# Cabecera subsección #}
           {% if self.title or self.subtitle %}
-            <header class="o-hgroup o-hgroup_center">
+            <header class="o-hgroup">
               {% if self.title %}
                 <h4 class="o-kicker o-hgroup__space">{{ self.title }}</h4>
               {% endif %}
