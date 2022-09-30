@@ -2,7 +2,24 @@
 
 {% load wagtailcore_tags svg_tags wagtailembeds_tags i18n %}
 
-{% block course_detail %}
+{% block breadcrumbs_items %}
+
+  <a
+    href="{% pageurl self.get_parent %}"
+    class="c-breadcrumbs__item o-link o-link_secondary o-light"
+  >
+    {{ self.get_parent.title }}
+  </a>
+
+  <span
+    class="c-breadcrumbs__item o-light o-primary"
+  >
+    {{ self.title }}
+  </span>
+
+{% endblock %}
+
+{% block detail %}
 
   <ul class="c-intro-content__list o-list">
     <li class="o-light">{{ self.date_time_event|date }}</li>
@@ -23,10 +40,12 @@
     {% trans 'Inscribete aquí' %}
   </a>
 
-{% endblock course_detail %}
+{% endblock detail %}
 
 {% block social_share %}
-  {% include 'include/component/social_share.html' %}
+  <div class="o-inner">
+    {% include 'include/component/social_share.html' with variant_class="o-social-share_column" %}
+  </div>
 {% endblock social_share %}
 
 {% block media_page %}

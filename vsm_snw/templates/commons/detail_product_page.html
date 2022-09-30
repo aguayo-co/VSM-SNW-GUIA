@@ -2,6 +2,19 @@
 
 {% load wagtailcore_tags svg_tags wagtailembeds_tags catalog_tags i18n %}
 
+{% block opengraph %}
+  {% include 'include/open_graph.html' %}
+{% endblock opengraph %}
+
+{% block breadcrumbs_items %}
+  {% get_catalog_page %}
+  <a
+    href="{% pageurl catalog_page %}?grade={{ self.grade.pk }}"
+    class="c-breadcrumbs__item o-link o-link_secondary o-light"
+  >
+    {{ self.grade.name }}
+  </a>
+{% endblock %}
 
 {% block content %}
   {% get_catalog_page %}
