@@ -58,8 +58,11 @@
             {% for grade, subjects in catalog_items.items %}
 
               <li class="c-catalog-index__grade c-catalog-index__grade_{{ grade.color }} o-card u-rounded-16">
-
-                <div class="c-catalog-index__grade-vector">
+                <div
+                  class="c-catalog-index__grade-vector"
+                  {% if grade.image_svg %}style="background-image: url({{ grade.image_svg.url }})"
+                  {% elif grade.image %} style="background-image: url({{ grade.image.url }})" {% endif %}
+                >
                   <p class="c-catalog-index__grade-name">{{ grade.name }}</p>
                 </div>
 

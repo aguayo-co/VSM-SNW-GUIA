@@ -50,7 +50,6 @@
 }
 
 .c-catalog-index__grades {
-  @include justify-content(space-between);
   @include px-to-rem(column-gap, $gutter * 3);
 }
 
@@ -68,19 +67,16 @@
 
   .c-catalog-index__grade_turquesa & {
     color: $c-turquesa-50;
-    background-image: url('#{$path-img}/catalog_index/grade_primero.svg');
     background-color: $c-turquesa-20;
   }
 
   .c-catalog-index__grade_yellow & {
     color: $c-yellow-50;
-    background-image: url('#{$path-img}/catalog_index/grade_segundo.svg');
     background-color: $c-yellow-20;
   }
 
   .c-catalog-index__grade_blue & {
     color: $c-blue-50;
-    background-image: url('#{$path-img}/catalog_index/grade_tercero.svg');
     background-color: $c-blue-20;
   }
 }
@@ -129,7 +125,6 @@
 
   .c-catalog-index__grade-vector {
     @include px-to-rem(height, 158px);
-    background-position: 100% 200%;
   }
 
 }
@@ -139,12 +134,8 @@
 */
 @include media-query(medium) {
   .c-catalog-index__grade {
-    .o-card__content {
-      flex: 1;
-    }
+    max-width: 232px;
+
   }
 
-  .c-catalog-index__grade-vector {
-    background-position: 118% 104%;
-  }
 }
