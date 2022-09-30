@@ -24,30 +24,50 @@
   opacity: 0;
   visibility: hidden;
   z-index: -10;
+  transition: all 0.2s ease-in;
 
   .s-richtext {
     h2 {
       margin-top: 0;
     }
 
-    h2,
-    p,
-    ul,
-    ol,
-    li {
-      @include px-to-rem(margin-top, 8px);
-      @include px-to-rem(margin-bottom, 8px);
+    .is-dropdown-show & {
+      h2,
+      p,
+      ul,
+      ol,
+      li {
+        @include px-to-rem(margin-top, 8px);
+        @include px-to-rem(margin-bottom, 8px);
+      }
     }
   }
 }
 
 @include media-query(medium-max) {
   .c-tabs__title {
+    @include flexbox;
+    @include flex-direction(row-reverse);
+    @include align-items(center);
+    @include justify-content(space-between);
     border-bottom: 2px solid $c-surface-grey-20;
     @include px-to-rem(padding, $gutter * 4 $gutter * 2);
     font-weight: $f-medium;
     background: $c-surface-grey-10;
     line-height: 1;
+
+    &::before {
+      content: $i-chevron-down;
+      font-family: $font-family-ico;
+      @include px-to-rem(font-size, 14px);
+      transition: $transition-ease-in-out-2s;
+    }
+
+    &.is-dropdown-show {
+      &::before {
+        transform: rotate(180deg);
+      }
+    }
   }
 
   .c-tabs__content {
