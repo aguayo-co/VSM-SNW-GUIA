@@ -3,6 +3,7 @@
 
 {% block content %}
   <form action="{% pageurl page %}" method="POST">
+    <div class="g-recaptcha u-inline" data-sitekey="{{ key_recaptcha }}"></div>
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit">

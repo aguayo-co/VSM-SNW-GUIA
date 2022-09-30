@@ -44,6 +44,11 @@ class FormPage(AbstractForm):
         InlinePanel("form_fields", label=_("Campos del Formulario")),
     ]
 
+    def get_context(self, request):
+        context = super().get_context(request)
+        context["key_recaptcha"] = SantillanaSettings.for_site(Site.objects.first()).key_recaptcha
+        return context
+
     class Meta:
         verbose_name = _("Formulario")
         verbose_name_plural = _("Formularios")

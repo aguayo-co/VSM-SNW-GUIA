@@ -81,6 +81,13 @@ class SantillanaSettings(BaseSetting):
         blank=True,
     )
 
+    # secret recaptcha
+    secret_recaptcha = TextField(
+        verbose_name=_("Secret reCAPTCHA"),
+        null=True,
+        blank=True,
+    )
+
     # Panels
     panels = [
         MultiFieldPanel(
