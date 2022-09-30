@@ -9,6 +9,8 @@ import Dropdown from "./components/dropdown";
 import showOrHideCookie from "./components/cookies";
 import CounterTime from "./components/counterTime";
 import VideoPlay from "./components/videoPlay";
+import initFilters, { toggleCounterOfFilter, removeChipIntoClick, clearFilters } from "./components/filter";
+import copyUrl from "./components/share";
 
 // AlpineJS
 window.Alpine = Alpine;
@@ -41,6 +43,20 @@ window.onload = function () {
             element: item,
         });
     });
+
+    initFilters()
+
+    window.toggleCounterOfFilter = function (e) {
+        toggleCounterOfFilter(e)
+    }
+
+    window.removeChipIntoClick = function (e) {
+        removeChipIntoClick(e)
+    }
+
+    window.clearFilters = function () {
+        clearFilters()
+    }
 }
 
 // Start AlpineJs
