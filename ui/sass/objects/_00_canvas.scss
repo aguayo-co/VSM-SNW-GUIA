@@ -24,7 +24,6 @@
 }
 
 .o-inner {
-  width: $canvas-with; // 95%
   @include px-to-rem(max-width, 750px); // 800px
   margin-left: auto;
   margin-right: auto;

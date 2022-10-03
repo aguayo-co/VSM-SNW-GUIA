@@ -15,10 +15,29 @@
 }
 
 .c-filter__item {
+  position: relative;
   border: none;
   font-weight: $f-medium;
   text-align: left;
   color: $c-brand-primary;
+}
+
+.c-filter__counter {
+  position: absolute;
+  top: -10px;
+  right: -13px;
+  @include flexbox;
+  @include justify-content(center);
+  @include align-items(center);
+  @include px-to-rem(width, $gutter * 3);
+  @include px-to-rem(height, $gutter * 3);
+  border-radius: 50%;
+  color: $c-neutro;
+  background-color: $c-brand-primary;
+
+  &:not(.is-show &) {
+    opacity: 0;
+  }
 }
 
 .c-filter__toggle {
@@ -154,6 +173,59 @@
   }
 }
 
+.c-filter__chips {
+  @include flexbox;
+  @include flex-wrap(wrap);
+  @include align-items(center);
+  @include px-to-rem(column-gap, $gutter * 2);
+  @include px-to-rem(row-gap, $gutter * 2);
+  border-top: 1px solid rgba($color: $c-brand-primary, $alpha: 0.2);
+  border-bottom: 1px solid rgba($color: $c-brand-primary, $alpha: 0.2);
+  @include px-to-rem(padding, $gutter * 3 0);
+}
+
+.c-filter__chip,
+.c-filter__chip-close {
+  display: inline-flex;
+  @include align-items(center);
+}
+
+.c-filter__chip {
+  border: 2px solid;
+  @include px-to-rem(border-radius, 50px);
+  @include px-to-rem(padding, 14px $gutter * 2);
+  line-height: 1;
+}
+
+.c-filter__chip-close {
+  position: relative;
+  @include justify-content(center);
+  @include px-to-rem(width, 20px);
+  @include px-to-rem(height, 20px);
+  @include px-to-rem(margin-left, $gutter * 3);
+  border: 1px solid $c-brand-primary;
+  @include px-to-rem(border-radius, 4px);
+  background-color: $c-neutro;
+
+  &::before {
+    position: relative;
+    @include px-to-rem(top, 2px);
+    font-weight: $f-bold;
+    font-size: $gutter;
+    color: $c-brand-primary;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: -15px;
+    @include px-to-rem(width, 1px);
+    @include px-to-rem(height, 20px);
+    background: rgba($c-brand-primary, $alpha: 0.2);
+  }
+}
+
+
 @include media-query(medium) {
   .c-filter,
   .c-filter__group {
@@ -177,9 +249,12 @@
   }
 
   .c-filter__item {
-    position: relative;
     flex: 1 100%;
     border-bottom: 2px solid;
+
+    &.is-show {
+      border: 2px solid;
+    }
   }
 
   .c-filter__list {
@@ -212,6 +287,10 @@
 
   .c-filter__toggle {
     border-bottom: 2px solid;
+
+    .is-show & {
+      border: 2px solid;
+    }
 
     &.is-dropdown-show {
       +.c-filter__list {

@@ -1,0 +1,14 @@
+<template id="js-filter-chip-template">
+  <span class="c-filter__chip">
+    <span class="c-filter__chip-text"></span>
+    <button
+      @click="removeChipIntoClick($event)"
+      type="button"
+      class="c-filter__chip-close i-close">
+    </button>
+  </span>
+</template>
+
+<div id="js-filter-chip-set" class="c-filter__chips u-hidden">
+  {% comment %} Contenido para los chips de los filtros {% endcomment %}
+</div>

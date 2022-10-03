@@ -5,6 +5,7 @@ from django.http import HttpResponsePermanentRedirect
 from django.shortcuts import render
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
+from hitcount.models import HitCountMixin
 from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel
 from wagtail.admin.panels import ObjectList, StreamFieldPanel, TabbedInterface
 from wagtail.core.models import Page
@@ -15,25 +16,25 @@ from wagtail.fields import RichTextField, StreamField
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail_svg_images.models import ImageOrSvgField
 from wagtail_svg_images.panels import ImageOrSVGPanel
-from hitcount.models import HitCountMixin
 
 from commons.models.components import ThematicContentComponent
 from commons.models.fields import (
+    CatalogPageStreamField,
     CategoryHomePageStreamField,
     ContentPageStreamField,
-    CatalogPageStreamField,
     CourseDetailStreamField,
     DetailProductIntroStreamField,
     DetailProductStreamField,
     FullStreamField,
     HeroStreamField,
     HomeStreamField,
+    BlogPageStreamField,
     ThematicHomePageStreamField,
 )
 from commons.models.mixins import FilterMixin, OrderMixin
 from commons.models.snippets import Degree
 
-items_per_page = 10
+items_per_page = 8
 
 
 class BasePage(Page, HitCountMixin):
@@ -153,9 +154,15 @@ class BlogPage(BasePage, OrderMixin):
 
     CONTENT_FIELD = "_content_blog"
 
-    _content_blog = StreamField([], verbose_name=_("Contenido"), null=True, blank=True)
+    _content_blog = BlogPageStreamField(verbose_name=_("Contenido"), null=True, blank=True)
 
-    content_panels = BasePage.replace_content_field(CONTENT_FIELD)
+    hero = HeroStreamField(blank=True, null=True)
+
+    content_panels = [
+        FieldPanel("title"),
+        FieldPanel("hero"),
+        FieldPanel(CONTENT_FIELD),
+    ]
 
     subpage_types = [
         "commons.CategoryHomePage",
@@ -258,6 +265,7 @@ class ContentPage(BasePage):
     )
 
     content_panels = [
+        FieldPanel("title"),
         FieldPanel(CONTENT_FIELD),
         FieldPanel("footer_content"),
     ]
@@ -623,6 +631,15 @@ class DetailProductPage(BasePage):
         blank=True,
     )
 
+    scope_and_sequence = ForeignKey(
+        get_document_model_string(),
+        verbose_name=_("Alcance y secuencia"),
+        on_delete=models.SET_NULL,
+        related_name="+",
+        null=True,
+        blank=True,
+    )
+
     content_panels = (
         [BasePage.replace_content_field(CONTENT_FIELD)[0]]
         + [StreamFieldPanel("intro_detail_product")]
@@ -662,6 +679,7 @@ class DetailProductPage(BasePage):
                 DocumentChooserPanel("reader"),
                 DocumentChooserPanel("audio"),
                 DocumentChooserPanel("posters"),
+                DocumentChooserPanel("scope_and_sequence"),
             ],
             heading=_("Materiales"),
         ),
@@ -701,11 +719,19 @@ class DetailArticlePage(BasePage):
 
     CONTENT_FIELD = "_content_detail_article"
 
-    _content_detail_article = StreamField(
-        [], verbose_name=("Contenido"), null=True, blank=True
+    _content_detail_article = DetailProductIntroStreamField(
+        verbose_name=("Intro"), null=True, blank=True
     )
 
-    content_panels = BasePage.replace_content_field(CONTENT_FIELD)
+    footer_content = CatalogPageStreamField(
+        verbose_name=("Contenido"), null=True, blank=True
+    )
+
+    content_panels = [
+        FieldPanel("title"),
+        FieldPanel(CONTENT_FIELD),
+        FieldPanel("footer_content"),
+    ]
 
     subpage_types = []
 

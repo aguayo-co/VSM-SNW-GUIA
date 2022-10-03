@@ -1,0 +1,59 @@
+.o-system-message__image {
+  width: 100%;
+  height: 100%;
+}
+
+.o-system-message__text_light {
+  color: rgba($color: $c-default-text, $alpha: 0.5);
+}
+
+.o-system-message-space {
+  @include px-to-rem(margin-bottom, $gutter * 2);
+}
+
+@include media-query(medium-max) {
+  .o-system-message {
+    @include px-to-rem(max-width, 400px);
+    margin: auto;
+    text-align: center;
+  }
+
+  .o-system-message__figure {
+    @include px-to-rem(margin-bottom, $gutter * 5);
+  }
+
+  .o-system-message__text {
+    @include px-to-rem(font-size, $gutter * 2);
+  }
+
+  .o-system-message__subtitle {
+    @include px-to-rem(font-size, 28px);
+  }
+}
+
+@include media-query(medium) {
+  .o-system-message {
+    @include flexbox;
+    @include flex-direction(row-reverse);
+    @include justify-content(space-between);
+    @include align-items(center);
+    height: 70vh;
+  }
+
+  .o-system-message__figure {
+    @include px-to-rem(width, 490px);
+    @include px-to-rem(height, 490px);
+  }
+
+  .o-system-message__header {
+    @include px-to-rem(max-width, 510px);
+  }
+
+  .o-system-message__subtitle {
+    @include px-to-rem(font-size, $gutter * 6);
+  }
+
+  .o-system-message__text {
+    @include px-to-rem(font-size, 18px);
+  }
+}

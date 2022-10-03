@@ -24,16 +24,20 @@
      
         {# footer section #}
         <div class="o-section__footer">
-          <a
-            href="{% pageurl self.primary_action_url %}"
-            title="{% trans 'Ir a' %} {{ self.primary_action_text }}"
-            class="o-btn"
-          >
-              {{ self.primary_action_text }}
-          </a>
-          <div class="s-richtext s-richtext_inline c-social-proof__caption">
-            {{ self.caption|richtext }}
-          </div>
+          {% if self.primary_action_text %}
+            <a
+              href="{% pageurl self.primary_action_url %}"
+              title="{% trans 'Ir a' %} {{ self.primary_action_text }}"
+              class="o-btn"
+            >
+                {{ self.primary_action_text }}
+            </a>
+          {% endif %}
+          {% if self.caption %}
+            <div class="s-richtext s-richtext_inline c-social-proof__caption">
+              {{ self.caption|richtext }}
+            </div>
+          {% endif %}
         </div>
     </div>
 

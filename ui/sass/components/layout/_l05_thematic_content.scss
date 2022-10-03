@@ -11,11 +11,6 @@
   }
 }
 
-.o-social-share__title {
-  display: block;
-  @include px-to-rem(margin-bottom, $gutter * 2);
-}
-
 @media screen and(max-width: 989px) {
 
   .l-thematic-content {

@@ -2,6 +2,14 @@
 {% load wagtailcore_tags i18n %}
 
 
+{% block breadcrumbs_items %}
+  <span
+    class="c-breadcrumbs__item o-light o-primary"
+  >
+    {{ self.title }}
+  </span>
+{% endblock %}
+
 {% block content %}
 
   {# Cabecera #}

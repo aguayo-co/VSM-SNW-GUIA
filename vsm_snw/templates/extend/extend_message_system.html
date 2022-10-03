@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+  <section class="o-section">
+    <div class="o-canvas">
+
+      <div class="o-system-message">
+
+        <figure class="o-system-message__figure">
+          {% block image %}{% endblock image %}
+        </figure>
+
+        <header class="o-system-message__header">
+          <h1 class="o-system-message__text o-system-message__text_light o-system-message-space">
+            {% block title_message %}{% endblock title_message %}
+          </h1>
+
+          <h2 class="o-system-message__subtitle o-regular o-system-message-space">
+            {% block subtitle_message %}{% endblock subtitle_message %}
+          </h2>
+
+          <p class="o-system-message__text o-medium o-system-message-space">
+            {% block lead_message %}{% endblock lead_message %}
+          </p>
+
+          <a class="o-btn" href="/">Volver al inicio</a>
+        </header>
+
+      </div>
+
+    </div>
+  </section>
+
+{% endblock %}

@@ -1,4 +1,4 @@
-{% load static wagtailcore_tags wagtailuserbar menu_tags %}
+{% load static wagtailcore_tags wagtailuserbar menu_tags i18n %}
 {% load snw_sass %}
 {% load wtm_tags %}
 {% load fixed_django_vite %}
@@ -24,6 +24,9 @@
     {# Favicon #}
     {% include "include/favicon.html" %}
 
+    {# Open Graph #}
+    {% block opengraph %}{% endblock %}
+
     {# Global stylesheets #}
     <link href="{% sass_src 'sass/theme_santillana.scss' %}" rel="stylesheet" type="text/css" />
 
@@ -38,6 +41,29 @@
     {% wagtailuserbar %}
 
     {% include "include/layout/header.html" %}
+
+    {# Breadcrumb #}
+    {% block breadcrumbs %}
+      {% if self.get_ancestors|length > 1 %}
+        <div class="o-canvas">
+
+          <nav class="c-breadcrumbs">
+
+            <a
+              href="/"
+              title="{% trans 'Ir a la página de inicio' %}"
+              class="c-breadcrumbs__link o-link o-link_secondary o-light i-home"
+            >
+              {% trans 'Inicio' %}
+            </a>
+
+            {% block breadcrumbs_items %}{% endblock %}
+
+          </nav>
+      
+        </div>
+      {% endif %}
+    {% endblock breadcrumbs %}
 
     {% block content %}{% endblock %}
 
