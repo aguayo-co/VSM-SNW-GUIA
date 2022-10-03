@@ -1,44 +1,44 @@
 {% extends 'extend/extend_content_page.html' %}
+{% load wagtailcore_tags wagtailembeds_tags svg_tags i18n %}
 
-{% load wagtailcore_tags svg_tags wagtailembeds_tags i18n %}
 
 {% block breadcrumbs_items %}
-
   <a
     href="{% pageurl self.get_parent %}"
     class="c-breadcrumbs__item o-link o-link_secondary o-light"
   >
     {{ self.get_parent.title }}
   </a>
-
   <span
     class="c-breadcrumbs__item o-light o-primary"
   >
     {{ self.title }}
   </span>
-
 {% endblock %}
+
+{% block opengraph %}
+  {% include 'include/open_graph.html' %}
+{% endblock opengraph %}
+
+{% block date_article %}
+  <p class="o-light">{{ self.first_published_at|date }}</p>
+{% endblock date_article %}
 
 {% block detail %}
 
   <ul class="c-intro-content__list o-list">
-    <li class="o-light">{{ self.date_time_event|date }}</li>
+    <li class="o-light">
+      {% trans 'Escrito por' %}
+      <span class="o-regular">{{ self.responsible }}</span>
+    </li>
     <li class="c-intro-content__point">
       <span class="u-hidden">Bullet separador</span>
     </li>
     <li class="o-light">
-      {% trans 'Dirigido por' %}
-      <span class="o-regular">{{ self.responsible }}</span>
+      {% trans 'Lectura de' %}
+      <span class="o-regular">8 minutos</span>
     </li>
   </ul>
-
-  <a
-    href="{{ self.registration_form_url }}"
-    target="_blank"
-    class="o-btn"
-  >
-    {% trans 'Inscribete aquí' %}
-  </a>
 
 {% endblock detail %}
 
@@ -49,11 +49,11 @@
 {% endblock social_share %}
 
 {% block media_page %}
-
-  {% if self.hashtag_youtube %}
-    {% embed self.hashtag_youtube %}
-  {% else %}
-    {% svg-image self.search_image fill-1200x630 class="c-intro-content__img" %}
-  {% endif %}
-
+  {% svg-image self.search_image fill-1200x630 class="c-intro-content__img" %}
 {% endblock media_page %}
+
+{% block social_share_bottom %}
+  <div class="o-inner">
+    {% include 'include/component/social_share.html' with variant_class="o-social-share_column" %}
+  </div>
+{% endblock social_share_bottom %}

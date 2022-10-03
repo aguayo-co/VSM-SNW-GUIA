@@ -13,9 +13,12 @@
         <div class="c-intro-content">
 
           <header class="c-intro-content__header o-inner">
+
+            {% block date_article %}{% endblock date_article %}
+
             <h1 class="c-intro-content__title o-sidebar__title o-regular">{{ self.title }}</h1>
 
-            {% block course_detail %}{% endblock course_detail %}
+            {% block detail %}{% endblock detail %}
 
           </header>
 
@@ -31,6 +34,8 @@
         {% for block in self.content %}
           {% include_block block with block_id=block.id %}
         {% endfor %}
+
+        {% block social_share_bottom %}{% endblock social_share_bottom %}
 
       </div>
     </div>

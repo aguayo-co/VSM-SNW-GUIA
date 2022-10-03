@@ -28,12 +28,13 @@ from commons.models.fields import (
     FullStreamField,
     HeroStreamField,
     HomeStreamField,
+    BlogPageStreamField,
     ThematicHomePageStreamField,
 )
 from commons.models.mixins import FilterMixin, OrderMixin
 from commons.models.snippets import Degree
 
-items_per_page = 10
+items_per_page = 8
 
 
 class BasePage(Page, HitCountMixin):
@@ -153,9 +154,15 @@ class BlogPage(BasePage, OrderMixin):
 
     CONTENT_FIELD = "_content_blog"
 
-    _content_blog = StreamField([], verbose_name=_("Contenido"), null=True, blank=True)
+    _content_blog = BlogPageStreamField(verbose_name=_("Contenido"), null=True, blank=True)
 
-    content_panels = BasePage.replace_content_field(CONTENT_FIELD)
+    hero = HeroStreamField(blank=True, null=True)
+
+    content_panels = [
+        FieldPanel("title"),
+        FieldPanel("hero"),
+        FieldPanel(CONTENT_FIELD),
+    ]
 
     subpage_types = [
         "commons.CategoryHomePage",
@@ -258,6 +265,7 @@ class ContentPage(BasePage):
     )
 
     content_panels = [
+        FieldPanel("title"),
         FieldPanel(CONTENT_FIELD),
         FieldPanel("footer_content"),
     ]
@@ -712,11 +720,19 @@ class DetailArticlePage(BasePage):
 
     CONTENT_FIELD = "_content_detail_article"
 
-    _content_detail_article = StreamField(
-        [], verbose_name=_("Contenido"), null=True, blank=True
+    _content_detail_article = DetailProductIntroStreamField(
+        verbose_name=("Intro"), null=True, blank=True
     )
 
-    content_panels = BasePage.replace_content_field(CONTENT_FIELD)
+    footer_content = CatalogPageStreamField(
+        verbose_name=("Contenido"), null=True, blank=True
+    )
+
+    content_panels = [
+        FieldPanel("title"),
+        FieldPanel(CONTENT_FIELD),
+        FieldPanel("footer_content"),
+    ]
 
     subpage_types = []
 

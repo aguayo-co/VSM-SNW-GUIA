@@ -155,6 +155,15 @@ class HeroStreamField(FullStreamField):
 class CatalogPageStreamField(FullStreamField):
     block_types = [("pages_links_list_component", PagesLinksListComponent())]
 
+class BlogPageStreamField(FullStreamField):
+    block_types = [
+        ("featured_content_component", FeaturedContentComponent()),
+        ("chip_list_component", ChipListComponent()),
+        ("catalog_index_component", CatalogIndexComponent()),
+        ("agenda_component", AgendaComponent()),
+        ("definition_list_component", DefinitionListComponent()),
+    ]
+
 
 class DetailProductStreamField(FullStreamField):
     block_types = [("chip_list_component", ChipListComponent())]

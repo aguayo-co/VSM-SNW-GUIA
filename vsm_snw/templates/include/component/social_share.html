@@ -1,10 +1,33 @@
 {% load i18n %}
 
-<div class="o-social-share">
-  <span class="o-social-share__title o-bold">{% trans "Comparte en" %}:</span>
+<div class="o-social-share {{ variant_class }}">
+  <span class="o-social-share__title o-medium">{% trans "Comparte en" %}:</span>
   <nav class="o-social-share__nav">
-    <a class="o-social-share__ico i-facebook"></a>
-    <a class="o-social-share__ico i-whatsapp"></a>
-    <a class="o-social-share__ico i-twitter"></a>
+    <a
+      href="http://www.facebook.com/sharer.php?u={{ self.full_url }}"
+      title="{% trans 'Compartir link Facebook' %}"
+      target="_blank"
+      class="o-social-share__ico i-facebook"
+    >
+      <span class="u-hidden">Icono Facebook</span>
+    </a>
+    {% with url_encode='Encuentra este contenido en ' %}
+      <a
+        href="https://twitter.com/intent/tweet?&text={{ url_encode|urlencode }}&url={{ self.full_url }}"
+        title="{% trans 'Compartir link Twitter' %}"
+        target="_blank"
+        class="o-social-share__ico i-twitter"
+      >
+        <span class="u-hidden">Icono Twitter</span>
+      </a>
+    {% endwith %}
+    <button class="o-social-share__ico o-social-share__button i-link js-copyUri">
+      <span class="u-hidden">Icono Copia enlace</span>
+      <span
+        class="o-social-share__button-txt js-copyUriMsg"
+      >
+        {% trans "¡Link copiado!" %}
+      </span>
+    </button>
   </nav>
 </div>

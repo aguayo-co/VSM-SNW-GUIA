@@ -1,0 +1,96 @@
+.o-social-share_column,
+.o-social-share__nav {
+  @include flexbox;
+  @include align-items(center);
+}
+
+.o-social-share__nav {
+  @include px-to-rem(column-gap, $gutter * 2);
+}
+
+.o-social-share__title {
+  display: block;
+
+  &:not(.o-social-share_column &) {
+    @include px-to-rem(margin-bottom, $gutter * 2);
+  }
+
+  .o-social-share_column & {
+    @include px-to-rem(margin-right, $gutter * 2);
+  }
+}
+
+.o-social-share__ico {
+  color: $c-brand-primary;
+  line-height: 1;
+
+  &:not(.o-social-share_column &) {
+    @include px-to-rem(font-size, 20px);
+  }
+
+  .o-social-share_column & {
+    @include px-to-rem(font-size, $gutter * 2);
+  }
+}
+
+.o-social-share__button {
+  position: relative;
+}
+
+.o-social-share__button-txt {
+  position: absolute;
+  top: 100%;
+  @include px-to-rem(right, -30px);
+  bottom: 0;
+  left: auto;
+  display: block;
+  width: max-content;
+  @include px-to-rem(font-size, 14px);
+  opacity: 0;
+}
+
+// Active class
+.is-ico-list_show {
+  opacity: 0;
+  animation-name: blink;
+  animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+  animation-duration: 2s;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+
+  25% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  75% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@include media-query(medium-max) {
+  .o-social-share_column {
+    @include px-to-rem(margin, $gutter * 3 0);
+  }
+
+  .o-social-share__nav {
+    @include justify-content(center);
+  }
+}
+
+@include media-query(medium) {
+  .o-social-share_column {
+    @include px-to-rem(margin, $gutter * 7 0);
+  }
+}

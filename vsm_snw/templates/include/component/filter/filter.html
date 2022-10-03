@@ -1,6 +1,6 @@
 {% load i18n %}
 
-<form class="c-filter" method="GET">
+<form class="c-filter js-filter-target" method="GET">
 
   <h2 class="c-filter__title o-text o-bold u-inherit-color">{% trans "Filtra por" %}</h2>
 
@@ -8,7 +8,16 @@
 
     {% for field in filter_form %}
 
-      <div class="c-filter__item">
+      <div
+        class="c-filter__item js-filter-item"
+        data-filter-counter="{{ field.value|length }}"
+      >
+
+        <span
+          class="c-filter__counter js-filter-number-counter"
+        >
+          {{ field.value|length }}
+        </span>
 
         <p class="c-filter__toggle i-chevron-down js-dropdown-button">{{ field.label }}</p> 
 
@@ -27,8 +36,9 @@
               >
 
               <label
-                class="c-filter__option-label"
+                class="c-filter__option-label js-filter-choice"
                 for="{{ choices.data.label|slugify }}"
+                @click="toggleCounterOfFilter($event)"
               >
                 {{ choices.data.label }}
               </label>
@@ -43,10 +53,15 @@
     {% endfor %}
 
   </div>
+
+  {# chips para los filtros #}
+  {% include 'include/component/filter/chips.html' %}
   
   <footer class="c-filter__actions">
     <button
-      class="c-filter__action o-btn o-btn_secondary o-btn_bg-transparent"
+      class="c-filter__action o-btn o-btn_secondary o-btn_bg-transparent u-hidden js-filter-clear-btn"
+      type="button"
+      @click="clearFilters()"
     >
       {% trans "Borrar filtros" %}
     </button>
