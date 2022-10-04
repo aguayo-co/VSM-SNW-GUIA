@@ -49,6 +49,13 @@ class SantillanaSettings(BaseSetting):
         ),
     )
     copyright = RichTextField(verbose_name=_("Copyright - Footer "), editor="inline")
+    contact_page = ForeignKey(
+        "forms.FormPage",
+        verbose_name=_("Página de contacto"),
+        on_delete=PROTECT,
+        related_name="+",
+        null=True,
+    )
 
     # Contact
     phone = TextField(verbose_name=_("Teléfono"))
@@ -107,6 +114,7 @@ class SantillanaSettings(BaseSetting):
             [
                 ImageOrSVGPanel("logo_footer"),
                 FieldPanel("copyright"),
+                FieldPanel("contact_page"),
             ],
             heading=_("Footer"),
         ),

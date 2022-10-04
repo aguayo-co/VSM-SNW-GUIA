@@ -72,7 +72,7 @@ class SocialProofComponent(StructBlock):
 
     class Meta:
         icon = "image"
-        label = _("Social proof")
+        label = _("Prueba Social")
         template = "commons/components/social_proof.html"
 
 
@@ -210,13 +210,15 @@ class PagesLinksListComponent(StructBlock):
     title_featured = CharBlock(required=True, label=_("Título destacados"))
     subtitle_featured = CharBlock(required=True, label=_("Subtítulo destacados"))
     featured_link_list = ListBlock(
-        PageChooserBlock(required=False, label=_("Enlace destacado")),
+        PageChooserBlock(
+            page_type="wagtailcore.Page",
+            required=True,
+            label=_("Enlace Destacado"),
+        ),
         required=False,
         label=_("Lista de enlaces destacados"),
         max_num=3,
     )
-    title = CharBlock(required=False, label=_("Título"))
-    subtitle = CharBlock(required=False, label=_("Subtítulo"))
     link_list = ListBlock(
         PageChooserBlock(
             page_type="commons.DetailArticlePage",
@@ -225,12 +227,13 @@ class PagesLinksListComponent(StructBlock):
         ),
         required=False,
         label=_("Lista de enlaces"),
+        max_num=6,
     )
 
     primary_action_text = CharBlock(required=False, label=_("Texto acción primaria"))
     primary_action_url = PageChooserBlock(
         page_type="commons.DetailArticlePage",
-        required=True,
+        required=False,
         label=_("URL acción primaria"),
     )
 
