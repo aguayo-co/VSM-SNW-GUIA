@@ -36,6 +36,7 @@
 
         <form action="{% pageurl page %}" method="POST" class="o-form">
           {% csrf_token %}
+          <div class="g-recaptcha u-inline" data-sitekey="{{ key_recaptcha }}"></div>
 
           {% for field in form %}
                 
