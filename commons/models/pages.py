@@ -28,8 +28,9 @@ from commons.models.fields import (
     FullStreamField,
     HeroStreamField,
     HomeStreamField,
-    BlogPageStreamField,
     ThematicHomePageStreamField,
+    BlogPageStreamField,
+    DetailArticlePageStreamField,
 )
 from commons.models.mixins import FilterMixin, OrderMixin
 from commons.models.snippets import Degree
