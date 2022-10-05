@@ -48,7 +48,6 @@
 
 .c-list-links-pages__item-title {
   display: block;
-  @include px-to-rem(margin-bottom, $gutter);
   font-weight: $f-medium;
 
   &:not(.c-list-links-pages__item_featured &) {
@@ -61,6 +60,8 @@
 }
 
 .c-list-links-pages__item-lead {
+  @include px-to-rem(margin-top, $gutter);
+
   // Default state
   &:not(.c-list-links-pages__item_featured &) {
     padding-right: $gutter * 3;
