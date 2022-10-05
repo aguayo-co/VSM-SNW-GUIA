@@ -43,7 +43,9 @@
             
               <div class="o-card__content">
                 <p class="o-kicker">{{ card.get_parent.title }}</p>
-                <p class="o-card__text o-text">{{ card.seo_title }}</p>
+                <p class="o-card__text o-text">
+                  {% firstof card.seo_title card.title %}
+                </p>
               </div>
             </a>
           </article>

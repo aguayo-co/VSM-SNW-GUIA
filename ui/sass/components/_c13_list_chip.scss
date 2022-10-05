@@ -7,8 +7,7 @@
 }
 
 .c-list-chip__chip {
-  width: max-content;
-  min-width: max-content;
+  min-width: auto;
   max-width: max-content;
   @include px-to-rem(border-width, 2px);
   @include px-to-rem(padding, $gutter * 2 $gutter * 3);
