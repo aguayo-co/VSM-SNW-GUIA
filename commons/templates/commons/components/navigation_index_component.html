@@ -1,13 +1,25 @@
-{% load inspector %}
+{% load i18n %}
 {% load navigation_index %}
 {% get_index %}
 
-{% for element in index %}
 
-    <br>
-    {{ element|inspect }}
-    <br>
+<div class="c-navigation-index o-inner o-surface_grey">
 
-    <a href="#{{ element.id }}">link to component: {{ element.value.title }}</a>
+  <h3 class="c-navigation-index__title">{% trans 'Navega a través de' %}</h3>
 
-{% endfor %}
+  <nav class="c-navigation-index__nav">
+
+    {% for element in index %}
+
+      <a
+        href="#{{ element.id }}"
+        class="c-navigation-index__link o-link o-link_secondary o-light"
+      >
+        {{ element.value.title }}
+      </a>
+
+    {% endfor %}
+
+  </nav>
+
+</div>

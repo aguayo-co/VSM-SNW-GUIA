@@ -1,0 +1,43 @@
+.c-navigation-index {
+  @include px-to-rem(padding, $gutter * 7 0);
+}
+
+.c-navigation-index__title,
+.c-navigation-index__link {
+  @include px-to-rem(margin-bottom, $gutter * 2);
+}
+
+
+@include media-query(medium) {
+  .c-navigation-index {
+    @include px-to-rem(margin-top, $gutter * 7);
+    @include px-to-rem(margin-bottom, $gutter * 7);
+    @include px-to-rem(padding-right, $gutter * 7);
+    @include px-to-rem(padding-left, $gutter * 7);
+  }
+
+  .c-navigation-index__title {
+    @include px-to-rem(font-size, $gutter * 4);
+  }
+
+  .c-navigation-index__nav {
+    @include px-to-rem(padding-left, $gutter * 7);
+  }
+}
+
+@include media-query(medium-max) {
+  .c-navigation-index {
+    @include px-to-rem(margin-top, $gutter * 3);
+    @include px-to-rem(margin-bottom, $gutter * 3);
+    @include px-to-rem(padding-right, $gutter * 4);
+    @include px-to-rem(padding-left, $gutter * 4);
+  }
+
+  .c-navigation-index__title {
+    @include px-to-rem(font-size, $gutter * 3);
+  }
+
+  .c-navigation-index__nav {
+    @include px-to-rem(padding-left, $gutter * 3);
+  }
+}
