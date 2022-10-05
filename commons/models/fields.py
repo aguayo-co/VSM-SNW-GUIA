@@ -22,6 +22,8 @@ from commons.models.components import (
     ChipListComponent,
     ProductsListComponent,
     NavigationIndexComponent,
+    ThematicContentComponent,
+    ContentHeroComponent,
 )
 from wagtail.fields import StreamField
 
@@ -165,8 +167,29 @@ class BlogPageStreamField(FullStreamField):
     ]
 
 
+class CategoryHomePageStreamField(FullStreamField):
+    block_types = [
+        ("catalog_index_component", CatalogIndexComponent()),
+        ("agenda_component", AgendaComponent()),
+        ("chip_list_component", ChipListComponent()),
+        ("links_list_component", PagesLinksListComponent()),
+    ]
+
+
+class ThematicHomePageStreamField(FullStreamField):
+    block_types = [
+        ("catalog_index_component", CatalogIndexComponent()),
+        ("agenda_component", AgendaComponent()),
+        ("chip_list_component", ChipListComponent()),
+        ("links_list_component", PagesLinksListComponent()),
+    ]
+
+
 class DetailProductStreamField(FullStreamField):
-    block_types = [("chip_list_component", ChipListComponent())]
+    block_types = [
+        ("thematic_content_component", ThematicContentComponent()),
+        ("chip_list_component", ChipListComponent())
+    ]
 
 
 class DetailProductIntroStreamField(FullStreamField):
@@ -204,4 +227,13 @@ class ThematicHomePageStreamField(FullStreamField):
         ("agenda_component", AgendaComponent()),
         ("chip_list_component", ChipListComponent()),
         ("links_list_component", PagesLinksListComponent()),
+    ]
+
+
+class DetailArticlePageStreamField(FullStreamField):
+    block_types = [
+        ("free_content_component", FreeContentComponent()),
+        ("chip_list_component", ChipListComponent()),
+        ("index_component", NavigationIndexComponent()),
+        ("content_hero_component", ContentHeroComponent()),
     ]

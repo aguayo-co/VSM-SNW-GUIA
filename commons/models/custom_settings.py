@@ -49,6 +49,13 @@ class SantillanaSettings(BaseSetting):
         ),
     )
     copyright = RichTextField(verbose_name=_("Copyright - Footer "), editor="inline")
+    contact_page = ForeignKey(
+        "forms.FormPage",
+        verbose_name=_("Página de contacto"),
+        on_delete=PROTECT,
+        related_name="+",
+        null=True,
+    )
 
     # Contact
     phone = TextField(verbose_name=_("Teléfono"))
@@ -66,6 +73,27 @@ class SantillanaSettings(BaseSetting):
         verbose_name=_("Google Tag Manager (noscript)")
     )
     chatbot = TextField(verbose_name=_("Chatbot"), blank=True)
+
+    # Terms and Conditions
+    terms_and_conditions = RichTextField(
+        verbose_name=_("Términos y condiciones"),
+        editor="inline",
+        blank=True,
+    )
+
+    # key recaptcha
+    key_recaptcha = TextField(
+        verbose_name=_("Key reCAPTCHA"),
+        null=True,
+        blank=True,
+    )
+
+    # secret recaptcha
+    secret_recaptcha = TextField(
+        verbose_name=_("Secret reCAPTCHA"),
+        null=True,
+        blank=True,
+    )
 
     # Panels
     panels = [
@@ -86,6 +114,7 @@ class SantillanaSettings(BaseSetting):
             [
                 ImageOrSVGPanel("logo_footer"),
                 FieldPanel("copyright"),
+                FieldPanel("contact_page"),
             ],
             heading=_("Footer"),
         ),
@@ -110,6 +139,13 @@ class SantillanaSettings(BaseSetting):
                 FieldPanel("cookies_text"),
             ],
             heading=_("Mensaje de Cookies"),
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("terms_and_conditions"),
+                FieldPanel("key_recaptcha"),
+            ],
+            heading=_("Configuraciones de formularios"),
         ),
     ]
 

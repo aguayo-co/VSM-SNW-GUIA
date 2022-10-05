@@ -1,6 +1,7 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
-from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel
 from wagtail.snippets.models import register_snippet
 from wagtail_svg_images.models import ImageOrSvgField
 from wagtail_svg_images.panels import ImageOrSVGPanel
@@ -102,3 +103,48 @@ class Serie(models.Model):
     class Meta:
         verbose_name = _("Serie o sello editorial")
         verbose_name_plural = _("Series o sellos editoriales")
+
+
+@register_snippet
+class Book(models.Model):
+    """Book (product) model."""
+
+    name = models.CharField(max_length=255, verbose_name=_("Nombre"))
+    external_link = models.ForeignKey(
+        "commons.ExternalRedirect",
+        verbose_name=_("Libro externo"),
+        on_delete=models.SET_NULL,
+        related_name="+",
+        null=True,
+        blank=True,
+    )
+    document = models.ForeignKey(
+        "wagtaildocs.Document",
+        verbose_name=_("Documento"),
+        on_delete=models.SET_NULL,
+        related_name="+",
+        null=True,
+        blank=True,
+    )
+
+    panels = [
+        FieldPanel("name"),
+        PageChooserPanel("external_link"),
+        FieldPanel("document"),
+    ]
+
+    def __str__(self):
+        """A readable representation."""
+        return self.name
+
+    def clean(self):
+        """Validate that either external_link or document are set and there is only one of the two options."""
+        if (not self.external_link and not self.document) or (self.external_link and self.document):
+            raise ValidationError(
+                _("No puede utilizar ambos recursos ni dejar vacíos estos campos, por favor utilice solo una de las \
+                dos opciones: Enlace Externo o Documento.")
+            )
+
+    class Meta:
+        verbose_name = _("Libro")
+        verbose_name_plural = _("Libros")

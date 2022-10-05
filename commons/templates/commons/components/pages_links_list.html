@@ -1,3 +1,4 @@
+{% load inspector %}
 {% load wagtailcore_tags %}
 
 {% spaceless %}
@@ -17,14 +18,18 @@
 
           {# Enlaces destacados #}
           <nav class="c-list-links-pages">
+
+            ESTRUCTURA DE DATOS DE CADA FEATURE_LINK: <br>
+            {{ self.featured_link_list.0|inspect }}
+
             {% for featured_link in self.featured_link_list  %}
               {% if featured_link %}
                 <a
                   href="{% pageurl featured_link %}"
-                  title="Ir a {{ featured_link.seo_title }}"
+                  title="Ir a {{ featured_link.title }}"
                   class="c-list-links-pages__item c-list-links-pages__item_featured"
                 >
-                  <h4 class="c-list-links-pages__item-title">{{ featured_link.seo_title }}</h4>
+                  <h4 class="c-list-links-pages__item-title">{{ featured_link.draft_title }}</h4>
                   <p class="c-list-links-pages__item-lead">{{ featured_link.search_description }}</p>
                 </a>
               {% endif %}

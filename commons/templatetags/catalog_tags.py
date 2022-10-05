@@ -10,10 +10,10 @@ register = template.Library()
 @register.simple_tag(takes_context=True)
 def get_catalog_index(context):
     catalog_items = defaultdict(list)
-    element_list = DetailProductPage.objects.distinct()
+    element_list = DetailProductPage.objects.distinct().order_by("grade__number")
     for product in element_list:
         catalog_items[product.grade].append(product.subject)
-    catalog_items = {key: set(values) for key, values in catalog_items.items()}
+    catalog_items = {key: sorted(set(values), key = lambda x: x.name) for key, values in catalog_items.items()}
     context.update({"catalog_items": catalog_items})
     return ""
 

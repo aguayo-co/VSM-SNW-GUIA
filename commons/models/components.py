@@ -1,3 +1,5 @@
+from django.core.exceptions import ValidationError
+from django.forms.utils import ErrorList
 from django.utils.translation import gettext_lazy as _
 from wagtail.core.blocks import (
     CharBlock,
@@ -10,6 +12,7 @@ from wagtail.core.blocks import (
     ListBlock,
     BooleanBlock,
 )
+from wagtail.blocks.struct_block import StructBlockValidationError, StructValue
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.core import blocks
@@ -56,9 +59,20 @@ class SocialProofComponent(StructBlock):
     )
     caption = RichTextBlock(required=False, label=_("Leyenda"), editor="inline")
 
+    def clean(self, value):
+        result = super().clean(value)
+        errors = {}
+        if value["primary_action_text"] and not value["primary_action_url"]:
+            errors["primary_action_url"] = ErrorList(
+                [_("Ha definido un Texto para el botón de acción primaria, por tanto debe seleccionar una pagina.")]
+            )
+        if errors:
+            raise StructBlockValidationError(errors)
+        return result
+
     class Meta:
         icon = "image"
-        label = _("Social proof")
+        label = _("Prueba Social")
         template = "commons/components/social_proof.html"
 
 
@@ -95,6 +109,17 @@ class CatalogIndexComponent(StructBlock):
             "así como el Indice de Grados > Materias"
         )
     )
+
+    def clean(self, value):
+        result = super().clean(value)
+        errors = {}
+        if value["primary_action_text"] and not value["primary_action_url"]:
+            errors["primary_action_url"] = ErrorList(
+                [_("Ha definido un Texto para el botón de acción primaria, por tanto debe seleccionar una pagina.")]
+            )
+        if errors:
+            raise StructBlockValidationError(errors)
+        return result
 
     class Meta:
         icon = "image"
@@ -185,13 +210,15 @@ class PagesLinksListComponent(StructBlock):
     title_featured = CharBlock(required=True, label=_("Título destacados"))
     subtitle_featured = CharBlock(required=True, label=_("Subtítulo destacados"))
     featured_link_list = ListBlock(
-        PageChooserBlock(required=False, label=_("Enlace destacado")),
+        PageChooserBlock(
+            page_type="wagtailcore.Page",
+            required=True,
+            label=_("Enlace Destacado"),
+        ),
         required=False,
         label=_("Lista de enlaces destacados"),
         max_num=3,
     )
-    title = CharBlock(required=False, label=_("Título"))
-    subtitle = CharBlock(required=False, label=_("Subtítulo"))
     link_list = ListBlock(
         PageChooserBlock(
             page_type="commons.DetailArticlePage",
@@ -200,14 +227,26 @@ class PagesLinksListComponent(StructBlock):
         ),
         required=False,
         label=_("Lista de enlaces"),
+        max_num=6,
     )
 
     primary_action_text = CharBlock(required=False, label=_("Texto acción primaria"))
     primary_action_url = PageChooserBlock(
         page_type="commons.DetailArticlePage",
-        required=True,
+        required=False,
         label=_("URL acción primaria"),
     )
+
+    def clean(self, value):
+        result = super().clean(value)
+        errors = {}
+        if value["primary_action_text"] and not value["primary_action_url"]:
+            errors["primary_action_url"] = ErrorList(
+                [_("Ha definido un Texto para el botón de acción primaria, por tanto debe seleccionar una pagina.")]
+            )
+        if errors:
+            raise StructBlockValidationError(errors)
+        return result
 
     class Meta:
         icon = "image"
@@ -239,6 +278,21 @@ class SlideImageComponent(StructBlock):
         "background_illustration", required=False, label=_("Ilustración de fondo")
     )
 
+    def clean(self, value):
+        result = super().clean(value)
+        errors = {}
+        if value["primary_action_text"] and not value["primary_action_url"] :
+            errors["primary_action_url"] = ErrorList(
+                [_("Ha definido un Texto para el botón de acción primaria, por tanto debe seleccionar una pagina.")]
+            )
+        if value["secondary_action_text"] and not value["secondary_action_url"] :
+            errors["secondary_action_url"] = ErrorList(
+                [_("Ha definido un Texto para el botón de acción secundaria, por tanto debe seleccionar una pagina.")]
+            )
+        if errors:
+            raise StructBlockValidationError(errors)
+        return result
+
     class Meta:
         icon = "image"
         label = _("Imagen del slide")
@@ -267,6 +321,21 @@ class SlideImageBackgroundComponent(StructBlock):
     secondary_action_url = PageChooserBlock(
         required=False, label=_("URL acción secundaria")
     )
+
+    def clean(self, value):
+        result = super().clean(value)
+        errors = {}
+        if value["primary_action_text"] and not value["primary_action_url"] :
+            errors["primary_action_url"] = ErrorList(
+                [_("Ha definido un Texto para el botón de acción primaria, por tanto debe seleccionar una pagina.")]
+            )
+        if value["secondary_action_text"] and not value["secondary_action_url"] :
+            errors["secondary_action_url"] = ErrorList(
+                [_("Ha definido un Texto para el botón de acción secundaria, por tanto debe seleccionar una pagina.")]
+            )
+        if errors:
+            raise StructBlockValidationError(errors)
+        return result
 
     class Meta:
         icon = "image"
@@ -297,6 +366,21 @@ class SlideVideoComponent(StructBlock):
     background_illustration = ImageOrSVGBlock(
         "background_illustration", required=False, label=_("Ilustración de fondo")
     )
+
+    def clean(self, value):
+        result = super().clean(value)
+        errors = {}
+        if value["primary_action_text"] and not value["primary_action_url"] :
+            errors["primary_action_url"] = ErrorList(
+                [_("Ha definido un Texto para el botón de acción primaria, por tanto debe seleccionar una pagina.")]
+            )
+        if value["secondary_action_text"] and not value["secondary_action_url"] :
+            errors["secondary_action_url"] = ErrorList(
+                [_("Ha definido un Texto para el botón de acción secundaria, por tanto debe seleccionar una pagina.")]
+            )
+        if errors:
+            raise StructBlockValidationError(errors)
+        return result
 
     class Meta:
         icon = "image"
@@ -494,6 +578,17 @@ class ChipListComponent(StructBlock):
         label=_("URL acción primaria"),
     )
 
+    def clean(self, value):
+        result = super().clean(value)
+        errors = {}
+        if value["primary_action_text"] and not value["primary_action_url"] :
+            errors["primary_action_url"] = ErrorList(
+                [_("Ha definido un Texto para el botón de acción primaria, por tanto debe seleccionar una pagina.")]
+            )
+        if errors:
+            raise StructBlockValidationError(errors)
+        return result
+
     class Meta:
         icon = "list-ul"
         label = _("Listado de chips")
@@ -527,6 +622,21 @@ class ProductsListComponent(StructBlock):
         label=_("Listado de productos"),
     )
 
+    def clean(self, value):
+        result = super().clean(value)
+        errors = {}
+        if value["primary_action_text"] and not value["primary_action_url"] :
+            errors["primary_action_url"] = ErrorList(
+                [_("Ha definido un Texto para el botón de acción primaria, por tanto debe seleccionar una pagina.")]
+            )
+        if value["secondary_action_text"] and not value["secondary_action_url"] :
+            errors["secondary_action_url"] = ErrorList(
+                [_("Ha definido un Texto para el botón de acción secundaria, por tanto debe seleccionar una pagina.")]
+            )
+        if errors:
+            raise StructBlockValidationError(errors)
+        return result
+
     class Meta:
         icon = "list-ul"
         label = _("Listado de productos")
@@ -548,3 +658,21 @@ class NavigationIndexComponent(StructBlock):
         icon = "list-ul"
         label = _("Índice de navegación")
         template = "commons/components/navigation_index_component.html"
+
+
+class ContentHeroComponent(StructBlock):
+    """
+    A block that displays a content hero.
+    """
+
+    title = CharBlock(required=True, label=_("Título"))
+    description = ListBlock(
+        ThematicContentItem,
+        required=False,
+        label=_("Descripción"),
+    )
+
+    class Meta:
+        icon = "list-ul"
+        label = _("Hero de contenido")
+        template = "commons/components/content_hero_component.html"

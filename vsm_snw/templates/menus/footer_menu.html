@@ -31,8 +31,7 @@
 
           {# Chanels contact #}
           <nav class="c-footer__navigation">
-            {# TODO @Andres Ajustar la redirección de este enlace cuando se defina #}
-            <a href="#" class="c-footer__link o-link u-inherit-color i-headset">{% trans "Contáctenos" %}</a>
+            <a href="{% pageurl settings_site.contact_page %}" class="c-footer__link o-link u-inherit-color i-headset">{% trans "Contáctenos" %}</a>
             <a
               href="tel:{{ settings_site.phone }}"
               title="{% trans 'Llamar al ' %} {{ settings_site.phone }}"
