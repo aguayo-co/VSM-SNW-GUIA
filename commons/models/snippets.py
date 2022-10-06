@@ -139,10 +139,14 @@ class Book(models.Model):
 
     def clean(self):
         """Validate that either external_link or document are set and there is only one of the two options."""
-        if (not self.external_link and not self.document) or (self.external_link and self.document):
+        if (not self.external_link and not self.document) or (
+            self.external_link and self.document
+        ):
             raise ValidationError(
-                _("No puede utilizar ambos recursos ni dejar vacíos estos campos, por favor utilice solo una de las \
-                dos opciones: Enlace Externo o Documento.")
+                _(
+                    "No puede utilizar ambos recursos ni dejar vacíos estos campos, por favor utilice solo una de las \
+                dos opciones: Enlace Externo o Documento."
+                )
             )
 
     class Meta:

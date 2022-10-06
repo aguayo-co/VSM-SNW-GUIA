@@ -16,18 +16,25 @@ from commons.models.custom_settings import SantillanaSettings
 
 
 class FormField(AbstractFormField):
-    CHOICES = FORM_FIELD_CHOICES + (("terms_and_conditions",_("Términos y condiciones")),) + (("captcha",_("Captcha")),)
-    page = ParentalKey('FormPage', related_name='form_fields')
+    CHOICES = (
+        FORM_FIELD_CHOICES
+        + (("terms_and_conditions", _("Términos y condiciones")),)
+        + (("captcha", _("Captcha")),)
+    )
+    page = ParentalKey("FormPage", related_name="form_fields")
     field_type = models.CharField(
-        verbose_name='field type',
-        max_length=32,
-        choices=CHOICES
+        verbose_name="field type", max_length=32, choices=CHOICES
     )
 
 
 class CustomFormBuilder(FormBuilder):
     def create_terms_and_conditions_field(self, field, options):
-        return BooleanField(label=SantillanaSettings.for_site(Site.objects.first()).terms_and_conditions, required=field.required)
+        return BooleanField(
+            label=SantillanaSettings.for_site(
+                Site.objects.first()
+            ).terms_and_conditions,
+            required=field.required,
+        )
 
     def create_captcha_field(self, field, options):
         return BooleanField(label=_("¿Eres humano?"), required=field.required)
@@ -46,7 +53,9 @@ class FormPage(AbstractForm):
 
     def get_context(self, request):
         context = super().get_context(request)
-        context["key_recaptcha"] = SantillanaSettings.for_site(Site.objects.first()).key_recaptcha
+        context["key_recaptcha"] = SantillanaSettings.for_site(
+            Site.objects.first()
+        ).key_recaptcha
         return context
 
     class Meta:
