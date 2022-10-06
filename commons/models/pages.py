@@ -728,11 +728,45 @@ class DetailArticlePage(BasePage):
         verbose_name=("Contenido"), null=True, blank=True
     )
 
+    author = CharField(
+        verbose_name=_("Autor"),
+        max_length=255,
+        null=True,
+        blank=True,
+    )
+
+    reading_time = CharField(
+        verbose_name=_("Tiempo de lectura"),
+        max_length=255,
+        null=True,
+        blank=True,
+    )
+
     content_panels = [
         FieldPanel("title"),
         FieldPanel(CONTENT_FIELD),
         FieldPanel("footer_content"),
     ]
+    promote_panels = BasePage.promote_panels
+    settings_panels = BasePage.settings_panels
+    article_information = [
+        MultiFieldPanel(
+            [
+                FieldPanel("author"),
+                FieldPanel("reading_time"),
+            ],
+            heading=_("Información del Artículo"),
+        ),
+    ]
+
+    edit_handler = TabbedInterface(
+        [
+            ObjectList(content_panels, heading=_("Contenido")),
+            ObjectList(promote_panels, heading=_("Promocionar")),
+            ObjectList(settings_panels, heading=_("Propiedades"), classname="settings"),
+            ObjectList(article_information, heading=_("Información del Artículo")),
+        ]
+    )
 
     subpage_types = []
 
