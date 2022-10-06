@@ -5,6 +5,7 @@ from wagtail import urls as wagtail_urls
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.documents import urls as wagtaildocs_urls
 from wagtail_tag_manager import urls as wtm_urls
+from wagtail_transfer import urls as wagtailtransfer_urls
 
 from commons.views import Test404View, Test500View
 from search import views as search_views
@@ -38,6 +39,7 @@ urlpatterns = urlpatterns + [
     # Wagtail's page serving mechanism. This should be the last pattern in
     # the list:
     path("", include(wagtail_urls)),
+    path("wagtail-transfer/", include(wagtailtransfer_urls)),
     # Alternatively, if you want Wagtail pages to be served from a subpath
     # of your site, rather than the site root:
     #    path("pages/", include(wagtail_urls)),

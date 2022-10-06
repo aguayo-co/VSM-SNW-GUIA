@@ -155,7 +155,9 @@ class BlogPage(BasePage, OrderMixin):
 
     CONTENT_FIELD = "_content_blog"
 
-    _content_blog = BlogPageStreamField(verbose_name=_("Contenido"), null=True, blank=True)
+    _content_blog = BlogPageStreamField(
+        verbose_name=_("Contenido"), null=True, blank=True
+    )
 
     hero = HeroStreamField(blank=True, null=True)
 

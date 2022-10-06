@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     "wagtailsvg",
     "generic_chooser",
     "hitcount",
+    "wagtail_transfer",
 ]
 
 MIDDLEWARE = [
@@ -346,3 +347,26 @@ LOGGING = {
         },
     },
 }
+
+# Wagtail Transfer
+WAGTAILTRANSFER_SOURCES = {
+    "staging": {
+        "BASE_URL": os.environ.get("STAGING_BASE_URL", None),
+        "SECRET_KEY": os.environ.get("STAGING_SECRET_KEY", None),
+    },
+    "production": {
+        "BASE_URL": os.environ.get("PRODUCTION_BASE_URL", None),
+        "SECRET_KEY": os.environ.get("PRODUCTION_SECRET_KEY", None),
+    },
+}
+
+WAGTAILTRANSFER_SECRET_KEY = os.environ.get("SECRET_KEY", None)
+
+WAGTAILTRANSFER_UPDATE_RELATED_MODELS = [
+    "wagtailimages.Image",
+    "wagtaildocs.Document",
+    "commons.Degree",
+    "commons.Subject",
+    "commons.Serie",
+    "commons.Book",
+]
