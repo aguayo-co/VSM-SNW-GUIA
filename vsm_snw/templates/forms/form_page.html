@@ -40,95 +40,90 @@
 
           {% for field in form %}
                 
-          <div
-            class="
-              o-form__set
-              {% if field.field.widget.input_type == 'radio' or field.widget_type == 'textarea' or field.field.widget.input_type == 'checkbox' %}o-form__set_full{% endif %}
-              {% if field.errors %}is-error{% endif %}
-            "
-          >
+            <div
+              class="
+                o-form__set
+                {% if field.field.widget.input_type == 'radio' or field.widget_type == 'textarea' or field.field.widget.input_type == 'checkbox' %}o-form__set_full{% endif %}
+                {% if field.errors %}is-error{% endif %}
+              "
+            >
 
-            {% if field.field.widget.input_type == 'radio' or field.field.widget.input_type == 'checkbox' %}
+              {% if field.field.widget.input_type == 'radio' or field.field.widget.input_type == 'checkbox' %}
 
-              {# field radio and checkbox buttons#}
-              <span class="o-form__option o-form__option_ico">
+                {# field radio and checkbox buttons#}
+                <span class="o-form__option o-form__option_ico">
 
-                {% if field.field.widget.choices %}
-                  {% with option=True %}
+                  {% if field.field.widget.choices %}
+                    {% with option=True %}
 
-                    {# Label group radios #}
-                    <span class="o-form__label">
-                      {{ field.label_tag }} {% if field.field.required %}<sup class="o-form__sup">*</sup>{% endif %}
-                    </span>
+                      {# Label group radios #}
+                      <span class="o-form__label">
+                        {{ field.label_tag }} {% if field.field.required %}<sup class="o-form__sup">*</sup>{% endif %}
+                      </span>
 
-                    {# Options of radiobuttons #}
-                    <ul class="o-form__option-list">
+                      {# Options of radiobuttons #}
+                      <ul class="o-form__option-list">
 
-                      {% for choices in field.subwidgets  %}
-                        <li class="o-form__option-item">
-                          <input
-                            id="{{ choices.id_for_label }}"
-                            class="o-form__option-input"
-                            type="{{ choices.data.type }}"
-                            {% if field.field.required %}required{% endif %}
-                            name="{{ choices.data.name }}"
-                            value="{{ choices.data.value }}"
-                          >
+                        {% for choices in field.subwidgets  %}
+                          <li class="o-form__option-item">
+                            <input
+                              id="{{ choices.id_for_label }}"
+                              class="o-form__option-input"
+                              type="{{ choices.data.type }}"
+                              {% if field.field.required %}required{% endif %}
+                              name="{{ choices.data.name }}"
+                              value="{{ choices.data.value }}"
+                            >
 
-                          {# Label radio input #}
-                          <label
-                            class="o-form__option-label"
-                            for="{{ choices.id_for_label }}"
-                          >
-                            {{ choices.data.label }}
-                          </label>
-                        </li>
-                      {% endfor %}
+                            {# Label radio input #}
+                            <label
+                              class="o-form__option-label"
+                              for="{{ choices.id_for_label }}"
+                            >
+                              {{ choices.data.label }}
+                            </label>
+                          </li>
+                        {% endfor %}
 
-                    </ul>
+                      </ul>
 
-                  {% endwith %}
-                {% endif %}
+                    {% endwith %}
+                  {% endif %}
 
-              </span>
-
-            {% else %}
-
-              {# block for customizate inputs if is necesary #}
-              {% block fields_form %}
-              
-                {# Label if required #}
-                <span class="o-form__label">
-                  {{ field.label_tag }} {% if field.field.required %}<sup class="o-form__sup">*</sup>{% endif %}
                 </span>
 
-                {# Field: input, Textarea, if select  #}
-                <span
-                  class="
-                    o-form__field
-                    {% if field.field.widget.input_type == 'select' %} o-form__select i-chevron-down{% endif %}
-                  "
+              {% else %}
+
+                  {# Label if required #}
+                  <span class="o-form__label">
+                    {{ field.label_tag }} {% if field.field.required %}<sup class="o-form__sup">*</sup>{% endif %}
+                  </span>
+
+                  {# Field: input, Textarea, if select  #}
+                  <span
+                    class="
+                      o-form__field
+                      {% if field.field.widget.input_type == 'select' %} o-form__select i-chevron-down{% endif %}
+                    "
+                  >
+                    {# Input and labels of form #}
+                    {{ field }}
+                  </span>
+                
+                {# Errors #}
+                <div
+                  class="is-error__message {% if not field.errors.data|length %}u-hidden{% endif %}"
+                  role="alert"
+                  data-for="{{ field.name }}"
                 >
-                  {# Input and labels of form #}
-                  {{ field }}
-                </span>
-              
-              {% endblock %}
+                  {{ field.errors }}
+                </div>
 
-              {# Errors #}
-              <div
-                class="is-error__message {% if not field.errors.data|length %}u-hidden{% endif %}"
-                role="alert"
-                data-for="{{ field.name }}"
-              >
-                {{ field.errors }}
-              </div>
+              {% endif %}
 
-            {% endif %}
+            </div>
 
-          </div>
-
-        {% endfor %}
+          {% endfor %}
 
           <div class="o-form__action o-form__set o-form__set_full">
             <button type="submit" class="o-btn">{% trans 'Enviar' %}</button>
