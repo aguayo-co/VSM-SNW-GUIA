@@ -58,6 +58,7 @@
   @include px-to-rem(margin, $gutter $gutter 0 0);
   border: 2px solid $c-primary-90;
   border-radius: 50%;
+  overflow: hidden;
 }
 
 

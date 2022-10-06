@@ -10,7 +10,9 @@
       {% if self.title %}
         <header class="o-hgroup o-hgroup_center">
           <h3 class="o-subheadline">{{ self.title }}</h3>
-          <p class="o-kicker">{{ self.title }}</p>
+          {% if self.subtitle %}
+            <p class="o-kicker">{{ self.subtitle }}</p>
+          {% endif %}
         </header>
       {% endif %}
 

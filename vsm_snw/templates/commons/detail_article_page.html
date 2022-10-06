@@ -27,17 +27,25 @@
 {% block detail %}
 
   <ul class="c-intro-content__list o-list">
-    <li class="o-light">
-      {% trans 'Escrito por' %}
-      <span class="o-regular">{{ self.responsible }}</span>
-    </li>
-    <li class="c-intro-content__point">
-      <span class="u-hidden">Bullet separador</span>
-    </li>
-    <li class="o-light">
-      {% trans 'Lectura de' %}
-      <span class="o-regular">8 minutos</span>
-    </li>
+    {% if self.author %}
+      <li class="o-light">
+        {% trans 'Escrito por' %}
+        <span class="o-regular">{{ self.author }}</span>
+      </li>
+    {% endif %}
+
+    {% if self.author and self.reading_time %}
+      <li class="c-intro-content__point">
+        <span class="u-hidden">Bullet separador</span>
+      </li>
+    {% endif %}
+
+    {% if self.reading_time %}
+      <li class="o-light">
+        {% trans 'Lectura de' %}
+        <span class="o-regular">{{ self.reading_time }}</span>
+      </li>
+    {% endif %}
   </ul>
 
 {% endblock detail %}

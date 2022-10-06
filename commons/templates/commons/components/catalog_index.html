@@ -92,7 +92,7 @@
       
       {# Bloque de series #}
       {% get_series %}
-      {% if series %}
+      {% if series|length > 0 %}
         <header class="o-hgroup o-hgroup_center">
           <h3 class="o-kicker">
             {% trans "Filtra el catálogo por las Series Santillana Contigo" %}

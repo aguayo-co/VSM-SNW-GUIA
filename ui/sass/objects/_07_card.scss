@@ -1,10 +1,11 @@
 .o-card {
+  width: 100%;
   overflow: hidden;
 }
 
 .o-card_article {
   cursor: pointer;
-  
+
   &:hover {
     .o-card__content,
     .o-card__text {
@@ -21,11 +22,13 @@
   @include px-to-rem(padding, $gutter * 2);
   background-color: $c-surface-grey-10;
   transition: $transition-ease-in-out-2s;
+
+  .u-rounded-16 & {
+    @include px-to-rem(border-radius, 0 0 $gutter * 2 $gutter * 2);
+  }
 }
 
 .o-card__text {
-  line-height: 1.2;
-
   .o-card_article & {
     @include px-to-rem(margin-top, $gutter * 2);
   }
@@ -70,6 +73,12 @@
     object-fit: cover;
   }
 
+  .o-card__text {
+    .o-card_article & {
+      @include truncatechars($gutter * 2, 1.2, 3);
+    }
+  }
+
 }
 
 /**
@@ -92,7 +101,7 @@
 
   .o-card__text {
     .o-card_article & {
-      @include px-to-rem(font-size, $gutter * 3);
+      @include truncatechars($gutter * 3, 1.2, 3);
     }
   }
 }

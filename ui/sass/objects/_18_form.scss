@@ -4,7 +4,7 @@
   @include justify-content(space-between);
   @include align-items(center);
   @include px-to-rem(column-gap, $gutter * 3);
-  @include px-to-rem(row-gap, $gutter * 3);
+  @include px-to-rem(row-gap, $gutter * 4);
 }
 
 .o-form__label {
@@ -15,6 +15,7 @@
 
 .o-form__field {
   input,
+  select,
   textarea {
     width: 100%;
     @include px-to-rem(padding, $gutter * 2);
@@ -39,6 +40,9 @@
   flex: 1 1 45%;
   color: $c-brand-primary;
   cursor: pointer;
+}
+.o-form__option-item_auto {
+  flex: auto;
 }
 
 .o-form__option-input {
@@ -123,7 +127,29 @@
       }
     }
   }
+}
 
+.o-form__tyc {
+  @include flexbox;
+  @include align-items(center);
+
+  .s-richtext {
+    p {
+      @include px-to-rem(font-size, $gutter * 2);
+      color: rgba($color: $c-default-text, $alpha: 0.5);
+      line-height: 1.5;
+    }
+
+    a {
+      display: inline-block
+    }
+  }
+}
+
+.o-form__set_center {
+  @include flexbox;
+  @include align-items(center);
+  @include justify-content(center);
 }
 
 .is-error__message {

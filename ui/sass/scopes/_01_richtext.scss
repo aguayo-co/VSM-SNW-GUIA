@@ -92,6 +92,19 @@
   }
 }
 
+.s-richtext_inline {
+  ul {
+    @include px-to-rem(margin-top, $gutter);
+    @include px-to-rem(margin-bottom, $gutter);
+  }
+
+  li {
+    &:not(:last-of-type) {
+      @include px-to-rem(margin-bottom, $gutter);
+    }
+  }
+}
+
 // .s-richtext_basic
 .s-richtext_list {
   ul,

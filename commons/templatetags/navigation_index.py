@@ -11,7 +11,7 @@ def get_index(context):
     index = []
     for block in page_content:
         if (
-            "free_content_component" == block.block_type
+            "free_content" == block.block_type
             and block.value["show_in_content_table"] is True
         ):
             index.append(block)
