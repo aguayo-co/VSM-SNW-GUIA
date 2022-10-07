@@ -63,4 +63,8 @@
     @include px-to-rem(column-gap, $gutter * 3);
     @include px-to-rem(row-gap, $gutter * 2);
   }
+
+  .c-banner-ad__content {
+    @include px-to-rem(max-width, 840px);
+  }
 }
