@@ -32,14 +32,16 @@
   <section class="o-section">
     <div class="o-canvas">
       
-      <div class="o-inner">
+      <div class="o-inner o-inner_full">
+
+        {# Intro formulario #}
+        {% include 'include/component/form/header_form.html' %}
 
         <form action="{% pageurl page %}" method="POST" class="o-form">
           {% csrf_token %}
-          <div class="g-recaptcha u-inline" data-sitekey="{{ key_recaptcha }}"></div>
 
           {% for field in form %}
-                
+              
             <div
               class="
                 o-form__set
@@ -48,7 +50,34 @@
               "
             >
 
-              {% if field.field.widget.input_type == 'radio' or field.field.widget.input_type == 'checkbox' %}
+              {% if field.widget_type == 'termsandconditionscheckbox' %}
+
+                <span class="o-form__tyc">
+              
+                  <span class="o-form__option-item o-form__option-item_auto">
+                    <input id="tyc" type="checkbox" class="o-form__option-input">
+                    <label for="tyc" class="o-form__option-label">
+                      <span class="u-hidden">
+                        {% trans 'label terminos y condiciones' %}
+                      </span>
+                    </label>
+                  </span>
+              
+                  <label for="tyc" class="s-richtext s-richtext_inline">
+                    <h4>{% trans "Terminos & condiciones" %}</h4>
+                    <br>
+                    {{ field.label|richtext }}
+                  </label>
+              
+                </span>
+              
+              {% elif field.widget_type == 'captchacheckbox' %}
+
+                <div class="o-form__set_center">
+                  <div class="g-recaptcha u-inline" data-sitekey="{{ key_recaptcha }}"></div>
+                </div>
+
+              {% elif field.field.widget.input_type == 'radio' or field.field.widget.input_type == 'checkbox' %}
 
                 {# field radio and checkbox buttons#}
                 <span class="o-form__option o-form__option_ico">

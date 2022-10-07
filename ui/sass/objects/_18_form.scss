@@ -1,3 +1,17 @@
+.o-form__header {
+  @include px-to-rem(max-width, 540px);
+  @include px-to-rem(margin-bottom, $gutter * 4);
+
+  &.s-richtext {
+    figure,
+    img {
+      @include px-to-rem(max-width, $gutter * 10);
+      @include px-to-rem(min-height, $gutter * 10);
+      margin-left: 0;
+    }
+  }
+}
+
 .o-form {
   @include flexbox;
   @include flex-wrap(wrap);
@@ -42,7 +56,7 @@
   cursor: pointer;
 }
 .o-form__option-item_auto {
-  flex: auto;
+  flex: 0 1 auto;
 }
 
 .o-form__option-input {
@@ -129,6 +143,22 @@
   }
 }
 
+.o-form__select {
+  position: relative;
+
+  select {
+    appearance: none;
+  }
+
+  &::before {
+    position: absolute;
+    @include px-to-rem(top, 4px);
+    @include px-to-rem(right, $gutter * 2);
+    @include px-to-rem(font-size, 14px);
+    color: $c-brand-primary;
+  }
+}
+
 .o-form__tyc {
   @include flexbox;
   @include align-items(center);
@@ -137,7 +167,7 @@
     p {
       @include px-to-rem(font-size, $gutter * 2);
       color: rgba($color: $c-default-text, $alpha: 0.5);
-      line-height: 1.5;
+      line-height: 1.4;
     }
 
     a {
