@@ -1,0 +1,27 @@
+{% load wagtailcore_tags svg_tags %}
+
+{% if self.content %}
+
+  <header class="o-form__header s-richtext">
+
+    {% for content in self.content %}
+      {% for rich_text in content.value.content %}
+
+        {% if rich_text.value.image %}
+
+          <figure>
+            {% svg-image rich_text.value.image fill-80x80 class="o-img"  %}
+          </figure>
+
+        {% else %}
+
+          {{ rich_text.value.rich_text|richtext }}
+
+        {% endif %}
+
+      {% endfor %}
+    {% endfor %}
+
+  </header>
+
+{% endif %}
