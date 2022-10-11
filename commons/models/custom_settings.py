@@ -66,14 +66,6 @@ class SantillanaSettings(BaseSetting):
         verbose_name=_("Texto Cookies"), editor="inline", blank=True
     )
 
-    # Scripts
-    google_site_tag_script = TextField(verbose_name=_("Global site tag (gtag.js)"))
-    google_tag_manager_script = TextField(verbose_name=_("Google Tag Manager"))
-    google_tag_manager_no_script = TextField(
-        verbose_name=_("Google Tag Manager (noscript)")
-    )
-    chatbot = TextField(verbose_name=_("Chatbot"), blank=True)
-
     # Terms and Conditions
     terms_and_conditions = RichTextField(
         verbose_name=_("Términos y condiciones"),
@@ -124,15 +116,6 @@ class SantillanaSettings(BaseSetting):
                 FieldPanel("email"),
             ],
             heading=_("Contacto"),
-        ),
-        MultiFieldPanel(
-            [
-                FieldPanel("google_site_tag_script"),
-                FieldPanel("google_tag_manager_script"),
-                FieldPanel("google_tag_manager_no_script"),
-                FieldPanel("chatbot"),
-            ],
-            heading=_("Scripts de terceros"),
         ),
         MultiFieldPanel(
             [
