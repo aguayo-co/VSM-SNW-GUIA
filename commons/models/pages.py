@@ -104,6 +104,7 @@ class BasePage(Page, HitCountMixin):
 
         # Slug Accents
         self.slug = slugify(self.slug)
+        super().clean()
 
     @classmethod
     def can_create_at(cls, parent):
