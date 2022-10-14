@@ -1,3 +1,4 @@
+from django.contrib.contenttypes.fields import GenericRelation
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db import models
 from django.db.models import CharField, ForeignKey, TextField, URLField
@@ -6,6 +7,7 @@ from django.shortcuts import render
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 from hitcount.models import HitCountMixin
+from hitcount.models import HitCount
 from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel
 from wagtail.admin.panels import ObjectList, StreamFieldPanel, TabbedInterface
 from wagtail.core.models import Page
@@ -55,6 +57,11 @@ class BasePage(Page, HitCountMixin):
     )
     keywords = models.CharField(
         default="", blank=True, max_length=100, verbose_name=_("Palabras clave")
+    )
+    hit_count_generic = GenericRelation(
+        HitCount,
+        object_id_field="object_pk",
+        related_query_name="hit_count_generic_relation",
     )
 
     is_creatable = False
@@ -183,7 +190,7 @@ class BlogPage(BasePage, OrderMixin):
         page = request.GET.get("page", None)
         order_by = self.get_order_by(request)
         if order_by:
-            queryset = CategoryHomePage.objects.all().order_by(order_by)
+            queryset = CategoryHomePage.objects.all().annotate(visits=models.Count("hit_count_generic__hit")).order_by(order_by)
         else:
             queryset = CategoryHomePage.objects.all()
 
@@ -235,7 +242,7 @@ class CatalogPage(FilterMixin, BasePage, OrderMixin):
             if request.GET.get(a_filter, None) not in ["", None]
         }
         if order_by:
-            queryset = DetailProductPage.objects.filter(**filters).order_by(order_by)
+            queryset = DetailProductPage.objects.filter(**filters).annotate(visits=models.Count("hit_count_generic__hit")).order_by(order_by)
         else:
             queryset = DetailProductPage.objects.filter(**filters)
         paginator = Paginator(queryset, items_per_page)
@@ -379,9 +386,9 @@ class CategoryHomePage(BasePage, OrderMixin):
         page = request.GET.get("page", None)
         order_by = self.get_order_by(request)
         if order_by:
-            queryset = DetailArticlePage.objects.all().order_by(order_by)
+            queryset = self.get_children().live().annotate(visits=models.Count("hit_count_generic__hit")).order_by(order_by)
         else:
-            queryset = DetailArticlePage.objects.all()
+            queryset = self.get_children().live()
 
         paginator = Paginator(queryset, items_per_page)
 
@@ -424,9 +431,9 @@ class ThematicHomePage(BasePage, OrderMixin):
         page = request.GET.get("page", None)
         order_by = self.get_order_by(request)
         if order_by:
-            queryset = CourseDetailPage.objects.child_of(self).live().order_by(order_by)
+            queryset = self.get_children().live().annotate(visits=models.Count("hit_count_generic__hit")).order_by(order_by)
         else:
-            queryset = CourseDetailPage.objects.child_of(self).live()
+            queryset = self.get_children().live()
 
         paginator = Paginator(queryset, items_per_page)
 
