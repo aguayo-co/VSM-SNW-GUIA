@@ -76,7 +76,7 @@ class SocialProofComponent(StructBlock):
 
     class Meta:
         icon = "group"
-        label = _("Prueba Social")
+        label = _("Social Proof")
         template = "commons/components/social_proof.html"
 
 
@@ -368,7 +368,7 @@ class SlideImageBackgroundComponent(StructBlock):
 
     class Meta:
         icon = "image"
-        label = _("Imagen de fondo del slide")
+        label = _("Imagen de fondo")
         template = "commons/components/slide_image_background.html"
 
 

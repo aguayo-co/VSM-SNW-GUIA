@@ -50,16 +50,29 @@
     @include px-to-rem(margin-bottom, $gutter * 3);
   }
 
-  iframe,
   figure,
-  img {
+  img,
+  iframe {
     display: block;
     width: 100%;
     @include px-to-rem(max-width, 642px);
-    @include px-to-rem(min-height, 344px);
+    height: auto;
+    @include px-to-rem(margin-top, $gutter * 3);
     margin-right: auto;
     margin-left: auto;
+  }
+
+  figure {
     @include px-to-rem(margin-bottom, $gutter * 3);
+  }
+
+  img,
+  iframe {
+    @include px-to-rem(margin-bottom, $gutter);
+  }
+
+  iframe {
+    @include px-to-rem(min-height, 344px);
   }
 
   blockquote {
@@ -105,7 +118,6 @@
   }
 }
 
-// .s-richtext_basic
 .s-richtext_list {
   ul,
   ol {
@@ -132,6 +144,30 @@
   }
 }
 
+// Caption for media
+.s-richtext-caption-credit {
+  display: block;
+  @include px-to-rem(margin-bottom, $gutter);
+  text-align: right;
+}
+
+.s-richtext-caption-lead {
+  position: relative;
+  @include px-to-rem(padding-left, $gutter * 2);
+  line-height: 1.2;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    @include px-to-rem(width, 2px);
+    height: 100%;
+    border-radius: 50%;
+    background: $c-on-primary;
+  }
+}
 
 /*------------------------------------*\
   Media querys

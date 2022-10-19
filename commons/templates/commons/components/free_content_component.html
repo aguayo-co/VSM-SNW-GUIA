@@ -1,4 +1,4 @@
-{% load wagtailcore_tags svg_tags %}
+{% load wagtailcore_tags svg_tags i18n %}
 
 
 {% spaceless %}
@@ -8,6 +8,7 @@
     <div class="s-richtext">
       {% for content in self.content %}
 
+        {# Blockquote #}
         {% if content.value.cite %}
 
           <blockquote>
@@ -16,12 +17,35 @@
 
           </blockquote>
         
-        {% elif content.value.image %}
+        {# Media (Image or Video) #}
+        {% elif content.value.image or content.value.video %}
 
           <figure>
-            {% svg-image content.value.image fill-642x370 class="o-img"  %}
+
+            {% if content.value.image %}
+              {% svg-image content.value.image fill-642x370 class="o-img"  %}
+            {% else %}
+              {{ content.value.video }}
+            {% endif %}
+
+            {# Caption medio #}
+            {% if content.value.credits or content.value.description %}
+              <figcaption>
+                {% if content.value.credits %}
+                  <span class="s-richtext-caption-credit o-light">
+                    {% trans "Creditos" %}:
+                    <span class="o-regular">{{ content.value.credits }}</span>
+                  </span>
+                {% endif %}
+                {% if content.value.description %}
+                  <p class="s-richtext-caption-lead">{{ content.value.description }}</p>
+                {% endif %}
+              </figcaption>
+            {% endif %}
+
           </figure>
 
+        {# Richtext #}
         {% else %}
 
           {{ content.value.rich_text|richtext }}

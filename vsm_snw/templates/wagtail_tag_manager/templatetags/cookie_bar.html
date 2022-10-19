@@ -1,21 +1,24 @@
-{% load i18n wagtailcore_tags %}
-{% load inspector %}
+{% load wagtailcore_tags i18n %}
 
 {% spaceless %}
 
-      <div class="l-cookie js-target-cookie">
-        {# Texto cookies #}
-        <div class="l-cookie__text">
-          {{ settings.text }}
-        </div>
+  {% if settings.text %}
+    <div class="l-cookie js-target-cookie">
 
-        {# Botón para cerrar #}
-        <button
-          type="button"
-          class="o-btn o-btn_primary l-cookie__btn js-btn-remove-cookie"
-        >
-          {% trans 'Aceptar' %}
-        </button>
-
+      {# Texto cookies #}
+      <div class="l-cookie__text">
+        {{ settings.text }}
       </div>
+
+      {# Botón para cerrar #}
+      <button
+        type="button"
+        class="o-btn o-btn_primary l-cookie__btn js-btn-remove-cookie"
+      >
+        {% trans 'Aceptar' %}
+      </button>
+
+    </div>
+  {% endif %}
+
 {% endspaceless %}
