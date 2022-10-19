@@ -16,11 +16,11 @@ class FilterMixin:
 
 class OrderMixin:
     order_by_options = (
-        ("hits", _("Los más populares")),
-        ("-date", _("Fecha, Descendente")),
-        ("date", _("Fecha, Ascendente")),
-        ("Author", _("Autor A/Z")),
-        ("-Author", _("Autor Z/A")),
+        ("-visits", _("Los más populares")),
+        ("-last_published_at", _("Fecha, Descendente")),
+        ("last_published_at", _("Fecha, Ascendente")),
+        ("owner", _("Autor A/Z")),
+        ("-owner", _("Autor Z/A")),
         ("category", _("Categoría A/Z")),
         ("-category", _("Categoría Z/A")),
     )

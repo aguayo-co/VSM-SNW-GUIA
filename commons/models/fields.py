@@ -3,6 +3,7 @@ from dataclasses import dataclass
 from django.core.exceptions import ValidationError
 from django.db.models import JSONField
 from django.utils.translation import gettext_lazy as _
+from wagtail.fields import StreamField
 
 from commons.widgets import MultiURLWidget
 from commons.validators import URLDomainValidator
@@ -25,7 +26,6 @@ from commons.models.components import (
     ThematicContentComponent,
     ContentHeroComponent,
 )
-from wagtail.fields import StreamField
 
 
 @dataclass
