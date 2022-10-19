@@ -40,6 +40,7 @@
     {# Main JS #}
     {% wagtailuserbar %}
 
+    {# L01: Header #}
     {% include "include/layout/header.html" %}
 
     {# Breadcrumb #}
@@ -67,6 +68,7 @@
 
     {% block content %}{% endblock %}
 
+    {# L02: Footer #}
     {% flat_menu 'footer_menu' add_sub_menus_inline=True %}
 
     {# Cookies #}
