@@ -14,7 +14,10 @@
     <dl class="o-list">
       {% for thematic_content in self.thematic_content %}
 
-        <dt class="o-dropdown__btn i-plus js-dropdown-button">
+        <dt
+          class="o-dropdown__btn i-plus js-dropdown-button"
+          {% if forloop.counter == 1 %}data-is-dropdown-open="true"{% endif %}
+        >
           {{ thematic_content.value.title }}
         </dt>
           

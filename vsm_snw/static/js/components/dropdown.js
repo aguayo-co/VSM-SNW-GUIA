@@ -3,11 +3,13 @@ export default class Dropdown {
     this.element = element;
     this.siblingsLength = this.element.parentNode.childNodes;
     this.classToShowContent = "is-dropdown-show";
+    this.isDefaultOpen = this.element.dataset.isDropdownOpen;
     this.init();
   }
 
   init() {
     this.toggleDropdown();
+    this.defaultOpenDropdown();
   }
 
   toggleDropdown() {
@@ -33,6 +35,12 @@ export default class Dropdown {
 
     })
 
+  }
+
+  defaultOpenDropdown() {
+    if (this.isDefaultOpen) {
+      this.element.classList.add(this.classToShowContent)
+    }
   }
 
 }
