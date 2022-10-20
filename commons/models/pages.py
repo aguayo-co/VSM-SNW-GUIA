@@ -2,7 +2,7 @@ from django.contrib.contenttypes.fields import GenericRelation
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db import models
 from django.db.models import CharField, Count, ForeignKey, TextField, URLField
-from django.http import HttpResponsePermanentRedirect
+from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
 from django.shortcuts import render
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
@@ -819,6 +819,9 @@ class ExternalRedirect(BasePage):
 
     def serve(self, request, *args, **kwargs):
         """Return a permanent redirect response."""
-        redirection = HttpResponsePermanentRedirect(self.redirect_url)
-        redirection["Location"] = self.redirect_url
-        return redirection
+        response = HttpResponseRedirect(self.redirect_url)
+        response["Location"] = self.redirect_url
+        print(response)
+        print(response["Location"])
+        print(response.url)
+        return response
