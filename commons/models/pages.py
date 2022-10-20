@@ -819,4 +819,6 @@ class ExternalRedirect(BasePage):
 
     def serve(self, request, *args, **kwargs):
         """Return a permanent redirect response."""
-        return HttpResponsePermanentRedirect(self.redirect_url)
+        redirection = HttpResponsePermanentRedirect(self.redirect_url)
+        redirection["Location"] = self.redirect_url
+        return redirection
