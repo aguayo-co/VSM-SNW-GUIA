@@ -26,10 +26,11 @@ COPY --from=node-build /srv/app/ /srv/app
 # Set working directory to function root directory
 WORKDIR /srv/app
 
-RUN apt-get update && apt-get install --no-install-recommends -y git curl postgresql-client \
+RUN apt-get update && apt-get install --no-install-recommends -y git curl postgresql-client gettext \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Dependencies
 RUN pip install -r requirements.txt
 RUN chmod +x /srv/app/run_dev.sh
+RUN git pull
 CMD ["sh","/srv/app/run_dev.sh"]
