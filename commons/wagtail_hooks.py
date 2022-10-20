@@ -48,10 +48,10 @@ class CustomTagManagerAdminGroup(TagManagerAdminGroup):
 modeladmin_register(CustomTagManagerAdminGroup)
 
 
-@hooks.register("before_serve_page")
-def process_redirection(page, request, serve_args, serve_kwargs):
-    """Prevents redirections to be served and inmediatelly redirects to external URL."""
-    from commons.models import ExternalRedirect
-
-    if isinstance(page, ExternalRedirect):
-        return HttpResponseRedirect(page.redirect_url)
+# @hooks.register("before_serve_page")
+# def process_redirection(page, request, serve_args, serve_kwargs):
+#     """Prevents redirections to be served and inmediatelly redirects to external URL."""
+#     from commons.models import ExternalRedirect
+#
+#     if isinstance(page, ExternalRedirect):
+#         return HttpResponseRedirect(page.redirect_url)
