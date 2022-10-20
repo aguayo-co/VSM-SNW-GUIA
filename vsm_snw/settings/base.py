@@ -208,11 +208,11 @@ INTERNAL_IPS = [
     for address in os.environ.get("INTERNAL_ADDRESSES", "127.0.0.1").split(" ")
 ] + [ip[: ip.rfind(".")] + ".1" for ip in ips]
 
-# SSL Settings.
-# Trust Proxy header and redirect to SSL.
-# https://docs.djangoproject.com/en/dev/ref/middleware/#django.middleware.security.SecurityMiddleware
-SECURE_SSL_REDIRECT = True
-SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+# # SSL Settings.
+# # Trust Proxy header and redirect to SSL.
+# # https://docs.djangoproject.com/en/dev/ref/middleware/#django.middleware.security.SecurityMiddleware
+# SECURE_SSL_REDIRECT = True
+# SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 WAGTAILMENUS_FLAT_MENUS_HANDLE_CHOICES = (("footer_menu", "Footer Menú"),)
 WAGTAILMENUS_FLAT_MENU_ITEMS_RELATED_NAME = "custom_flat_menu_items"
