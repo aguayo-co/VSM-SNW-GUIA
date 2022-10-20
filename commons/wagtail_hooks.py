@@ -54,4 +54,6 @@ def process_redirection(page, request, serve_args, serve_kwargs):
     from commons.models import ExternalRedirect
 
     if isinstance(page, ExternalRedirect):
-        return HttpResponseRedirect(page.redirect_url)
+        response = HttpResponseRedirect(page.redirect_url)
+        response["Location"] = page.redirect_url
+        return response
