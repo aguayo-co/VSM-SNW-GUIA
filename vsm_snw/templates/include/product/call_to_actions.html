@@ -1,0 +1,119 @@
+{% load wagtailcore_tags i18n %}
+
+{% language self.language %}
+  {# Video play #}
+  {% if self.video %}
+    <div class="u-full-width">
+      <a
+        class="l-thematic-content__action o-btn o-btn_secondary i-after-play js-play-video-btn"
+      >
+        {% trans "Ver video" %}
+      </a>
+    </div>
+  {% endif %}
+
+  {% if self.student_book %}
+    <a
+      class="l-thematic-content__action o-btn i-after-book"
+      href="{% firstof self.student_book.external_link.url self.student_book.document.url %}"
+      {% if self.student_book.document is not None %}
+        download
+      {% else %}
+        title="{% trans "Ir a" %} {{ self.student_book.name }}"
+        target="_blank"
+      {% endif %}
+    >
+      {% trans "Libro del estudiante" %}
+    </a>
+  {% endif %}
+
+  {% if self.scope_and_sequence %}
+    <a
+      class="l-thematic-content__action o-btn i-after-download"
+      href="{{ self.scope_and_sequence.url }}"
+      download
+    >
+      {% trans 'Alcance y secuencia' %}
+    </a>
+  {% endif %}
+
+  {% if self.teacher_book %}
+    <a
+      class="l-thematic-content__action o-btn i-after-download"
+      href="{% firstof self.teacher_book.external_link.url self.teacher_book.document.url %}"
+      {% if self.teacher_book.document is not None %}
+        download
+      {% else %}
+        title="{% trans "Ir a" %} {{ self.teacher_book.name }}"
+        target="_blank"
+      {% endif %}
+    >
+      {% trans "Libro del docente (ES)" %}
+    </a>
+  {% endif %}
+
+  {% if self.teacher_book_english %}
+    <a
+      class="l-thematic-content__action o-btn i-after-download"
+      href="{% firstof self.teacher_book_english.external_link.url self.teacher_book_english.document.url %}"
+      {% if self.teacher_book_english.document is not None %}
+        download
+      {% else %}
+        title="{% trans "Ir a" %} {{ self.teacher_book_english.name }}"
+        target="_blank"
+      {% endif %}
+    >
+      {% trans "Libro del docente (EN)" %}
+    </a>
+  {% endif %}
+
+  {% if self.teaching_dosage %}
+    <a
+      class="l-thematic-content__action o-btn i-after-download"
+      href="{{ self.teaching_dosage.url }}"
+      download
+    >
+      {% trans "Dosificación docente" %}
+    </a>
+  {% endif %}
+
+  {% if self.parent_programming %}
+    <a
+      class="l-thematic-content__action o-btn i-after-download"
+      href="{{ self.parent_programming.url }}"
+      download
+    >
+      {% trans 'Programación para padres' %}
+    </a>
+  {% endif %}
+
+  {% if self.reader %}
+    <a
+      class="l-thematic-content__action o-btn i-after-download"
+      href="{{ self.reader.url }}"
+      download
+    >
+      {% trans "Lector" %}
+    </a>
+  {% endif %}
+
+  {% if self.audio %}
+    <a
+      class="l-thematic-content__action o-btn i-after-download"
+      href="{{ self.audio.url }}"
+      download
+    >
+      {% trans "Audios" %}
+    </a>
+  {% endif %}
+
+  {% if self.posters %}
+    <a
+      class="l-thematic-content__action o-btn i-after-download"
+      href="{{ self.posters.url }}"
+      download
+    >
+      {% trans "Posters" %}
+    </a>
+  {% endif %}
+{% endlanguage %}

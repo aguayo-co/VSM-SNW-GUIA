@@ -67,11 +67,7 @@
 
           {# Call to actions detalle del libro #}
           <nav class="l-thematic-content__actions">
-            {% if self.language == 'es' %}
-              {% include 'include/product/call_to_actions_es.html' %}
-            {% else %}
-              {% include 'include/product/call_to_actions_en.html' %}
-            {% endif %}
+              {% include 'include/product/call_to_actions.html' %}
           </nav>
 
           {% if self.short_description %}

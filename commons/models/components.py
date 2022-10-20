@@ -1,22 +1,12 @@
 from django.core.exceptions import ValidationError
 from django.forms.utils import ErrorList
 from django.utils.translation import gettext_lazy as _
-from wagtail.core.blocks import (
-    CharBlock,
-    PageChooserBlock,
-    RichTextBlock,
-    StaticBlock,
-    StreamBlock,
-    StructBlock,
-    TextBlock,
-    ListBlock,
-    BooleanBlock,
-)
 from wagtail.blocks.struct_block import StructBlockValidationError, StructValue
-from wagtail.images.blocks import ImageChooserBlock
-from wagtail.embeds.blocks import EmbedBlock
 from wagtail.core import blocks
-
+from wagtail.core.blocks import (BooleanBlock, CharBlock, ListBlock,
+                                 PageChooserBlock, RichTextBlock, StaticBlock,
+                                 StreamBlock, StructBlock, TextBlock)
+from wagtail.embeds.blocks import EmbedBlock
 from wagtail_svg_images.blocks import ImageOrSVGBlock
 
 
@@ -710,6 +700,7 @@ class NavigationIndexComponent(StructBlock):
         template = "commons/components/navigation_index_component.html"
 
 
+# TODO @ramiro revisar este componente
 class ContentHeroComponent(StructBlock):
     """
     A block that displays a content hero.

@@ -5,27 +5,26 @@ from django.db.models import JSONField
 from django.utils.translation import gettext_lazy as _
 from wagtail.fields import StreamField
 
-from commons.widgets import MultiURLWidget
-from commons.validators import URLDomainValidator
 from commons.models.components import (
-    SocialProofComponent,
-    CatalogIndexComponent,
-    FeaturedContentComponent,
-    TestimonialsComponent,
-    PagesLinksListComponent,
-    SlideImageComponent,
-    SlideImageBackgroundComponent,
-    SlideVideoComponent,
-    DefinitionListComponent,
-    BannerAdComponent,
-    FreeContentComponent,
     AgendaComponent,
+    BannerAdComponent,
+    CatalogIndexComponent,
     ChipListComponent,
-    ProductsListComponent,
-    NavigationIndexComponent,
-    ThematicContentComponent,
     ContentHeroComponent,
+    DefinitionListComponent,
+    FeaturedContentComponent,
+    FreeContentComponent,
+    NavigationIndexComponent,
+    PagesLinksListComponent,
+    ProductsListComponent,
+    SlideImageBackgroundComponent,
+    SlideImageComponent,
+    SlideVideoComponent,
+    SocialProofComponent,
+    TestimonialsComponent,
 )
+from commons.validators import URLDomainValidator
+from commons.widgets import MultiURLWidget
 
 
 @dataclass
@@ -188,7 +187,6 @@ class ThematicHomePageStreamField(FullStreamField):
 
 class DetailProductStreamField(FullStreamField):
     block_types = [
-        ("thematic_content_component", ThematicContentComponent()),
         ("chip_list_component", ChipListComponent()),
     ]
 
@@ -196,6 +194,7 @@ class DetailProductStreamField(FullStreamField):
 class DetailProductIntroStreamField(FullStreamField):
     block_types = [
         ("free_content", FreeContentComponent()),
+        ("navigation_index", NavigationIndexComponent()),
     ]
 
 
@@ -233,8 +232,6 @@ class ThematicHomePageStreamField(FullStreamField):
 
 class DetailArticlePageStreamField(FullStreamField):
     block_types = [
-        ("free_content_component", FreeContentComponent()),
-        ("chip_list_component", ChipListComponent()),
-        ("index_component", NavigationIndexComponent()),
-        ("content_hero_component", ContentHeroComponent()),
+        ("chip_list", ChipListComponent()),
+        ("products_list", ProductsListComponent()),
     ]

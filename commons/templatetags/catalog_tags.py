@@ -2,7 +2,7 @@ from collections import defaultdict
 
 from django import template
 
-from commons.models import DetailProductPage, Serie, CatalogPage
+from commons.models import CatalogPage, DetailProductPage, Serie
 
 register = template.Library()
 
@@ -10,7 +10,11 @@ register = template.Library()
 @register.simple_tag(takes_context=True)
 def get_catalog_index(context):
     catalog_items = defaultdict(list)
-    element_list = DetailProductPage.objects.distinct().order_by("grade__number")
+    element_list = (
+        DetailProductPage.objects.filter(subject__isnull=False, grade__isnull=False)
+        .distinct()
+        .order_by("grade__number")
+    )
     for product in element_list:
         catalog_items[product.grade].append(product.subject)
     catalog_items = {
@@ -30,5 +34,4 @@ def get_series(context):
 @register.simple_tag(takes_context=True)
 def get_catalog_page(context):
     context.update({"catalog_page": CatalogPage.objects.live().first()})
-    print(context)
     return ""

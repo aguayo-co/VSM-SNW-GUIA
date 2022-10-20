@@ -8,7 +8,7 @@ ENV PYTHONUNBUFFERED=1
 WORKDIR /app
 
 # Install OS requirements
-RUN apt-get update && apt-get install --no-install-recommends -y git curl postgresql-client \
+RUN apt-get update && apt-get install --no-install-recommends -y git curl postgresql-client gettext\
     && rm -rf /var/lib/apt/lists/*
 
 # Install Poetry
