@@ -12,6 +12,7 @@ def get_catalog_index(context):
     catalog_items = defaultdict(list)
     element_list = (
         DetailProductPage.objects.filter(subject__isnull=False, grade__isnull=False)
+        .live()
         .distinct()
         .order_by("grade__number")
     )

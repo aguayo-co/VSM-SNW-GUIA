@@ -1,4 +1,6 @@
 from django.utils.translation import gettext_lazy as _
+from hitcount.models import HitCount
+from hitcount.views import HitCountMixin
 from wagtail import hooks
 from wagtail.contrib.modeladmin.options import modeladmin_register
 from wagtail_tag_manager.wagtail_hooks import (
@@ -8,16 +10,12 @@ from wagtail_tag_manager.wagtail_hooks import (
     TriggerModelAdmin,
     VariableModelAdmin,
 )
-from hitcount.models import HitCount
-from hitcount.views import HitCountMixin
 
 
 @hooks.register("before_serve_page")
 def increment_view_count(page, request, serve_args, serve_kwargs):
     hit_count = HitCount.objects.get_for_object(page)
-    hit_count_response = HitCountMixin.hit_count(request, hit_count)
-    print(hit_count_response)
-    print(hit_count.hits)
+    HitCountMixin.hit_count(request, hit_count)
 
 
 @hooks.register("construct_settings_menu")

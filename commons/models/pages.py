@@ -19,15 +19,20 @@ from wagtail_svg_images.models import ImageOrSvgField
 from wagtail_svg_images.panels import ImageOrSVGPanel
 
 from commons.models.components import ThematicContentComponent
-from commons.models.fields import (BlogPageStreamField, CatalogPageStreamField,
-                                   CategoryHomePageStreamField,
-                                   ContentPageStreamField,
-                                   CourseDetailStreamField,
-                                   DetailArticlePageStreamField,
-                                   DetailProductIntroStreamField,
-                                   DetailProductStreamField, FullStreamField,
-                                   HeroStreamField, HomeStreamField,
-                                   ThematicHomePageStreamField)
+from commons.models.fields import (
+    BlogPageStreamField,
+    CatalogPageStreamField,
+    CategoryHomePageStreamField,
+    ContentPageStreamField,
+    CourseDetailStreamField,
+    DetailArticlePageStreamField,
+    DetailProductIntroStreamField,
+    DetailProductStreamField,
+    FullStreamField,
+    HeroStreamField,
+    HomeStreamField,
+    ThematicHomePageStreamField,
+)
 from commons.models.mixins import FilterMixin, OrderMixin
 from commons.models.snippets import Degree
 
@@ -183,12 +188,12 @@ class BlogPage(BasePage, OrderMixin):
         order_by = self.get_order_by(request)
         if order_by:
             queryset = (
-                CategoryHomePage.objects.all()
+                CategoryHomePage.objects.live()
                 .annotate(visits=models.Count("hit_count_generic__hit"))
                 .order_by(order_by)
             )
         else:
-            queryset = CategoryHomePage.objects.all()
+            queryset = CategoryHomePage.objects.live()
 
         paginator = Paginator(queryset, 1)
 
@@ -241,11 +246,12 @@ class CatalogPage(FilterMixin, BasePage, OrderMixin):
         if order_by:
             queryset = (
                 DetailProductPage.objects.filter(**filters)
+                .live()
                 .annotate(visits=models.Count("hit_count_generic__hit"))
                 .order_by(order_by)
             )
         else:
-            queryset = DetailProductPage.objects.filter(**filters)
+            queryset = DetailProductPage.objects.filter(**filters).live()
         paginator = Paginator(queryset, items_per_page)
 
         try:
