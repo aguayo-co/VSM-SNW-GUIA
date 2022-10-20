@@ -821,7 +821,4 @@ class ExternalRedirect(BasePage):
         """Return a permanent redirect response."""
         response = HttpResponseRedirect(self.redirect_url)
         response["Location"] = self.redirect_url
-        print(response)
-        print(response["Location"])
-        print(response.url)
         return response
