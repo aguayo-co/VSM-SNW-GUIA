@@ -15,7 +15,7 @@
   {% if self.student_book %}
     <a
       class="l-thematic-content__action o-btn i-after-book"
-      href="{% firstof self.student_book.external_link.url self.student_book.document.url %}"
+      href="{% firstof self.student_book.external_link.redirect_url self.student_book.document.url %}"
       {% if self.student_book.document is not None %}
         download
       {% else %}
@@ -40,7 +40,7 @@
   {% if self.teacher_book %}
     <a
       class="l-thematic-content__action o-btn i-after-download"
-      href="{% firstof self.teacher_book.external_link.url self.teacher_book.document.url %}"
+      href="{% firstof self.teacher_book.external_link.redirect_url self.teacher_book.document.url %}"
       {% if self.teacher_book.document is not None %}
         download
       {% else %}
@@ -55,7 +55,7 @@
   {% if self.teacher_book_english %}
     <a
       class="l-thematic-content__action o-btn i-after-download"
-      href="{% firstof self.teacher_book_english.external_link.url self.teacher_book_english.document.url %}"
+      href="{% firstof self.teacher_book_english.external_link.redirect_url self.teacher_book_english.document.url %}"
       {% if self.teacher_book_english.document is not None %}
         download
       {% else %}
