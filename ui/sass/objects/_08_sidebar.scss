@@ -15,6 +15,7 @@
 }
 
 .o-sidebar__title {
+  @include px-to-rem(max-width, 750px);
   @include px-to-rem(font-size, $gutter * 4);
 }
 
