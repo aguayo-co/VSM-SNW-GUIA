@@ -4,8 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel
 from wagtail.documents import get_document_model
 from wagtail.snippets.models import register_snippet
-from wagtail_svg_images.models import ImageOrSvgField
-from wagtail_svg_images.panels import ImageOrSVGPanel
+from wagtail.images.edit_handlers import ImageChooserPanel
 
 
 @register_snippet
@@ -25,7 +24,7 @@ class Degree(models.Model):
         default="turquesa",
         help_text=_("Personaliza la apariencia del Grado cambiando el color"),
     )
-    image = ImageOrSvgField(
+    image = models.ForeignKey(
         "wagtailimages.Image",
         null=True,
         blank=True,
@@ -38,7 +37,7 @@ class Degree(models.Model):
         FieldPanel("name"),
         FieldPanel("number"),
         FieldPanel("color"),
-        ImageOrSVGPanel("image"),
+        ImageChooserPanel("image"),
     ]
 
     def __str__(self):
@@ -76,7 +75,7 @@ class Serie(models.Model):
     name = models.CharField(
         max_length=255, verbose_name=_("Nombre"), null=True, blank=True
     )
-    image = ImageOrSvgField(
+    image = models.ForeignKey(
         "wagtailimages.Image",
         null=True,
         blank=True,
@@ -93,7 +92,7 @@ class Serie(models.Model):
 
     panels = [
         FieldPanel("name"),
-        ImageOrSVGPanel("image"),
+        ImageChooserPanel("image"),
         FieldPanel("type"),
     ]
 

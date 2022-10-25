@@ -1,6 +1,6 @@
 {% extends 'extend/extend_content_page.html' %}
 
-{% load wagtailcore_tags svg_tags wagtailembeds_tags i18n %}
+{% load wagtailcore_tags wagtailimages_tags wagtailembeds_tags i18n %}
 
 {% block breadcrumbs_items %}
 
@@ -53,7 +53,7 @@
   {% if self.hashtag_youtube %}
     {% embed self.hashtag_youtube %}
   {% else %}
-    {% svg-image self.search_image fill-1200x630 class="c-intro-content__img" %}
+    {% image self.search_image fill-1200x630 class="c-intro-content__img" %}
   {% endif %}
 
 {% endblock media_page %}

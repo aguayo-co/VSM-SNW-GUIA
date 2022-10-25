@@ -1,4 +1,4 @@
-{% load wagtailcore_tags svg_tags i18n %}
+{% load wagtailcore_tags wagtailimages_tags i18n %}
 
 
 {% spaceless %}
@@ -9,7 +9,7 @@
     >
 
       <figure class="o-card-product__figure">
-        {% svg-image object.image fill-224x284 class="o-card-product__img" %}
+        {% image object.image fill-224x284 class="o-card-product__img" %}
 
         <figcaption class="o-card-product__caption">
 
@@ -24,7 +24,7 @@
           {% if object.serie %}
             {# Chip serie #}
             <figure class="o-card-product__pin">
-              {% svg-image object.serie.image fill-60x60 class="o-img" %}
+              {% image object.serie.image fill-60x60 class="o-img" %}
             </figure>
           {% endif %}
 

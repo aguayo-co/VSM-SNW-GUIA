@@ -15,8 +15,7 @@ from wagtail.documents import get_document_model_string
 from wagtail.documents.edit_handlers import DocumentChooserPanel
 from wagtail.fields import RichTextField, StreamField
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
-from wagtail_svg_images.models import ImageOrSvgField
-from wagtail_svg_images.panels import ImageOrSVGPanel
+from wagtail.images.edit_handlers import ImageChooserPanel
 
 from commons.models.components import ThematicContentComponent
 from commons.models.fields import (
@@ -46,7 +45,7 @@ class BasePage(Page, HitCountMixin):
 
     _content_base = FullStreamField(verbose_name=("Contenido"), null=True, blank=True)
 
-    search_image = ImageOrSvgField(
+    search_image = ForeignKey(
         "wagtailimages.Image",
         null=True,
         blank=True,
@@ -71,7 +70,7 @@ class BasePage(Page, HitCountMixin):
             [
                 FieldPanel("seo_title"),
                 FieldPanel("search_description"),
-                ImageOrSVGPanel("search_image"),
+                ImageChooserPanel("search_image"),
             ],
             heading=_("SEO"),
         ),
@@ -497,7 +496,7 @@ class DetailProductPage(BasePage):
         null=True,
         blank=True,
     )
-    image = ImageOrSvgField(
+    image = ForeignKey(
         "wagtailimages.Image",
         null=True,
         blank=True,
@@ -680,7 +679,7 @@ class DetailProductPage(BasePage):
             [
                 FieldPanel("title_description"),
                 FieldPanel("short_description"),
-                ImageOrSVGPanel("image"),
+                ImageChooserPanel("image"),
                 SnippetChooserPanel("grade"),
                 SnippetChooserPanel("subject"),
                 SnippetChooserPanel("serie"),

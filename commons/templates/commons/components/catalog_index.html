@@ -1,4 +1,4 @@
-{% load wagtailcore_tags svg_tags catalog_tags i18n %}
+{% load wagtailcore_tags wagtailimages_tags catalog_tags i18n %}
 {% get_catalog_page %}
 
 
@@ -107,7 +107,7 @@
               title="{% trans 'Filtrar por Serie ' %}{{ serie.name }}"
             >
               <figure class="o-series-list__item">
-                {% svg-image serie.image fill-89x90 class="o-img" %}
+                {% image serie.image fill-89x90 class="o-img" %}
               </figure>
             </a>
           {% endfor %}
