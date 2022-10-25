@@ -68,6 +68,7 @@
 @include media-query(medium) {
   .c-social-proof__list {
     @include flexbox;
+    @include align-items(center);
   }
   .c-social-proof__item {
     flex: 1;
