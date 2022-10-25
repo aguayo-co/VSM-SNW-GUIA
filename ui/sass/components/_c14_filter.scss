@@ -63,11 +63,12 @@
     }
 
     +.c-filter__list {
-      @include px-to-rem(max-height, 1800px);
+      @include px-to-rem(max-height, 420px);
       font-size: inherit;
       opacity: 1;
       visibility: visible;
       z-index: 10;
+      overflow: auto;
 
       &:not(.c-filter__list_bg) {
         @include px-to-rem(padding, $gutter * 3);
