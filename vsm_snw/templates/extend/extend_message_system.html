@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 
+{% load wagtailcore_tags catalog_tags i18n %}
 
 {% block content %}
+
+  {% get_catalog_page %}
 
   <section class="o-section">
     <div class="o-canvas">
@@ -25,7 +28,16 @@
             {% block lead_message %}{% endblock lead_message %}
           </p>
 
-          <a class="o-btn" href="/">Volver al inicio</a>
+          <div class="o-system-message__actions">
+            <a
+              class="o-btn o-btn_secondary o-btn_outline-grey"
+              href="{% pageurl catalog_page %}"
+              title="{% trans "Ir a" %} {{ catalog_page.title }}"
+            >
+              {{ catalog_page.title }}
+            </a>
+            <a class="o-btn" href="/">Home</a>
+          </div>
         </header>
 
       </div>
