@@ -31,5 +31,5 @@ RUN apt-get update && apt-get install --no-install-recommends -y git curl postgr
 
 # Install Dependencies
 RUN pip install -r requirements.txt
-RUN chmod +x /srv/app/run_dev.sh
-CMD ["sh","/srv/app/run_dev.sh"]
+RUN chmod +x /srv/app/run_prod.sh
+CMD ["sh","/srv/app/run_prod.sh"]
