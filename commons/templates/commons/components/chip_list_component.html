@@ -21,7 +21,7 @@
 
       {% if self.primary_action_text %}
         <a
-          href="{% pageurl self.primary_action_url %}"
+          href="{% firstof self.primary_action_url.external_link.redirect_url self.primary_action_url.url %}"
           title="{% trans 'Ir a ' %} {{ self.primary_action_text }}"
           class="c-list-chip__chip o-btn i-after-external-redirect"
         >

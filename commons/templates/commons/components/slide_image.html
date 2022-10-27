@@ -1,6 +1,6 @@
 {% extends "extend/components/extend_hero_slider.html" %}
 {% load inspector %}
-{% load wagtailimages_tags %}
+{% load svg_tags %}
 {% load wagtailcore_tags %}
 
 {% block modifires-swiper-slide %} l-slide_margin{% endblock modifires-swiper-slide %}
@@ -11,7 +11,7 @@
 {% block media %}
   <div class="l-slide__media">
     <figure class="l-slide__figure_img">
-      {% image self.image original class="l-slide__img"  %}
+      {% svg-image self.image original class="l-slide__img"  %}
       <div class="l-slide__first-svg">
         {% include "include/hero/svg/curves.html" %}
       </div>
@@ -26,7 +26,7 @@
 {% block background-slide %}
   <div class="l-slide__bg">
     {% if self.background_illustration.value %}
-      {% image self.background_illustration fill-310x394-c100 class="l-slide__bg-illustration l-slide__bg-illustration_fit"  %}
+      {% svg-image self.background_illustration fill-310x394-c100 class="l-slide__bg-illustration l-slide__bg-illustration_fit"  %}
     {% else %}
       {% include "include/hero/svg/boy.html" %}
     {% endif %}

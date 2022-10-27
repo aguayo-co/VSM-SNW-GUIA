@@ -1,4 +1,4 @@
-{% load wagtailcore_tags wagtailimages_tags catalog_tags i18n %}
+{% load wagtailcore_tags svg_tags catalog_tags i18n %}
 {% get_catalog_page %}
 
 
@@ -107,7 +107,7 @@
               title="{% trans 'Filtrar por Serie ' %}{{ serie.name }}"
             >
               <figure class="o-series-list__item">
-                {% image serie.image fill-89x90 class="o-img" %}
+                {% svg-image serie.image fill-89x90 class="o-img" %}
               </figure>
             </a>
           {% endfor %}
@@ -118,7 +118,7 @@
       {% if self.primary_action_text %}
         <div class="o-calls-to-actions">
           <a
-            href="{% pageurl self.primary_action_url %}"
+            href="{% firstof self.primary_action_url.external_link.redirect_url self.primary_action_url.url %}"
             title="Ir a {{ self.primary_action_text }}"
             class="o-btn"
           >

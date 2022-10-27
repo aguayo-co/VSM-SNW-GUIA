@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     "sass_processor",
     "django_vite",
     "wagtail_tag_manager",
+    "wagtail_svg_images",
     "wagtailsvg",
     "generic_chooser",
     "hitcount",

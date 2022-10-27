@@ -1,4 +1,4 @@
-{% load wagtailcore_tags wagtailimages_tags %}
+{% load wagtailcore_tags svg_tags %}
 
 {% if self.content %}
 
@@ -10,7 +10,7 @@
         {% if rich_text.value.image %}
 
           <figure>
-            {% image rich_text.value.image fill-80x80 class="o-img"  %}
+            {% svg-image rich_text.value.image fill-80x80 class="o-img"  %}
           </figure>
 
         {% else %}

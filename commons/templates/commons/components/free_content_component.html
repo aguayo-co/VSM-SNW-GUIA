@@ -1,4 +1,4 @@
-{% load wagtailcore_tags wagtailimages_tags i18n %}
+{% load wagtailcore_tags svg_tags i18n %}
 
 
 {% spaceless %}
@@ -23,7 +23,7 @@
           <figure>
 
             {% if content.value.image %}
-              {% image content.value.image fill-642x370 class="o-img"  %}
+              {% svg-image content.value.image fill-642x370 class="o-img"  %}
             {% else %}
               {{ content.value.video }}
             {% endif %}

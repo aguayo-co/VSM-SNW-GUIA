@@ -2,7 +2,7 @@
 {% load wagtailsettings_tags %}
 {% get_settings use_default_site=True %}
 
-{% load wagtailcore_tags wagtailimages_tags i18n menu_tags static wagtailuserbar %}
+{% load wagtailcore_tags svg_tags i18n menu_tags static wagtailuserbar %}
 
 {% block menu %}
   
@@ -19,7 +19,7 @@
             title="Santillana"
           >
             <figure>
-              {% image settings_site.logo fill-134x32 class="o-img" %}
+              {% svg-image settings_site.logo fill-134x32 class="o-img" %}
             </figure>
           </a>
         {% endif %}
