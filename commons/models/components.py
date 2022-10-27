@@ -206,8 +206,8 @@ class PagesLinksListComponent(StructBlock):
     A block that displays a list of pages links.
     """
 
-    title_featured = CharBlock(required=False, label=_("Título destacados"))
-    subtitle_featured = CharBlock(required=False, label=_("Subtítulo destacados"))
+    title_featured = CharBlock(required=True, label=_("Título destacados"))
+    subtitle_featured = CharBlock(required=True, label=_("Subtítulo destacados"))
     featured_link_list = ListBlock(
         PageChooserBlock(
             page_type="wagtailcore.Page",
@@ -218,7 +218,6 @@ class PagesLinksListComponent(StructBlock):
         label=_("Lista de enlaces destacados"),
         max_num=3,
     )
-    title_interest = CharBlock(required=False, label=_("Título enlaces de interés"))
     link_list = ListBlock(
         PageChooserBlock(
             page_type="commons.DetailArticlePage",
@@ -572,7 +571,6 @@ class AgendaComponent(StructBlock):
     """
 
     title = CharBlock(required=True, label=_("Título"))
-    subtitle = CharBlock(required=False, label=_("Subtítulo"))
     course_list = ListBlock(
         PageChooserBlock(required=False, label=_("Select páginas")),
         required=False,
