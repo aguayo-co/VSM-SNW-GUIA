@@ -164,6 +164,7 @@ class BlogPageStreamField(FullStreamField):
         ("catalog_index_component", CatalogIndexComponent()),
         ("agenda_component", AgendaComponent()),
         ("definition_list_component", DefinitionListComponent()),
+        ("products_list_component", ProductsListComponent()),
     ]
 
 
