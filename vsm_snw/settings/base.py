@@ -377,8 +377,8 @@ WAGTAILTRANSFER_SOURCES = {
 WAGTAILTRANSFER_SECRET_KEY = os.environ.get("SECRET_KEY", None)
 
 WAGTAILTRANSFER_UPDATE_RELATED_MODELS = [
-    "wagtailimages.Image",
-    "wagtaildocs.Document",
+    # "wagtailimages.Image",
+    # "wagtaildocs.Document",
     "commons.Degree",
     "commons.Subject",
     "commons.Serie",
