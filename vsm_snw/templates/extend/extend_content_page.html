@@ -35,10 +35,6 @@
 
           {% include_block block with block_id=block.id %}
 
-          {% if forloop.counter0 == 3 %}
-            {% include 'commons/components/navigation_index_component.html' %}
-          {% endif %}
-
         {% endfor %}
 
         {% block social_share_bottom %}{% endblock social_share_bottom %}

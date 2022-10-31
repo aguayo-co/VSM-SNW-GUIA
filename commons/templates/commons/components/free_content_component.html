@@ -6,6 +6,10 @@
   <div id="{{ block_id }}" class="o-inner">
 
     <div class="s-richtext">
+      {% if self.title %}
+        <h2>{{ self.title }}</h2>
+      {% endif %}
+
       {% for content in self.content %}
 
         {# Blockquote #}
