@@ -215,8 +215,8 @@ INTERNAL_IPS = [
 # # SSL Settings.
 # # Trust Proxy header and redirect to SSL.
 # # https://docs.djangoproject.com/en/dev/ref/middleware/#django.middleware.security.SecurityMiddleware
-# SECURE_SSL_REDIRECT = True
-# SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+SECURE_SSL_REDIRECT = os.environ.get("SECURE_SSL", "False")
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 WAGTAILMENUS_FLAT_MENUS_HANDLE_CHOICES = (("footer_menu", "Footer Menú"),)
 WAGTAILMENUS_FLAT_MENU_ITEMS_RELATED_NAME = "custom_flat_menu_items"
