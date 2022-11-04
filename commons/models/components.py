@@ -6,8 +6,8 @@ from wagtail.core import blocks
 from wagtail.core.blocks import (BooleanBlock, CharBlock, ListBlock,
                                  PageChooserBlock, RichTextBlock, StaticBlock,
                                  StreamBlock, StructBlock, TextBlock)
-from wagtail.images.blocks import ImageChooserBlock
 from wagtail.embeds.blocks import EmbedBlock
+from wagtail.images.blocks import ImageChooserBlock
 from wagtail_svg_images.blocks import ImageOrSVGBlock
 
 
