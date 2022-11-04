@@ -53,13 +53,6 @@
       <div class="o-section">
         <div class="o-canvas">
 
-          {# Cabecera subsección #}
-          {% if self.title_interest %}
-            <header class="o-hgroup">
-              <h4 class="o-kicker o-hgroup__space">{{ self.title_interest }}</h4>
-            </header>
-          {% endif %}
-
           {# Enlaces de interes #}
           {% if self.link_list|length > 0 %}
             <ul class="c-list-links-pages o-list">

@@ -10,13 +10,15 @@
   <div class="o-card__content">
     <p class="o-card__text o-text">{{ featured_card.value.description }}</p>
 
-    <a
-      href="{% pageurl featured_card.value.primary_action_url %}"
-      title="{% trans 'Ir a' %} {{ featured_card.value.primary_action_text }}"
-      class="o-card__btn o-btn"
-    >
-      {{ featured_card.value.primary_action_text }}
-    </a>
+    {% if featured_card.value.primary_action_url %}
+      <a
+        href="{% firstof featured_card.value.primary_action_url.external_link.redirect_url featured_card.value.primary_action_url.url %}"
+        title="{% trans 'Ir a' %} {{ featured_card.value.primary_action_text }}"
+        class="o-card__btn o-btn"
+      >
+        {{ featured_card.value.primary_action_text }}
+      </a>
+    {% endif %}
   </div>
 
 </article>

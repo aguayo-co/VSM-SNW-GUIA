@@ -10,7 +10,7 @@
 {% block primary_action %}
   {% if self.primary_action_url %}
     <a
-      href="{% pageurl self.primary_action_url %}"
+      href="{% firstof self.primary_action_url.external_link.redirect_url self.primary_action_url.url %}"
       title="{% trans 'Ir a ' %} {{ self.primary_action_text }}"
       class="o-kicker o-link o-link_secondary"
     >
@@ -22,7 +22,7 @@
 {% block secondary_action %}
   {% if self.secondary_action_url %}
     <a
-      href="{% pageurl self.secondary_action_url %}"
+      href="{% firstof self.secondary_action_url.external_link.redirect_url self.secondary_action_url.url %}"
       title="{% trans 'Ir a ' %} {{ self.secondary_action_text }}"
       class="o-btn o-btn_secondary"
     >

@@ -10,16 +10,15 @@ from django.utils.translation import gettext_lazy as _
 from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel
 from wagtail.contrib.settings.models import BaseSetting, register_setting
 from wagtail.core.fields import RichTextField
+from wagtail.images.edit_handlers import ImageChooserPanel
 
 from .fields import SocialNetworksField
-from wagtail_svg_images.models import ImageOrSvgField
-from wagtail_svg_images.panels import ImageOrSVGPanel
 
 
 @register_setting(icon="cogs")
 class SantillanaSettings(BaseSetting):
     # Logos
-    logo = ImageOrSvgField(
+    logo = ForeignKey(
         "wagtailimages.Image",
         verbose_name=_("Logo del sitio"),
         on_delete=PROTECT,
@@ -38,7 +37,7 @@ class SantillanaSettings(BaseSetting):
     social_networks = SocialNetworksField(_("Redes sociales"), blank=True, default=dict)
 
     # Footer
-    logo_footer = ImageOrSvgField(
+    logo_footer = ForeignKey(
         "wagtailimages.Image",
         verbose_name=_("Logo del footer"),
         on_delete=SET_NULL,
@@ -91,7 +90,7 @@ class SantillanaSettings(BaseSetting):
     panels = [
         MultiFieldPanel(
             [
-                ImageOrSVGPanel("logo"),
+                ImageChooserPanel("logo"),
                 FieldPanel("logo_url"),
             ],
             heading=_("Logo Principal"),
@@ -104,7 +103,7 @@ class SantillanaSettings(BaseSetting):
         ),
         MultiFieldPanel(
             [
-                ImageOrSVGPanel("logo_footer"),
+                ImageChooserPanel("logo_footer"),
                 FieldPanel("copyright"),
                 FieldPanel("contact_page"),
             ],

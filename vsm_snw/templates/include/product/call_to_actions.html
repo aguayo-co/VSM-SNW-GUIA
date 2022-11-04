@@ -67,6 +67,16 @@
     </a>
   {% endif %}
 
+  {% if self.audio %}
+    <a
+      class="l-thematic-content__action o-btn i-after-download"
+      href="{{ self.audio.url }}"
+      download
+    >
+      {% trans "Audios" %}
+    </a>
+  {% endif %}
+
   {% if self.teaching_dosage %}
     <a
       class="l-thematic-content__action o-btn i-after-download"
@@ -74,16 +84,6 @@
       download
     >
       {% trans "Dosificación docente" %}
-    </a>
-  {% endif %}
-
-  {% if self.parent_programming %}
-    <a
-      class="l-thematic-content__action o-btn i-after-download"
-      href="{{ self.parent_programming.url }}"
-      download
-    >
-      {% trans 'Programación para padres' %}
     </a>
   {% endif %}
 
@@ -97,13 +97,13 @@
     </a>
   {% endif %}
 
-  {% if self.audio %}
+  {% if self.parent_programming %}
     <a
       class="l-thematic-content__action o-btn i-after-download"
-      href="{{ self.audio.url }}"
+      href="{{ self.parent_programming.url }}"
       download
     >
-      {% trans "Audios" %}
+      {% trans 'Programación para padres' %}
     </a>
   {% endif %}
 
