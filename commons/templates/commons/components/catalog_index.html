@@ -1,4 +1,4 @@
-{% load wagtailcore_tags svg_tags catalog_tags i18n %}
+{% load wagtailcore_tags wagtailimages_tags catalog_tags i18n %}
 {% get_catalog_page %}
 
 
@@ -60,8 +60,7 @@
               <li class="c-catalog-index__grade c-catalog-index__grade_{{ grade.color }} o-card u-rounded-16">
                 <div
                   class="c-catalog-index__grade-vector"
-                  {% if grade.image_svg %}style="background-image: url({{ grade.image_svg.url }})"
-                  {% elif grade.image %} style="background-image: url({{ grade.image.url }})" {% endif %}
+                  {% if grade.image %} style="background-image: url({{ grade.image.url }})" {% endif %}
                 >
                   <p class="c-catalog-index__grade-name">{{ grade.name }}</p>
                 </div>
@@ -107,7 +106,7 @@
               title="{% trans 'Filtrar por Serie ' %}{{ serie.name }}"
             >
               <figure class="o-series-list__item">
-                {% svg-image serie.image fill-89x90 class="o-img" %}
+                {% image serie.image fill-89x90 class="o-img" %}
               </figure>
             </a>
           {% endfor %}
