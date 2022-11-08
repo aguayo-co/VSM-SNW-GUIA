@@ -299,7 +299,8 @@ NODE_MODULES_PATH = os.path.join(PROJECT_DIR, "node_modules")
 
 
 # Debug Toolbar
-if DEBUG:
+SHOW_DEBUG_TOOLBAR = os.environ.get("SHOW_DEBUG_TOOLBAR", "False") == "True"
+if SHOW_DEBUG_TOOLBAR:
 
     def show_toolbar(request):
         return True
@@ -377,10 +378,27 @@ WAGTAILTRANSFER_SOURCES = {
 WAGTAILTRANSFER_SECRET_KEY = os.environ.get("SECRET_KEY", None)
 
 WAGTAILTRANSFER_UPDATE_RELATED_MODELS = [
-    # "wagtailimages.Image",
-    # "wagtaildocs.Document",
-    "commons.Degree",
-    "commons.Subject",
-    "commons.Serie",
-    "commons.Book",
+    "wagtailadmin.admin",
+    "wagtailimages.image",
+    "wagtaildocs.document",
+    "wagtailredirects.redirect",
+    # "commons.degree",
+    # "commons.subject",
+    # "commons.serie",
 ]
+
+WAGTAILTRANSFER_NO_FOLLOW_MODELS = [
+    # "wagtaildocs.document",
+    "wagtailimages.image",
+    "wagtailsvg.svg",
+    # "commons.subject",
+    "commons.degree",
+]
+
+WAGTAILTRANSFER_LOOKUP_FIELDS = {
+    "taggit.tag": ["slug"],
+    "wagtailcore.locale": ["language_code"],
+    "contenttypes.contenttype": ["app_label", "model"],
+    "auth.permission": ["codename"],
+    # "commons.BasePage": ["page_ptr_id"],
+}
