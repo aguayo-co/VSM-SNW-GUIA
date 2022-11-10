@@ -8,6 +8,8 @@
       <a
         class="o-paginator__arrow left i-arrow-left"
         href="?page={{ object_list.previous_page_number }}"
+        data-page="{{ object_list.previous_page_number }}"
+        @click.prevent="goToPage"
       >
         <span class="u-hidden">Icono flecha</span>
       </a>
@@ -17,6 +19,8 @@
       <a
         href="?page={{ page_num }}"
         class="o-paginator__number {% if page_num == object_list.number %}active{% endif %}"
+        data-page={{ page_num }}
+        @click.prevent="goToPage"
       >
         {{ page_num }}
       </a>
@@ -26,6 +30,8 @@
       <a
         class="o-paginator__arrow right i-arrow-right"
         href="?page={{ object_list.next_page_number }}"
+        data-page="{{ object_list.next_page_number }}"
+        @click.prevent="goToPage"
       >
         <span class="u-hidden">Icono flecha</span>
       </a>

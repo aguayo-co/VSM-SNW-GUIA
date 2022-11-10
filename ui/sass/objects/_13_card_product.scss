@@ -70,7 +70,7 @@
 
 @include media-query(medium) {
   .o-card-product-slider {
-    @include px-to-rem(width, 510px);
+    @include px-to-rem(width, 780px);
   }
 
   .o-card-product {
