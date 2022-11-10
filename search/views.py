@@ -1,8 +1,10 @@
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.template.response import TemplateResponse
-
+from django.views.generic import ListView
 from wagtail.models import Page
 from wagtail.search.models import Query
+
+from commons.models import DetailProductPage, FilterMixin
 
 
 def search(request):
@@ -11,7 +13,7 @@ def search(request):
 
     # Search
     if search_query:
-        search_results = Page.objects.live().search(search_query)
+        search_results = Page.objects.live().specific().search(search_query)
         query = Query.get(search_query)
 
         # Record hit
@@ -30,9 +32,30 @@ def search(request):
 
     return TemplateResponse(
         request,
-        "search/search.html",
+        "search/search_list.html",
         {
             "search_query": search_query,
             "search_results": search_results,
         },
     )
+
+
+class SearchView(ListView, FilterMixin):
+    template_name = "search/search_list.html"
+    queryset = Page.objects.live().specific()
+    paginate_by = 10
+    filter_form_class = "commons.forms.SearchForm"
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        search_query = self.request.GET.get("query", None)
+        if self.request.GET.get("type", None) == "catalog":
+            queryset = DetailProductPage.objects.live().search(search_query)
+        return queryset
+
+    def get_context_data(self, *args, object_list=None, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context.update(
+            {"filter_form": self.get_filter_form(*args, request=self.request, **kwargs)}
+        )
+        return context

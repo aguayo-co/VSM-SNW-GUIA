@@ -734,6 +734,11 @@ class DetailProductPage(BasePage):
 
     subpage_types = []
 
+    search_fields = BasePage.search_fields + [
+        index.SearchField("thematic_content"),
+        index.FilterField("grade"),
+    ]
+
     class Meta:
         verbose_name = _("Detalle de Producto")
         verbose_name_plural = _("Detalles de Productos")
