@@ -32,12 +32,12 @@
               name="{{ option.0 }}"
               value="{{ option.0 }}"
               {% if choices.data.selected %}checked{% endif %}
-              @click=""
             >
 
             <label
               class="c-filter__option-label c-filter__option-label_bg"
               for="{{ option.0 }}"
+              @click="orderElements"
             >
               {{ option.1 }}
             </label>

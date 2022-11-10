@@ -89,7 +89,6 @@ export function removeChipIntoClick(element) {
         removeChip(element.target.closest(".c-filter__chip"))
       }
     }
-
   })
 
   // Ocultar o mostrar el botón de borrar filtros
@@ -142,6 +141,26 @@ function hideOrShowClearButton() {
     btnClear.classList.add("u-hidden")
   } else {
     btnClear.classList.remove("u-hidden")
+  }
+}
+
+export function goToPage(event) {
+  getUrlSearchParams("page", event.target.dataset.page)
+}
+
+export function orderElements(event) {
+  getUrlSearchParams("order_by", event.target.getAttribute("for"))
+}
+
+function getUrlSearchParams(paramName, filterValue) {
+  if ('URLSearchParams' in window) {
+    const searchParams = new URLSearchParams(window.location.search);
+    if (filterValue !== "") {
+      searchParams.set(paramName, filterValue);
+    } else {
+      searchParams.delete(paramName)
+    }
+    window.location.search = searchParams.toString();
   }
 }
 
