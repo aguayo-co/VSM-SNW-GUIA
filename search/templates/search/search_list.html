@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags static i18n %}
+
+{% spaceless %}
+
+  {% block content %}
+
+    {# Cabecera #}
+    <div class="o-hgroup-band o-surface_navy-blue o-primary">
+      <div class="o-canvas">
+
+        <header class="o-hgroup-band__header">
+          {% if self.title %}
+            <h1 class="o-subheadline">{{ self.title }}</h1>
+          {% endif %}
+        </header>
+
+        {# Componente filtros #}
+        {% include "include/component/filter/filter.html" %}
+
+      </div>
+    </div>
+    {# Fin cabecera #}
+
+    {# Filtro ordenar por y label de resultados #}
+    {% include "include/component/filter/filter_band.html" with results_caption="libros de secundaria" is_catalog_page="true" %}
+
+    {# Resultados de busqueda #}
+    <section class="o-section">
+      <div class="o-canvas">
+
+        <div class="o-card-product-wrap">
+
+          {% for book in object_list %}
+            {# Card detalle producto (Libro) #}
+            {% include "include/component/card/product_card.html" with object=book only %}
+          {% endfor %}
+
+        </div>
+
+      </div>
+
+      {# Paginador #}
+      {% include "include/paginator.html" %}
+    </section>
+    {# Fin resultados de busqueda #}
+
+    {# Componentes página #}
+    {% for block in self.content %}
+      {% include_block block with block_id=block.id %}
+    {% endfor %}
+
+  {% endblock content %}
+
+{% endspaceless %}
