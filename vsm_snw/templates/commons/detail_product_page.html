@@ -98,33 +98,35 @@
   {% endif %}
 
   {# Grados relacionados #}
-  <section class="o-surface o-surface_grey o-section_border">
-    <div class="o-canvas">
-  
-      <header class="o-hgroup">
-        <h3
-          class="o-subheadline"
-        >
-          {% trans 'Navega los libros de ' %} {{ self.subject }} {% trans ' por' %}
-        </h3>
-      </header>
-  
-      <nav class="c-list-chip">
-  
-        {% for degree in related_degrees %}
-          <a
-            href="{% pageurl catalog_page %}?grade={{ degree.pk }}"
-            title="{% trans 'Filtrar por' %} {{ degree.name }}"
-            class="c-list-chip__chip o-btn o-btn_secondary o-btn_outline-grey"
+  {% if related_degrees|length > 0 %}
+    <section class="o-surface o-surface_grey o-section_border">
+      <div class="o-canvas">
+    
+        <header class="o-hgroup">
+          <h3
+            class="o-subheadline"
           >
-            {{ degree.name }}
-          </a>
-        {% endfor %}
-  
-      </nav>
-  
-    </div>
-  </section>
+            {% trans 'Navega los libros de ' %} {{ self.subject }} {% trans ' por' %}
+          </h3>
+        </header>
+    
+        <nav class="c-list-chip">
+    
+          {% for degree in related_degrees %}
+            <a
+              href="{% pageurl catalog_page %}?grade={{ degree.pk }}"
+              title="{% trans 'Filtrar por' %} {{ degree.name }}"
+              class="c-list-chip__chip o-btn o-btn_secondary o-btn_outline-grey"
+            >
+              {{ degree.name }}
+            </a>
+          {% endfor %}
+    
+        </nav>
+    
+      </div>
+    </section>
+  {% endif %}
   {# Fin grados relacionados #}
 
   {# Componentes página #}

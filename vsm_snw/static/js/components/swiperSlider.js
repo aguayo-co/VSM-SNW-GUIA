@@ -107,7 +107,7 @@ function sliderProduct() {
       768: {
         centeredSlides: false,
         spaceBetween: 32,
-        slidesPerView: 2,
+        slidesPerView: 3,
       }
     },
 
