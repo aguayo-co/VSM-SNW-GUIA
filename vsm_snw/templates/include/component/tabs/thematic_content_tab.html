@@ -8,7 +8,7 @@
 </dt>
 
 <dd class="c-tabs__content">
-  <div class="c-tabs__inner">
+  <div class="c-tabs__inner js-dropdown-wrap">
 
     {# Lista definición #}
     <dl class="o-list">
@@ -22,14 +22,18 @@
         </dt>
           
         <dd class="o-dropdown__content o-dropdown__content_primary s-richtext">
-          <ul class="o-list">
-            {% for items in thematic_content.value.items %}
-              <li>
-                {{ items.title }}:
-                <strong class="u-block-mb">{{ items.description }}</strong>
-              </li>
-            {% endfor %}
-          </ul>
+          <div class="o-dropdown__inner js-dropdown-wrap">
+
+            <ul class="o-list">
+              {% for items in thematic_content.value.items %}
+                <li>
+                  {{ items.title }}:
+                  <strong class="u-block-mb">{{ items.description }}</strong>
+                </li>
+              {% endfor %}
+            </ul>
+            
+          </div>
         </dd>
 
       {% endfor %}
