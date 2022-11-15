@@ -35,10 +35,9 @@
 
     // Hermano del titulo seleccionado
     +.o-dropdown__content {
-      @include px-to-rem(max-height, 2000px);
-      @include px-to-rem(padding, $gutter * 3);
       opacity: 1;
       visibility: visible;
+      overflow: visible;
     }
   }
 }
@@ -47,6 +46,7 @@
   max-height: 0;
   border-bottom: 2px solid $c-surface-grey-20;
   opacity: 0;
+  overflow: hidden;
   visibility: hidden;
   transition: $transition-ease-in-out-2s;
 
@@ -59,4 +59,8 @@
 }
 .o-dropdown__content_primary {
   color: $c-brand-primary;
+}
+
+.o-dropdown__inner {
+  @include px-to-rem(padding, $gutter * 3);
 }

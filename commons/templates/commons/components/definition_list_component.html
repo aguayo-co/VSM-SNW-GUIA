@@ -49,7 +49,9 @@
                 s-richtext s-richtext_list-check
               "
             >
-              {{ definition_list.content }}
+              <div class="o-dropdown__inner js-dropdown-wrap">
+                {{ definition_list.content }}
+              </div>
             </dd>
           {% endfor %}
         </dl>
