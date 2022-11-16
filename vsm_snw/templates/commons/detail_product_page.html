@@ -27,14 +27,19 @@
 
         <header class="o-hgroup-band__header">
           {% if self.campo_formacion %}
-            <h1
+            <p
               class="o-hgroup-band__subtitle o-sidebar__subtitle o-sidebar__subtitle_sm"
             >
               {{ self.campo_formacion }}
-            </h1>
+            </p>
           {% endif %}
 
-          <h2 class="o-sidebar__title o-regular">{{ self.title }}</h2>
+          <h1 class="o-sidebar__title o-regular">{{ self.title }}</h1>
+
+          <h2 class="o-sidebar__subtitle">
+            Código Conaliteg
+            <span class="o-tag">{{ self.cod_conaliteg }}</span>
+          </h2>
         </header>
 
         <span class="o-hgroup-band__tag">{{ self.grade }}</span>

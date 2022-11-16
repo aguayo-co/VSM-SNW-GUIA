@@ -1,0 +1,21 @@
+.o-tag {
+  display: inline-block;
+  @include px-to-rem(padding, 0 $gutter);
+  color: $c-neutro;
+
+  .o-hgroup-band & {
+    @include px-to-rem(margin-top, $gutter);
+  }
+
+  .t-theme-turquesa & {
+    background-color: $c-turquesa-50;
+  }
+
+  .t-theme-yellow & {
+    background-color: $c-yellow-50;
+  }
+
+  .t-theme-blue & {
+    background-color: $c-blue-50;
+  }
+}
