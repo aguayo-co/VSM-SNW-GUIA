@@ -14,7 +14,7 @@
       <dt class="o-feature-list__title">{% trans "Código Conaliteg" %}:</dt>
       <dd class="o-feature-list__description">{{ self.cod_conaliteg }}</dd>
 
-      <dt class="o-feature-list__title">{% trans "Sello editorial" %}:</dt>
+      <dt class="o-feature-list__title">{% trans "Serie" %}:</dt>
       <dd class="o-feature-list__description">
         {% firstof  self.serie "-" %}
       </dd>
@@ -24,7 +24,7 @@
         {% firstof  self.author "-" %}
       </dd>
 
-      <dt class="o-feature-list__title">{% trans "Equipo editorial" %}:</dt>
+      <dt class="o-feature-list__title">{% trans "Sello editorial" %}:</dt>
       <dd class="o-feature-list__description">
         {% firstof  self.editorial_team "-" %}
       </dd>
