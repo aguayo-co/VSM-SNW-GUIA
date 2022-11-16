@@ -21,10 +21,14 @@
 
 .o-sidebar__subtitle {
   @include px-to-rem(font-size, 18px);
-
   color: $c-primary-50;
   font-weight: $f-medium;
+
+  .o-hgroup-band_column &  {
+    color: inherit;
+  }
 }
+
 .o-sidebar__subtitle_sm {
   @include px-to-rem(font-size, $gutter * 2);
   color: inherit;
