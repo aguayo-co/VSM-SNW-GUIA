@@ -285,13 +285,16 @@
     background: $c-neutro;
     box-shadow: 0 4px 8px -4px rgba(22, 34, 51, 0.08), 0 16px 24px rgba(22, 34, 51, 0.08);
     transform: translateY(-100%);
-    transition: all 0.6s cubic-bezier(0.4,0,0.2,1);
 
     .is-open-submenu & {
       top: 100%;
       opacity: 1;
       visibility: visible;
       transform: translateY(0);
+    }
+
+    .is-animation-submenu & {
+      transition: all 0.6s cubic-bezier(0.4,0,0.2,1);
     }
   }
 
