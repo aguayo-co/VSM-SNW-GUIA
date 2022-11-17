@@ -524,7 +524,7 @@ class DetailProductPage(BasePage):
         "commons.Serie",
         on_delete=models.SET_NULL,
         related_name="+",
-        verbose_name=_("Serie o Editorial"),
+        verbose_name=_("Serie"),
         null=True,
         blank=True,
     )
@@ -557,7 +557,7 @@ class DetailProductPage(BasePage):
         blank=True,
     )
     editorial_team = CharField(
-        verbose_name=_("Equipo Editorial"),
+        verbose_name=_("Sello Editorial"),
         max_length=255,
         null=True,
         blank=True,

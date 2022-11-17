@@ -101,8 +101,8 @@ class Serie(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = _("Serie o sello editorial")
-        verbose_name_plural = _("Series o sellos editoriales")
+        verbose_name = _("Serie")
+        verbose_name_plural = _("Series")
 
 
 @register_snippet

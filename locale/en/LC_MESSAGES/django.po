@@ -624,8 +624,8 @@ msgid "ISBN"
 msgstr ""
 
 #: commons/models/pages.py:545
-msgid "Equipo Editorial"
-msgstr ""
+msgid "Sello Editorial"
+msgstr "Editorial Label"
 
 #: commons/models/pages.py:551
 msgid "Primera Edición"
@@ -1053,8 +1053,8 @@ msgid "Sello editorial"
 msgstr ""
 
 #: vsm_snw/templates/include/component/tabs/book_detail_tab.html:27
-msgid "Equipo editorial"
-msgstr ""
+msgid "Sello editorial"
+msgstr "Editorial Label"
 
 #: vsm_snw/templates/include/component/tabs/book_detail_tab.html:32
 msgid "Primera edición"
