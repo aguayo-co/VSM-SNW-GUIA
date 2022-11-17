@@ -285,7 +285,8 @@ WAGTAILADMIN_RICH_TEXT_EDITORS = {
 
 # Sass Processor
 # https://github.com/jrief/django-sass-processor
-SASS_PROCESSOR_ENABLED = True
+SASS_PROCESSOR_ENABLED = os.environ.get("SASS_PROCESSOR_ENABLED", "True") == "True"
+
 SASS_PROCESSOR_ROOT = "ui"
 SASS_PROCESSOR_INCLUDE_DIRS = [
     os.path.join(PROJECT_DIR, "ui/"),
