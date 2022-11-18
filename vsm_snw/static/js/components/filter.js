@@ -182,3 +182,13 @@ export function clearFilters() {
 
   hideOrShowClearButton()
 }
+
+export function hiddenFormFilter(event){
+    const filter_catalogo = document.querySelector(".js_filter_catalogo");
+
+    if(event.target.value == 'Catálogo Santillana 2022 - 2023'){
+        filter_catalogo.classList.remove('u-hidden')
+    }else{
+        filter_catalogo.classList.add('u-hidden')
+    }
+}

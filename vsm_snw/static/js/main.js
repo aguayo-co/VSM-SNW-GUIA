@@ -9,7 +9,7 @@ import Dropdown from "./components/dropdown";
 import showOrHideCookie from "./components/cookies";
 import CounterTime from "./components/counterTime";
 import VideoPlay from "./components/videoPlay";
-import initFilters, { toggleCounterOfFilter, removeChipIntoClick, clearFilters, goToPage, orderElements } from "./components/filter";
+import initFilters, { toggleCounterOfFilter, removeChipIntoClick, clearFilters, goToPage, orderElements, hiddenFormFilter } from "./components/filter";
 
 // AlpineJS
 window.Alpine = Alpine;
@@ -56,6 +56,11 @@ window.onload = function () {
   // Paginator
   window.goToPage = function (e) {
     goToPage(e);
+  }
+
+  //
+  window.hiddenFormFilter = function (e) {
+    hiddenFormFilter(e);
   }
 
   // Order by

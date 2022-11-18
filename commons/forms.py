@@ -20,8 +20,9 @@ class CatalogFilterForm(Form):
 
 
 class SearchForm(Form):
-    query = CharField(min_length=3)
+    query = CharField(min_length=3, required=False)
     type = ChoiceField(
+        required=False,
         choices=(
             ("", "Todo el sitio web"),
             ("catalog", CatalogPage.objects.live().first().title),

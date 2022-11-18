@@ -1,13 +1,22 @@
 {% load i18n %}
+{% load inspector %}
 
-<form class="c-filter js-filter-target" method="GET">
+<form class="c-filter js-filter-target" method="GET" x-data="{ todoElSitio: false, filtros: false }">
 
   <h2 class="c-filter__title o-text o-bold u-inherit-color">{% trans "Filtra por" %}</h2>
 
-  <div class="c-filter__group">
+  <div class="c-filter__group {% if not search_filter_form %}u-hidden{% endif %}">
+      {{ search_filter_form.query }}
+      <select @change="hiddenFormFilter($event)">
+        {% for choice in search_filter_form.type.subwidgets %}
+            <option value="{{ choice.data.label }}">{{ choice.data.label }}</option>
+        {% endfor %}
+      </select>
+  </div>
+
+  <div class="c-filter__group js_filter_catalogo {% if search_filter_form %}u-hidden{% endif %}">
 
     {% for field in filter_form %}
-      {{ field }}
 
       <div
         class="c-filter__item js-filter-item"
@@ -20,7 +29,7 @@
           {{ field.value|length }}
         </span>
 
-        <p class="c-filter__toggle i-chevron-down js-dropdown-button">{{ field.label }}</p> 
+        <p class="c-filter__toggle i-chevron-down js-dropdown-button">{{ field.label }}</p>
 
         <ul class="c-filter__list o-list">
           {% for choices in field.subwidgets  %}

@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load inspector %}
 
 {% load wagtailcore_tags static i18n %}
 
@@ -33,6 +34,7 @@
         <div class="o-card-product-wrap">
 
           {% for book in object_list %}
+{#              {{ book.get_parent|inspect }}#}
             {# Card detalle producto (Libro) #}
             {% include "include/component/card/product_card.html" with object=book only %}
           {% endfor %}
