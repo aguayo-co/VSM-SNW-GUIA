@@ -174,6 +174,7 @@ STATIC_URL = "/static/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
 
+
 # vite
 # https://github.com/MrBin99/django-vite
 DJANGO_VITE_ASSETS_PATH = os.environ.get(
@@ -287,7 +288,6 @@ WAGTAILADMIN_RICH_TEXT_EDITORS = {
 # https://github.com/jrief/django-sass-processor
 SASS_PROCESSOR_ENABLED = os.environ.get("SASS_PROCESSOR_ENABLED", "True") == "True"
 
-SASS_PROCESSOR_ROOT = "ui"
 SASS_PROCESSOR_INCLUDE_DIRS = [
     os.path.join(PROJECT_DIR, "ui/"),
     os.path.join(PROJECT_DIR, "ui/sass/"),

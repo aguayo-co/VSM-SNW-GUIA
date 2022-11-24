@@ -27,12 +27,14 @@ if settings.DEBUG:
     # Serve static and media files from development server
     urlpatterns += staticfiles_urlpatterns()
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-    # Django Debug Toolbar
-    urlpatterns.append(path("__debug__/", include("debug_toolbar.urls")))
-
     # Testing for 404 & 500 Responses
     urlpatterns.append(path("test_404/", Test404View.as_view()))
     urlpatterns.append(path("test_500/", Test500View.as_view()))
+
+if settings.DEBUG or settings.SHOW_DEBUG_TOOLBAR:
+    # Django Debug Toolbar
+    urlpatterns.append(path("__debug__/", include("debug_toolbar.urls")))
+
 
 urlpatterns = urlpatterns + [
     # For anything not caught by a more specific rule above, hand over to
