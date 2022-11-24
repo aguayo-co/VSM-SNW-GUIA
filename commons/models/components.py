@@ -456,6 +456,7 @@ class DefinitionListComponent(StructBlock):
     """
 
     title = CharBlock(required=True, label=_("Título"))
+    image = ImageOrSVGBlock("image", required=False, label=_("Imagen"), help_text=_("Relación de aspecto 9:8 recomendada"))
     subtitle = CharBlock(required=False, label=_("Subtítulo"))
     introduction = CharBlock(required=False, label=_("Introducción"))
     definition_list = ListBlock(
