@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-19 18:58-0500\n"
+"POT-Creation-Date: 2022-11-24 13:47-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,429 +18,425 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: commons/forms.py:8 commons/models/snippets.py:50
+#: commons/forms.py:8 commons/models/snippets.py:49
 msgid "Grados"
 msgstr ""
 
-#: commons/forms.py:10 commons/models/snippets.py:69
+#: commons/forms.py:10 commons/models/snippets.py:68
 msgid "Materias"
 msgstr ""
 
-#: commons/forms.py:12
+#: commons/forms.py:12 commons/models/snippets.py:105
 msgid "Series"
 msgstr ""
 
-#: commons/models/components.py:27 commons/models/components.py:87
-#: commons/models/components.py:142 commons/models/components.py:199
-#: commons/models/components.py:275 commons/models/components.py:328
-#: commons/models/components.py:380 commons/models/components.py:430
-#: commons/models/components.py:444 commons/models/components.py:458
-#: commons/models/components.py:467 commons/models/components.py:506
-#: commons/models/components.py:582 commons/models/components.py:601
-#: commons/models/components.py:644 commons/models/components.py:718
+#: commons/models/components.py:19 commons/models/components.py:79
+#: commons/models/components.py:134 commons/models/components.py:191
+#: commons/models/components.py:266 commons/models/components.py:319
+#: commons/models/components.py:371 commons/models/components.py:421
+#: commons/models/components.py:435 commons/models/components.py:449
+#: commons/models/components.py:458 commons/models/components.py:497
+#: commons/models/components.py:573 commons/models/components.py:591
+#: commons/models/components.py:634 commons/models/components.py:708
 msgid "Título"
 msgstr ""
 
-#: commons/models/components.py:28 commons/models/components.py:88
+#: commons/models/components.py:20 commons/models/components.py:80
 msgid "Sub título"
 msgstr ""
 
-#: commons/models/components.py:29 commons/models/components.py:469
+#: commons/models/components.py:21 commons/models/components.py:460
 msgid "Introducción"
 msgstr ""
 
-#: commons/models/components.py:38
+#: commons/models/components.py:30
 msgid "Icono"
 msgstr ""
 
-#: commons/models/components.py:40
+#: commons/models/components.py:32
 msgid "Valor"
 msgstr ""
 
-#: commons/models/components.py:43 commons/models/components.py:89
-#: commons/models/components.py:144 commons/models/components.py:157
-#: commons/models/components.py:277 commons/models/components.py:330
-#: commons/models/components.py:382 commons/models/components.py:431
-#: commons/models/components.py:543 commons/models/components.py:558
-#: commons/models/components.py:722
+#: commons/models/components.py:35 commons/models/components.py:81
+#: commons/models/components.py:136 commons/models/components.py:149
+#: commons/models/components.py:268 commons/models/components.py:321
+#: commons/models/components.py:373 commons/models/components.py:422
+#: commons/models/components.py:534 commons/models/components.py:549
+#: commons/models/components.py:712
 msgid "Descripción"
 msgstr ""
 
-#: commons/models/components.py:50 commons/models/components.py:102
+#: commons/models/components.py:42 commons/models/components.py:94
 msgid "Lista de características"
 msgstr ""
 
-#: commons/models/components.py:54 commons/models/components.py:59
-#: commons/models/components.py:104
+#: commons/models/components.py:46 commons/models/components.py:51
+#: commons/models/components.py:96
 msgid "Leyenda"
 msgstr ""
 
-#: commons/models/components.py:55 commons/models/components.py:105
-#: commons/models/components.py:161 commons/models/components.py:241
-#: commons/models/components.py:279 commons/models/components.py:334
-#: commons/models/components.py:384 commons/models/components.py:612
-#: commons/models/components.py:645
+#: commons/models/components.py:47 commons/models/components.py:97
+#: commons/models/components.py:153 commons/models/components.py:232
+#: commons/models/components.py:270 commons/models/components.py:325
+#: commons/models/components.py:375 commons/models/components.py:602
+#: commons/models/components.py:635
 msgid "Texto acción primaria"
 msgstr ""
 
-#: commons/models/components.py:57 commons/models/components.py:107
-#: commons/models/components.py:166 commons/models/components.py:245
-#: commons/models/components.py:281 commons/models/components.py:336
-#: commons/models/components.py:386 commons/models/components.py:615
-#: commons/models/components.py:647
+#: commons/models/components.py:49 commons/models/components.py:99
+#: commons/models/components.py:158 commons/models/components.py:236
+#: commons/models/components.py:272 commons/models/components.py:327
+#: commons/models/components.py:377 commons/models/components.py:605
+#: commons/models/components.py:637
 msgid "URL acción primaria"
 msgstr ""
 
-#: commons/models/components.py:68 commons/models/components.py:123
-#: commons/models/components.py:255 commons/models/components.py:300
-#: commons/models/components.py:352 commons/models/components.py:405
-#: commons/models/components.py:625 commons/models/components.py:673
+#: commons/models/components.py:60 commons/models/components.py:115
+#: commons/models/components.py:246 commons/models/components.py:291
+#: commons/models/components.py:343 commons/models/components.py:396
+#: commons/models/components.py:615 commons/models/components.py:663
 msgid ""
 "Ha definido un Texto para el botón de acción primaria, por tanto debe "
 "seleccionar una pagina."
 msgstr ""
 
-#: commons/models/components.py:78
-msgid "Prueba Social"
+#: commons/models/components.py:70
+msgid "Social Proof"
 msgstr ""
 
-#: commons/models/components.py:94
+#: commons/models/components.py:86
 msgid "Línea de texto bullet"
 msgstr ""
 
-#: commons/models/components.py:98
+#: commons/models/components.py:90
 msgid "Línea de texto simple"
 msgstr ""
 
-#: commons/models/components.py:111
+#: commons/models/components.py:103
 msgid ""
 "Este componente incluye automaticamente todas las Series o Sellos "
 "Editoriales, así como el Indice de Grados > Materias"
 msgstr ""
 
-#: commons/models/components.py:133
+#: commons/models/components.py:125
 msgid "Índice de Catalogo"
 msgstr ""
 
-#: commons/models/components.py:143 commons/models/components.py:276
-#: commons/models/components.py:329 commons/models/components.py:381
-#: commons/models/components.py:468 commons/models/components.py:583
+#: commons/models/components.py:135 commons/models/components.py:267
+#: commons/models/components.py:320 commons/models/components.py:372
+#: commons/models/components.py:459
 msgid "Subtítulo"
 msgstr ""
 
-#: commons/models/components.py:153 commons/models/components.py:188
-#: commons/models/components.py:278 commons/models/components.py:332
-#: commons/models/components.py:539 commons/models/components.py:547
-#: commons/models/snippets.py:34 commons/models/snippets.py:85
+#: commons/models/components.py:145 commons/models/components.py:180
+#: commons/models/components.py:269 commons/models/components.py:323
+#: commons/models/components.py:530 commons/models/components.py:538
+#: commons/models/snippets.py:33 commons/models/snippets.py:84
 msgid "Imagen"
 msgstr ""
 
-#: commons/models/components.py:174 commons/models/components.py:181
+#: commons/models/components.py:166 commons/models/components.py:173
 msgid "Contenido destacado"
 msgstr ""
 
-#: commons/models/components.py:189
+#: commons/models/components.py:181
 msgid "Nombre y apellido"
 msgstr ""
 
-#: commons/models/components.py:190
+#: commons/models/components.py:182
 msgid "Profesión"
 msgstr ""
 
-#: commons/models/components.py:191
+#: commons/models/components.py:183
 msgid "Reseña"
 msgstr ""
 
-#: commons/models/components.py:203 commons/models/components.py:208
+#: commons/models/components.py:195 commons/models/components.py:200
 msgid "Testimonios"
 msgstr ""
 
-#: commons/models/components.py:217
+#: commons/models/components.py:209
 msgid "Título destacados"
 msgstr ""
 
-#: commons/models/components.py:218
+#: commons/models/components.py:210
 msgid "Subtítulo destacados"
 msgstr ""
 
-#: commons/models/components.py:223
+#: commons/models/components.py:215
 msgid "Enlace Destacado"
 msgstr ""
 
-#: commons/models/components.py:226
+#: commons/models/components.py:218
 msgid "Lista de enlaces destacados"
 msgstr ""
 
-#: commons/models/components.py:229
-msgid "Título enlaces de interés"
-msgstr ""
-
-#: commons/models/components.py:234 commons/models/components.py:605
+#: commons/models/components.py:225 commons/models/components.py:595
 msgid "Enlace"
 msgstr ""
 
-#: commons/models/components.py:237 commons/models/components.py:610
+#: commons/models/components.py:228 commons/models/components.py:600
 msgid "Lista de enlaces"
 msgstr ""
 
-#: commons/models/components.py:265
+#: commons/models/components.py:256
 msgid "Lista de enlaces de páginas"
 msgstr ""
 
-#: commons/models/components.py:274 commons/models/components.py:327
-#: commons/models/components.py:379
+#: commons/models/components.py:265 commons/models/components.py:318
+#: commons/models/components.py:370
 msgid "Texto de navegación"
 msgstr ""
 
-#: commons/models/components.py:284 commons/models/components.py:339
-#: commons/models/components.py:389 commons/models/components.py:650
+#: commons/models/components.py:275 commons/models/components.py:330
+#: commons/models/components.py:380 commons/models/components.py:640
 msgid "Texto acción secundaria"
 msgstr ""
 
-#: commons/models/components.py:287 commons/models/components.py:342
-#: commons/models/components.py:392 commons/models/components.py:653
+#: commons/models/components.py:278 commons/models/components.py:333
+#: commons/models/components.py:383 commons/models/components.py:643
 msgid "URL acción secundaria"
 msgstr ""
 
-#: commons/models/components.py:290 commons/models/components.py:395
+#: commons/models/components.py:281 commons/models/components.py:386
 msgid "Ilustración de fondo"
 msgstr ""
 
-#: commons/models/components.py:308 commons/models/components.py:360
-#: commons/models/components.py:413 commons/models/components.py:681
+#: commons/models/components.py:299 commons/models/components.py:351
+#: commons/models/components.py:404 commons/models/components.py:671
 msgid ""
 "Ha definido un Texto para el botón de acción secundaria, por tanto debe "
 "seleccionar una pagina."
 msgstr ""
 
-#: commons/models/components.py:318
+#: commons/models/components.py:309
 msgid "Imagen del slide"
 msgstr ""
 
-#: commons/models/components.py:370
-msgid "Imagen de fondo del slide"
+#: commons/models/components.py:361
+msgid "Imagen de fondo"
 msgstr ""
 
-#: commons/models/components.py:383
+#: commons/models/components.py:374
 msgid "Video Url"
 msgstr ""
 
-#: commons/models/components.py:423
+#: commons/models/components.py:414
 msgid "Video del slide"
 msgstr ""
 
-#: commons/models/components.py:436
+#: commons/models/components.py:427
 msgid "Items Contenidos Tematicos"
 msgstr ""
 
-#: commons/models/components.py:445
+#: commons/models/components.py:436
 msgid "Items"
 msgstr ""
 
-#: commons/models/components.py:450 commons/models/pages.py:707
+#: commons/models/components.py:441 commons/models/pages.py:722
 msgid "Contenidos Tematicos"
 msgstr ""
 
-#: commons/models/components.py:459 commons/models/components.py:567
+#: commons/models/components.py:450 commons/models/components.py:558
 #: commons/models/pages.py:135 commons/models/pages.py:163
-#: commons/models/pages.py:215 commons/models/pages.py:288
-#: commons/models/pages.py:352 commons/models/pages.py:370
-#: commons/models/pages.py:469 commons/models/pages.py:702
-#: commons/models/pages.py:775
+#: commons/models/pages.py:219 commons/models/pages.py:293
+#: commons/models/pages.py:357 commons/models/pages.py:375
+#: commons/models/pages.py:484 commons/models/pages.py:717
+#: commons/models/pages.py:790
 msgid "Contenido"
 msgstr ""
 
-#: commons/models/components.py:473
+#: commons/models/components.py:464
 msgid "Definiciones"
 msgstr ""
 
-#: commons/models/components.py:478
+#: commons/models/components.py:469
 msgid "Lista de Definición"
 msgstr ""
 
-#: commons/models/components.py:488
+#: commons/models/components.py:479
 msgid "Texto de banner"
 msgstr ""
 
-#: commons/models/components.py:491
+#: commons/models/components.py:482
 msgid "Texto de enlace scroll to"
 msgstr ""
 
-#: commons/models/components.py:493
+#: commons/models/components.py:484
 msgid "ID de enlace scroll to"
 msgstr ""
 
-#: commons/models/components.py:497
+#: commons/models/components.py:488
 msgid "Banner Ad"
 msgstr ""
 
-#: commons/models/components.py:508
+#: commons/models/components.py:499
 msgid "Mostrar en tabla de contenido"
 msgstr ""
 
-#: commons/models/components.py:516
+#: commons/models/components.py:507
 msgid "Texto Enriquecido"
 msgstr ""
 
-#: commons/models/components.py:524 commons/models/components.py:529
+#: commons/models/components.py:515 commons/models/components.py:520
 msgid "Cita"
 msgstr ""
 
-#: commons/models/components.py:525 commons/models/pages.py:539
-#: commons/models/pages.py:743
+#: commons/models/components.py:516 commons/models/pages.py:554
+#: commons/models/pages.py:758
 #: vsm_snw/templates/include/component/tabs/book_detail_tab.html:22
 msgid "Autor"
 msgstr ""
 
-#: commons/models/components.py:526
+#: commons/models/components.py:517
 msgid "Nota"
 msgstr ""
 
-#: commons/models/components.py:527
+#: commons/models/components.py:518
 msgid "URL"
 msgstr ""
 
-#: commons/models/components.py:545 commons/models/components.py:560
+#: commons/models/components.py:536 commons/models/components.py:551
 msgid "Créditos"
 msgstr ""
 
-#: commons/models/components.py:555 commons/models/components.py:562
-#: commons/models/pages.py:595
+#: commons/models/components.py:546 commons/models/components.py:553
+#: commons/models/pages.py:610
 msgid "Video"
 msgstr ""
 
-#: commons/models/components.py:573
+#: commons/models/components.py:564
 msgid "Contenido Libre"
 msgstr ""
 
-#: commons/models/components.py:585
+#: commons/models/components.py:575
 msgid "Select páginas"
 msgstr ""
 
-#: commons/models/components.py:587
+#: commons/models/components.py:577
 msgid "Listado de cursos"
 msgstr ""
 
-#: commons/models/components.py:592
+#: commons/models/components.py:582
 msgid "Agenda"
 msgstr ""
 
-#: commons/models/components.py:635
+#: commons/models/components.py:625
 msgid "Listado de chips"
 msgstr ""
 
-#: commons/models/components.py:659
+#: commons/models/components.py:649
 msgid "Enlace a producto"
 msgstr ""
 
-#: commons/models/components.py:663 commons/models/components.py:691
+#: commons/models/components.py:653 commons/models/components.py:681
 msgid "Listado de productos"
 msgstr ""
 
-#: commons/models/components.py:702
+#: commons/models/components.py:692
 msgid ""
 "Este componente muestra un indice de los componentes de esta página que "
 "hayan sido promovidos."
 msgstr ""
 
-#: commons/models/components.py:708
+#: commons/models/components.py:698
 msgid "Índice de navegación"
 msgstr ""
 
-#: commons/models/components.py:727
+#: commons/models/components.py:717
 msgid "Hero de contenido"
 msgstr ""
 
-#: commons/models/custom_settings.py:24
+#: commons/models/custom_settings.py:23
 msgid "Logo del sitio"
 msgstr ""
 
-#: commons/models/custom_settings.py:31
+#: commons/models/custom_settings.py:30
 msgid "URL Logo"
 msgstr ""
 
-#: commons/models/custom_settings.py:38 commons/models/custom_settings.py:103
+#: commons/models/custom_settings.py:37 commons/models/custom_settings.py:102
 msgid "Redes sociales"
 msgstr ""
 
-#: commons/models/custom_settings.py:43
+#: commons/models/custom_settings.py:42
 msgid "Logo del footer"
 msgstr ""
 
-#: commons/models/custom_settings.py:48
+#: commons/models/custom_settings.py:47
 msgid ""
 "Logo alternativo que se utiliza en lugares de contraste oscuro, como el "
 "footer."
 msgstr ""
 
-#: commons/models/custom_settings.py:51
+#: commons/models/custom_settings.py:50
 msgid "Copyright - Footer "
 msgstr ""
 
-#: commons/models/custom_settings.py:54
+#: commons/models/custom_settings.py:53
 msgid "Página de contacto"
 msgstr ""
 
-#: commons/models/custom_settings.py:61
+#: commons/models/custom_settings.py:60
 msgid "Teléfono"
 msgstr ""
 
-#: commons/models/custom_settings.py:62
+#: commons/models/custom_settings.py:61
 msgid "Email"
 msgstr ""
 
-#: commons/models/custom_settings.py:66
+#: commons/models/custom_settings.py:65
 msgid "Texto Cookies"
 msgstr ""
 
-#: commons/models/custom_settings.py:71 forms/models.py:32
+#: commons/models/custom_settings.py:70 forms/models.py:32
 msgid "Términos y condiciones"
 msgstr ""
 
-#: commons/models/custom_settings.py:78
+#: commons/models/custom_settings.py:77
 msgid "Key reCAPTCHA"
 msgstr ""
 
-#: commons/models/custom_settings.py:85
+#: commons/models/custom_settings.py:84
 msgid "Secret reCAPTCHA"
 msgstr ""
 
-#: commons/models/custom_settings.py:97
+#: commons/models/custom_settings.py:96
 msgid "Logo Principal"
 msgstr ""
 
-#: commons/models/custom_settings.py:111
+#: commons/models/custom_settings.py:110
 msgid "Footer"
 msgstr ""
 
-#: commons/models/custom_settings.py:118
+#: commons/models/custom_settings.py:117
 msgid "Contacto"
 msgstr ""
 
-#: commons/models/custom_settings.py:124
+#: commons/models/custom_settings.py:123
 msgid "Mensaje de Cookies"
 msgstr ""
 
-#: commons/models/custom_settings.py:131
+#: commons/models/custom_settings.py:130
 msgid "Configuraciones de formularios"
 msgstr ""
 
-#: commons/models/custom_settings.py:138
+#: commons/models/custom_settings.py:137
 msgid "Configuración Santillana"
 msgstr ""
 
-#: commons/models/custom_settings.py:139
+#: commons/models/custom_settings.py:138
 msgid "Configuraciones Santillana"
 msgstr ""
 
-#: commons/models/fields.py:82
+#: commons/models/fields.py:81
 #, python-format
 msgid ""
 "La URL para %(network)s no es válida. Ingrese una URL que inicie con https://"
 "%(domain)s/ (ingresó %(url)s)."
 msgstr ""
 
-#: commons/models/fields.py:97
+#: commons/models/fields.py:96
 msgid "Al menos una url es requerida."
 msgstr ""
 
@@ -472,11 +468,11 @@ msgstr ""
 msgid "Categoría Z/A"
 msgstr ""
 
-#: commons/models/pages.py:55
+#: commons/models/pages.py:54
 msgid "Imagen para buscadores."
 msgstr ""
 
-#: commons/models/pages.py:58
+#: commons/models/pages.py:57
 msgid "Palabras clave"
 msgstr ""
 
@@ -504,316 +500,302 @@ msgstr ""
 msgid "Blog"
 msgstr ""
 
-#: commons/models/pages.py:224 commons/models/pages.py:225
+#: commons/models/pages.py:228 commons/models/pages.py:229
 msgid "Catálogo"
 msgstr ""
 
-#: commons/models/pages.py:289
+#: commons/models/pages.py:294
 msgid "Contenidos"
 msgstr ""
 
-#: commons/models/pages.py:308
+#: commons/models/pages.py:313
 msgid "Responsable"
 msgstr ""
 
-#: commons/models/pages.py:314
+#: commons/models/pages.py:319
 msgid "Fecha y hora del evento"
 msgstr ""
 
-#: commons/models/pages.py:319
+#: commons/models/pages.py:324
 msgid "Hashtag Youtube"
 msgstr ""
 
-#: commons/models/pages.py:325
+#: commons/models/pages.py:330
 msgid "Url Formulario de Inscripción"
 msgstr ""
 
-#: commons/models/pages.py:346 commons/models/pages.py:355
+#: commons/models/pages.py:351 commons/models/pages.py:360
 msgid "Información del Curso"
 msgstr ""
 
-#: commons/models/pages.py:353 commons/models/pages.py:703
-#: commons/models/pages.py:776
+#: commons/models/pages.py:358 commons/models/pages.py:718
+#: commons/models/pages.py:791
 msgid "Promocionar"
 msgstr ""
 
-#: commons/models/pages.py:354 commons/models/pages.py:704
-#: commons/models/pages.py:777
+#: commons/models/pages.py:359 commons/models/pages.py:719
+#: commons/models/pages.py:792
 msgid "Propiedades"
 msgstr ""
 
-#: commons/models/pages.py:360
+#: commons/models/pages.py:365
 msgid "Detalle de Curso"
 msgstr ""
 
-#: commons/models/pages.py:361
+#: commons/models/pages.py:366
 msgid "Detalle de Cursos"
 msgstr ""
 
-#: commons/models/pages.py:381
+#: commons/models/pages.py:386
 msgid "Home de categoría"
 msgstr ""
 
-#: commons/models/pages.py:382
+#: commons/models/pages.py:387
 msgid "Home de categorías"
 msgstr ""
 
-#: commons/models/pages.py:426
+#: commons/models/pages.py:436
 msgid "Home de temática"
 msgstr ""
 
-#: commons/models/pages.py:427
+#: commons/models/pages.py:437
 msgid "Home de temáticas"
 msgstr ""
 
-#: commons/models/pages.py:459
+#: commons/models/pages.py:474
 msgid "Inglés"
 msgstr ""
 
-#: commons/models/pages.py:460
+#: commons/models/pages.py:475
 msgid "Español"
 msgstr ""
 
-#: commons/models/pages.py:466
+#: commons/models/pages.py:481
 msgid "Características y Beneficios"
 msgstr ""
 
-#: commons/models/pages.py:475
+#: commons/models/pages.py:490
 msgid "Contenidos Temáticos"
 msgstr ""
 
-#: commons/models/pages.py:480
+#: commons/models/pages.py:495
 msgid "Descripción Corta"
 msgstr ""
 
-#: commons/models/pages.py:490
+#: commons/models/pages.py:505
 msgid "Imagen del Libro"
 msgstr ""
 
-#: commons/models/pages.py:496 commons/models/snippets.py:49
+#: commons/models/pages.py:511 commons/models/snippets.py:48
 msgid "Grado"
 msgstr ""
 
-#: commons/models/pages.py:504
+#: commons/models/pages.py:519
 msgid "Asignatura"
 msgstr ""
 
-#: commons/models/pages.py:512
-msgid "Serie o Editorial"
+#: commons/models/pages.py:527 commons/models/snippets.py:88
+#: commons/models/snippets.py:104
+#: vsm_snw/templates/include/component/tabs/book_detail_tab.html:17
+msgid "Serie"
 msgstr ""
 
-#: commons/models/pages.py:517
+#: commons/models/pages.py:532
 msgid "Campo formación"
 msgstr ""
 
-#: commons/models/pages.py:523
+#: commons/models/pages.py:538
 msgid "Codigo CONALITEG"
 msgstr ""
 
-#: commons/models/pages.py:527
+#: commons/models/pages.py:542
 msgid "Idioma"
 msgstr ""
 
-#: commons/models/pages.py:530
+#: commons/models/pages.py:545
 msgid "es"
 msgstr ""
 
-#: commons/models/pages.py:533
+#: commons/models/pages.py:548
 #: vsm_snw/templates/include/component/tabs/book_detail_tab.html:42
 msgid "ISBN"
 msgstr ""
 
-#: commons/models/pages.py:545
+#: commons/models/pages.py:560
 msgid "Sello Editorial"
 msgstr "Editorial Label"
 
-#: commons/models/pages.py:551
+#: commons/models/pages.py:566
 msgid "Primera Edición"
 msgstr ""
 
-#: commons/models/pages.py:557
+#: commons/models/pages.py:572
 #: vsm_snw/templates/include/component/tabs/book_detail_tab.html:37
 msgid "Segunda Reimpresión"
 msgstr ""
 
-#: commons/models/pages.py:564
+#: commons/models/pages.py:579
 msgid "Libro del docente (Español)"
 msgstr ""
 
-#: commons/models/pages.py:572
+#: commons/models/pages.py:587
 msgid "Libro del docente (Inglés)"
 msgstr ""
 
-#: commons/models/pages.py:580
+#: commons/models/pages.py:595
 msgid "Libro del Estudiante"
 msgstr ""
 
-#: commons/models/pages.py:588
+#: commons/models/pages.py:603
 #: vsm_snw/templates/include/component/tabs/book_detail_tab.html:47
 msgid "Oficio SEP"
 msgstr ""
 
-#: commons/models/pages.py:601
+#: commons/models/pages.py:616
 msgid "Dosificación Docente"
 msgstr ""
 
-#: commons/models/pages.py:609
+#: commons/models/pages.py:624
 msgid "Programación para Padres"
 msgstr ""
 
-#: commons/models/pages.py:617
+#: commons/models/pages.py:632
 #: vsm_snw/templates/include/product/call_to_actions.html:96
 msgid "Lector"
 msgstr "Reader"
 
-#: commons/models/pages.py:625
-#: vsm_snw/templates/include/product/call_to_actions.html:106
+#: commons/models/pages.py:640
+#: vsm_snw/templates/include/product/call_to_actions.html:76
 msgid "Audios"
 msgstr "Audios"
 
-#: commons/models/pages.py:633
+#: commons/models/pages.py:648
 #: vsm_snw/templates/include/product/call_to_actions.html:116
 msgid "Posters"
 msgstr "Posters"
 
-#: commons/models/pages.py:640
+#: commons/models/pages.py:655
 msgid "Título de la descripción"
 msgstr ""
 
-#: commons/models/pages.py:648
+#: commons/models/pages.py:663
 #: vsm_snw/templates/include/product/call_to_actions.html:36
 msgid "Alcance y secuencia"
 msgstr "Scope & sequence"
 
-#: commons/models/pages.py:680
+#: commons/models/pages.py:695
 msgid "Detalles del Libro"
 msgstr ""
 
-#: commons/models/pages.py:696
+#: commons/models/pages.py:711
 msgid "Materiales"
 msgstr ""
 
-#: commons/models/pages.py:705
+#: commons/models/pages.py:720
 msgid "Propiedad del producto"
 msgstr ""
 
-#: commons/models/pages.py:715
+#: commons/models/pages.py:730
 msgid "Detalle de Producto"
 msgstr ""
 
-#: commons/models/pages.py:716
+#: commons/models/pages.py:731
 msgid "Detalles de Productos"
 msgstr ""
 
-#: commons/models/pages.py:750
+#: commons/models/pages.py:765
 msgid "Tiempo de lectura"
 msgstr ""
 
-#: commons/models/pages.py:769 commons/models/pages.py:778
+#: commons/models/pages.py:784 commons/models/pages.py:793
 msgid "Información del Artículo"
 msgstr ""
 
-#: commons/models/pages.py:785
+#: commons/models/pages.py:800
 msgid "Detalle de artículo"
 msgstr ""
 
-#: commons/models/pages.py:786
+#: commons/models/pages.py:801
 msgid "Detalles de artículos"
 msgstr ""
 
-#: commons/models/pages.py:801
+#: commons/models/pages.py:816
 msgid "Redirección"
 msgstr ""
 
-#: commons/models/pages.py:802
+#: commons/models/pages.py:817
 msgid "Redirecciones"
 msgstr ""
 
-#: commons/models/snippets.py:15 commons/models/snippets.py:57
-#: commons/models/snippets.py:77 commons/models/snippets.py:113
+#: commons/models/snippets.py:14 commons/models/snippets.py:56
+#: commons/models/snippets.py:76 commons/models/snippets.py:112
 msgid "Nombre"
 msgstr ""
 
-#: commons/models/snippets.py:16
+#: commons/models/snippets.py:15
 msgid "Número"
 msgstr ""
 
-#: commons/models/snippets.py:19
+#: commons/models/snippets.py:18
 msgid "Color"
 msgstr ""
 
-#: commons/models/snippets.py:21
+#: commons/models/snippets.py:20
 msgid "Turquesa"
 msgstr ""
 
-#: commons/models/snippets.py:22
+#: commons/models/snippets.py:21
 msgid "Amarillo"
 msgstr ""
 
-#: commons/models/snippets.py:23
+#: commons/models/snippets.py:22
 msgid "Azul"
 msgstr ""
 
-#: commons/models/snippets.py:26
+#: commons/models/snippets.py:25
 msgid "Personaliza la apariencia del Grado cambiando el color"
 msgstr ""
 
-#: commons/models/snippets.py:68
+#: commons/models/snippets.py:67
 msgid "Materia"
 msgstr ""
 
-#: commons/models/snippets.py:89
-msgid "Serie"
-msgstr ""
-
-#: commons/models/snippets.py:89
+#: commons/models/snippets.py:88
 msgid "Editorial"
 msgstr ""
 
-#: commons/models/snippets.py:90
+#: commons/models/snippets.py:89
 msgid "Tipo"
 msgstr ""
 
-#: commons/models/snippets.py:105
-msgid "Serie o sello editorial"
-msgstr ""
-
-#: commons/models/snippets.py:106
-msgid "Series o sellos editoriales"
-msgstr ""
-
-#: commons/models/snippets.py:116
+#: commons/models/snippets.py:115
 msgid "Libro externo"
 msgstr ""
 
-#: commons/models/snippets.py:124
+#: commons/models/snippets.py:123
 msgid "Documento"
 msgstr ""
 
-#: commons/models/snippets.py:148
+#: commons/models/snippets.py:147
 msgid ""
 "No puede utilizar ambos recursos ni dejar vacíos estos campos, por favor "
 "utilice solo una de las                 dos opciones: Enlace Externo o "
 "Documento."
 msgstr ""
 
-#: commons/models/snippets.py:154
+#: commons/models/snippets.py:153
 msgid "Libro"
 msgstr ""
 
-#: commons/models/snippets.py:155
+#: commons/models/snippets.py:154
 msgid "Libros"
 msgstr ""
 
-#: commons/models/wagtail_hooks.py:38
-msgid "Etiqueta administrator"
-msgstr ""
-
-#: commons/templates/commons/components/catalog_index.html:98
+#: commons/templates/commons/components/catalog_index.html:97
 msgid "Filtra el catálogo por las Series Santillana Contigo"
 msgstr ""
 
-#: commons/templates/commons/components/catalog_index.html:107
+#: commons/templates/commons/components/catalog_index.html:106
 msgid "Filtrar por Serie "
 msgstr ""
 
@@ -833,17 +815,26 @@ msgstr ""
 msgid "Ir a "
 msgstr ""
 
+#: commons/templates/commons/components/free_content_component.html:40
+msgid "Creditos"
+msgstr ""
+
 #: commons/templates/commons/components/navigation_index_component.html:8
 msgid "Navega a través de"
 msgstr ""
 
 #: commons/templates/commons/components/social_proof.html:30
+#: vsm_snw/templates/extend/extend_message_system.html:35
 #: vsm_snw/templates/include/component/agenda.html:72
-#: vsm_snw/templates/include/component/card/card.html:15
+#: vsm_snw/templates/include/component/card/card.html:16
 #: vsm_snw/templates/include/product/call_to_actions.html:22
 #: vsm_snw/templates/include/product/call_to_actions.html:47
 #: vsm_snw/templates/include/product/call_to_actions.html:62
 msgid "Ir a"
+msgstr ""
+
+#: commons/wagtail_hooks.py:37
+msgid "Etiqueta administrator"
 msgstr ""
 
 #: forms/models.py:33
@@ -868,25 +859,32 @@ msgstr ""
 
 #: vsm_snw/templates/404.html:5 vsm_snw/templates/404.html:8
 #: vsm_snw/templates/500.html:5 vsm_snw/templates/500.html:8
-#: vsm_snw/templates/forms/form_page_landing.html:10
 msgid "Error"
 msgstr ""
 
-#: vsm_snw/templates/404.html:11 vsm_snw/templates/500.html:11
-#: vsm_snw/templates/forms/form_page_landing.html:13
-msgid "¡Hemos buscado esta página por todos lados!"
+#: vsm_snw/templates/404.html:11
+msgid "¡Ups! No encontramos la página que buscas."
 msgstr ""
 
-#: vsm_snw/templates/404.html:15 vsm_snw/templates/500.html:15
-#: vsm_snw/templates/forms/form_page_landing.html:17
-msgid "Pero no conseguimos encontrarla, vamos a buscar un mejor lugar para tí."
+#: vsm_snw/templates/404.html:15
+msgid "Vamos a buscar un mejor lugar para tí."
 msgstr ""
 
-#: vsm_snw/templates/base.html:54
+#: vsm_snw/templates/500.html:11
+msgid "¡Parece que algo ha salido mal!"
+msgstr ""
+
+#: vsm_snw/templates/500.html:15
+msgid ""
+"Se ha producido un error temporal y no podemos completar tu solicitud. "
+"Inténtalo de nuevo en 60 segundos."
+msgstr ""
+
+#: vsm_snw/templates/base.html:55
 msgid "Ir a la página de inicio"
 msgstr ""
 
-#: vsm_snw/templates/base.html:57
+#: vsm_snw/templates/base.html:58
 msgid "Inicio"
 msgstr ""
 
@@ -906,15 +904,15 @@ msgstr ""
 msgid "Lectura de"
 msgstr ""
 
-#: vsm_snw/templates/commons/detail_product_page.html:108
+#: vsm_snw/templates/commons/detail_product_page.html:114
 msgid "Navega los libros de "
 msgstr ""
 
-#: vsm_snw/templates/commons/detail_product_page.html:108
+#: vsm_snw/templates/commons/detail_product_page.html:114
 msgid " por"
 msgstr ""
 
-#: vsm_snw/templates/commons/detail_product_page.html:117
+#: vsm_snw/templates/commons/detail_product_page.html:123
 msgid "Filtrar por"
 msgstr ""
 
@@ -978,6 +976,18 @@ msgstr ""
 msgid "Enviar"
 msgstr ""
 
+#: vsm_snw/templates/forms/form_page_landing.html:5
+msgid "Gracias por elegirnos"
+msgstr ""
+
+#: vsm_snw/templates/forms/form_page_landing.html:13
+msgid "¡Gracias por elegirnos!"
+msgstr ""
+
+#: vsm_snw/templates/forms/form_page_landing.html:17
+msgid "Te invitamos a seguir descubriendo todo lo que tenemos para tí."
+msgstr ""
+
 #: vsm_snw/templates/include/component/agenda.html:17
 msgid "Faltan: "
 msgstr ""
@@ -1036,7 +1046,7 @@ msgstr ""
 msgid "¡Link copiado!"
 msgstr ""
 
-#: vsm_snw/templates/include/component/tabs/benefit_tab.html:7
+#: vsm_snw/templates/include/component/tabs/benefit_tab.html:8
 msgid "Características y beneficios"
 msgstr ""
 
@@ -1046,10 +1056,6 @@ msgstr ""
 
 #: vsm_snw/templates/include/component/tabs/book_detail_tab.html:14
 msgid "Código Conaliteg"
-msgstr ""
-
-#: vsm_snw/templates/include/component/tabs/book_detail_tab.html:17
-msgid "Sello editorial"
 msgstr ""
 
 #: vsm_snw/templates/include/component/tabs/book_detail_tab.html:27
@@ -1068,19 +1074,15 @@ msgstr ""
 msgid "Contenidos temáticos"
 msgstr ""
 
-#: vsm_snw/templates/include/layout/header.html:34
-msgid "Buscar"
-msgstr ""
-
 #: vsm_snw/templates/include/layout/header.html:48
 msgid "Menu mobile"
 msgstr ""
 
-#: vsm_snw/templates/include/paginator.html:38
+#: vsm_snw/templates/include/paginator.html:44
 msgid "de"
 msgstr ""
 
-#: vsm_snw/templates/include/paginator.html:38
+#: vsm_snw/templates/include/paginator.html:44
 msgid "textos"
 msgstr ""
 
@@ -1100,11 +1102,11 @@ msgstr "Teacher’s guide (ES)"
 msgid "Libro del docente (EN)"
 msgstr "Teacher’s guide (EN)"
 
-#: vsm_snw/templates/include/product/call_to_actions.html:76
+#: vsm_snw/templates/include/product/call_to_actions.html:86
 msgid "Dosificación docente"
 msgstr "Teacher’s dosage"
 
-#: vsm_snw/templates/include/product/call_to_actions.html:86
+#: vsm_snw/templates/include/product/call_to_actions.html:106
 msgid "Programación para padres"
 msgstr "Parent’s schedule"
 
@@ -1142,6 +1144,6 @@ msgstr ""
 msgid "Ir al "
 msgstr "Go to"
 
-#: vsm_snw/templates/wagtail_tag_manager/templatetags/cookie_bar.html:17
+#: vsm_snw/templates/wagtail_tag_manager/templatetags/cookie_bar.html:18
 msgid "Aceptar"
 msgstr ""
