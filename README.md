@@ -106,6 +106,15 @@ $ docker-compose run --rm django ./manage.py compilescss
 >Actualmente no es necesario ejecutar este comando, puesto que los archivos son transpilados automaticamente en el momento de publicar.
 Dicho esto, es recomendable que usted no realice commit de los archivos `.css` y `.map` generados en su ambiente local.
 
+## Importar base de datos desde un archivo de Backup
+    
+```shell
+psql -U usuario databasename -h localhost < backup.sql
+```
+
+#### **Nota**:
+>Se debe tener instalado el cliente de sql en el sistema operativo Host
+
 ## Puertos
 
 | Servicio | contenedor | host        |
