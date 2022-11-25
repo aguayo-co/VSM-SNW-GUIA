@@ -3,9 +3,17 @@ from django.forms.utils import ErrorList
 from django.utils.translation import gettext_lazy as _
 from wagtail.blocks.struct_block import StructBlockValidationError, StructValue
 from wagtail.core import blocks
-from wagtail.core.blocks import (BooleanBlock, CharBlock, ListBlock,
-                                 PageChooserBlock, RichTextBlock, StaticBlock,
-                                 StreamBlock, StructBlock, TextBlock)
+from wagtail.core.blocks import (
+    BooleanBlock,
+    CharBlock,
+    ListBlock,
+    PageChooserBlock,
+    RichTextBlock,
+    StaticBlock,
+    StreamBlock,
+    StructBlock,
+    TextBlock,
+)
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail_svg_images.blocks import ImageOrSVGBlock
@@ -456,7 +464,12 @@ class DefinitionListComponent(StructBlock):
     """
 
     title = CharBlock(required=True, label=_("Título"))
-    image = ImageOrSVGBlock("image", required=False, label=_("Imagen"), help_text=_("Relación de aspecto 9:8 recomendada"))
+    image = ImageOrSVGBlock(
+        "image",
+        required=False,
+        label=_("Imagen"),
+        help_text=_("Relación de aspecto 307:366 recomendada"),
+    )
     subtitle = CharBlock(required=False, label=_("Subtítulo"))
     introduction = CharBlock(required=False, label=_("Introducción"))
     definition_list = ListBlock(
