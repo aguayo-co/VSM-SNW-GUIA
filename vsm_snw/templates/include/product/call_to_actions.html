@@ -107,6 +107,16 @@
     </a>
   {% endif %}
 
+  {% if self.new_teaching_resources %}
+    <a
+      class="l-thematic-content__action o-btn i-after-download"
+      href="{{ self.new_teaching_resources.url }}"
+      download
+    >
+      {% trans "Nuevos recursos didácticos" %}
+    </a>
+  {% endif %}
+
   {% if self.posters %}
     <a
       class="l-thematic-content__action o-btn i-after-download"

@@ -598,6 +598,14 @@ class DetailProductPage(BasePage):
         null=True,
         blank=True,
     )
+    new_teaching_resources = models.ForeignKey(
+        get_document_model_string(),
+        verbose_name=_("Nuevos recursos didácticos"),
+        on_delete=models.SET_NULL,
+        related_name="+",
+        null=True,
+        blank=True,
+    )
     office_sep = ForeignKey(
         get_document_model_string(),
         verbose_name=_("Oficio SEP"),
