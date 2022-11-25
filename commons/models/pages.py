@@ -710,6 +710,7 @@ class DetailProductPage(BasePage):
                 DocumentChooserPanel("office_sep"),
                 FieldPanel("video"),
                 DocumentChooserPanel("teaching_dosage"),
+                DocumentChooserPanel("new_teaching_resources"),
                 DocumentChooserPanel("parent_programming"),
                 DocumentChooserPanel("reader"),
                 DocumentChooserPanel("audio"),
