@@ -2,7 +2,7 @@
 {% load wagtailsettings_tags %}
 {% get_settings use_default_site=True %}
 
-{% load wagtailcore_tags wagtailimages_tags i18n menu_tags static wagtailuserbar %}
+{% load wagtailcore_tags wagtailimages_tags i18n menu_tags static wagtailuserbar search_form %}
 
 {% block menu %}
   
@@ -27,7 +27,9 @@
 
       {# Buscador y Menu hamburguesa #}
       <div class="c-header__cta">
-        
+
+          {% get_search_form %}
+
 {#        <div class="o-search">#}
           {#<form></form>#}
 {#          <button class="o-btn-round o-btn-round_primary i-search">#}
