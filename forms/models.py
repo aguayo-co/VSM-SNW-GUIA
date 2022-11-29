@@ -18,11 +18,13 @@ from commons.models.custom_settings import SantillanaSettings
 
 class TermsAndConditionsCheckboxInput(CheckboxInput):
     """Custom input widget for terms and conditions field."""
+
     pass
 
 
 class CaptchaCheckboxInput(CheckboxInput):
     """Custom input widget for captcha field."""
+
     pass
 
 
@@ -62,7 +64,8 @@ class FormPage(AbstractForm):
     CONTENT_FIELD = "_content_form"
 
     _content_form = DetailProductIntroStreamField(
-        verbose_name=("Intro"), null=True, blank=True)
+        verbose_name=("Intro"), null=True, blank=True
+    )
 
     content_panels = AbstractForm.content_panels + [
         FieldPanel(CONTENT_FIELD),

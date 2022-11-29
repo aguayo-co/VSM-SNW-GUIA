@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.sitemaps",
     "sass_processor",
     "django_vite",
     "wagtail_tag_manager",
@@ -60,6 +61,7 @@ INSTALLED_APPS = [
     "generic_chooser",
     "hitcount",
     "wagtail_transfer",
+    "simple_robots",
 ]
 
 MIDDLEWARE = [
