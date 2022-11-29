@@ -14,8 +14,8 @@ from wagtail.core.templatetags.wagtailcore_tags import pageurl
 from wagtail.documents import get_document_model_string
 from wagtail.documents.edit_handlers import DocumentChooserPanel
 from wagtail.fields import RichTextField, StreamField
-from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.snippets.edit_handlers import SnippetChooserPanel
 
 from commons.models.components import ThematicContentComponent
 from commons.models.fields import (
@@ -393,7 +393,7 @@ class CategoryHomePage(BasePage, OrderMixin):
         order_by = self.get_order_by(request)
         if order_by:
             queryset = (
-                self.get_children()
+                DetailArticlePage.objects.child_of(self)
                 .live()
                 .annotate(visits=models.Count("hit_count_generic__hit"))
                 .order_by(order_by)
@@ -443,8 +443,7 @@ class ThematicHomePage(BasePage, OrderMixin):
         order_by = self.get_order_by(request)
         if order_by:
             queryset = (
-                self.get_children()
-                .live()
+                CourseDetailPage.objects.live()
                 .annotate(visits=models.Count("hit_count_generic__hit"))
                 .order_by(order_by)
             )
