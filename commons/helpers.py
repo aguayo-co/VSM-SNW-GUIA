@@ -1,3 +1,4 @@
+from wagtail.blocks import StructValue
 from wagtail.images.blocks import ImageChooserBlock
 
 
@@ -13,9 +14,11 @@ class ImageChooserForOldSVG(ImageChooserBlock):
             "background_image",
             "background_illustration",
         ]
+
         for value in values:
-            for posible_component_name in posible_component_names:
-                if posible_component_name in value:
-                    new_values.append(value[posible_component_name])
+            if isinstance(value, (dict, StructValue)):
+                for posible_component_name in posible_component_names:
+                    if posible_component_name in value:
+                        new_values.append(value[posible_component_name])
         new_bulk = super().bulk_to_python(new_values)
         return new_bulk
