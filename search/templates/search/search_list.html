@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load inspector %}
 
 {% load wagtailcore_tags static i18n %}
 
@@ -12,9 +11,7 @@
       <div class="o-canvas">
 
         <header class="o-hgroup-band__header">
-          {% if self.title %}
-            <h1 class="o-subheadline">{{ self.title }}</h1>
-          {% endif %}
+          <h1 class="o-subheadline">Busca en Santillana Contigo</h1>
         </header>
 
         {# Componente filtros #}
@@ -25,7 +22,7 @@
     {# Fin cabecera #}
 
     {# Filtro ordenar por y label de resultados #}
-    {% include "include/component/filter/filter_band.html" with results_caption="libros de secundaria" is_catalog_page="true" %}
+    {% include "include/component/filter/filter_band.html" with object_list=page_obj results_caption="resultados de búsqueda" is_catalog_page="true" %}
 
     {# Resultados de busqueda #}
     <section class="o-section">
@@ -34,7 +31,7 @@
         <div class="o-card-product-wrap">
 
           {% for book in object_list %}
-{#              {{ book.get_parent|inspect }}#}
+            {#{{ book.get_parent|inspect }}#}
             {# Card detalle producto (Libro) #}
             {% include "include/component/card/product_card.html" with object=book only %}
           {% endfor %}

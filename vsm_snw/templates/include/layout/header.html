@@ -1,5 +1,5 @@
 {#  From Settings  #}
-{% load wagtailsettings_tags %}
+{% load wagtailsettings_tags wagtailcore_tags svg_tags i18n menu_tags static wagtailuserbar %}
 {% get_settings use_default_site=True %}
 
 {% load wagtailcore_tags wagtailimages_tags i18n menu_tags static wagtailuserbar search_form %}
@@ -28,14 +28,13 @@
       {# Buscador y Menu hamburguesa #}
       <div class="c-header__cta">
 
-          {% get_search_form %}
-
-{#        <div class="o-search">#}
-          {#<form></form>#}
-{#          <button class="o-btn-round o-btn-round_primary i-search">#}
-{#            <span class="u-hidden">{% trans "Buscar" %}</span>#}
-{#          </button>#}
-{#        </div>#}
+        {% if self != null %}
+          <button
+            class="c-header__search-btn o-btn-round o-btn-round_primary i-search js-search-open"
+          >
+            <span class="u-hidden">{% trans "Buscar" %}</span>
+          </button>
+        {% endif %}
 
         <button
           class="
@@ -55,6 +54,9 @@
       {% main_menu add_sub_menus_inline=True apply_active_classes=True %}
 
     </div>
+
+    {# Search form for header #}
+    {% include 'include/component/search_header.html' %}
 
   </header>
 

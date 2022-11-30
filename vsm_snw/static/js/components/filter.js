@@ -22,6 +22,11 @@ export default function initFilters() {
         createChip(element.textContent)
       }
 
+      const filterType = document.querySelector("[name='type']");
+      if (filterType) {
+        getCurrentSelection(filterType.value)
+      }
+
       // Ocultar o mostrar el botón de borrar filtros
       hideOrShowClearButton()
     })
@@ -77,18 +82,23 @@ export function removeChipIntoClick(element) {
 
   // Recorrer elementos del formulario
   Array.from(formFilter.elements).filter(input => {
-    const inputParent = element.target.closest(".c-filter__chip")
+    if (input.tagName == "INPUT") {
+      if (input.labels[0]) {
+        const inputParent = element.target.closest(".c-filter__chip")
 
-    // Valida que exita el label en el elemento
-    if (input.labels[0]) {
-      // Valida si los contenidos del chip y el input son iguales para removerlo
-      if (input.labels[0].textContent.trim() == inputParent.getAttribute("data-id-filter").trim()) {
-        // Pasa todos los inputs a unchecked
-        input.checked = false
-        getNumberCounter(input);
-        removeChip(element.target.closest(".c-filter__chip"))
+        // Valida que exita el label en el elemento
+        if (input.labels[0]) {
+          // Valida si los contenidos del chip y el input son iguales para removerlo
+          if (input.labels[0].textContent.trim() == inputParent.getAttribute("data-id-filter").trim()) {
+            // Pasa todos los inputs a unchecked
+            input.checked = false
+            getNumberCounter(input);
+            removeChip(element.target.closest(".c-filter__chip"))
+          }
+        }
       }
     }
+
   })
 
   // Ocultar o mostrar el botón de borrar filtros
@@ -183,12 +193,16 @@ export function clearFilters() {
   hideOrShowClearButton()
 }
 
-export function hiddenFormFilter(event){
-    const filter_catalogo = document.querySelector(".js_filter_catalogo");
+export function hiddenFormFilter(event) {
+  getCurrentSelection(event.target.value);
+}
 
-    if(event.target.value == 'Catálogo Santillana 2022 - 2023'){
-        filter_catalogo.classList.remove('u-hidden')
-    }else{
-        filter_catalogo.classList.add('u-hidden')
-    }
+function getCurrentSelection(element) {
+  const filter_catalogo = document.querySelector(".js_filter_catalogo");
+
+  if (element == 'catalog') {
+    filter_catalogo.classList.remove('u-hidden')
+  } else {
+    filter_catalogo.classList.add('u-hidden')
+  }
 }
