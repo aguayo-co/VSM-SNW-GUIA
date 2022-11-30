@@ -1,10 +1,8 @@
 {% load i18n %}
-{% load inspector %}
 
 <div class="o-paginator">
 
-
-  <nav class="o-paginator__navigation">
+  <div class="o-paginator__navigation">
 
     {% if object_list.has_previous %}
       <a
@@ -16,17 +14,27 @@
         <span class="u-hidden">Icono flecha</span>
       </a>
     {% endif %}
-  
-    {% for page_num in paginator.page_range %}
+
+    {% if object_list.paginator.num_pages > 1 %}
+
+      <span class="o-paginator__number active">
+        {{ object_list.number }}
+      </span>
+
+      <span>
+        {{ object_list.paginator.ELLIPSIS }}
+      </span>
+
       <a
-        href="?page={{ page_num }}"
-        class="o-paginator__number {% if page_num == object_list.number %}active{% endif %}"
-        data-page={{ page_num }}
+        href="?page={{ object_list.paginator.num_pages }}"
+        class="o-paginator__number"
+        data-page={{ object_list.paginator.num_pages }}
         @click.prevent="goToPage"
       >
-        {{ page_num }}
+        {{ object_list.paginator.num_pages }}
       </a>
-    {% endfor %}
+
+    {% endif %}
   
     {% if object_list.has_next %}
       <a
@@ -39,7 +47,7 @@
       </a>
     {% endif %}
   
-  </nav>
+  </div>
 
   <p class="o-paginator__lead">
     {{ object_list|length }}
