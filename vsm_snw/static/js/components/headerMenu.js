@@ -1,79 +1,84 @@
 export default class headerMenuNavigation {
-    constructor() {
-        this.element = document.querySelector(".js-header-target");
-        this.targetSubmenu = ".js-header-target-submenu";
+  constructor() {
+    this.element = document.querySelector(".js-header-target");
+    this.targetSubmenu = ".js-header-target-submenu";
 
-        this.btnBurgerMenu = this.element.querySelector(".js-header-toggle-menu");
-        this.btnsSubMenu = this.element.querySelectorAll(".js-header-submenu-btn");
-        this.btnsBackSubMenu = this.element.querySelectorAll(".js-header-back-btn");
+    this.btnBurgerMenu = this.element.querySelector(".js-header-toggle-menu");
+    this.btnsSubMenu = this.element.querySelectorAll(".js-header-submenu-btn");
+    this.btnsBackSubMenu = this.element.querySelectorAll(".js-header-back-btn");
 
-        // Class to show menus
-        this.classIsOpenBurgerMenu = "is-open" // Toggle burger menu
-        this.classIsOpenSubMenu = "is-open-submenu" // Show sub menu
+    // Class to show menus
+    this.classIsOpenBurgerMenu = "is-open" // Toggle burger menu
+    this.classIsOpenSubMenu = "is-open-submenu" // Show sub menu
 
-        this.init()
-    }
+    this.init()
+  }
 
-    init() {
-        this.toggleMenuToMobile()
-        this.clickToShowSubMenu()
-        this.clickToBackToMenu()
-    }
+  init() {
+    this.toggleMenuToMobile()
+    this.clickToShowSubMenu()
+    this.clickToBackToMenu()
+  }
 
-    toggleMenuToMobile() {
-        this.btnBurgerMenu.addEventListener("click", () => {
-            this.element.classList.toggle(this.classIsOpenBurgerMenu)
+  toggleMenuToMobile() {
+    this.btnBurgerMenu.addEventListener("click", () => {
+      this.element.classList.toggle(this.classIsOpenBurgerMenu)
 
-            var listOfTargetSubMenu = document.querySelectorAll(this.targetSubmenu);
-            listOfTargetSubMenu.forEach(currentSubMenu => {
-                if (currentSubMenu.classList.contains(this.classIsOpenSubMenu)) {
-                    currentSubMenu.classList.remove(this.classIsOpenSubMenu)
-                }
-            });
-        })
-    }
+      var listOfTargetSubMenu = document.querySelectorAll(this.targetSubmenu);
+      listOfTargetSubMenu.forEach(currentSubMenu => {
+        if (currentSubMenu.classList.contains(this.classIsOpenSubMenu)) {
+          currentSubMenu.classList.remove(this.classIsOpenSubMenu)
+        }
+      });
+    })
+  }
 
-    clickToShowSubMenu() {
+  clickToShowSubMenu() {
 
-        this.btnsSubMenu.forEach(currentBtn => {
+    this.btnsSubMenu.forEach(currentBtn => {
 
-            currentBtn.addEventListener("click", () => {
+      currentBtn.addEventListener("click", () => {
 
-                var parentCurrentBtn = currentBtn.closest(this.targetSubmenu);
+        var parentCurrentBtn = currentBtn.closest(this.targetSubmenu);
 
-                if (parentCurrentBtn.classList.contains(this.classIsOpenSubMenu)) {
+        if (parentCurrentBtn.classList.contains(this.classIsOpenSubMenu)) {
 
-                    parentCurrentBtn.classList.remove(this.classIsOpenSubMenu)
+          parentCurrentBtn.classList.remove(this.classIsOpenSubMenu)
 
-                } else {
+        } else {
+          var parentCurrentBtn = currentBtn.closest(this.targetSubmenu);
 
-                    this.btnsSubMenu.forEach(siblingsMenu => {
+          if (this.element.classList.contains("is-search-open")) {
+            this.element.classList.remove("is-search-open")
+          }
 
-                        var parentSiblings = siblingsMenu.closest(this.targetSubmenu);
+          this.btnsSubMenu.forEach(siblingsMenu => {
 
-                        if (parentSiblings.classList.contains(this.classIsOpenSubMenu)) {
-                            siblingsMenu.closest(this.targetSubmenu).classList.remove(this.classIsOpenSubMenu)
-                        }
+            var parentSiblings = siblingsMenu.closest(this.targetSubmenu);
 
-                    });
+            if (parentSiblings.classList.contains(this.classIsOpenSubMenu)) {
+              siblingsMenu.closest(this.targetSubmenu).classList.remove(this.classIsOpenSubMenu)
+            }
 
-                    currentBtn.closest(this.targetSubmenu).classList.add(this.classIsOpenSubMenu)
+          });
 
-                }
+          currentBtn.closest(this.targetSubmenu).classList.add(this.classIsOpenSubMenu)
 
-            })
+        }
 
-        });
-    }
+      })
 
-    clickToBackToMenu() {
-        this.btnsBackSubMenu.forEach(currentBackBtn => {
-            currentBackBtn.addEventListener("click", () => {
-                if (currentBackBtn.closest(this.targetSubmenu)) {
-                    currentBackBtn.closest(this.targetSubmenu).classList.remove(this.classIsOpenSubMenu)
-                }
-            })
-        });
-    }
+    });
+  }
+
+  clickToBackToMenu() {
+    this.btnsBackSubMenu.forEach(currentBackBtn => {
+      currentBackBtn.addEventListener("click", () => {
+        if (currentBackBtn.closest(this.targetSubmenu)) {
+          currentBackBtn.closest(this.targetSubmenu).classList.remove(this.classIsOpenSubMenu)
+        }
+      })
+    });
+  }
 
 }

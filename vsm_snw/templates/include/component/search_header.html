@@ -1,0 +1,44 @@
+{% load wagtailsettings_tags search_form %}
+{% get_search_form as search_form %}
+
+{# Search component #}
+{% if self != null %}
+  <div class="c-header__search js-search-target">
+    <div class="c-header__search-content">
+
+      <p class="c-filter__label">¿Qué estás buscando?</p>
+
+      <form class="o-search-input" method="GET" action="{% url 'search' %}">
+
+        {% for field in search_form %}
+
+          {% if field.name == "query" %}
+
+              {# Input to search #}
+              <div class="o-search-input__field">
+                <input name="{{ field.name }}" placeholder="Busca en Santillana Contigo" class="c-filter__input js-input-field"/>
+              </div>
+
+              <div class="o-search-input__actions">
+                {# Button to reset input #}
+                <button type="button" class="c-filter__chip-close i-close js-input-clear"></button>
+
+                {# Button to form submit #}
+                <button class="o-search-input__action i-search">Buscar</button>
+
+                {# Button to form close #}
+                <button
+                  type="button"
+                  class="c-header__search-close i-after-chevron-up js-search-close"
+                ></button>
+              </div>
+          
+          {% endif %}
+
+        {% endfor %}
+
+      </form>
+
+    </div>
+  </div>
+{% endif %}

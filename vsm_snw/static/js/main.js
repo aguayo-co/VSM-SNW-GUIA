@@ -10,12 +10,14 @@ import showOrHideCookie from "./components/cookies";
 import CounterTime from "./components/counterTime";
 import VideoPlay from "./components/videoPlay";
 import initFilters, { toggleCounterOfFilter, removeChipIntoClick, clearFilters, goToPage, orderElements, hiddenFormFilter } from "./components/filter";
+import HideSearch from "./components/search";
 
 // AlpineJS
 window.Alpine = Alpine;
 
 window.onload = function () {
   new headerMenuNavigation();
+  new HideSearch();
   renderSliders();
   showOrHideCookie();
 

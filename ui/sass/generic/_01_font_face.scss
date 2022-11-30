@@ -131,6 +131,11 @@
     content: $i-chevron-up;
   }
 }
+.i-after-chevron-up {
+  &::after {
+    content: $i-chevron-up;
+  }
+}
 
 /**
 * @icon .i-chevron-right
@@ -351,6 +356,17 @@
 */
 .i-search {
   &::before {
+    content: $i-search;
+  }
+}
+
+/**
+* @icon .i-search
+* @markup
+*   <span class="i-search"></span>
+*/
+.i-after-search {
+  &::after {
     content: $i-search;
   }
 }
