@@ -32,7 +32,6 @@ if settings.DEBUG:
 
     # Serve static and media files from development server
     urlpatterns += staticfiles_urlpatterns()
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     # Testing for 404 & 500 Responses
     urlpatterns.append(path("test_404/", Test404View.as_view()))
     urlpatterns.append(path("test_500/", Test500View.as_view()))
@@ -42,16 +41,12 @@ if settings.DEBUG or settings.SHOW_DEBUG_TOOLBAR:
     urlpatterns.append(path("__debug__/", include("debug_toolbar.urls")))
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 urlpatterns = urlpatterns + [
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's page serving mechanism. This should be the last pattern in
     # the list:
     path("wagtail-transfer/", include(wagtailtransfer_urls)),
-    re_path(
-        r"^images/([^/]*)/(\d*)/([^/]*)/[^/]*$",
-        ServeView.as_view(),
-        name="wagtailimages_serve",
-    ),
     path("", include(wagtail_urls)),
     # Alternatively, if you want Wagtail pages to be served from a subpath
     # of your site, rather than the site root:
