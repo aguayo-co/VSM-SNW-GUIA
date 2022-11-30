@@ -1,3 +1,4 @@
+{% load inspector %}
 {% load wagtailcore_tags wagtailimages_tags catalog_tags i18n %}
 {% get_catalog_page %}
 
@@ -58,9 +59,10 @@
             {% for grade, subjects in catalog_items.items %}
 
               <li class="c-catalog-index__grade c-catalog-index__grade_{{ grade.color }} o-card u-rounded-16">
+                {% image grade.image original as grade_image %}
                 <div
                   class="c-catalog-index__grade-vector"
-                  {% if grade.image %} style="background-image: url({{ grade.image.url }})" {% endif %}
+                  {% if grade_image %} style="background-image: url({{ grade_image.url }})" {% endif %}
                 >
                   <p class="c-catalog-index__grade-name">{{ grade.name }}</p>
                 </div>

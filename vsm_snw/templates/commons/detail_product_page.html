@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load wagtailcore_tags svg_tags wagtailembeds_tags catalog_tags i18n %}
+{% load wagtailcore_tags wagtailimages_tags wagtailembeds_tags catalog_tags i18n %}
 
 {% block opengraph %}
   {% include 'include/open_graph.html' %}
@@ -58,7 +58,7 @@
 
         {% if self.image %}
           <figure class="l-thematic-content__figure">
-            {% svg-image self.image fill-350x476 class="l-thematic-content__img"  %}
+            {% image self.image fill-350x476 class="l-thematic-content__img"  %}
           </figure>
         {% endif %}
 

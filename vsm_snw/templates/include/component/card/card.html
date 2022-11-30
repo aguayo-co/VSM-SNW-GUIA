@@ -1,10 +1,10 @@
-{% load wagtailcore_tags svg_tags i18n %}
+{% load wagtailcore_tags wagtailimages_tags i18n %}
 
 
 <article class="o-card o-card_w285 u-rounded-16">
 
   <figure class="o-card__figure">
-    {% svg-image featured_card.value.image fill-285x214 class="o-card__img"  %}
+    {% image featured_card.value.image fill-285x214 class="o-card__img"  %}
   </figure>
 
   <div class="o-card__content">

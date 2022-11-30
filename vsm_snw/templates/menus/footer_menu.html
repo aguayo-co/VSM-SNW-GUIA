@@ -2,7 +2,7 @@
 {% load wagtailsettings_tags %}
 {% get_settings use_default_site=True %}
 
-{% load i18n static wagtailcore_tags svg_tags %}
+{% load i18n static wagtailcore_tags wagtailimages_tags %}
 
 
 {% spaceless %}
@@ -20,7 +20,7 @@
 
           <a href="{% pageurl settings_site.logo_url %}" title="Santillana">
             <figure class="c-footer__brand">
-              {% svg-image settings_site.logo_footer fill-205x48 %}
+              {% image settings_site.logo_footer fill-205x48 %}
             </figure>
           </a>
 

@@ -1,4 +1,4 @@
-{% load wagtailcore_tags svg_tags i18n wagtailuserbar %}
+{% load wagtailcore_tags wagtailimages_tags i18n wagtailuserbar %}
 
 {% spaceless %}
   
@@ -23,9 +23,9 @@
             {# Card testimonio #}
             <li class="c-testimonial swiper-slide">
 
-              {% if testimonial.avatar.avatar %}
+              {% if testimonial.avatar %}
                 <figure class="c-testimonial__figure">
-                  {% svg-image testimonial.avatar fill-100x100 class="o-img" %}
+                  {% image testimonial.avatar fill-100x100 class="o-img" %}
                 </figure>
               {% endif %}
 

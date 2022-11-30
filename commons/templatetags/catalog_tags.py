@@ -16,7 +16,7 @@ def get_catalog_index(context):
         .distinct()
         .order_by("grade__number")
     )
-    for product in element_list:
+    for product in element_list.iterator():
         catalog_items[product.grade].append(product.subject)
     catalog_items = {
         key: sorted(set(values), key=lambda x: x.name)
