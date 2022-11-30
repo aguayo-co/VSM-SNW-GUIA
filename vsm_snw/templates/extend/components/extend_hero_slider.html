@@ -52,7 +52,7 @@
                           {% if self.secondary_action_url %}
                               <a
                                   class="o-btn o-btn_secondary l-slide__button"
-                                  href="self.secondary_action_url">
+                                  href="{% pageurl self.secondary_action_url %}">
                                   {{ self.secondary_action_text }}
                               </a>
                           {% endif %}
