@@ -14,7 +14,17 @@
         {% block primary_action %}{% endblock primary_action %}
       </header>
 
-      {% block secondary_action %}{% endblock secondary_action %}
+      {% block secondary_action %}
+        <a
+          href="{% pageurl catalog_page %}?grade={{ self.grade.pk }}&subject={{ self.subject.pk }}"
+          title="{% trans 'Filtrar por ' %} {{ self.subject }} de {{ self.grade }}"
+          class="o-btn o-btn_secondary"
+        >
+          {{ self.subject }} 
+          {% if self.grade and self.subject %}de{% endif %}
+          {{ self.grade }}
+        </a>
+      {% endblock secondary_action %}
 
     </div>
 
