@@ -9,6 +9,7 @@ import Dropdown from "./components/dropdown";
 import showOrHideCookie from "./components/cookies";
 import CounterTime from "./components/counterTime";
 import VideoPlay from "./components/videoPlay";
+import "./components/share";
 import initFilters, { toggleCounterOfFilter, removeChipIntoClick, clearFilters, goToPage, orderElements } from "./components/filter";
 
 // AlpineJS

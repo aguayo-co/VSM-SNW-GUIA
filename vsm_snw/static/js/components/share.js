@@ -1,6 +1,6 @@
-export default function copyUrl() {
+export default function copyUrl(e) {
   const aux = document.createElement("input");
-  const msgLinkCopy = document.getElementsByClassName("js-copyUriMsg")[0];
+  const msgLinkCopy = e.querySelector(".js-copyUriMsg");
 
   aux.setAttribute("value", window.location.href);
   document.body.appendChild(aux);
@@ -10,7 +10,12 @@ export default function copyUrl() {
   toggleMessage(msgLinkCopy);
 };
 
-const copyUriBtn = document.getElementsByClassName("js-copyUri")[0];
+const copyUriBtns = document.querySelectorAll(".js-copyUri");
+copyUriBtns.forEach(copyUriBtn => {
+  copyUriBtn && copyUriBtn.addEventListener("click", () => {
+    copyUrl(copyUriBtn)
+  });
+});
 
 function toggleMessage(msgLinkCopy) {
   msgLinkCopy.classList.add("is-ico-list_show");
@@ -19,5 +24,3 @@ function toggleMessage(msgLinkCopy) {
     msgLinkCopy.classList.remove("is-ico-list_show");
   }, 2000);
 }
-
-copyUriBtn && copyUriBtn.addEventListener("click", copyUrl);
