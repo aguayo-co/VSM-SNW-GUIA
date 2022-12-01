@@ -16,14 +16,3 @@
     {{ catalog_page.title }}
   </a>
 {% endblock primary_action %}
-
-{% block secondary_action %}
-  <a
-    href="{{ self.student_book.url }}"
-    title="{% trans 'Ir a ' %} {{ self.student_book }}"
-    target="_blank"
-    class="o-btn o-btn_secondary"
-  >
-    {{ self.title }}
-  </a>
-{% endblock secondary_action %}
