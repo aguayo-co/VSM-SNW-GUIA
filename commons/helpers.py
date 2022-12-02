@@ -20,5 +20,7 @@ class ImageChooserForOldSVG(ImageChooserBlock):
                 for posible_component_name in posible_component_names:
                     if posible_component_name in value:
                         new_values.append(value[posible_component_name])
+            else:
+                new_values.append(value)
         new_bulk = super().bulk_to_python(new_values)
         return new_bulk
