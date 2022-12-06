@@ -399,7 +399,7 @@ class CategoryHomePage(BasePage, OrderMixin):
                 .order_by(order_by)
             )
         else:
-            queryset = self.get_children().live()
+            queryset = self.get_children().specific().live()
 
         paginator = Paginator(queryset, items_per_page)
 
@@ -448,7 +448,7 @@ class ThematicHomePage(BasePage, OrderMixin):
                 .order_by(order_by)
             )
         else:
-            queryset = self.get_children().live()
+            queryset = self.get_children().specific().live()
 
         paginator = Paginator(queryset, items_per_page)
 
