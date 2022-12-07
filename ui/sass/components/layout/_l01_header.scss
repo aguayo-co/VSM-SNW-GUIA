@@ -345,6 +345,7 @@
     line-height: 1.2;
 
     .is-open-submenu &,
+    &.is-current,
     &:hover {
       border-bottom-color: $c-brand-primary;
       color: $c-brand-primary;
