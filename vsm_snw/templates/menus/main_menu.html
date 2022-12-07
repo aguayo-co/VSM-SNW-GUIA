@@ -1,7 +1,5 @@
-{% load catalog_tags %}
+{% load catalog_tags i18n wagtailcore_tags menu_tags %}
 {% get_catalog_index %}
-
-{% load i18n wagtailcore_tags menu_tags %}
 
 
 {% spaceless %}
@@ -17,7 +15,12 @@
           {% if menu_item.has_children_in_menu or menu_item.link_page.CONTENT_FIELD == "_content_catalog" %}
             <button
               type="button"
-              class="c-header__link c-header__link_menu c-header__link_icon js-header-submenu-btn"
+              class="
+                c-header__link c-header__link_menu
+                c-header__link_icon
+                js-header-submenu-btn
+                {% if menu_item.active_class %}is-current{% endif %}
+              "
             >
               {{ menu_item.text }}
             </button>
@@ -28,6 +31,7 @@
               class="
                 c-header__link
                 c-header__link_menu
+                {% if menu_item.active_class %}is-current{% endif %}
               "
             >
               {{ menu_item.text }}
