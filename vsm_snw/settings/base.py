@@ -95,6 +95,7 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "wagtail_tag_manager.context_processors.consent_state",
                 "django.template.context_processors.i18n",
+                "wagtailmenus.context_processors.wagtailmenus",
             ],
         },
     },
