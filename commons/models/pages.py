@@ -19,15 +19,20 @@ from wagtail.search import index
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 
 from commons.models.components import ThematicContentComponent
-from commons.models.fields import (BlogPageStreamField, CatalogPageStreamField,
-                                   CategoryHomePageStreamField,
-                                   ContentPageStreamField,
-                                   CourseDetailStreamField,
-                                   DetailArticlePageStreamField,
-                                   DetailProductIntroStreamField,
-                                   DetailProductStreamField, FullStreamField,
-                                   HeroStreamField, HomeStreamField,
-                                   ThematicHomePageStreamField)
+from commons.models.fields import (
+    BlogPageStreamField,
+    CatalogPageStreamField,
+    CategoryHomePageStreamField,
+    ContentPageStreamField,
+    CourseDetailStreamField,
+    DetailArticlePageStreamField,
+    DetailProductIntroStreamField,
+    DetailProductStreamField,
+    FullStreamField,
+    HeroStreamField,
+    HomeStreamField,
+    ThematicHomePageStreamField,
+)
 from commons.models.mixins import FilterMixin, OrderMixin
 from commons.models.snippets import Degree
 

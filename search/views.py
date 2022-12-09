@@ -1,3 +1,4 @@
+from django.contrib.contenttypes.models import ContentType
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.template.response import TemplateResponse
 from django.views.generic import ListView
@@ -54,8 +55,10 @@ class SearchView(FilterMixin, ListView, OrderMixin):
         order_by = self.get_order_by(self.request)
 
         # Exclude Redirections
-        queryset.exclude(
-            content_type__model__in=["externalredirect", "homepage", "thankyoupage"]
+        queryset = queryset.exclude(
+            content_type__in=ContentType.objects.filter(
+                model__in=["externalredirect", "homepage", "thankyoupage"]
+            )
         )
 
         # Allow Relevance Order
