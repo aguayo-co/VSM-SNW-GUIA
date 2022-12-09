@@ -1,0 +1,81 @@
+{% load i18n catalog_tags %}
+{% get_catalog_page %}
+
+<div class="o-canvas">
+
+  <div class="o-filter-band">
+    <p
+      id="js-filter-label-chip-set"
+      class="o-filter-band__caption o-primary o-light o-subtitle"
+    >
+
+      {% if object_list.paginator.count == 0%}
+        <strong>¡Lo sentimos!</strong>
+        No encontramos resultados de búsqueda
+      {% else %}
+        Se encontr{{ object_list.paginator.count|pluralize:"o,aron" }}
+        <strong>{{  object_list.paginator.count }}</strong>
+        resultad{{ object_list.paginator.count|pluralize:"o,os" }}
+      {% endif %}
+
+      {% if filter_form.data.query  %}
+        {% trans "con la frase" %}
+        <strong>{{ filter_form.data.query }}</strong>
+      {% endif %}
+
+      {% trans "en" %}
+      {% if filter_form.data.type == "catalog" %}
+        <strong>{{ catalog_page.title }}</strong>
+      {% else %}
+        <strong>Todo el sitio web</strong>
+      {% endif %}
+      
+      {% if filter_form.data.subject or filter_form.data.grade or filter_form.data.serie %}
+        {% trans "y filtrando por: " %}
+      {% endif %}
+    </p>
+
+    {# Label of current filter #}
+    <template id="js-filter-label-chip-template">
+      <strong class="o-filter-band__label-chip"></strong>
+    </template>
+
+    {% if not object_list.paginator.count == 0%}
+      {# Ordenado #}
+      <div class="c-filter__item o-filter-band__item">
+
+        <p class="c-filter__toggle i-chevron-down js-dropdown-button">{% trans "Ordenar por" %}</p> 
+
+        <ul class="c-filter__list c-filter__list_bg o-list">
+          {% for option in order_by_options  %}
+
+            <li class="c-filter__option">
+
+              <input
+                id="{{ option.0 }}"
+                class="c-filter__option-input"
+                type="checkbox"
+                name="{{ option.0 }}"
+                value="{{ option.0 }}"
+                {% if choices.data.selected %}checked{% endif %}
+              >
+
+              <label
+                class="c-filter__option-label c-filter__option-label_bg"
+                for="{{ option.0 }}"
+                @click="orderElements"
+              >
+                {{ option.1 }}
+              </label>
+
+            </li>
+
+          {% endfor %}
+        </ul>
+
+      </div>
+    {% endif %}
+
+  </div>
+
+</div> 

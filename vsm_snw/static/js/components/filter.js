@@ -20,6 +20,12 @@ export default function initFilters() {
       // Validar si hay o no filtros aplicados para crear los chips
       if (element.previousElementSibling.checked) {
         createChip(element.textContent)
+        createLabelOfChip(element.textContent)
+      }
+
+      const filterType = document.querySelector("[name='type']");
+      if (filterType) {
+        getCurrentSelection(filterType.value)
       }
 
       // Ocultar o mostrar el botón de borrar filtros
@@ -77,18 +83,23 @@ export function removeChipIntoClick(element) {
 
   // Recorrer elementos del formulario
   Array.from(formFilter.elements).filter(input => {
-    const inputParent = element.target.closest(".c-filter__chip")
+    if (input.tagName == "INPUT") {
+      if (input.labels[0]) {
+        const inputParent = element.target.closest(".c-filter__chip")
 
-    // Valida que exita el label en el elemento
-    if (input.labels[0]) {
-      // Valida si los contenidos del chip y el input son iguales para removerlo
-      if (input.labels[0].textContent.trim() == inputParent.getAttribute("data-id-filter").trim()) {
-        // Pasa todos los inputs a unchecked
-        input.checked = false
-        getNumberCounter(input);
-        removeChip(element.target.closest(".c-filter__chip"))
+        // Valida que exita el label en el elemento
+        if (input.labels[0]) {
+          // Valida si los contenidos del chip y el input son iguales para removerlo
+          if (input.labels[0].textContent.trim() == inputParent.getAttribute("data-id-filter").trim()) {
+            // Pasa todos los inputs a unchecked
+            input.checked = false
+            getNumberCounter(input);
+            removeChip(element.target.closest(".c-filter__chip"))
+          }
+        }
       }
     }
+
   })
 
   // Ocultar o mostrar el botón de borrar filtros
@@ -108,6 +119,21 @@ function createChip(text) {
   clonChip.querySelector(".c-filter__chip-text").textContent = text
 
   setOfFilterChips.appendChild(clonChip);
+}
+
+function createLabelOfChip(text) {
+  const templateLabelChip = document.getElementById("js-filter-label-chip-template");
+  if (templateLabelChip) {
+    const clonLabelChip = templateLabelChip.content.cloneNode(true);
+    const setOfLabelChips = document.getElementById("js-filter-label-chip-set")
+
+    if (setOfLabelChips.classList.contains("u-hidden")) {
+      setOfLabelChips.classList.remove("u-hidden")
+    }
+
+    clonLabelChip.querySelector(".o-filter-band__label-chip").textContent = text
+    setOfLabelChips.append(clonLabelChip)
+  }
 }
 
 function removeChip(element) {
@@ -181,4 +207,19 @@ export function clearFilters() {
   setChips.textContent = ""
 
   hideOrShowClearButton()
+}
+
+export function hiddenFormFilter(event) {
+  getCurrentSelection(event.target.value);
+}
+
+function getCurrentSelection(element) {
+  const filter_catalogo = document.querySelector(".js_filter_catalogo");
+
+  if (element == 'catalog') {
+    filter_catalogo.classList.remove('u-hidden')
+  } else {
+    filter_catalogo.classList.add('u-hidden')
+    clearFilters()
+  }
 }

@@ -27,7 +27,7 @@
     {% include "include/component/filter/filter_band.html" with results_caption="libros de secundaria" is_catalog_page="true" %}
 
     {# Resultados de busqueda #}
-    <section class="o-section">
+    <section {% if object_list %}class="o-section o-section_minor"{% endif %}>
       <div class="o-canvas">
 
         <div class="o-card-product-wrap">
@@ -35,14 +35,30 @@
           {% for book in object_list %}
             {# Card detalle producto (Libro) #}
             {% include "include/component/card/product_card.html" with object=book only %}
+
+          {% empty %}
+
+            <div class="o-primary">
+              <h4 class="o-subtitle">
+                <strong>¿Tienes problemas para encontrar lo que buscas?</strong>
+              </h4>
+          
+              <ul class="o-list-indent o-subtitle">
+                <li>Elimina filtros.</li>
+              </ul>
+            </div>
+          
           {% endfor %}
 
         </div>
 
       </div>
       
-      {# Paginador #}
-      {% include "include/paginator.html" %}
+      {% if object_list %}
+        {# Paginador #}
+        {% include "include/paginator.html" %}
+      {% endif %}
+
     </section>
     {# Fin resultados de busqueda #}
 

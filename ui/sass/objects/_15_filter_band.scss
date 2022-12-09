@@ -1,9 +1,22 @@
+.o-filter-band__caption {
+  @include px-to-rem(max-width, 950px);
+}
+
+.o-filter-band__label-chip {
+  &:not(:last-of-type) {
+    &::after {
+      content: ","
+    }
+  }
+}
+
 @include media-query(medium) {
   .o-filter-band {
     @include flexbox;
     @include justify-content(space-between);
     @include align-items(center);
     @include px-to-rem(padding, $gutter * 3 0);
+    @include px-to-rem(column-gap, 180px);
   }
 
   .o-filter-band__item {
@@ -14,11 +27,12 @@
 @include media-query(medium-max) {
   .o-filter-band {
     @include px-to-rem(padding, $gutter * 7 0);
-    text-align: center;
   }
 
   .o-filter-band__item {
-    width: 100%;
+    @include px-to-rem(max-width, 200px);
     @include px-to-rem(margin-top, $gutter * 3);
+    margin-right: 0;
+    margin-left: auto;
   }
 }

@@ -15,23 +15,19 @@ from wagtail.documents import get_document_model_string
 from wagtail.documents.edit_handlers import DocumentChooserPanel
 from wagtail.fields import RichTextField, StreamField
 from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.search import index
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 
 from commons.models.components import ThematicContentComponent
-from commons.models.fields import (
-    BlogPageStreamField,
-    CatalogPageStreamField,
-    CategoryHomePageStreamField,
-    ContentPageStreamField,
-    CourseDetailStreamField,
-    DetailArticlePageStreamField,
-    DetailProductIntroStreamField,
-    DetailProductStreamField,
-    FullStreamField,
-    HeroStreamField,
-    HomeStreamField,
-    ThematicHomePageStreamField,
-)
+from commons.models.fields import (BlogPageStreamField, CatalogPageStreamField,
+                                   CategoryHomePageStreamField,
+                                   ContentPageStreamField,
+                                   CourseDetailStreamField,
+                                   DetailArticlePageStreamField,
+                                   DetailProductIntroStreamField,
+                                   DetailProductStreamField, FullStreamField,
+                                   HeroStreamField, HomeStreamField,
+                                   ThematicHomePageStreamField)
 from commons.models.mixins import FilterMixin, OrderMixin
 from commons.models.snippets import Degree
 
@@ -399,7 +395,7 @@ class CategoryHomePage(BasePage, OrderMixin):
                 .order_by(order_by)
             )
         else:
-            queryset = self.get_children().live()
+            queryset = self.get_children().specific().live()
 
         paginator = Paginator(queryset, items_per_page)
 
@@ -448,7 +444,7 @@ class ThematicHomePage(BasePage, OrderMixin):
                 .order_by(order_by)
             )
         else:
-            queryset = self.get_children().live()
+            queryset = self.get_children().specific().live()
 
         paginator = Paginator(queryset, items_per_page)
 
@@ -733,6 +729,11 @@ class DetailProductPage(BasePage):
     )
 
     subpage_types = []
+
+    search_fields = BasePage.search_fields + [
+        index.SearchField("thematic_content"),
+        index.FilterField("grade"),
+    ]
 
     class Meta:
         verbose_name = _("Detalle de Producto")

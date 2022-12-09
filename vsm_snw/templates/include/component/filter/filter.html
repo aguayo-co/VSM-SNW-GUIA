@@ -2,9 +2,66 @@
 
 <form class="c-filter js-filter-target" method="GET">
 
-  <h2 class="c-filter__title o-text o-bold u-inherit-color">{% trans "Filtra por" %}</h2>
+  {# Que estas buscando y buscar en #}
+  <fieldset class="c-filter__group c-filter__group_align {% if not search_filter_form %}u-hidden{% endif %}">
 
-  <div class="c-filter__group">
+    {% for field_search in search_filter_form %}
+    
+      {% if field_search.widget_type == "select" %}
+
+        <div class="c-filter__item c-filter__item_flex40">
+
+          <p class="c-filter__label">Buscar en:</p>
+
+          <select name="{{ field_search.name }}" class="c-filter__select" @change="hiddenFormFilter($event)">
+            {% for choice in field_search.subwidgets %}
+                <option
+                  value="{{ choice.data.value }}"
+                  {% if choice.data.selected %}selected{% endif %}
+                >
+                  {{ choice.data.label }}
+                </option>
+            {% endfor %}
+          </select>
+    
+        </div>
+      
+      {% else %}
+
+        <div class="c-filter__item c-filter__item_flex60 c-filter__item_border-none">
+
+          <p class="c-filter__label">¿Qué estás buscando?</p>
+
+          <div class="o-search-input o-search-input_light">
+
+            <div class="o-search-input__field">
+              <input
+                name="{{ field_search.name }}"
+                {% if field_search.value %}
+                  value="{{ field_search.value }}"
+                {% endif %}
+                placeholder="Busca en Santillana Contigo"
+                class="c-filter__input js-input-field"
+              />
+            </div>
+
+            <div class="o-search-input__actions">
+              {# Button to reset input #}
+              <button type="button" class="c-filter__chip-close i-close js-input-clear"></button>
+            </div>
+
+          </div>
+
+        </div>
+        
+      {% endif %}
+
+    {% endfor %}
+
+  </fieldset>
+
+  {# Catalog filters #}
+  <fieldset class="c-filter__group js_filter_catalogo {% if search_filter_form %}u-hidden{% endif %}">
 
     {% for field in filter_form %}
 
@@ -19,7 +76,7 @@
           {{ field.value|length }}
         </span>
 
-        <p class="c-filter__toggle i-chevron-down js-dropdown-button">{{ field.label }}</p> 
+        <p class="c-filter__toggle i-chevron-down js-dropdown-button">{{ field.label }}</p>
 
         <ul class="c-filter__list o-list">
           {% for choices in field.subwidgets  %}
@@ -52,7 +109,7 @@
 
     {% endfor %}
 
-  </div>
+  </fieldset>
 
   {# chips para los filtros #}
   {% include 'include/component/filter/chips.html' %}
@@ -65,12 +122,25 @@
     >
       {% trans "Borrar filtros" %}
     </button>
-    <button
-      type="submit"
-      class="c-filter__action o-btn"
-    >
-      {% trans "Filtrar" %}
-    </button>
+
+
+    {% if search_filter_form %}
+      <button
+        type="submit"
+        class="c-filter__action o-btn i-after-search"
+      >
+        {% trans "Buscar" %}
+      </button>
+    {% else %}
+      <button
+        type="submit"
+        class="c-filter__action o-btn"
+      > 
+        {% trans "Filtrar" %}
+      </button>
+    {% endif %}
+
+
   </footer>
 
 </form>

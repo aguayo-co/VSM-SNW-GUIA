@@ -95,6 +95,7 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "wagtail_tag_manager.context_processors.consent_state",
                 "django.template.context_processors.i18n",
+                "wagtailmenus.context_processors.wagtailmenus",
             ],
         },
     },
@@ -189,12 +190,42 @@ DJANGO_VITE_DEV_MODE = os.environ.get("DJANGO_VITE_DEV_MODE", "False") == "True"
 WAGTAIL_SITE_NAME = "vsm_snw"
 
 # Search
-# https://docs.wagtail.org/en/stable/topics/search/backends.html
-WAGTAILSEARCH_BACKENDS = {
-    "default": {
-        "BACKEND": "wagtail.search.backends.database",
+# https://docs.wagtail.org/en/stable/topics/search/backends.html\
+if os.environ.get("ELASTIC_SEARCH_URL", None):
+    WAGTAILSEARCH_BACKENDS = {
+        "default": {
+            "BACKEND": "wagtail.search.backends.elasticsearch7",
+            "URLS": ["http://es:9200"],
+            #     "URLS": [
+            #     elastic_url
+            #     for elastic_url in os.environ.get(
+            #         "ELASTIC_SEARCH_URL", "http://es:9200".split(" ")
+            #     )
+            # ],
+            "INDEX": "wagtail",
+            "TIMEOUT": 5,
+            "OPTIONS": {},
+            "INDEX_SETTINGS": {
+                "settings": {
+                    "index": {
+                        "number_of_shards": 1,
+                    },
+                    "analysis": {
+                        "analyzer": {
+                            "default": {"type": "spanish"},
+                            "english": {"type": "english"},
+                        }
+                    },
+                }
+            },
+        }
     }
-}
+else:
+    WAGTAILSEARCH_BACKENDS = {
+        "default": {
+            "BACKEND": "wagtail.search.backends.database",
+        }
+    }
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash

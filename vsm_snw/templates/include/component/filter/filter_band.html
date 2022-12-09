@@ -4,50 +4,61 @@
 
   <div class="o-filter-band">
     <p
-      class="o-text o-primary o-light"
+      class="o-primary o-light o-subtitle"
     >
-      {% trans "Encuentra" %}
-      <strong>{{  object_list.paginator.count }}</strong>
-      {% blocktrans %}{{ results_caption }}{% endblocktrans %}
+      {% if object_list.paginator.count == 0%}
 
-      {% if not is_catalog_page %}
-        {{ self.title }}
+        <strong>¡Lo sentimos!</strong>
+        No encontramos resultados de búsqueda
+
+      {% else %}
+
+        {% trans "Encuentra" %}
+        <strong>{{  object_list.paginator.count }}</strong>
+        {% blocktrans %}{{ results_caption }}{% endblocktrans %}
+
+        {% if not is_catalog_page %}
+          {{ self.title }}
+        {% endif %}
+
       {% endif %}
     </p>
 
-    {# Ordenado #}
-    <div class="c-filter__item o-filter-band__item">
+    {% if not object_list.paginator.count == 0 %}
+      {# Ordenado #}
+      <div class="c-filter__item o-filter-band__item">
 
-      <p class="c-filter__toggle i-chevron-down js-dropdown-button">{% trans "Ordenar por" %}</p> 
+        <p class="c-filter__toggle i-chevron-down js-dropdown-button">{% trans "Ordenar por" %}</p> 
 
-      <ul class="c-filter__list c-filter__list_bg o-list">
-        {% for option in self.order_by_options  %}
+        <ul class="c-filter__list c-filter__list_bg o-list">
+          {% for option in self.order_by_options  %}
 
-          <li class="c-filter__option">
+            <li class="c-filter__option">
 
-            <input
-              id="{{ option.0 }}"
-              class="c-filter__option-input"
-              type="checkbox"
-              name="{{ option.0 }}"
-              value="{{ option.0 }}"
-              {% if choices.data.selected %}checked{% endif %}
-            >
+              <input
+                id="{{ option.0 }}"
+                class="c-filter__option-input"
+                type="checkbox"
+                name="{{ option.0 }}"
+                value="{{ option.0 }}"
+                {% if choices.data.selected %}checked{% endif %}
+              >
 
-            <label
-              class="c-filter__option-label c-filter__option-label_bg"
-              for="{{ option.0 }}"
-              @click="orderElements"
-            >
-              {{ option.1 }}
-            </label>
+              <label
+                class="c-filter__option-label c-filter__option-label_bg"
+                for="{{ option.0 }}"
+                @click="orderElements"
+              >
+                {{ option.1 }}
+              </label>
 
-          </li>
+            </li>
 
-        {% endfor %}
-      </ul>
+          {% endfor %}
+        </ul>
 
-    </div>
+      </div>
+    {% endif %}
 
   </div>
 
