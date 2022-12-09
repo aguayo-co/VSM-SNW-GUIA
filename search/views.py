@@ -4,7 +4,7 @@ from django.views.generic import ListView
 from wagtail.models import Page
 from wagtail.search.models import Query
 
-from commons.models import DetailProductPage, FilterMixin
+from commons.models import BasePage, DetailProductPage, FilterMixin
 from commons.models.mixins import OrderMixin
 
 
@@ -43,24 +43,35 @@ def search(request):
 
 class SearchView(FilterMixin, ListView, OrderMixin):
     template_name = "search/search_list.html"
-    queryset = Page.objects.live().specific()
+    queryset = BasePage.objects.live().specific()
     paginate_by = 10
     filter_form_class = "commons.forms.CatalogFilterForm"
     search_filter_form_class = "commons.forms.SearchForm"
 
     def get_queryset(self):
         search_query = self.request.GET.get("query", None)
-        queryset = super().get_queryset().search(search_query)
+        queryset = super().get_queryset()
         order_by = self.get_order_by(self.request)
 
-        if self.request.GET.get("type", None) == "catalog":
-            if order_by:
-                queryset = DetailProductPage.objects.live().order_by(order_by)
-            else:
-                queryset = DetailProductPage.objects.live()
+        # Exclude Redirections
+        queryset.exclude(
+            content_type__model__in=["externalredirect", "homepage", "thankyoupage"]
+        )
 
+        # Allow Relevance Order
+        if order_by == "relevance":
+            order_by = None
+
+        # Filter
+        if self.request.GET.get("type", None) == "catalog":
+            queryset = DetailProductPage.objects.live()
+
+        # Ordering
         if order_by:
-            queryset = super().get_queryset().order_by(order_by).search(search_query)
+            queryset = queryset.order_by(order_by)
+
+        # Search
+        queryset = queryset.search(search_query, order_by_relevance=False)
 
         return queryset
 
@@ -68,9 +79,13 @@ class SearchView(FilterMixin, ListView, OrderMixin):
         context = super().get_context_data(*args, **kwargs)
         context.update(
             {
-                "filter_form": self.get_filter_form(*args, request=self.request, **kwargs),
-                "search_filter_form": self.get_search_filter_form(*args, request=self.request, **kwargs),
-                "order_by_options": self.get_order_by_options()
+                "filter_form": self.get_filter_form(
+                    *args, request=self.request, **kwargs
+                ),
+                "search_filter_form": self.get_search_filter_form(
+                    *args, request=self.request, **kwargs
+                ),
+                "order_by_options": self.get_order_by_options(),
             }
         )
         return context

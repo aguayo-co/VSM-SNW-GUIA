@@ -25,6 +25,11 @@ class SearchForm(Form):
         required=False,
         choices=(
             ("", "Todo el sitio web"),
-            ("catalog", CatalogPage.objects.live().first().title),
-        )
+            (
+                "catalog",
+                CatalogPage.objects.live().first().title
+                if CatalogPage.objects.live().exists()
+                else "",
+            ),
+        ),
     )

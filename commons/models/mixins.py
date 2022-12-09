@@ -24,6 +24,7 @@ class FilterMixin:
 
 class OrderMixin:
     order_by_options = (
+        ("relevance", _("Los más relevantes")),
         ("-visits", _("Los más populares")),
         ("title", _("Ordenar A/Z")),
         ("-title", _("Ordenar Z/A")),
