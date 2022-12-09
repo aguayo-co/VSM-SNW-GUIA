@@ -191,17 +191,16 @@ WAGTAIL_SITE_NAME = "vsm_snw"
 
 # Search
 # https://docs.wagtail.org/en/stable/topics/search/backends.html\
-if os.environ.get("ELASTIC_SEARCH_URL", None):
+if os.environ.get("ELASTIC_SEARCH_URL", None) is not None:
     WAGTAILSEARCH_BACKENDS = {
         "default": {
             "BACKEND": "wagtail.search.backends.elasticsearch7",
-            "URLS": ["http://es:9200"],
-            #     "URLS": [
-            #     elastic_url
-            #     for elastic_url in os.environ.get(
-            #         "ELASTIC_SEARCH_URL", "http://es:9200".split(" ")
-            #     )
-            # ],
+            "URLS": [
+                elastic_url
+                for elastic_url in os.environ.get(
+                    "ELASTIC_SEARCH_URL", "http://es:9200".split(" ")
+                )
+            ],
             "INDEX": "wagtail",
             "TIMEOUT": 5,
             "OPTIONS": {},
