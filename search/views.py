@@ -5,6 +5,7 @@ from wagtail.models import Page
 from wagtail.search.models import Query
 
 from commons.models import DetailProductPage, FilterMixin
+from commons.models.mixins import OrderMixin
 
 
 def search(request):
@@ -40,7 +41,7 @@ def search(request):
     )
 
 
-class SearchView(ListView, FilterMixin):
+class SearchView(FilterMixin, ListView, OrderMixin):
     template_name = "search/search_list.html"
     queryset = Page.objects.live().specific()
     paginate_by = 10
@@ -48,10 +49,19 @@ class SearchView(ListView, FilterMixin):
     search_filter_form_class = "commons.forms.SearchForm"
 
     def get_queryset(self):
-        queryset = super().get_queryset()
         search_query = self.request.GET.get("query", None)
+        queryset = super().get_queryset().search(search_query)
+        order_by = self.get_order_by(self.request)
+
         if self.request.GET.get("type", None) == "catalog":
-            queryset = DetailProductPage.objects.live().search(search_query)
+            if order_by:
+                queryset = DetailProductPage.objects.live().order_by(order_by)
+            else:
+                queryset = DetailProductPage.objects.live()
+
+        if order_by:
+            queryset = super().get_queryset().order_by(order_by).search(search_query)
+
         return queryset
 
     def get_context_data(self, *args, object_list=None, **kwargs):
@@ -59,7 +69,8 @@ class SearchView(ListView, FilterMixin):
         context.update(
             {
                 "filter_form": self.get_filter_form(*args, request=self.request, **kwargs),
-                "search_filter_form": self.get_search_filter_form(*args, request=self.request, **kwargs)
+                "search_filter_form": self.get_search_filter_form(*args, request=self.request, **kwargs),
+                "order_by_options": self.get_order_by_options()
             }
         )
         return context
