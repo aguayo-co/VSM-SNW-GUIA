@@ -25,12 +25,8 @@ class FilterMixin:
 class OrderMixin:
     order_by_options = (
         ("-visits", _("Los más populares")),
-        ("-last_published_at", _("Fecha, Descendente")),
-        ("last_published_at", _("Fecha, Ascendente")),
-        ("owner", _("Autor A/Z")),
-        ("-owner", _("Autor Z/A")),
-        ("category", _("Categoría A/Z")),
-        ("-category", _("Categoría Z/A")),
+        ("title", _("Ordenar A/Z")),
+        ("-title", _("Ordenar Z/A")),
     )
 
     def get_order_by(self, request):
