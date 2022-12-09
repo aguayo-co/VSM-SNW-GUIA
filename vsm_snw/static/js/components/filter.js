@@ -20,6 +20,7 @@ export default function initFilters() {
       // Validar si hay o no filtros aplicados para crear los chips
       if (element.previousElementSibling.checked) {
         createChip(element.textContent)
+        createLabelOfChip(element.textContent)
       }
 
       const filterType = document.querySelector("[name='type']");
@@ -120,6 +121,21 @@ function createChip(text) {
   setOfFilterChips.appendChild(clonChip);
 }
 
+function createLabelOfChip(text) {
+  const templateLabelChip = document.getElementById("js-filter-label-chip-template");
+  if (templateLabelChip) {
+    const clonLabelChip = templateLabelChip.content.cloneNode(true);
+    const setOfLabelChips = document.getElementById("js-filter-label-chip-set")
+
+    if (setOfLabelChips.classList.contains("u-hidden")) {
+      setOfLabelChips.classList.remove("u-hidden")
+    }
+
+    clonLabelChip.querySelector(".o-filter-band__label-chip").textContent = text
+    setOfLabelChips.append(clonLabelChip)
+  }
+}
+
 function removeChip(element) {
   const setOfFilterChips = document.getElementById("js-filter-chip-set")
 
@@ -204,5 +220,6 @@ function getCurrentSelection(element) {
     filter_catalogo.classList.remove('u-hidden')
   } else {
     filter_catalogo.classList.add('u-hidden')
+    clearFilters()
   }
 }
