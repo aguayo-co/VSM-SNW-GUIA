@@ -198,8 +198,8 @@ if os.environ.get("ELASTIC_SEARCH_URL", None) is not None:
             "URLS": [
                 elastic_url
                 for elastic_url in os.environ.get(
-                    "ELASTIC_SEARCH_URL", "http://es:9200".split(" ")
-                )
+                    "ELASTIC_SEARCH_URL", ["http://es:9200"]
+                ).split(" ")
             ],
             "INDEX": "wagtail",
             "TIMEOUT": 5,
