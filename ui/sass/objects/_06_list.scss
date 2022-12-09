@@ -20,3 +20,8 @@
 .o-list {
   list-style: none;
 }
+
+.o-list-indent {
+  @include px-to-rem(margin-top, $gutter * 2);
+  @include px-to-rem(padding-left, $gutter * 5);
+}

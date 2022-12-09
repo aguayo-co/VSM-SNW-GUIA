@@ -20,6 +20,7 @@
 
 .c-filter__item {
   position: relative;
+  flex: 1 100%;
   border: none;
   font-weight: $f-medium;
   text-align: left;
@@ -242,7 +243,7 @@
 .c-filter__chip {
   border: 2px solid;
   @include px-to-rem(border-radius, 50px);
-  @include px-to-rem(padding, 14px $gutter * 2);
+  @include px-to-rem(padding, $gutter $gutter * 2);
   line-height: 1;
 }
 
@@ -302,7 +303,6 @@
   }
 
   .c-filter__item {
-    flex: 1 100%;
     border-bottom: 2px solid;
 
     &.is-show {
@@ -342,10 +342,6 @@
     @include px-to-rem(row-gap, $gutter * 3);
   }
 
-  .c-filter__item {
-    flex: 1 100%;
-  }
-
   .c-filter__toggle {
     border-bottom: 2px solid;
 
@@ -366,5 +362,15 @@
 
   .c-filter__actions {
     @include px-to-rem(margin-top, $gutter * 5);
+  }
+}
+
+@media(min-width: 480px) and(max-width: 1023px) {
+  .c-filter__group {
+    @include px-to-rem(column-gap, $gutter * 2);
+  }
+
+  .c-filter__item {
+    flex: 1 45%;
   }
 }
