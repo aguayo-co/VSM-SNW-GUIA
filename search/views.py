@@ -53,6 +53,7 @@ class SearchView(FilterMixin, ListView, OrderMixin):
         search_query = self.request.GET.get("query", None)
         queryset = super().get_queryset()
         order_by = self.get_order_by(self.request)
+        order_by_relevance = False
 
         # Exclude Redirections
         queryset = queryset.exclude(
@@ -64,17 +65,24 @@ class SearchView(FilterMixin, ListView, OrderMixin):
         # Allow Relevance Order
         if order_by == "relevance":
             order_by = None
+            order_by_relevance = True
 
         # Filter
         if self.request.GET.get("type", None) == "catalog":
             queryset = DetailProductPage.objects.live()
 
-        # Ordering
-        if order_by:
+        # Ordering by database
+        if order_by and order_by not in ["-visits", "visits"]:
             queryset = queryset.order_by(order_by)
 
         # Search
-        queryset = queryset.search(search_query, order_by_relevance=False)
+        queryset = queryset.search(search_query, order_by_relevance=order_by_relevance)
+
+        # Ordering by specific count
+        if order_by in ["-visits", "visits"]:
+            queryset = sorted(
+                queryset, key=lambda item: item.hit_count.hits, reverse=True
+            )
 
         return queryset
 
