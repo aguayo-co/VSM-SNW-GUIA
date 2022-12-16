@@ -69,7 +69,12 @@ class SearchView(FilterMixin, ListView, OrderMixin):
 
         # Filter
         if self.request.GET.get("type", None) == "catalog":
-            queryset = DetailProductPage.objects.live()
+            filters = {
+                f"{a_filter}__in": self.request.GET.getlist(a_filter, None)
+                for a_filter in self.filter_names
+                if self.request.GET.get(a_filter, None) not in ["", None]
+            }
+            queryset = DetailProductPage.objects.filter(**filters).live()
 
         # Ordering by database
         if order_by and order_by not in ["-visits", "visits"]:

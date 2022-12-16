@@ -6,6 +6,7 @@ from django.utils.translation import gettext_lazy as _
 class FilterMixin:
     filter_form_class = "commons.forms.CatalogFilterForm"
     search_filter_form_class = "commons.forms.SearchForm"
+    filter_names = ["serie", "subject", "grade"]
 
     def get_filter_form(self, *args, **kwargs):
         request = kwargs.get("request", None)
