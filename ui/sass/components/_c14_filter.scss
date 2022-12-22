@@ -12,10 +12,15 @@
   &:first-of-type {
     @include px-to-rem(margin-right, $gutter);
   }
+
+  &::after {
+    @include px-to-rem(font-size, $gutter * 2);
+  }
 }
 
 .c-filter__item {
   position: relative;
+  flex: 1 100%;
   border: none;
   font-weight: $f-medium;
   text-align: left;
@@ -75,6 +80,50 @@
       }
     }
   }
+}
+
+.c-filter__group,
+.c-filter__select {
+  border: none;
+}
+
+.c-filter__label {
+  display: block;
+  @include px-to-rem(margin-bottom, $gutter);
+  font-weight: $f-medium;
+  color: $c-primary-50;
+}
+
+.c-filter__input {
+  width: 100%;
+  @include px-to-rem(border-radius, $gutter * 4);
+  border: none;
+  @include px-to-rem(padding, 20px $gutter * 3);
+  @include px-to-rem(font-size, 14px);
+  color: $c-on-primary;
+
+  .o-search-input__field & {
+    @include px-to-rem(border-radius, $gutter * 4 0 0 $gutter * 4);
+    background: $c-primary-100;
+  }
+
+  .o-search-input_light & {
+    background-color: $c-neutro;
+  }
+
+  &::placeholder {
+    color: rgba($color: $c-on-primary, $alpha: 0.5);
+  }
+}
+
+.c-filter__select {
+  width: 100%;
+  @include px-to-rem(padding, 16px);
+  font-family: $f-default;
+  font-weight: $f-medium;
+  cursor: pointer;
+  color: $c-primary-50;
+  background: transparent;
 }
 
 .c-filter__list {
@@ -194,7 +243,7 @@
 .c-filter__chip {
   border: 2px solid;
   @include px-to-rem(border-radius, 50px);
-  @include px-to-rem(padding, 14px $gutter * 2);
+  @include px-to-rem(padding, $gutter $gutter * 2);
   line-height: 1;
 }
 
@@ -249,13 +298,25 @@
     @include px-to-rem(column-gap, $gutter * 2);
   }
 
+  .c-filter__group_align {
+    align-items: (flex-end);
+  }
+
   .c-filter__item {
-    flex: 1 100%;
     border-bottom: 2px solid;
 
     &.is-show {
       border: 2px solid;
     }
+  }
+  .c-filter__item_flex60 {
+    flex: 0 1 80%;
+  }
+  .c-filter__item_flex40 {
+    flex: 0 1 40%;
+  }
+  .c-filter__item_border-none {
+    border: none;
   }
 
   .c-filter__list {
@@ -270,7 +331,6 @@
 @include media-query(medium-max) {
   .c-filter {
     @include flex-direction(column);
-    @include px-to-rem(row-gap, $gutter * 5);
     @include px-to-rem(padding-bottom, $gutter * 4);
   }
 
@@ -280,10 +340,6 @@
     @include justify-content(space-between);
     @include align-items(center);
     @include px-to-rem(row-gap, $gutter * 3);
-  }
-
-  .c-filter__item {
-    flex: 1 100%;
   }
 
   .c-filter__toggle {
@@ -298,5 +354,23 @@
         @include px-to-rem(margin-top, $gutter);
       }
     }
+  }
+
+  .c-filter__select {
+    border-bottom: 2px solid;
+  }
+
+  .c-filter__actions {
+    @include px-to-rem(margin-top, $gutter * 5);
+  }
+}
+
+@media(min-width: 480px) and(max-width: 1023px) {
+  .c-filter__group {
+    @include px-to-rem(column-gap, $gutter * 2);
+  }
+
+  .c-filter__item {
+    flex: 1 45%;
   }
 }

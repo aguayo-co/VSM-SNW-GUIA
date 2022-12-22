@@ -79,6 +79,10 @@ h6 {
   @include px-to-rem(font-size, $gutter * 3);
 }
 
+.o-subtitle {
+  @include px-to-rem(font-size, $gutter * 2);
+}
+
 
 /*------------------------------------*\
   Media Querys
@@ -146,5 +150,9 @@ h6 {
 
   .o-subheadline {
     @include px-to-rem(font-size, $gutter * 4);
+  }
+
+  .o-subtitle {
+    @include px-to-rem(font-size, 20px);
   }
 }

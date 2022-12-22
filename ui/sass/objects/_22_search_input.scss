@@ -1,0 +1,99 @@
+.o-search-input {
+  @include flexbox;
+  @include align-items(flex-end);
+}
+.o-search-input_light {
+  border: 1px solid $c-primary-50;
+  @include px-to-rem(border-radius, $gutter * 4);
+}
+
+.o-search-input__field {
+  .o-search-input_light & {
+    width: 100%;
+  }
+}
+
+.o-search-input__actions {
+  position: relative;
+  @include flexbox;
+  @include align-items(center);
+  @include px-to-rem(column-gap, $gutter * 2);
+  @include px-to-rem(min-height, $gutter * 7);
+  @include px-to-rem(border-radius, 0 $gutter * 4 $gutter * 4 0);
+  @include px-to-rem(padding-right, $gutter);
+  background: $c-primary-100;
+
+  .o-search-input_light & {
+    @include px-to-rem(padding-right, $gutter * 2);
+    background-color: $c-neutro;
+  }
+}
+
+.o-search-input__action {
+  display: inline-flex;
+  @include align-items(center);
+  @include flex-direction(row-reverse);
+  @include px-to-rem(border-radius, 50px);
+  @include px-to-rem(padding, 9px $gutter * 2);
+  color: $c-neutro;
+  transition: all 0.4s;
+  background: $c-primary-50;
+
+  &::before {
+    @include px-to-rem(font-size, 18px);
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    border-color: $c-brand-primary;
+    color: $c-brand-primary;
+    transform: scale(0.9);
+    background-color: $c-neutro;
+  }
+}
+
+/**
+* Mobile | VP: max-width 768px
+*/
+@media(max-width: 989px) {
+
+  .o-search-input {
+    @include justify-content(flex-start);
+  }
+
+  .o-search-input__action {
+    @include justify-content(center);
+    @include px-to-rem(width, $gutter * 5);
+    @include px-to-rem(height, $gutter * 5);
+    font-size: 0;
+  }
+
+}
+
+/**
+* Desktop | VP: min-width 768px
+*/
+@media(min-width: 990px) {
+
+  .o-search-input {
+    @include justify-content(space-between);
+  }
+
+  .o-search-input__field {
+    flex: 1 auto;
+  }
+
+  .o-search-input__action {
+    @include justify-content(space-between);
+    @include px-to-rem(min-width, 132px);
+    @include px-to-rem(font-size, 14px);
+  }
+
+}
+
+@media(min-width: 400px) {
+  .o-search-input {
+    @include justify-content(center);
+  }
+}

@@ -9,6 +9,10 @@
   @include px-to-rem(margin-top, 100px);
   @include px-to-rem(margin-bottom, 100px);
 }
+.o-section_minor {
+  @include px-to-rem(margin-top, 50px);
+  @include px-to-rem(margin-bottom, 50px);
+}
 .o-section_border {
   border-bottom: 1px solid $c-surface-grey-20;
 }

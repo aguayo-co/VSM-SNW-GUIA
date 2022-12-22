@@ -59,6 +59,11 @@ export default class headerMenuNavigation {
           parentCurrentBtn.classList.remove(this.classIsOpenSubMenu)
 
         } else {
+          var parentCurrentBtn = currentBtn.closest(this.targetSubmenu);
+
+          if (this.element.classList.contains("is-search-open")) {
+            this.element.classList.remove("is-search-open")
+          }
 
           this.btnsSubMenu.forEach(siblingsMenu => {
 

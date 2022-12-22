@@ -15,6 +15,7 @@ from wagtail.documents import get_document_model_string
 from wagtail.documents.edit_handlers import DocumentChooserPanel
 from wagtail.fields import RichTextField, StreamField
 from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.search import index
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 
 from commons.models.components import ThematicContentComponent
@@ -234,23 +235,20 @@ class CatalogPage(FilterMixin, BasePage, OrderMixin):
         page = request.GET.get("page", None)
         order_by = self.get_order_by(request)
 
-        # filters
-        filter_names = ["serie", "subject", "grade"]
         filters = {
             f"{a_filter}__in": request.GET.getlist(a_filter, None)
-            for a_filter in filter_names
+            for a_filter in self.filter_names
             if request.GET.get(a_filter, None) not in ["", None]
         }
+        queryset = DetailProductPage.objects.filter(**filters)
 
         if order_by:
-            queryset = (
-                DetailProductPage.objects.filter(**filters)
-                .live()
-                .annotate(visits=models.Count("hit_count_generic__hit"))
-                .order_by(order_by)
-            )
-        else:
-            queryset = DetailProductPage.objects.filter(**filters).live()
+            queryset = queryset.annotate(
+                visits=models.Count("hit_count_generic__hit")
+            ).order_by(order_by)
+
+        queryset = queryset.live()
+
         paginator = Paginator(queryset, items_per_page)
 
         try:
@@ -733,6 +731,13 @@ class DetailProductPage(BasePage):
     )
 
     subpage_types = []
+
+    search_fields = BasePage.search_fields + [
+        index.SearchField("thematic_content"),
+        index.FilterField("subject_id"),
+        index.FilterField("grade"),
+        index.FilterField("serie_id"),
+    ]
 
     class Meta:
         verbose_name = _("Detalle de Producto")
