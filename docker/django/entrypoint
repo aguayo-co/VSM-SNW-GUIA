@@ -35,6 +35,10 @@ then
     # PIP requirements for easy deploy
     >&2 echo "Exporting requirements (background job)"
     poetry export -f requirements.txt -o requirements.txt --without-hashes &
+
+    # Update Index
+    >&2 echo "Updating Search Engine Index"
+    python manage.py update_index &
 fi
 
 exec "$@"

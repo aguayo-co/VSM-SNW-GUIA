@@ -1,6 +1,6 @@
-# VSM-SNW 
+# VSM-SNW-GUIA 
 
-Sitio Web para Santillana Contigo
+Sitio Web para La Guía Santillana
 
 ## Requerimientos:
 
