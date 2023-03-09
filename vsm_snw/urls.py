@@ -7,10 +7,10 @@ from wagtail import urls as wagtail_urls
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.contrib.sitemaps.views import sitemap
 from wagtail.documents import urls as wagtaildocs_urls
-from wagtail.images.views.serve import ServeView
 from wagtail_tag_manager import urls as wtm_urls
 from wagtail_transfer import urls as wagtailtransfer_urls
 
+import private
 from commons.views import Test404View, Test500View
 from search import views as search_views
 
@@ -23,6 +23,7 @@ urlpatterns = [
     path("sitemap.xml", sitemap),
     path("wtm/", include(wtm_urls)),
     path("hitcount/", include("hitcount.urls", namespace="hitcount")),
+    path('', include('private.urls')),
 ]
 
 

@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     "menus",
     "search",
     "forms",
+    "private",
     "wagtail.contrib.forms",
     "wagtail.contrib.modeladmin",
     "wagtail.contrib.redirects",
@@ -435,3 +436,8 @@ WAGTAILTRANSFER_LOOKUP_FIELDS = {
     "auth.permission": ["codename"],
     # "commons.BasePage": ["page_ptr_id"],
 }
+
+WAGTAIL_FRONTEND_LOGIN_TEMPLATE = 'private/login.html'
+LOGIN_REDIRECT_URL = 'dashboard/'
+LOGIN_URL = '/login/'
+
