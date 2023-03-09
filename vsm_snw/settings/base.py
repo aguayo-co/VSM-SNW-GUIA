@@ -23,6 +23,11 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 ROOT_URLCONF = "vsm_snw.urls"
 WSGI_APPLICATION = "vsm_snw.wsgi.application"
 
+AUTH_USER_MODEL = 'custom_user.User'
+WAGTAIL_USER_EDIT_FORM = 'custom_user.forms.CustomUserEditForm'
+WAGTAIL_USER_CREATION_FORM = 'custom_user.forms.CustomUserCreationForm'
+WAGTAIL_USER_CUSTOM_FIELDS = ['name_school']
+
 # Application definition
 INSTALLED_APPS = [
     "commons",
@@ -30,6 +35,7 @@ INSTALLED_APPS = [
     "search",
     "forms",
     "private",
+    "custom_user",
     "wagtail.contrib.forms",
     "wagtail.contrib.modeladmin",
     "wagtail.contrib.redirects",
